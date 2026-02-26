@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Madeira PR Trails (IFCN panels)</name>
+<Folder>
+<name>trailhead</name>
+<Placemark>
+<name>PR1 — Vereda do Pico Branco e Terra Chã</name>
+<description>PR1 — Vereda do Pico Branco e Terra Chã
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg</description>
+<Point>
+<coordinates>-16.314808333333335,33.09670833333334,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.1 — Vereda da Ilha</name>
+<description>PR1.1 — Vereda da Ilha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg</description>
+<Point>
+<coordinates>-16.941575,32.76021111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.2 — Vereda do Pico Ruivo</name>
+<description>PR1.2 — Vereda do Pico Ruivo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg</description>
+<Point>
+<coordinates>-16.921133333333334,32.76481111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.3 — Vereda da Encumeada</name>
+<description>PR1.3 — Vereda da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg</description>
+<Point>
+<coordinates>-16.941575,32.76021111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR11 — Vereda dos Balcões</name>
+<description>PR11 — Vereda dos Balcões
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg</description>
+<Point>
+<coordinates>-16.886419444444442,32.73546388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR12 — Caminho Real da Encumeada</name>
+<description>PR12 — Caminho Real da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg</description>
+<Point>
+<coordinates>-16.987230555555556,32.71109722222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR13 — Vereda do Fanal</name>
+<description>PR13 — Vereda do Fanal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg</description>
+<Point>
+<coordinates>-17.107733333333336,32.76707222222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR14 — Levada dos Cedros</name>
+<description>PR14 — Levada dos Cedros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg</description>
+<Point>
+<coordinates>-17.140869444444444,32.80616388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR15 — Vereda da Ribeira da Janela</name>
+<description>PR15 — Vereda da Ribeira da Janela
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg</description>
+<Point>
+<coordinates>-17.15788611111111,32.82606388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR16 — Levada Fajã do Rodrigues</name>
+<description>PR16 — Levada Fajã do Rodrigues
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg</description>
+<Point>
+<coordinates>-17.04945,32.779066666666665,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR17 — Caminho do Pináculo e Folhadal</name>
+<description>PR17 — Caminho do Pináculo e Folhadal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg</description>
+<Point>
+<coordinates>-17.01937222222222,32.754219444444445,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR18 — Levada do Rei</name>
+<description>PR18 — Levada do Rei
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg</description>
+<Point>
+<coordinates>-16.924641666666666,32.81691666666667,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR19 — Caminho Real do Paul do Mar</name>
+<description>PR19 — Caminho Real do Paul do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg</description>
+<Point>
+<coordinates>-17.21701111111111,32.752433333333336,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR2 — Vereda do Urzal</name>
+<description>PR2 — Vereda do Urzal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg</description>
+<Point>
+<coordinates>-16.966244444444445,32.742561111111115,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR20 — Vereda do Jardim do Mar</name>
+<description>PR20 — Vereda do Jardim do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg</description>
+<Point>
+<coordinates>-17.21011111111111,32.74836388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR21 — Caminho do Norte</name>
+<description>PR21 — Caminho do Norte
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg</description>
+<Point>
+<coordinates>-17.018925,32.75451388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR22 — Vereda do Chão dos Louros</name>
+<description>PR22 — Vereda do Chão dos Louros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg</description>
+<Point>
+<coordinates>-17.01728888888889,32.75765833333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR23 — Levada da Azenha</name>
+<description>PR23 — Levada da Azenha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg</description>
+<Point>
+<coordinates>-16.842944444444445,32.65408333333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR3 — Levada do Pico do Castelo</name>
+<description>PR3 — Levada do Pico do Castelo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg</description>
+<Point>
+<coordinates>-16.33836111111111,33.08636111111112,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR3.1 — Caminho Real do Monte</name>
+<description>PR3.1 — Caminho Real do Monte
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr3.1a.jpg</description>
+<Point>
+<coordinates>-16.90311111111111,32.67619444444444,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR4 — Levada do Barreiro</name>
+<description>PR4 — Levada do Barreiro
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg</description>
+<Point>
+<coordinates>-16.92477777777778,32.725944444444444,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR5 — Vereda das Funduras</name>
+<description>PR5 — Vereda das Funduras
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg</description>
+<Point>
+<coordinates>-16.82553611111111,32.74741111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6 — Levada das 25 Fontes</name>
+<description>PR6 — Levada das 25 Fontes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<Point>
+<coordinates>-17.13368611111111,32.754625,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.1 — Levada do Risco</name>
+<description>PR6.1 — Levada do Risco
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<Point>
+<coordinates>-17.13368611111111,32.754625,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR7 — Levada do Moinho</name>
+<description>PR7 — Levada do Moinho
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg</description>
+<Point>
+<coordinates>-17.208383333333334,32.82934166666667,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR8 — Vereda da Ponta de S. Lourenço</name>
+<description>PR8 — Vereda da Ponta de S. Lourenço
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg</description>
+<Point>
+<coordinates>-16.70103888888889,32.74335,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR9 — Levada do Caldeirão Verde</name>
+<description>PR9 — Levada do Caldeirão Verde
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg</description>
+<Point>
+<coordinates>-16.90579722222222,32.78377777777778,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR13.1 — Vereda da Palha Carga</name>
+<description>PR13.1 — Vereda da Palha Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg</description>
+<Point>
+<coordinates>-17.12263888888889,32.77266111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR27 — Glaciar de Planalto</name>
+<description>PR27 — Glaciar de Planalto
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg</description>
+<Point>
+<coordinates>-17.05951388888889,32.75746111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR28 — Levada da Rocha Vermelha</name>
+<description>PR28 — Levada da Rocha Vermelha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg</description>
+<Point>
+<coordinates>-17.12708888888889,32.78160555555556,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.4 — Levada Velha do Rabaçal</name>
+<description>PR6.4 — Levada Velha do Rabaçal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg</description>
+<Point>
+<coordinates>-17.153569444444443,32.768972222222224,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.5 — Vereda do Pico Fernandes</name>
+<description>PR6.5 — Vereda do Pico Fernandes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg</description>
+<Point>
+<coordinates>-17.09946111111111,32.76246111111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.6 — Vereda do Túnel do Cavalo</name>
+<description>PR6.6 — Vereda do Túnel do Cavalo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg</description>
+<Point>
+<coordinates>-17.149194444444444,32.75363611111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.8 — Vereda da Câmara de Carga</name>
+<description>PR6.8 — Vereda da Câmara de Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg</description>
+<Point>
+<coordinates>-17.133125,32.753680555555555,0</coordinates>
+</Point>
+</Placemark>
+</Folder>
+<Folder>
+<name>trail-end</name>
+<Placemark>
+<name>PR1 — Vereda do Pico Branco e Terra Chã</name>
+<description>PR1 — Vereda do Pico Branco e Terra Chã
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg</description>
+<Point>
+<coordinates>-16.299566666666667,33.093808333333335,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.1 — Vereda da Ilha</name>
+<description>PR1.1 — Vereda da Ilha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg</description>
+<Point>
+<coordinates>-16.911655555555555,32.805949999999996,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.2 — Vereda do Pico Ruivo</name>
+<description>PR1.2 — Vereda do Pico Ruivo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg</description>
+<Point>
+<coordinates>-16.942522222222223,32.75888333333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR1.3 — Vereda da Encumeada</name>
+<description>PR1.3 — Vereda da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg</description>
+<Point>
+<coordinates>-17.018641666666667,32.75423888888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR11 — Vereda dos Balcões</name>
+<description>PR11 — Vereda dos Balcões
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg</description>
+<Point>
+<coordinates>-16.890349999999998,32.74158888888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR12 — Caminho Real da Encumeada</name>
+<description>PR12 — Caminho Real da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg</description>
+<Point>
+<coordinates>-17.020988888888887,32.75339722222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR13 — Vereda do Fanal</name>
+<description>PR13 — Vereda do Fanal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg</description>
+<Point>
+<coordinates>-17.14218333333333,32.80830833333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR14 — Levada dos Cedros</name>
+<description>PR14 — Levada dos Cedros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg</description>
+<Point>
+<coordinates>-17.157941666666666,32.82591388888889,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR15 — Vereda da Ribeira da Janela</name>
+<description>PR15 — Vereda da Ribeira da Janela
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg</description>
+<Point>
+<coordinates>-17.15502222222222,32.844122222222225,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR16 — Levada Fajã do Rodrigues</name>
+<description>PR16 — Levada Fajã do Rodrigues
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg</description>
+<Point>
+<coordinates>-17.07739722222222,32.78868333333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR17 — Caminho do Pináculo e Folhadal</name>
+<description>PR17 — Caminho do Pináculo e Folhadal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg</description>
+<Point>
+<coordinates>-17.04475277777778,32.74270277777778,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR18 — Levada do Rei</name>
+<description>PR18 — Levada do Rei
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg</description>
+<Point>
+<coordinates>-16.938122222222223,32.79610833333333,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR19 — Caminho Real do Paul do Mar</name>
+<description>PR19 — Caminho Real do Paul do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg</description>
+<Point>
+<coordinates>-17.223841666666665,32.752658333333336,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR2 — Vereda do Urzal</name>
+<description>PR2 — Vereda do Urzal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg</description>
+<Point>
+<coordinates>-16.978580555555553,32.78217222222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR20 — Vereda do Jardim do Mar</name>
+<description>PR20 — Vereda do Jardim do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg</description>
+<Point>
+<coordinates>-17.21156111111111,32.73768611111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR21 — Caminho do Norte</name>
+<description>PR21 — Caminho do Norte
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg</description>
+<Point>
+<coordinates>-17.023716666666665,32.77440277777778,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR22 — Vereda do Chão dos Louros</name>
+<description>PR22 — Vereda do Chão dos Louros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg</description>
+<Point>
+<coordinates>-17.017141666666667,32.75774166666667,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR23 — Levada da Azenha</name>
+<description>PR23 — Levada da Azenha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg</description>
+<Point>
+<coordinates>-16.841777777777775,32.65819444444444,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR3 — Levada do Pico do Castelo</name>
+<description>PR3 — Levada do Pico do Castelo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg</description>
+<Point>
+<coordinates>-16.32311111111111,33.0705,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR4 — Levada do Barreiro</name>
+<description>PR4 — Levada do Barreiro
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg</description>
+<Point>
+<coordinates>-16.909555555555553,32.695361111111104,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR5 — Vereda das Funduras</name>
+<description>PR5 — Vereda das Funduras
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg</description>
+<Point>
+<coordinates>-16.79791388888889,32.737547222222226,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6 — Levada das 25 Fontes</name>
+<description>PR6 — Levada das 25 Fontes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<Point>
+<coordinates>-17.12537777777778,32.765505555555556,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.1 — Levada do Risco</name>
+<description>PR6.1 — Levada do Risco
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<Point>
+<coordinates>-17.12537777777778,32.765505555555556,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR7 — Levada do Moinho</name>
+<description>PR7 — Levada do Moinho
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg</description>
+<Point>
+<coordinates>-17.17756388888889,32.85532222222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR8 — Vereda da Ponta de S. Lourenço</name>
+<description>PR8 — Vereda da Ponta de S. Lourenço
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg</description>
+<Point>
+<coordinates>-16.683605555555555,32.74223055555556,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR9 — Levada do Caldeirão Verde</name>
+<description>PR9 — Levada do Caldeirão Verde
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg</description>
+<Point>
+<coordinates>-16.936363888888888,32.77423611111111,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR13.1 — Vereda da Palha Carga</name>
+<description>PR13.1 — Vereda da Palha Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg</description>
+<Point>
+<coordinates>-17.125580555555555,32.76564722222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR27 — Glaciar de Planalto</name>
+<description>PR27 — Glaciar de Planalto
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg</description>
+<Point>
+<coordinates>-16.897222222222222,32.77972222222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR28 — Levada da Rocha Vermelha</name>
+<description>PR28 — Levada da Rocha Vermelha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg</description>
+<Point>
+<coordinates>-17.147225,32.746050000000004,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.4 — Levada Velha do Rabaçal</name>
+<description>PR6.4 — Levada Velha do Rabaçal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg</description>
+<Point>
+<coordinates>-17.134944444444443,32.76161666666667,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.5 — Vereda do Pico Fernandes</name>
+<description>PR6.5 — Vereda do Pico Fernandes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg</description>
+<Point>
+<coordinates>-17.125580555555555,32.76564722222222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.6 — Vereda do Túnel do Cavalo</name>
+<description>PR6.6 — Vereda do Túnel do Cavalo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg</description>
+<Point>
+<coordinates>-17.134916666666665,32.76161666666667,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>PR6.8 — Vereda da Câmara de Carga</name>
+<description>PR6.8 — Vereda da Câmara de Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg</description>
+<Point>
+<coordinates>-17.125480555555555,32.74831944444445,0</coordinates>
+</Point>
+</Placemark>
+</Folder>
+<Folder>
+<name>route-line</name>
+<Placemark>
+<name>PR1 — Vereda do Pico Branco e Terra Chã</name>
+<description>PR1 — Vereda do Pico Branco e Terra Chã
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.314808333333335,33.09670833333334,0 -16.299566666666667,33.093808333333335,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR1.1 — Vereda da Ilha</name>
+<description>PR1.1 — Vereda da Ilha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.941575,32.76021111111111,0 -16.911655555555555,32.805949999999996,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR1.2 — Vereda do Pico Ruivo</name>
+<description>PR1.2 — Vereda do Pico Ruivo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.921133333333334,32.76481111111111,0 -16.942522222222223,32.75888333333333,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR1.3 — Vereda da Encumeada</name>
+<description>PR1.3 — Vereda da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.941575,32.76021111111111,0 -17.018641666666667,32.75423888888889,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR11 — Vereda dos Balcões</name>
+<description>PR11 — Vereda dos Balcões
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.886419444444442,32.73546388888889,0 -16.890349999999998,32.74158888888889,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR12 — Caminho Real da Encumeada</name>
+<description>PR12 — Caminho Real da Encumeada
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.987230555555556,32.71109722222222,0 -17.020988888888887,32.75339722222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR13 — Vereda do Fanal</name>
+<description>PR13 — Vereda do Fanal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.107733333333336,32.76707222222222,0 -17.14218333333333,32.80830833333333,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR14 — Levada dos Cedros</name>
+<description>PR14 — Levada dos Cedros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.140869444444444,32.80616388888889,0 -17.157941666666666,32.82591388888889,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR15 — Vereda da Ribeira da Janela</name>
+<description>PR15 — Vereda da Ribeira da Janela
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.15788611111111,32.82606388888889,0 -17.15502222222222,32.844122222222225,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR16 — Levada Fajã do Rodrigues</name>
+<description>PR16 — Levada Fajã do Rodrigues
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.04945,32.779066666666665,0 -17.07739722222222,32.78868333333333,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR17 — Caminho do Pináculo e Folhadal</name>
+<description>PR17 — Caminho do Pináculo e Folhadal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.01937222222222,32.754219444444445,0 -17.04475277777778,32.74270277777778,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR18 — Levada do Rei</name>
+<description>PR18 — Levada do Rei
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.924641666666666,32.81691666666667,0 -16.938122222222223,32.79610833333333,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR19 — Caminho Real do Paul do Mar</name>
+<description>PR19 — Caminho Real do Paul do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.21701111111111,32.752433333333336,0 -17.223841666666665,32.752658333333336,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR2 — Vereda do Urzal</name>
+<description>PR2 — Vereda do Urzal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.966244444444445,32.742561111111115,0 -16.978580555555553,32.78217222222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR20 — Vereda do Jardim do Mar</name>
+<description>PR20 — Vereda do Jardim do Mar
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.21011111111111,32.74836388888889,0 -17.21156111111111,32.73768611111111,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR21 — Caminho do Norte</name>
+<description>PR21 — Caminho do Norte
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.018925,32.75451388888889,0 -17.023716666666665,32.77440277777778,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR22 — Vereda do Chão dos Louros</name>
+<description>PR22 — Vereda do Chão dos Louros
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.01728888888889,32.75765833333333,0 -17.017141666666667,32.75774166666667,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR23 — Levada da Azenha</name>
+<description>PR23 — Levada da Azenha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.842944444444445,32.65408333333333,0 -16.841777777777775,32.65819444444444,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR3 — Levada do Pico do Castelo</name>
+<description>PR3 — Levada do Pico do Castelo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.33836111111111,33.08636111111112,0 -16.32311111111111,33.0705,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR4 — Levada do Barreiro</name>
+<description>PR4 — Levada do Barreiro
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.92477777777778,32.725944444444444,0 -16.909555555555553,32.695361111111104,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR5 — Vereda das Funduras</name>
+<description>PR5 — Vereda das Funduras
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.82553611111111,32.74741111111111,0 -16.79791388888889,32.737547222222226,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6 — Levada das 25 Fontes</name>
+<description>PR6 — Levada das 25 Fontes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.13368611111111,32.754625,0 -17.12537777777778,32.765505555555556,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6.1 — Levada do Risco</name>
+<description>PR6.1 — Levada do Risco
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.13368611111111,32.754625,0 -17.12537777777778,32.765505555555556,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR7 — Levada do Moinho</name>
+<description>PR7 — Levada do Moinho
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.208383333333334,32.82934166666667,0 -17.17756388888889,32.85532222222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR8 — Vereda da Ponta de S. Lourenço</name>
+<description>PR8 — Vereda da Ponta de S. Lourenço
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.70103888888889,32.74335,0 -16.683605555555555,32.74223055555556,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR9 — Levada do Caldeirão Verde</name>
+<description>PR9 — Levada do Caldeirão Verde
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-16.90579722222222,32.78377777777778,0 -16.936363888888888,32.77423611111111,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR13.1 — Vereda da Palha Carga</name>
+<description>PR13.1 — Vereda da Palha Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.12263888888889,32.77266111111111,0 -17.125580555555555,32.76564722222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR27 — Glaciar de Planalto</name>
+<description>PR27 — Glaciar de Planalto
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.05951388888889,32.75746111111111,0 -16.897222222222222,32.77972222222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR28 — Levada da Rocha Vermelha</name>
+<description>PR28 — Levada da Rocha Vermelha
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.12708888888889,32.78160555555556,0 -17.147225,32.746050000000004,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6.4 — Levada Velha do Rabaçal</name>
+<description>PR6.4 — Levada Velha do Rabaçal
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.153569444444443,32.768972222222224,0 -17.134944444444443,32.76161666666667,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6.5 — Vereda do Pico Fernandes</name>
+<description>PR6.5 — Vereda do Pico Fernandes
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.09946111111111,32.76246111111111,0 -17.125580555555555,32.76564722222222,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6.6 — Vereda do Túnel do Cavalo</name>
+<description>PR6.6 — Vereda do Túnel do Cavalo
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.149194444444444,32.75363611111111,0 -17.134916666666665,32.76161666666667,0</coordinates>
+</LineString>
+</Placemark>
+<Placemark>
+<name>PR6.8 — Vereda da Câmara de Carga</name>
+<description>PR6.8 — Vereda da Câmara de Carga
+Panel: https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg</description>
+<LineString><tessellate>1</tessellate>
+<coordinates>-17.133125,32.753680555555555,0 -17.125480555555555,32.74831944444445,0</coordinates>
+</LineString>
+</Placemark>
+</Folder>
+</Document></kml>

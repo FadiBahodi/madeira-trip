@@ -1,0 +1,144 @@
+{
+  "Sé Cathedral Funchal Madeira": null,
+  "Mercado dos Lavradores Funchal": {
+    "lat": 32.6486889,
+    "lon": -16.9035111,
+    "display_name": "Mercado dos Lavradores, Rua Brigadeiro Oudinot, Arsenal, Zona Velha, Santa Maria Maior, Funchal, Madeira, 9060-157, Portugal"
+  },
+  "Câmara de Lobos Madeira": {
+    "lat": 32.6485492,
+    "lon": -16.9752409,
+    "display_name": "Câmara de Lobos, Madeira, Portugal"
+  },
+  "Cabo Girão viewpoint Madeira": {
+    "lat": 32.6564809,
+    "lon": -17.0044527,
+    "display_name": "Cabo Girão, Miradouro do Cabo Girão, Fontainhas do Mar, Câmara de Lobos, Madeira, 9300-354, Portugal"
+  },
+  "Eira do Serrado viewpoint": {
+    "lat": 32.710353,
+    "lon": -16.9657606,
+    "display_name": "Eira do Serrado, Caminho das Voltas, Capela, Balseiras, Curral das Freiras, Câmara de Lobos, Madeira, 9000-421, Portugal"
+  },
+  "Curral das Freiras Madeira": {
+    "lat": 32.720835,
+    "lon": -16.9657129,
+    "display_name": "Curral das Freiras, Câmara de Lobos, Madeira, Portugal"
+  },
+  "Cristo Rei Garajau Madeira": {
+    "lat": 32.6385635,
+    "lon": -16.8506765,
+    "display_name": "Cristo Rei, Fonte do Mar, Garajau, Caniço, Santa Cruz, Madeira, 9125-167, Portugal"
+  },
+  "Monte Palace Tropical Garden Madeira": {
+    "lat": 32.6741918,
+    "lon": -16.9028785,
+    "display_name": "Jardim Tropical Monte Palace, 174, Monte, Funchal, Madeira, 9050-288, Portugal"
+  },
+  "Madeira Botanical Garden Funchal": {
+    "lat": 32.661984,
+    "lon": -16.8954737,
+    "display_name": "Jardim Botânico da Madeira Engenheiro Rui Vieira, Santa Maria Maior, Funchal, Madeira, Portugal"
+  },
+  "Palheiro Gardens Madeira": {
+    "lat": 32.6598333,
+    "lon": -16.8672904,
+    "display_name": "Palheiro Gardens, São Gonçalo, Funchal, Madeira, 9060-255, Portugal"
+  },
+  "Pico do Areeiro": {
+    "lat": 32.7354798,
+    "lon": -16.9286618,
+    "display_name": "Pico do Areeiro, Estrada Regional 202, Monte, São Roque do Faial, Funchal, Madeira, 9230-212, Portugal"
+  },
+  "Achada do Teixeira Madeira": {
+    "lat": 32.7653124,
+    "lon": -16.9209082,
+    "display_name": "Achada do Teixeira, Ilha, Santana, Madeira, 9230-000, Portugal"
+  },
+  "Pico Ruivo": {
+    "lat": 32.7603786,
+    "lon": -16.9437638,
+    "display_name": "Pico Ruivo, Vereda da Encumeada, Ilha, Santana, Madeira, 9230-000, Portugal"
+  },
+  "Machico Madeira": {
+    "lat": 32.722875,
+    "lon": -16.7659069,
+    "display_name": "Machico, Madeira, Portugal"
+  },
+  "Santana Madeira": {
+    "lat": 32.804907,
+    "lon": -16.8813015,
+    "display_name": "Santana, Madeira, Portugal"
+  },
+  "Parque Florestal das Queimadas Madeira": {
+    "lat": 32.7827718,
+    "lon": -16.9116097,
+    "display_name": "Parque Florestal das Queimadas, Ilha, Santana, Madeira, 9230-230, Portugal"
+  },
+  "Ribeiro Frio Madeira": {
+    "lat": 32.7396155,
+    "lon": -16.8869417,
+    "display_name": "Ribeiro Frio, Santana, Madeira, 9230-209, Portugal"
+  },
+  "Porto da Cruz Madeira": {
+    "lat": 32.7725082,
+    "lon": -16.8286042,
+    "display_name": "Porto da Cruz, Machico, Madeira, Portugal"
+  },
+  "Miradouro do Guindaste Madeira": null,
+  "São Vicente Madeira": {
+    "lat": 32.8022756,
+    "lon": -17.0472397,
+    "display_name": "São Vicente, Madeira, Portugal"
+  },
+  "Seixal Beach Madeira": {
+    "lat": 32.8219059,
+    "lon": -17.1031365,
+    "display_name": "Praia do Porto do Seixal, Seixal, Porto Moniz, Madeira, Portugal"
+  },
+  "Véu da Noiva viewpoint Madeira": {
+    "lat": 32.8160824,
+    "lon": -17.0951401,
+    "display_name": "Véu da Noiva, Antiga Estrada Regional 101, Seixal, Porto Moniz, Madeira, 9270-130, Portugal"
+  },
+  "Ribeira da Janela Madeira": {
+    "lat": 32.8478767,
+    "lon": -17.1579812,
+    "display_name": "Ribeira da Janela, Porto Moniz, Madeira, Portugal"
+  },
+  "Piscinas Naturais do Porto Moniz": {
+    "lat": 32.8686566,
+    "lon": -17.1701871,
+    "display_name": "Piscinas Naturais do Porto Moniz, Vereda das Poças, Penedia, Porto Moniz, Madeira, 9270-052, Portugal"
+  },
+  "Calheta Madeira": {
+    "lat": 32.7219412,
+    "lon": -17.1782577,
+    "display_name": "Calheta, Madeira, Portugal"
+  },
+  "Praia da Calheta": {
+    "lat": 32.718565,
+    "lon": -17.1740887,
+    "display_name": "Praia da Calheta, Calheta, Madeira, Portugal"
+  },
+  "Ponta do Sol Madeira": {
+    "lat": 32.6812371,
+    "lon": -17.1040761,
+    "display_name": "Ponta do Sol, Madeira, Portugal"
+  },
+  "Jardim do Mar Madeira": {
+    "lat": 32.7375582,
+    "lon": -17.2111304,
+    "display_name": "Jardim do Mar, Calheta, Madeira, Portugal"
+  },
+  "Paul do Mar Madeira": {
+    "lat": 32.7547748,
+    "lon": -17.227238,
+    "display_name": "Paul do Mar, Calheta, Madeira, Portugal"
+  },
+  "Farol da Ponta do Pargo": {
+    "lat": 32.8139265,
+    "lon": -17.2630691,
+    "display_name": "Farol da Ponta do Pargo, Rua Cesar Augusto Pestana, Ponta do Pargo, Calheta, Madeira, 9385-251, Portugal"
+  }
+}

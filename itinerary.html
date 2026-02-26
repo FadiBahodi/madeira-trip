@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Madeira Trip — Itinerary</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b1220;
+        --panel: #0f1a2e;
+        --text: #e8eefc;
+        --muted: rgba(232, 238, 252, 0.72);
+        --line: rgba(232, 238, 252, 0.16);
+        --link: #7dd3fc;
+        --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f7f7fb;
+          --panel: #ffffff;
+          --text: #0f172a;
+          --muted: rgba(15, 23, 42, 0.72);
+          --line: rgba(15, 23, 42, 0.12);
+          --link: #0369a1;
+          --shadow: 0 10px 22px rgba(2, 6, 23, 0.08);
+        }
+      }
+
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      a {
+        color: var(--link);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        background: color-mix(in srgb, var(--bg) 70%, transparent);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 10px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .wrap {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 18px 16px 56px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      #content h1,
+      #content h2,
+      #content h3 {
+        letter-spacing: -0.02em;
+      }
+
+      #content table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        display: block;
+      }
+
+      #content th,
+      #content td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+
+      #content tr:last-child td {
+        border-bottom: none;
+      }
+
+      #content code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+      }
+
+      .error {
+        color: var(--muted);
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <a class="btn" href="./index.html">← Home</a>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap">
+          <a class="btn" href="./madeira_map.html">Open map</a>
+          <a class="btn" href="./MADEIRA_ITINERARY_MEGA.md" download>Download</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="card" id="content">Loading itinerary…</div>
+    </div>
+
+    <script>
+      async function main() {
+        const content = document.getElementById("content");
+        try {
+          const resp = await fetch("./MADEIRA_ITINERARY_MEGA.md", {
+            cache: "no-store",
+          });
+          if (!resp.ok) {
+            throw new Error(`Fetch failed: ${resp.status} ${resp.statusText}`);
+          }
+          const md = await resp.text();
+          marked.setOptions({ gfm: true, breaks: false });
+          content.innerHTML = marked.parse(md);
+        } catch (err) {
+          content.innerHTML = `<div class=\"error\">Could not load itinerary markdown.\n\n${String(
+            err
+          )}\n\nIf you’re viewing this from a local file (file://), host it via GitHub Pages (or any static server) and try again.</div>`;
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>
+

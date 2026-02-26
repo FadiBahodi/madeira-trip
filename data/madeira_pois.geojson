@@ -1,0 +1,481 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9035111,
+          32.6486889
+        ]
+      },
+      "properties": {
+        "name": "Mercado dos Lavradores",
+        "query": "Mercado dos Lavradores Funchal",
+        "region": "Funchal & South",
+        "kind": "market",
+        "geocoded_display_name": "Mercado dos Lavradores, Rua Brigadeiro Oudinot, Arsenal, Zona Velha, Santa Maria Maior, Funchal, Madeira, 9060-157, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9752409,
+          32.6485492
+        ]
+      },
+      "properties": {
+        "name": "Câmara de Lobos",
+        "query": "Câmara de Lobos Madeira",
+        "region": "Funchal & South",
+        "kind": "town",
+        "geocoded_display_name": "Câmara de Lobos, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0044527,
+          32.6564809
+        ]
+      },
+      "properties": {
+        "name": "Cabo Girão Skywalk",
+        "query": "Cabo Girão viewpoint Madeira",
+        "region": "Funchal & South",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Cabo Girão, Miradouro do Cabo Girão, Fontainhas do Mar, Câmara de Lobos, Madeira, 9300-354, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9657606,
+          32.710353
+        ]
+      },
+      "properties": {
+        "name": "Eira do Serrado Viewpoint",
+        "query": "Eira do Serrado viewpoint",
+        "region": "Funchal & South",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Eira do Serrado, Caminho das Voltas, Capela, Balseiras, Curral das Freiras, Câmara de Lobos, Madeira, 9000-421, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9657129,
+          32.720835
+        ]
+      },
+      "properties": {
+        "name": "Curral das Freiras",
+        "query": "Curral das Freiras Madeira",
+        "region": "Funchal & South",
+        "kind": "town",
+        "geocoded_display_name": "Curral das Freiras, Câmara de Lobos, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8506765,
+          32.6385635
+        ]
+      },
+      "properties": {
+        "name": "Cristo Rei (Garajau)",
+        "query": "Cristo Rei Garajau Madeira",
+        "region": "Funchal & South",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Cristo Rei, Fonte do Mar, Garajau, Caniço, Santa Cruz, Madeira, 9125-167, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9028785,
+          32.6741918
+        ]
+      },
+      "properties": {
+        "name": "Monte Palace Tropical Garden",
+        "query": "Monte Palace Tropical Garden Madeira",
+        "region": "Funchal & South",
+        "kind": "garden",
+        "geocoded_display_name": "Jardim Tropical Monte Palace, 174, Monte, Funchal, Madeira, 9050-288, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8954737,
+          32.661984
+        ]
+      },
+      "properties": {
+        "name": "Madeira Botanical Garden",
+        "query": "Madeira Botanical Garden Funchal",
+        "region": "Funchal & South",
+        "kind": "garden",
+        "geocoded_display_name": "Jardim Botânico da Madeira Engenheiro Rui Vieira, Santa Maria Maior, Funchal, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8672904,
+          32.6598333
+        ]
+      },
+      "properties": {
+        "name": "Palheiro Gardens",
+        "query": "Palheiro Gardens Madeira",
+        "region": "Funchal & South",
+        "kind": "garden",
+        "geocoded_display_name": "Palheiro Gardens, São Gonçalo, Funchal, Madeira, 9060-255, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9286618,
+          32.7354798
+        ]
+      },
+      "properties": {
+        "name": "Pico do Areeiro",
+        "query": "Pico do Areeiro",
+        "region": "Central Mountains",
+        "kind": "peak",
+        "geocoded_display_name": "Pico do Areeiro, Estrada Regional 202, Monte, São Roque do Faial, Funchal, Madeira, 9230-212, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9209082,
+          32.7653124
+        ]
+      },
+      "properties": {
+        "name": "Achada do Teixeira",
+        "query": "Achada do Teixeira Madeira",
+        "region": "Central Mountains",
+        "kind": "trailhead",
+        "geocoded_display_name": "Achada do Teixeira, Ilha, Santana, Madeira, 9230-000, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9437638,
+          32.7603786
+        ]
+      },
+      "properties": {
+        "name": "Pico Ruivo",
+        "query": "Pico Ruivo",
+        "region": "Central Mountains",
+        "kind": "peak",
+        "geocoded_display_name": "Pico Ruivo, Vereda da Encumeada, Ilha, Santana, Madeira, 9230-000, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.7659069,
+          32.722875
+        ]
+      },
+      "properties": {
+        "name": "Machico",
+        "query": "Machico Madeira",
+        "region": "East",
+        "kind": "town",
+        "geocoded_display_name": "Machico, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8813015,
+          32.804907
+        ]
+      },
+      "properties": {
+        "name": "Santana",
+        "query": "Santana Madeira",
+        "region": "East",
+        "kind": "town",
+        "geocoded_display_name": "Santana, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.9116097,
+          32.7827718
+        ]
+      },
+      "properties": {
+        "name": "Parque Florestal das Queimadas",
+        "query": "Parque Florestal das Queimadas Madeira",
+        "region": "East",
+        "kind": "trailhead",
+        "geocoded_display_name": "Parque Florestal das Queimadas, Ilha, Santana, Madeira, 9230-230, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8869417,
+          32.7396155
+        ]
+      },
+      "properties": {
+        "name": "Ribeiro Frio",
+        "query": "Ribeiro Frio Madeira",
+        "region": "East",
+        "kind": "trailhead",
+        "geocoded_display_name": "Ribeiro Frio, Santana, Madeira, 9230-209, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.8286042,
+          32.7725082
+        ]
+      },
+      "properties": {
+        "name": "Porto da Cruz",
+        "query": "Porto da Cruz Madeira",
+        "region": "East",
+        "kind": "town",
+        "geocoded_display_name": "Porto da Cruz, Machico, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0472397,
+          32.8022756
+        ]
+      },
+      "properties": {
+        "name": "São Vicente",
+        "query": "São Vicente Madeira",
+        "region": "North Coast",
+        "kind": "town",
+        "geocoded_display_name": "São Vicente, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1031365,
+          32.8219059
+        ]
+      },
+      "properties": {
+        "name": "Seixal Beach",
+        "query": "Seixal Beach Madeira",
+        "region": "North Coast",
+        "kind": "beach",
+        "geocoded_display_name": "Praia do Porto do Seixal, Seixal, Porto Moniz, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.0951401,
+          32.8160824
+        ]
+      },
+      "properties": {
+        "name": "Véu da Noiva Viewpoint",
+        "query": "Véu da Noiva viewpoint Madeira",
+        "region": "North Coast",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Véu da Noiva, Antiga Estrada Regional 101, Seixal, Porto Moniz, Madeira, 9270-130, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1579812,
+          32.8478767
+        ]
+      },
+      "properties": {
+        "name": "Ribeira da Janela",
+        "query": "Ribeira da Janela Madeira",
+        "region": "North Coast",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Ribeira da Janela, Porto Moniz, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1701871,
+          32.8686566
+        ]
+      },
+      "properties": {
+        "name": "Porto Moniz Natural Pools",
+        "query": "Piscinas Naturais do Porto Moniz",
+        "region": "North Coast",
+        "kind": "swim",
+        "geocoded_display_name": "Piscinas Naturais do Porto Moniz, Vereda das Poças, Penedia, Porto Moniz, Madeira, 9270-052, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1782577,
+          32.7219412
+        ]
+      },
+      "properties": {
+        "name": "Calheta",
+        "query": "Calheta Madeira",
+        "region": "West & Southwest",
+        "kind": "town",
+        "geocoded_display_name": "Calheta, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1740887,
+          32.718565
+        ]
+      },
+      "properties": {
+        "name": "Praia da Calheta",
+        "query": "Praia da Calheta",
+        "region": "West & Southwest",
+        "kind": "beach",
+        "geocoded_display_name": "Praia da Calheta, Calheta, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.1040761,
+          32.6812371
+        ]
+      },
+      "properties": {
+        "name": "Ponta do Sol",
+        "query": "Ponta do Sol Madeira",
+        "region": "West & Southwest",
+        "kind": "town",
+        "geocoded_display_name": "Ponta do Sol, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.2111304,
+          32.7375582
+        ]
+      },
+      "properties": {
+        "name": "Jardim do Mar",
+        "query": "Jardim do Mar Madeira",
+        "region": "West & Southwest",
+        "kind": "town",
+        "geocoded_display_name": "Jardim do Mar, Calheta, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.227238,
+          32.7547748
+        ]
+      },
+      "properties": {
+        "name": "Paul do Mar",
+        "query": "Paul do Mar Madeira",
+        "region": "West & Southwest",
+        "kind": "town",
+        "geocoded_display_name": "Paul do Mar, Calheta, Madeira, Portugal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.2630691,
+          32.8139265
+        ]
+      },
+      "properties": {
+        "name": "Ponta do Pargo Lighthouse",
+        "query": "Farol da Ponta do Pargo",
+        "region": "West & Southwest",
+        "kind": "viewpoint",
+        "geocoded_display_name": "Farol da Ponta do Pargo, Rua Cesar Augusto Pestana, Ponta do Pargo, Calheta, Madeira, 9385-251, Portugal"
+      }
+    }
+  ]
+}

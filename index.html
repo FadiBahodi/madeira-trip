@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Madeira Trip — Map + Itinerary</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #0b1220;
+        --panel: #0f1a2e;
+        --text: #e8eefc;
+        --muted: rgba(232, 238, 252, 0.72);
+        --line: rgba(232, 238, 252, 0.16);
+        --link: #7dd3fc;
+        --btn: #2563eb;
+        --btn2: rgba(232, 238, 252, 0.08);
+        --shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f7f7fb;
+          --panel: #ffffff;
+          --text: #0f172a;
+          --muted: rgba(15, 23, 42, 0.72);
+          --line: rgba(15, 23, 42, 0.12);
+          --link: #0369a1;
+          --btn: #2563eb;
+          --btn2: rgba(15, 23, 42, 0.06);
+          --shadow: 0 10px 22px rgba(2, 6, 23, 0.08);
+        }
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(
+            1200px 600px at 20% 0%,
+            rgba(37, 99, 235, 0.16),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 500px at 80% 20%,
+            rgba(125, 211, 252, 0.18),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--text);
+      }
+
+      a {
+        color: var(--link);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .wrap {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 28px 18px 56px;
+      }
+
+      header {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+
+      .title h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .title p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(12, 1fr);
+        margin-top: 18px;
+      }
+
+      .card {
+        grid-column: span 12;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--btn2);
+        color: var(--text);
+        font-weight: 600;
+      }
+      .btn.primary {
+        background: var(--btn);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+      .btn:hover {
+        filter: brightness(1.05);
+        text-decoration: none;
+      }
+
+      .two {
+        grid-column: span 12;
+      }
+      @media (min-width: 880px) {
+        .two {
+          grid-column: span 6;
+        }
+      }
+
+      .thumbs {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 640px) {
+        .thumbs {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .thumb {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: rgba(0, 0, 0, 0.02);
+      }
+      .thumb img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .thumb .cap {
+        padding: 10px 12px;
+        font-weight: 600;
+      }
+      .sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="title">
+          <h1>Madeira Trip — Map + Itinerary</h1>
+          <p>Mar 10–15, 2026 • Map-first planning + flexible option atlas</p>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card two">
+          <h2>Interactive map</h2>
+          <div class="buttons">
+            <a class="btn primary" href="./madeira_map.html">Open map</a>
+            <a class="btn" href="./data/madeira_map_full.kml" download
+              >Download KML (PR + POIs)</a
+            >
+            <a class="btn" href="./data/madeira_pr_trails.kml" download
+              >Download KML (PR only)</a
+            >
+          </div>
+          <div class="sub">
+            Uses OpenStreetMap tiles + Leaflet. Map pins are trailhead/end
+            anchors (not full trail geometry).
+          </div>
+        </section>
+
+        <section class="card two">
+          <h2>Itinerary</h2>
+          <div class="buttons">
+            <a class="btn primary" href="./itinerary.html">Read itinerary</a>
+            <a class="btn" href="./MADEIRA_ITINERARY_MEGA.md" download
+              >Download markdown</a
+            >
+            <a class="btn" href="./data/madeira_pr_trails.geojson" download
+              >Download GeoJSON (PR)</a
+            >
+          </div>
+          <div class="sub">
+            The itinerary page renders the markdown file directly, so updates are
+            easy.
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Official IFCN reference maps</h2>
+          <div class="thumbs">
+            <a class="thumb" href="./data/ifcn_maps/ifcn_pr_map.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="./data/ifcn_maps/ifcn_pr_map.jpg" alt="IFCN PR overview map" />
+              <div class="cap">IFCN: PR overview map</div>
+            </a>
+            <a class="thumb" href="./data/ifcn_maps/ifcn_rabacal_map.jpg" target="_blank" rel="noopener noreferrer">
+              <img
+                src="./data/ifcn_maps/ifcn_rabacal_map.jpg"
+                alt="IFCN Rabaçal area map"
+              />
+              <div class="cap">IFCN: Rabaçal area map</div>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        Tip: If you publish this on GitHub Pages, share the site URL with your
+        friend and they’ll be able to open the map + itinerary from any device.
+      </footer>
+    </div>
+  </body>
+</html>
+
