@@ -1,481 +1,67 @@
 {
   "type": "FeatureCollection",
   "features": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9035111,
-          32.6486889
-        ]
-      },
-      "properties": {
-        "name": "Mercado dos Lavradores",
-        "query": "Mercado dos Lavradores Funchal",
-        "region": "Funchal & South",
-        "kind": "market",
-        "geocoded_display_name": "Mercado dos Lavradores, Rua Brigadeiro Oudinot, Arsenal, Zona Velha, Santa Maria Maior, Funchal, Madeira, 9060-157, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9752409,
-          32.6485492
-        ]
-      },
-      "properties": {
-        "name": "Câmara de Lobos",
-        "query": "Câmara de Lobos Madeira",
-        "region": "Funchal & South",
-        "kind": "town",
-        "geocoded_display_name": "Câmara de Lobos, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.0044527,
-          32.6564809
-        ]
-      },
-      "properties": {
-        "name": "Cabo Girão Skywalk",
-        "query": "Cabo Girão viewpoint Madeira",
-        "region": "Funchal & South",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Cabo Girão, Miradouro do Cabo Girão, Fontainhas do Mar, Câmara de Lobos, Madeira, 9300-354, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9657606,
-          32.710353
-        ]
-      },
-      "properties": {
-        "name": "Eira do Serrado Viewpoint",
-        "query": "Eira do Serrado viewpoint",
-        "region": "Funchal & South",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Eira do Serrado, Caminho das Voltas, Capela, Balseiras, Curral das Freiras, Câmara de Lobos, Madeira, 9000-421, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9657129,
-          32.720835
-        ]
-      },
-      "properties": {
-        "name": "Curral das Freiras",
-        "query": "Curral das Freiras Madeira",
-        "region": "Funchal & South",
-        "kind": "town",
-        "geocoded_display_name": "Curral das Freiras, Câmara de Lobos, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8506765,
-          32.6385635
-        ]
-      },
-      "properties": {
-        "name": "Cristo Rei (Garajau)",
-        "query": "Cristo Rei Garajau Madeira",
-        "region": "Funchal & South",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Cristo Rei, Fonte do Mar, Garajau, Caniço, Santa Cruz, Madeira, 9125-167, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9028785,
-          32.6741918
-        ]
-      },
-      "properties": {
-        "name": "Monte Palace Tropical Garden",
-        "query": "Monte Palace Tropical Garden Madeira",
-        "region": "Funchal & South",
-        "kind": "garden",
-        "geocoded_display_name": "Jardim Tropical Monte Palace, 174, Monte, Funchal, Madeira, 9050-288, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8954737,
-          32.661984
-        ]
-      },
-      "properties": {
-        "name": "Madeira Botanical Garden",
-        "query": "Madeira Botanical Garden Funchal",
-        "region": "Funchal & South",
-        "kind": "garden",
-        "geocoded_display_name": "Jardim Botânico da Madeira Engenheiro Rui Vieira, Santa Maria Maior, Funchal, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8672904,
-          32.6598333
-        ]
-      },
-      "properties": {
-        "name": "Palheiro Gardens",
-        "query": "Palheiro Gardens Madeira",
-        "region": "Funchal & South",
-        "kind": "garden",
-        "geocoded_display_name": "Palheiro Gardens, São Gonçalo, Funchal, Madeira, 9060-255, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9286618,
-          32.7354798
-        ]
-      },
-      "properties": {
-        "name": "Pico do Areeiro",
-        "query": "Pico do Areeiro",
-        "region": "Central Mountains",
-        "kind": "peak",
-        "geocoded_display_name": "Pico do Areeiro, Estrada Regional 202, Monte, São Roque do Faial, Funchal, Madeira, 9230-212, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9209082,
-          32.7653124
-        ]
-      },
-      "properties": {
-        "name": "Achada do Teixeira",
-        "query": "Achada do Teixeira Madeira",
-        "region": "Central Mountains",
-        "kind": "trailhead",
-        "geocoded_display_name": "Achada do Teixeira, Ilha, Santana, Madeira, 9230-000, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9437638,
-          32.7603786
-        ]
-      },
-      "properties": {
-        "name": "Pico Ruivo",
-        "query": "Pico Ruivo",
-        "region": "Central Mountains",
-        "kind": "peak",
-        "geocoded_display_name": "Pico Ruivo, Vereda da Encumeada, Ilha, Santana, Madeira, 9230-000, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.7659069,
-          32.722875
-        ]
-      },
-      "properties": {
-        "name": "Machico",
-        "query": "Machico Madeira",
-        "region": "East",
-        "kind": "town",
-        "geocoded_display_name": "Machico, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8813015,
-          32.804907
-        ]
-      },
-      "properties": {
-        "name": "Santana",
-        "query": "Santana Madeira",
-        "region": "East",
-        "kind": "town",
-        "geocoded_display_name": "Santana, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.9116097,
-          32.7827718
-        ]
-      },
-      "properties": {
-        "name": "Parque Florestal das Queimadas",
-        "query": "Parque Florestal das Queimadas Madeira",
-        "region": "East",
-        "kind": "trailhead",
-        "geocoded_display_name": "Parque Florestal das Queimadas, Ilha, Santana, Madeira, 9230-230, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8869417,
-          32.7396155
-        ]
-      },
-      "properties": {
-        "name": "Ribeiro Frio",
-        "query": "Ribeiro Frio Madeira",
-        "region": "East",
-        "kind": "trailhead",
-        "geocoded_display_name": "Ribeiro Frio, Santana, Madeira, 9230-209, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -16.8286042,
-          32.7725082
-        ]
-      },
-      "properties": {
-        "name": "Porto da Cruz",
-        "query": "Porto da Cruz Madeira",
-        "region": "East",
-        "kind": "town",
-        "geocoded_display_name": "Porto da Cruz, Machico, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.0472397,
-          32.8022756
-        ]
-      },
-      "properties": {
-        "name": "São Vicente",
-        "query": "São Vicente Madeira",
-        "region": "North Coast",
-        "kind": "town",
-        "geocoded_display_name": "São Vicente, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1031365,
-          32.8219059
-        ]
-      },
-      "properties": {
-        "name": "Seixal Beach",
-        "query": "Seixal Beach Madeira",
-        "region": "North Coast",
-        "kind": "beach",
-        "geocoded_display_name": "Praia do Porto do Seixal, Seixal, Porto Moniz, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.0951401,
-          32.8160824
-        ]
-      },
-      "properties": {
-        "name": "Véu da Noiva Viewpoint",
-        "query": "Véu da Noiva viewpoint Madeira",
-        "region": "North Coast",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Véu da Noiva, Antiga Estrada Regional 101, Seixal, Porto Moniz, Madeira, 9270-130, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1579812,
-          32.8478767
-        ]
-      },
-      "properties": {
-        "name": "Ribeira da Janela",
-        "query": "Ribeira da Janela Madeira",
-        "region": "North Coast",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Ribeira da Janela, Porto Moniz, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1701871,
-          32.8686566
-        ]
-      },
-      "properties": {
-        "name": "Porto Moniz Natural Pools",
-        "query": "Piscinas Naturais do Porto Moniz",
-        "region": "North Coast",
-        "kind": "swim",
-        "geocoded_display_name": "Piscinas Naturais do Porto Moniz, Vereda das Poças, Penedia, Porto Moniz, Madeira, 9270-052, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1782577,
-          32.7219412
-        ]
-      },
-      "properties": {
-        "name": "Calheta",
-        "query": "Calheta Madeira",
-        "region": "West & Southwest",
-        "kind": "town",
-        "geocoded_display_name": "Calheta, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1740887,
-          32.718565
-        ]
-      },
-      "properties": {
-        "name": "Praia da Calheta",
-        "query": "Praia da Calheta",
-        "region": "West & Southwest",
-        "kind": "beach",
-        "geocoded_display_name": "Praia da Calheta, Calheta, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.1040761,
-          32.6812371
-        ]
-      },
-      "properties": {
-        "name": "Ponta do Sol",
-        "query": "Ponta do Sol Madeira",
-        "region": "West & Southwest",
-        "kind": "town",
-        "geocoded_display_name": "Ponta do Sol, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.2111304,
-          32.7375582
-        ]
-      },
-      "properties": {
-        "name": "Jardim do Mar",
-        "query": "Jardim do Mar Madeira",
-        "region": "West & Southwest",
-        "kind": "town",
-        "geocoded_display_name": "Jardim do Mar, Calheta, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.227238,
-          32.7547748
-        ]
-      },
-      "properties": {
-        "name": "Paul do Mar",
-        "query": "Paul do Mar Madeira",
-        "region": "West & Southwest",
-        "kind": "town",
-        "geocoded_display_name": "Paul do Mar, Calheta, Madeira, Portugal"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -17.2630691,
-          32.8139265
-        ]
-      },
-      "properties": {
-        "name": "Ponta do Pargo Lighthouse",
-        "query": "Farol da Ponta do Pargo",
-        "region": "West & Southwest",
-        "kind": "viewpoint",
-        "geocoded_display_name": "Farol da Ponta do Pargo, Rua Cesar Augusto Pestana, Ponta do Pargo, Calheta, Madeira, 9385-251, Portugal"
-      }
-    }
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9035111,32.6486889]},"properties":{"name":"Mercado dos Lavradores","region":"Funchal & South","kind":"market","tip":"Go to upper floor for local prices. Avoid ground-floor fruit hustlers. Best: fish market early AM, flowers."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9752409,32.6485492]},"properties":{"name":"Câmara de Lobos","region":"Funchal & South","kind":"town","tip":"Churchill's fishing village. Colorful boats, great poncha bars. Start point for espetada restaurants in Estreito."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.0044527,32.6564809]},"properties":{"name":"Cabo Girão Skywalk","region":"Funchal & South","kind":"viewpoint","tip":"580m glass platform. Free (possibly €2-5 in 2026). Go at golden hour, skip 10am-2pm crowds. 15 min stop."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9657606,32.710353]},"properties":{"name":"Eira do Serrado Viewpoint","region":"Funchal & South","kind":"viewpoint","tip":"Iconic view over Nun's Valley. Fog can kill it — check visibility first. Free."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9657129,32.720835]},"properties":{"name":"Curral das Freiras","region":"Funchal & South","kind":"town","tip":"Valley of the Nuns. Try chestnut dishes at Sabores do Curral. Poço dos Chefes swimming hole nearby."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8506765,32.6385635]},"properties":{"name":"Cristo Rei (Garajau)","region":"Funchal & South","kind":"viewpoint","tip":"Christ statue viewpoint with ocean panorama."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9028785,32.6741918]},"properties":{"name":"Monte Palace Tropical Garden","region":"Funchal & South","kind":"garden","tip":"€15, 2-3h. THE garden. Koi ponds, azulejo tiles, museum, wine tasting included. Cable car closed — use taxi/bus."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8954737,32.661984]},"properties":{"name":"Madeira Botanical Garden","region":"Funchal & South","kind":"garden","tip":"€6, 1.5-2h. 2000+ exotic plants, bird park (parrots, macaws), Funchal views."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8672904,32.6598333]},"properties":{"name":"Palheiro Gardens","region":"Funchal & South","kind":"garden","tip":"€11, 1.5-2h. CAMELLIAS IN PEAK BLOOM IN MARCH. English estate feel. Best garden for March visit."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9286618,32.7354798]},"properties":{"name":"Pico do Areeiro","region":"Central Mountains","kind":"peak","tip":"1818m. Drive right up. SUNRISE above clouds is legendary. Near-freezing at dawn — warm layers! PR1 partial (1.2km) open."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9209082,32.7653124]},"properties":{"name":"Achada do Teixeira","region":"Central Mountains","kind":"trailhead","tip":"PR1.2 start (to Pico Ruivo summit). Free parking, fills by 9:30am. Restaurant at trailhead."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9437638,32.7603786]},"properties":{"name":"Pico Ruivo","region":"Central Mountains","kind":"peak","tip":"1862m — highest point in Madeira. Reach via PR1.2 from Achada do Teixeira (2.5-3h round trip)."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.7659069,32.722875]},"properties":{"name":"Machico","region":"East","kind":"town","tip":"Pleasant town with imported golden sand beach. O Forno restaurant (garlic prawns, free ginja)."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8813015,32.804907]},"properties":{"name":"Santana","region":"East","kind":"town","tip":"Traditional A-frame thatched houses. Quick photo stop. Base for PR9 Queimadas hikes."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9116097,32.7827718]},"properties":{"name":"Parque Florestal das Queimadas","region":"East","kind":"trailhead","tip":"PR9 Caldeirão Verde start. Limited parking — arrive before 8:30am. Picnic area, restrooms."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8869417,32.7396155]},"properties":{"name":"Ribeiro Frio","region":"East","kind":"trailhead","tip":"PR11 Balcões + PR10 start. Free trout farm. Victor's Snack Bar for poncha. Bus 56 from Funchal."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.8286042,32.7725082]},"properties":{"name":"Porto da Cruz","region":"East","kind":"town","tip":"Hidden gem. Seawater pool, Engenho do Norte rum distillery, best surf. A Pipa = best poncha (closed Sun/Mon)."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.0472397,32.8022756]},"properties":{"name":"São Vicente","region":"North Coast","kind":"town","tip":"Quiet town with great promenade. Quebramar restaurant (rotating floor!). Caves nearby."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1031365,32.8219059]},"properties":{"name":"Seixal Beach","region":"North Coast","kind":"beach","tip":"'Jamaica Beach.' Black sand beneath green cliffs. 3rd best beach in Europe (2022). Photography 10/10, swimming risky in March."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.0951401,32.8160824]},"properties":{"name":"Véu da Noiva Viewpoint","region":"North Coast","kind":"viewpoint","tip":"Bridal Veil waterfall cascading into ocean. Quick photo stop en route to Porto Moniz. Best after rain."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1579812,32.8478767]},"properties":{"name":"Ribeira da Janela","region":"North Coast","kind":"viewpoint","tip":"Sea stacks rising from ocean. Dramatic rock formations with 'window' hole. Facilities, parking, playground."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1701871,32.8686566]},"properties":{"name":"Porto Moniz Natural Pools","region":"North Coast","kind":"swim","tip":"€3 paid (lifeguards, facilities) or FREE Cachalote pools at town entrance. Classic Madeira swim experience."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1782577,32.7219412]},"properties":{"name":"Calheta","region":"West & Southwest","kind":"town","tip":"Golden sand beach (imported from Morocco). Warmest microclimate. Saccharum hotel sunset rooftop."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1740887,32.718565]},"properties":{"name":"Praia da Calheta","region":"West & Southwest","kind":"beach","tip":"Best 'traditional beach' on Madeira. Imported golden sand, calm sheltered water, family-friendly. Free."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.1040761,32.6812371]},"properties":{"name":"Ponta do Sol","region":"West & Southwest","kind":"town","tip":"Warm microclimate. Digital nomad hub. Harbor viewpoint for sunset. Sr. João poncha bar nearby."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.2111304,32.7375582]},"properties":{"name":"Jardim do Mar","region":"West & Southwest","kind":"town","tip":"Car-free 'Garden of the Sea' village. Subtropical flowers, narrow streets, surf spot. Not a formal garden."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.227238,32.7547748]},"properties":{"name":"Paul do Mar","region":"West & Southwest","kind":"town","tip":"Isolated fishing village at cliff base. Precipício viewpoint above for sunset."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.2630691,32.8139265]},"properties":{"name":"Ponta do Pargo Lighthouse","region":"West & Southwest","kind":"viewpoint","tip":"Westernmost point of Madeira. Sweeping 180° sunset views. Garganta Funda waterfall nearby (hidden gem)."}},
+
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9555,32.6555]},"properties":{"name":"Santo Antonio (Espetada)","region":"Funchal & South","kind":"restaurant","tip":"THE iconic espetada restaurant since 1966 in Estreito de Câmara de Lobos. Beef on laurel skewers. Reserve ahead."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9580,32.6560]},"properties":{"name":"As Vides (First Espetada Restaurant)","region":"Funchal & South","kind":"restaurant","tip":"The FIRST restaurant to commercialize espetada (~1950). Traditional recipe, fried corn, potatoes. Budget-friendly."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9750,32.6500]},"properties":{"name":"Vila do Peixe","region":"Funchal & South","kind":"restaurant","tip":"Pick-your-fish concept. Select from live counter — tuna, sea bream, scabbardfish. Grilled with salt. Bay views. Reserve ahead."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9100,32.6480]},"properties":{"name":"Blandy's Wine Lodge","region":"Funchal & South","kind":"wine","tip":"7 generations. Tours from €10. Taste Sercial (dry) to Malmsey (sweet). Vineyard tour at Quinta de Santa Luzia is excellent."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9085,32.6490]},"properties":{"name":"Pereira d'Oliveira","region":"Funchal & South","kind":"wine","tip":"FREE tastings with traditional cakes! 1.5M litres of old vintage stock. The connoisseur's choice. No booking needed."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9120,32.6470]},"properties":{"name":"Fábrica Santo António (1893)","region":"Funchal & South","kind":"bakery","tip":"Oldest confectionery in Madeira. 5th generation. Bolo de mel, sugar cane biscuits, fennel candy. A living museum."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9050,32.6460]},"properties":{"name":"Zona Velha (Old Town)","region":"Funchal & South","kind":"nightlife","tip":"Heart of nightlife. Painted doors on Rua de Santa Maria. Bar-hop between Rei da Poncha, Venda Velha, Trap Music Bar."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9060,32.6475]},"properties":{"name":"Rei da Poncha","region":"Funchal & South","kind":"poncha","tip":"'The King of Poncha' — try a meter of ponchas (multiple mini glasses, sample all flavors). Popular with locals and visitors."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9070,32.6455]},"properties":{"name":"Madeira Rum House","region":"Funchal & South","kind":"poncha","tip":"Massive rum collection. All poncha flavors. Not a tourist trap. Locals drink here. Lemon = connoisseur's choice."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9065,32.6468]},"properties":{"name":"Venda Velha","region":"Funchal & South","kind":"poncha","tip":"Best poncha in Funchal. Weekend DJs, vintage decor. Lively, energetic. Cocktails too."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9450,32.6380]},"properties":{"name":"Doca do Cavacas","region":"Funchal & South","kind":"swim","tip":"€6. Volcanic pools between Lido and Praia Formosa. Snorkeling, restaurant, south coast = calmer. Crystal clear water."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9400,32.6380]},"properties":{"name":"Praia Formosa","region":"Funchal & South","kind":"beach","tip":"Free. Largest beach (2km), pebble/dark sand. Blue Flag. Promenade connects to Câmara de Lobos. 10 min from centre."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.037,32.658]},"properties":{"name":"Fajã dos Padres","region":"Funchal & South","kind":"swim","tip":"Best hidden swim. Cable car (€10-12) to secluded beach below 300m cliff. Pristine turquoise water, restaurant. Below Cabo Girão."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.710,32.738]},"properties":{"name":"Prainha","region":"East","kind":"beach","tip":"Madeira's ONLY natural sandy beach. Volcanic black sand, sheltered cove, calm water. Free. Near Caniçal. Unique landscape."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.706601,32.749275]},"properties":{"name":"Ponta do Rosto","region":"East","kind":"viewpoint","tip":"Start of PR8. Both coasts visible. Volcanic colors. Feels like another planet. 9/10. Drive-up viewpoint."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.890350,32.741590]},"properties":{"name":"Miradouro dos Balcões","region":"East","kind":"viewpoint","tip":"End of PR11. Central peaks panorama. Easy 45-min walk from Ribeiro Frio. 9/10."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.848435,32.793912]},"properties":{"name":"Miradouro do Guindaste","region":"East","kind":"viewpoint","tip":"Sea-level glass walkways 26m over ocean. Penha d'Águia rock. Free. 8/10. Unique perspective."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.019,32.754]},"properties":{"name":"Encumeada Pass","region":"Central Mountains","kind":"viewpoint","tip":"1007m. Two-sided views: north + south valleys. 'Cloud waterfall' phenomenon. Often fogged by midday. Café, souvenir shop."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.068,32.762]},"properties":{"name":"Bica da Cana","region":"Central Mountains","kind":"viewpoint","tip":"1560m. Alternative sunrise spot. Panoramic views to Arieiro and Ruivo. Parking empty. 15-min easy walk."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.955,32.716]},"properties":{"name":"Miradouro do Paredão","region":"Funchal & South","kind":"viewpoint","tip":"Higher angle on Nun's Valley than Eira do Serrado. Steeper cliff views. Less known, fewer crowds. Free."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.990,32.730]},"properties":{"name":"Taberna da Poncha","region":"Central Mountains","kind":"poncha","tip":"THE island institution. Serra d'Água. €3/glass. Peanut shells on floor, business cards on walls. Fresh-made. Pilgrimage-worthy."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.975,32.650]},"properties":{"name":"Bar Filhos D'Anjos","region":"Funchal & South","kind":"poncha","tip":"Birthplace of poncha in Câmara de Lobos. Rustic, CR7 photos. Authentic experience."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.100,32.815]},"properties":{"name":"Seixal Natural Pools","region":"North Coast","kind":"swim","tip":"FREE volcanic pools with lava arch. Arguably more beautiful than Porto Moniz. No lifeguards. Steep access road."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.152339,32.815211]},"properties":{"name":"Fanal Forest","region":"West & Southwest","kind":"hidden-gem","tip":"UNESCO laurel forest. Ancient twisted trees in fog. Tim Burton vibes. Best early AM or post-rain. 2026: designated paths only."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.035,32.663]},"properties":{"name":"Calhau da Lapa","region":"Funchal & South","kind":"hidden-gem","tip":"Fishermen's caves in volcanic cliffs. 700 steep stairs or boat. Waterfall, clear water. You must climb back up!"}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.203731,32.859433]},"properties":{"name":"Achadas da Cruz Cable Car","region":"West & Southwest","kind":"hidden-gem","tip":"Europe's steepest cable car (98% slope). €3 return, CASH ONLY. 8am-7pm. Most tourists skip this. Incredible views."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.830,32.795]},"properties":{"name":"A Pipa (Poncha + Food)","region":"East","kind":"restaurant","tip":"Porto da Cruz gem. Best poncha on north coast. Tuna, limpets, sardines. Arrive at noon. Closed Sun/Mon. No reservations."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.880,32.800]},"properties":{"name":"Quinta do Furão","region":"East","kind":"restaurant","tip":"Cliff-edge hotel restaurant in Santana. Oxtail tureen, slow-cooked beef cheek. Sea views. Summer terrace + winter fireplace."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.175,32.867]},"properties":{"name":"Restaurante Orca","region":"North Coast","kind":"restaurant","tip":"Next to Porto Moniz pools. Tuna steak, spicy prawns, grilled limpets, prego no bolo do caco. Ocean terrace."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9090,32.6500]},"properties":{"name":"Tipografia","region":"Funchal & South","kind":"restaurant","tip":"Creative Madeiran cuisine. Revisited espada com banana. Instagrammable interior. Book ahead for dinner."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.9080,32.6440]},"properties":{"name":"Taberna Madeira","region":"Funchal & South","kind":"restaurant","tip":"Zona Velha. Grilled limpets, espetada, local wines. Reliable for first-night dinner. Traditional atmosphere."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-17.178,32.722]},"properties":{"name":"Fontes do Horácio","region":"West & Southwest","kind":"restaurant","tip":"Hidden gem in Estreito da Calheta. Best espetada outside Estreito de Câmara de Lobos. Feels like someone's home. Bella the robot server."}},
+    {"type":"Feature","geometry":{"type":"Point","coordinates":[-16.765,32.722]},"properties":{"name":"O Forno (Machico)","region":"East","kind":"restaurant","tip":"Garlic prawns, beef espetada. Massive portions, tiny prices. Packed with locals weekends. Complimentary ginja cherry liqueur."}}
   ]
 }

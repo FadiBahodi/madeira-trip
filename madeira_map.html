@@ -3,130 +3,349 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Madeira Map (PR trails + key POIs)</title>
+  <title>Madeira Interactive Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <style>
-    html, body { height: 100%; margin: 0; }
+    html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
     #map { height: 100%; }
-    .popup-title { font-weight: 700; margin-bottom: 4px; }
-    .popup-kind { opacity: .75; font-size: 12px; margin-bottom: 6px; }
-    .popup-url a { word-break: break-all; }
-    .popup-meta { font-size: 12px; opacity: .85; margin-top: 6px; }
+
+    /* Home button */
+    .home-btn {
+      position: fixed; top: 12px; left: 56px; z-index: 1000;
+      background: #111827; color: #e8eefc; border: 1px solid rgba(255,255,255,0.15);
+      padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 700;
+      text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transition: border-color 0.15s;
+    }
+    .home-btn:hover { border-color: #3b82f6; color: #fff; }
+
+    /* Legend panel */
+    .legend {
+      position: fixed; bottom: 24px; left: 12px; z-index: 1000;
+      background: rgba(17,24,39,0.92); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+      padding: 14px 16px; color: #e8eefc; font-size: 12px;
+      max-width: 200px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .legend h3 { font-size: 13px; font-weight: 700; margin: 0 0 10px; color: #60a5fa; }
+    .legend-item {
+      display: flex; align-items: center; gap: 8px; padding: 3px 0;
+      cursor: pointer; opacity: 1; transition: opacity 0.15s;
+    }
+    .legend-item.hidden { opacity: 0.3; }
+    .legend-item .dot {
+      width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .legend-item .square {
+      width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .legend-section { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); }
+    .legend-section:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    .legend-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(232,238,252,0.5); margin-bottom: 4px; }
+
+    /* Popup styling */
+    .leaflet-popup-content-wrapper {
+      background: #1a2332; color: #e8eefc; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .leaflet-popup-tip { background: #1a2332; }
+    .leaflet-popup-content { margin: 12px 14px; font-size: 13px; line-height: 1.5; }
+    .popup-title { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .popup-kind { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .popup-tip { font-size: 13px; color: rgba(232,238,252,0.8); border-left: 3px solid #3b82f6; padding-left: 8px; margin: 8px 0; }
+    .popup-region { font-size: 11px; color: rgba(232,238,252,0.5); margin-top: 6px; }
+    .popup-url a { color: #60a5fa; font-size: 12px; word-break: break-all; }
+    .popup-panel-link { margin-top: 8px; }
+    .popup-panel-link a { color: #60a5fa; font-size: 12px; text-decoration: none; }
+    .popup-panel-link a:hover { text-decoration: underline; }
+
+    /* Filter bar */
+    .filter-bar {
+      position: fixed; top: 12px; right: 12px; z-index: 1000;
+      display: flex; gap: 6px; flex-wrap: wrap; max-width: 340px; justify-content: flex-end;
+    }
+    .filter-btn {
+      background: rgba(17,24,39,0.9); color: #e8eefc; border: 1px solid rgba(255,255,255,0.15);
+      padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+      cursor: pointer; transition: all 0.15s; backdrop-filter: blur(8px);
+    }
+    .filter-btn:hover { border-color: #3b82f6; }
+    .filter-btn.active { background: #3b82f6; border-color: #3b82f6; }
+
+    @media (max-width: 600px) {
+      .legend { display: none; }
+      .filter-bar { top: auto; bottom: 12px; right: 8px; left: 8px; max-width: none; justify-content: center; }
+    }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <a class="home-btn" href="./index.html">Home</a>
+
+  <div class="filter-bar" id="filterBar"></div>
+
+  <div class="legend" id="legend"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script>
-    const TRAILHEADS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.314808333333335, 33.09670833333334]}, "properties": {"kind": "trailhead", "code": "PR1", "name_pt": "Vereda do Pico Branco e Terra Chã", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg", "panel_file": "pr1ps.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.941575, 32.76021111111111]}, "properties": {"kind": "trailhead", "code": "PR1.1", "name_pt": "Vereda da Ilha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg", "panel_file": "pr1.1b.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.921133333333334, 32.76481111111111]}, "properties": {"kind": "trailhead", "code": "PR1.2", "name_pt": "Vereda do Pico Ruivo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg", "panel_file": "pr1.2.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.941575, 32.76021111111111]}, "properties": {"kind": "trailhead", "code": "PR1.3", "name_pt": "Vereda da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg", "panel_file": "pr1.3.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.886419444444442, 32.73546388888889]}, "properties": {"kind": "trailhead", "code": "PR11", "name_pt": "Vereda dos Balcões", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg", "panel_file": "pr11.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.987230555555556, 32.71109722222222]}, "properties": {"kind": "trailhead", "code": "PR12", "name_pt": "Caminho Real da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg", "panel_file": "pr12.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.107733333333336, 32.76707222222222]}, "properties": {"kind": "trailhead", "code": "PR13", "name_pt": "Vereda do Fanal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg", "panel_file": "pr13.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.140869444444444, 32.80616388888889]}, "properties": {"kind": "trailhead", "code": "PR14", "name_pt": "Levada dos Cedros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg", "panel_file": "pr14.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.15788611111111, 32.82606388888889]}, "properties": {"kind": "trailhead", "code": "PR15", "name_pt": "Vereda da Ribeira da Janela", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg", "panel_file": "pr15.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.04945, 32.779066666666665]}, "properties": {"kind": "trailhead", "code": "PR16", "name_pt": "Levada Fajã do Rodrigues", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg", "panel_file": "pr16.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.01937222222222, 32.754219444444445]}, "properties": {"kind": "trailhead", "code": "PR17", "name_pt": "Caminho do Pináculo e Folhadal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg", "panel_file": "PR17.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.924641666666666, 32.81691666666667]}, "properties": {"kind": "trailhead", "code": "PR18", "name_pt": "Levada do Rei", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg", "panel_file": "pr18.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.21701111111111, 32.752433333333336]}, "properties": {"kind": "trailhead", "code": "PR19", "name_pt": "Caminho Real do Paul do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg", "panel_file": "PR19.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.966244444444445, 32.742561111111115]}, "properties": {"kind": "trailhead", "code": "PR2", "name_pt": "Vereda do Urzal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg", "panel_file": "pr2.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.21011111111111, 32.74836388888889]}, "properties": {"kind": "trailhead", "code": "PR20", "name_pt": "Vereda do Jardim do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg", "panel_file": "pr20.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.018925, 32.75451388888889]}, "properties": {"kind": "trailhead", "code": "PR21", "name_pt": "Caminho do Norte", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg", "panel_file": "pr21.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.01728888888889, 32.75765833333333]}, "properties": {"kind": "trailhead", "code": "PR22", "name_pt": "Vereda do Chão dos Louros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg", "panel_file": "pr22.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.842944444444445, 32.65408333333333]}, "properties": {"kind": "trailhead", "code": "PR23", "name_pt": "Levada da Azenha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg", "panel_file": "PR23.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.33836111111111, 33.08636111111112]}, "properties": {"kind": "trailhead", "code": "PR3", "name_pt": "Levada do Pico do Castelo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg", "panel_file": "ps3.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.90311111111111, 32.67619444444444]}, "properties": {"kind": "trailhead", "code": "PR3.1", "name_pt": "Caminho Real do Monte", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr3.1a.jpg", "panel_file": "pr3.1a.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.92477777777778, 32.725944444444444]}, "properties": {"kind": "trailhead", "code": "PR4", "name_pt": "Levada do Barreiro", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg", "panel_file": "pr4a.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.82553611111111, 32.74741111111111]}, "properties": {"kind": "trailhead", "code": "PR5", "name_pt": "Vereda das Funduras", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg", "panel_file": "pr5.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.13368611111111, 32.754625]}, "properties": {"kind": "trailhead", "code": "PR6", "name_pt": "Levada das 25 Fontes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.13368611111111, 32.754625]}, "properties": {"kind": "trailhead", "code": "PR6.1", "name_pt": "Levada do Risco", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.208383333333334, 32.82934166666667]}, "properties": {"kind": "trailhead", "code": "PR7", "name_pt": "Levada do Moinho", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg", "panel_file": "pr7.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.70103888888889, 32.74335]}, "properties": {"kind": "trailhead", "code": "PR8", "name_pt": "Vereda da Ponta de S. Lourenço", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg", "panel_file": "pr8.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.90579722222222, 32.78377777777778]}, "properties": {"kind": "trailhead", "code": "PR9", "name_pt": "Levada do Caldeirão Verde", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg", "panel_file": "pr9.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.12263888888889, 32.77266111111111]}, "properties": {"kind": "trailhead", "code": "PR13.1", "name_pt": "Vereda da Palha Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg", "panel_file": "PR13_1.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.05951388888889, 32.75746111111111]}, "properties": {"kind": "trailhead", "code": "PR27", "name_pt": "Glaciar de Planalto", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg", "panel_file": "PR27.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.12708888888889, 32.78160555555556]}, "properties": {"kind": "trailhead", "code": "PR28", "name_pt": "Levada da Rocha Vermelha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg", "panel_file": "pr28.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.153569444444443, 32.768972222222224]}, "properties": {"kind": "trailhead", "code": "PR6.4", "name_pt": "Levada Velha do Rabaçal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg", "panel_file": "PR6_4.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.09946111111111, 32.76246111111111]}, "properties": {"kind": "trailhead", "code": "PR6.5", "name_pt": "Vereda do Pico Fernandes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg", "panel_file": "PR6_5.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.149194444444444, 32.75363611111111]}, "properties": {"kind": "trailhead", "code": "PR6.6", "name_pt": "Vereda do Túnel do Cavalo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg", "panel_file": "pr6.6.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.133125, 32.753680555555555]}, "properties": {"kind": "trailhead", "code": "PR6.8", "name_pt": "Vereda da Câmara de Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg", "panel_file": "pr6.8.jpg", "source": "IFCN extra panel"}}]};
-    const TRAIL_ENDS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.299566666666667, 33.093808333333335]}, "properties": {"kind": "trail-end", "code": "PR1", "name_pt": "Vereda do Pico Branco e Terra Chã", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg", "panel_file": "pr1ps.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.911655555555555, 32.805949999999996]}, "properties": {"kind": "trail-end", "code": "PR1.1", "name_pt": "Vereda da Ilha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg", "panel_file": "pr1.1b.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.942522222222223, 32.75888333333333]}, "properties": {"kind": "trail-end", "code": "PR1.2", "name_pt": "Vereda do Pico Ruivo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg", "panel_file": "pr1.2.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.018641666666667, 32.75423888888889]}, "properties": {"kind": "trail-end", "code": "PR1.3", "name_pt": "Vereda da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg", "panel_file": "pr1.3.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.890349999999998, 32.74158888888889]}, "properties": {"kind": "trail-end", "code": "PR11", "name_pt": "Vereda dos Balcões", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg", "panel_file": "pr11.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.020988888888887, 32.75339722222222]}, "properties": {"kind": "trail-end", "code": "PR12", "name_pt": "Caminho Real da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg", "panel_file": "pr12.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.14218333333333, 32.80830833333333]}, "properties": {"kind": "trail-end", "code": "PR13", "name_pt": "Vereda do Fanal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg", "panel_file": "pr13.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.157941666666666, 32.82591388888889]}, "properties": {"kind": "trail-end", "code": "PR14", "name_pt": "Levada dos Cedros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg", "panel_file": "pr14.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.15502222222222, 32.844122222222225]}, "properties": {"kind": "trail-end", "code": "PR15", "name_pt": "Vereda da Ribeira da Janela", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg", "panel_file": "pr15.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.07739722222222, 32.78868333333333]}, "properties": {"kind": "trail-end", "code": "PR16", "name_pt": "Levada Fajã do Rodrigues", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg", "panel_file": "pr16.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.04475277777778, 32.74270277777778]}, "properties": {"kind": "trail-end", "code": "PR17", "name_pt": "Caminho do Pináculo e Folhadal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg", "panel_file": "PR17.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.938122222222223, 32.79610833333333]}, "properties": {"kind": "trail-end", "code": "PR18", "name_pt": "Levada do Rei", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg", "panel_file": "pr18.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.223841666666665, 32.752658333333336]}, "properties": {"kind": "trail-end", "code": "PR19", "name_pt": "Caminho Real do Paul do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg", "panel_file": "PR19.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.978580555555553, 32.78217222222222]}, "properties": {"kind": "trail-end", "code": "PR2", "name_pt": "Vereda do Urzal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg", "panel_file": "pr2.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.21156111111111, 32.73768611111111]}, "properties": {"kind": "trail-end", "code": "PR20", "name_pt": "Vereda do Jardim do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg", "panel_file": "pr20.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.023716666666665, 32.77440277777778]}, "properties": {"kind": "trail-end", "code": "PR21", "name_pt": "Caminho do Norte", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg", "panel_file": "pr21.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.017141666666667, 32.75774166666667]}, "properties": {"kind": "trail-end", "code": "PR22", "name_pt": "Vereda do Chão dos Louros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg", "panel_file": "pr22.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.841777777777775, 32.65819444444444]}, "properties": {"kind": "trail-end", "code": "PR23", "name_pt": "Levada da Azenha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg", "panel_file": "PR23.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.32311111111111, 33.0705]}, "properties": {"kind": "trail-end", "code": "PR3", "name_pt": "Levada do Pico do Castelo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg", "panel_file": "ps3.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.909555555555553, 32.695361111111104]}, "properties": {"kind": "trail-end", "code": "PR4", "name_pt": "Levada do Barreiro", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg", "panel_file": "pr4a.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.79791388888889, 32.737547222222226]}, "properties": {"kind": "trail-end", "code": "PR5", "name_pt": "Vereda das Funduras", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg", "panel_file": "pr5.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.12537777777778, 32.765505555555556]}, "properties": {"kind": "trail-end", "code": "PR6", "name_pt": "Levada das 25 Fontes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.12537777777778, 32.765505555555556]}, "properties": {"kind": "trail-end", "code": "PR6.1", "name_pt": "Levada do Risco", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.17756388888889, 32.85532222222222]}, "properties": {"kind": "trail-end", "code": "PR7", "name_pt": "Levada do Moinho", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg", "panel_file": "pr7.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.683605555555555, 32.74223055555556]}, "properties": {"kind": "trail-end", "code": "PR8", "name_pt": "Vereda da Ponta de S. Lourenço", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg", "panel_file": "pr8.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.936363888888888, 32.77423611111111]}, "properties": {"kind": "trail-end", "code": "PR9", "name_pt": "Levada do Caldeirão Verde", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg", "panel_file": "pr9.jpg"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.125580555555555, 32.76564722222222]}, "properties": {"kind": "trail-end", "code": "PR13.1", "name_pt": "Vereda da Palha Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg", "panel_file": "PR13_1.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.897222222222222, 32.77972222222222]}, "properties": {"kind": "trail-end", "code": "PR27", "name_pt": "Glaciar de Planalto", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg", "panel_file": "PR27.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.147225, 32.746050000000004]}, "properties": {"kind": "trail-end", "code": "PR28", "name_pt": "Levada da Rocha Vermelha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg", "panel_file": "pr28.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.134944444444443, 32.76161666666667]}, "properties": {"kind": "trail-end", "code": "PR6.4", "name_pt": "Levada Velha do Rabaçal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg", "panel_file": "PR6_4.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.125580555555555, 32.76564722222222]}, "properties": {"kind": "trail-end", "code": "PR6.5", "name_pt": "Vereda do Pico Fernandes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg", "panel_file": "PR6_5.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.134916666666665, 32.76161666666667]}, "properties": {"kind": "trail-end", "code": "PR6.6", "name_pt": "Vereda do Túnel do Cavalo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg", "panel_file": "pr6.6.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.125480555555555, 32.74831944444445]}, "properties": {"kind": "trail-end", "code": "PR6.8", "name_pt": "Vereda da Câmara de Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg", "panel_file": "pr6.8.jpg", "source": "IFCN extra panel"}}]};
-    const ROUTE_LINES = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.314808333333335, 33.09670833333334], [-16.299566666666667, 33.093808333333335]]}, "properties": {"kind": "route-line", "code": "PR1", "name_pt": "Vereda do Pico Branco e Terra Chã", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1ps.jpg", "panel_file": "pr1ps.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.941575, 32.76021111111111], [-16.911655555555555, 32.805949999999996]]}, "properties": {"kind": "route-line", "code": "PR1.1", "name_pt": "Vereda da Ilha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.1b.jpg", "panel_file": "pr1.1b.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.921133333333334, 32.76481111111111], [-16.942522222222223, 32.75888333333333]]}, "properties": {"kind": "route-line", "code": "PR1.2", "name_pt": "Vereda do Pico Ruivo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.2.jpg", "panel_file": "pr1.2.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.941575, 32.76021111111111], [-17.018641666666667, 32.75423888888889]]}, "properties": {"kind": "route-line", "code": "PR1.3", "name_pt": "Vereda da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr1.3.jpg", "panel_file": "pr1.3.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.886419444444442, 32.73546388888889], [-16.890349999999998, 32.74158888888889]]}, "properties": {"kind": "route-line", "code": "PR11", "name_pt": "Vereda dos Balcões", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr11.jpg", "panel_file": "pr11.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.987230555555556, 32.71109722222222], [-17.020988888888887, 32.75339722222222]]}, "properties": {"kind": "route-line", "code": "PR12", "name_pt": "Caminho Real da Encumeada", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr12.jpg", "panel_file": "pr12.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.107733333333336, 32.76707222222222], [-17.14218333333333, 32.80830833333333]]}, "properties": {"kind": "route-line", "code": "PR13", "name_pt": "Vereda do Fanal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr13.jpg", "panel_file": "pr13.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.140869444444444, 32.80616388888889], [-17.157941666666666, 32.82591388888889]]}, "properties": {"kind": "route-line", "code": "PR14", "name_pt": "Levada dos Cedros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr14.jpg", "panel_file": "pr14.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.15788611111111, 32.82606388888889], [-17.15502222222222, 32.844122222222225]]}, "properties": {"kind": "route-line", "code": "PR15", "name_pt": "Vereda da Ribeira da Janela", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr15.jpg", "panel_file": "pr15.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.04945, 32.779066666666665], [-17.07739722222222, 32.78868333333333]]}, "properties": {"kind": "route-line", "code": "PR16", "name_pt": "Levada Fajã do Rodrigues", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr16.jpg", "panel_file": "pr16.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.01937222222222, 32.754219444444445], [-17.04475277777778, 32.74270277777778]]}, "properties": {"kind": "route-line", "code": "PR17", "name_pt": "Caminho do Pináculo e Folhadal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR17.jpg", "panel_file": "PR17.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.924641666666666, 32.81691666666667], [-16.938122222222223, 32.79610833333333]]}, "properties": {"kind": "route-line", "code": "PR18", "name_pt": "Levada do Rei", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr18.jpg", "panel_file": "pr18.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.21701111111111, 32.752433333333336], [-17.223841666666665, 32.752658333333336]]}, "properties": {"kind": "route-line", "code": "PR19", "name_pt": "Caminho Real do Paul do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR19.jpg", "panel_file": "PR19.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.966244444444445, 32.742561111111115], [-16.978580555555553, 32.78217222222222]]}, "properties": {"kind": "route-line", "code": "PR2", "name_pt": "Vereda do Urzal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr2.jpg", "panel_file": "pr2.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.21011111111111, 32.74836388888889], [-17.21156111111111, 32.73768611111111]]}, "properties": {"kind": "route-line", "code": "PR20", "name_pt": "Vereda do Jardim do Mar", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr20.jpg", "panel_file": "pr20.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.018925, 32.75451388888889], [-17.023716666666665, 32.77440277777778]]}, "properties": {"kind": "route-line", "code": "PR21", "name_pt": "Caminho do Norte", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr21.jpg", "panel_file": "pr21.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.01728888888889, 32.75765833333333], [-17.017141666666667, 32.75774166666667]]}, "properties": {"kind": "route-line", "code": "PR22", "name_pt": "Vereda do Chão dos Louros", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr22.jpg", "panel_file": "pr22.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.842944444444445, 32.65408333333333], [-16.841777777777775, 32.65819444444444]]}, "properties": {"kind": "route-line", "code": "PR23", "name_pt": "Levada da Azenha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/PR23.jpg", "panel_file": "PR23.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.33836111111111, 33.08636111111112], [-16.32311111111111, 33.0705]]}, "properties": {"kind": "route-line", "code": "PR3", "name_pt": "Levada do Pico do Castelo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/ps3.jpg", "panel_file": "ps3.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.92477777777778, 32.725944444444444], [-16.909555555555553, 32.695361111111104]]}, "properties": {"kind": "route-line", "code": "PR4", "name_pt": "Levada do Barreiro", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr4a.jpg", "panel_file": "pr4a.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.82553611111111, 32.74741111111111], [-16.79791388888889, 32.737547222222226]]}, "properties": {"kind": "route-line", "code": "PR5", "name_pt": "Vereda das Funduras", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr5.jpg", "panel_file": "pr5.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.13368611111111, 32.754625], [-17.12537777777778, 32.765505555555556]]}, "properties": {"kind": "route-line", "code": "PR6", "name_pt": "Levada das 25 Fontes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.13368611111111, 32.754625], [-17.12537777777778, 32.765505555555556]]}, "properties": {"kind": "route-line", "code": "PR6.1", "name_pt": "Levada do Risco", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr6.jpg", "panel_file": "pr6.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.208383333333334, 32.82934166666667], [-17.17756388888889, 32.85532222222222]]}, "properties": {"kind": "route-line", "code": "PR7", "name_pt": "Levada do Moinho", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr7.jpg", "panel_file": "pr7.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.70103888888889, 32.74335], [-16.683605555555555, 32.74223055555556]]}, "properties": {"kind": "route-line", "code": "PR8", "name_pt": "Vereda da Ponta de S. Lourenço", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr8.jpg", "panel_file": "pr8.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-16.90579722222222, 32.78377777777778], [-16.936363888888888, 32.77423611111111]]}, "properties": {"kind": "route-line", "code": "PR9", "name_pt": "Levada do Caldeirão Verde", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/Paineis_Net/pr9.jpg", "panel_file": "pr9.jpg"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.12263888888889, 32.77266111111111], [-17.125580555555555, 32.76564722222222]]}, "properties": {"kind": "route-line", "code": "PR13.1", "name_pt": "Vereda da Palha Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR13_1.jpg", "panel_file": "PR13_1.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.05951388888889, 32.75746111111111], [-16.897222222222222, 32.77972222222222]]}, "properties": {"kind": "route-line", "code": "PR27", "name_pt": "Glaciar de Planalto", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR27.jpg", "panel_file": "PR27.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.12708888888889, 32.78160555555556], [-17.147225, 32.746050000000004]]}, "properties": {"kind": "route-line", "code": "PR28", "name_pt": "Levada da Rocha Vermelha", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr28.jpg", "panel_file": "pr28.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.153569444444443, 32.768972222222224], [-17.134944444444443, 32.76161666666667]]}, "properties": {"kind": "route-line", "code": "PR6.4", "name_pt": "Levada Velha do Rabaçal", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_4.jpg", "panel_file": "PR6_4.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.09946111111111, 32.76246111111111], [-17.125580555555555, 32.76564722222222]]}, "properties": {"kind": "route-line", "code": "PR6.5", "name_pt": "Vereda do Pico Fernandes", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/PR6_5.jpg", "panel_file": "PR6_5.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.149194444444444, 32.75363611111111], [-17.134916666666665, 32.76161666666667]]}, "properties": {"kind": "route-line", "code": "PR6.6", "name_pt": "Vereda do Túnel do Cavalo", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.6.jpg", "panel_file": "pr6.6.jpg", "source": "IFCN extra panel"}}, {"type": "Feature", "geometry": {"type": "LineString", "coordinates": [[-17.133125, 32.753680555555555], [-17.125480555555555, 32.74831944444445]]}, "properties": {"kind": "route-line", "code": "PR6.8", "name_pt": "Vereda da Câmara de Carga", "panel_url": "https://ifcn.madeira.gov.pt/images/FotosArtigos/ActivNatureza/PercPedRecom/paineis/pr6.8.jpg", "panel_file": "pr6.8.jpg", "source": "IFCN extra panel"}}]};
-    const POIS = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9035111, 32.6486889]}, "properties": {"name": "Mercado dos Lavradores", "query": "Mercado dos Lavradores Funchal", "region": "Funchal & South", "kind": "market", "geocoded_display_name": "Mercado dos Lavradores, Rua Brigadeiro Oudinot, Arsenal, Zona Velha, Santa Maria Maior, Funchal, Madeira, 9060-157, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9752409, 32.6485492]}, "properties": {"name": "Câmara de Lobos", "query": "Câmara de Lobos Madeira", "region": "Funchal & South", "kind": "town", "geocoded_display_name": "Câmara de Lobos, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.0044527, 32.6564809]}, "properties": {"name": "Cabo Girão Skywalk", "query": "Cabo Girão viewpoint Madeira", "region": "Funchal & South", "kind": "viewpoint", "geocoded_display_name": "Cabo Girão, Miradouro do Cabo Girão, Fontainhas do Mar, Câmara de Lobos, Madeira, 9300-354, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9657606, 32.710353]}, "properties": {"name": "Eira do Serrado Viewpoint", "query": "Eira do Serrado viewpoint", "region": "Funchal & South", "kind": "viewpoint", "geocoded_display_name": "Eira do Serrado, Caminho das Voltas, Capela, Balseiras, Curral das Freiras, Câmara de Lobos, Madeira, 9000-421, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9657129, 32.720835]}, "properties": {"name": "Curral das Freiras", "query": "Curral das Freiras Madeira", "region": "Funchal & South", "kind": "town", "geocoded_display_name": "Curral das Freiras, Câmara de Lobos, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8506765, 32.6385635]}, "properties": {"name": "Cristo Rei (Garajau)", "query": "Cristo Rei Garajau Madeira", "region": "Funchal & South", "kind": "viewpoint", "geocoded_display_name": "Cristo Rei, Fonte do Mar, Garajau, Caniço, Santa Cruz, Madeira, 9125-167, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9028785, 32.6741918]}, "properties": {"name": "Monte Palace Tropical Garden", "query": "Monte Palace Tropical Garden Madeira", "region": "Funchal & South", "kind": "garden", "geocoded_display_name": "Jardim Tropical Monte Palace, 174, Monte, Funchal, Madeira, 9050-288, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8954737, 32.661984]}, "properties": {"name": "Madeira Botanical Garden", "query": "Madeira Botanical Garden Funchal", "region": "Funchal & South", "kind": "garden", "geocoded_display_name": "Jardim Botânico da Madeira Engenheiro Rui Vieira, Santa Maria Maior, Funchal, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8672904, 32.6598333]}, "properties": {"name": "Palheiro Gardens", "query": "Palheiro Gardens Madeira", "region": "Funchal & South", "kind": "garden", "geocoded_display_name": "Palheiro Gardens, São Gonçalo, Funchal, Madeira, 9060-255, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9286618, 32.7354798]}, "properties": {"name": "Pico do Areeiro", "query": "Pico do Areeiro", "region": "Central Mountains", "kind": "peak", "geocoded_display_name": "Pico do Areeiro, Estrada Regional 202, Monte, São Roque do Faial, Funchal, Madeira, 9230-212, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9209082, 32.7653124]}, "properties": {"name": "Achada do Teixeira", "query": "Achada do Teixeira Madeira", "region": "Central Mountains", "kind": "trailhead", "geocoded_display_name": "Achada do Teixeira, Ilha, Santana, Madeira, 9230-000, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9437638, 32.7603786]}, "properties": {"name": "Pico Ruivo", "query": "Pico Ruivo", "region": "Central Mountains", "kind": "peak", "geocoded_display_name": "Pico Ruivo, Vereda da Encumeada, Ilha, Santana, Madeira, 9230-000, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.7659069, 32.722875]}, "properties": {"name": "Machico", "query": "Machico Madeira", "region": "East", "kind": "town", "geocoded_display_name": "Machico, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8813015, 32.804907]}, "properties": {"name": "Santana", "query": "Santana Madeira", "region": "East", "kind": "town", "geocoded_display_name": "Santana, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.9116097, 32.7827718]}, "properties": {"name": "Parque Florestal das Queimadas", "query": "Parque Florestal das Queimadas Madeira", "region": "East", "kind": "trailhead", "geocoded_display_name": "Parque Florestal das Queimadas, Ilha, Santana, Madeira, 9230-230, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8869417, 32.7396155]}, "properties": {"name": "Ribeiro Frio", "query": "Ribeiro Frio Madeira", "region": "East", "kind": "trailhead", "geocoded_display_name": "Ribeiro Frio, Santana, Madeira, 9230-209, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-16.8286042, 32.7725082]}, "properties": {"name": "Porto da Cruz", "query": "Porto da Cruz Madeira", "region": "East", "kind": "town", "geocoded_display_name": "Porto da Cruz, Machico, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.0472397, 32.8022756]}, "properties": {"name": "São Vicente", "query": "São Vicente Madeira", "region": "North Coast", "kind": "town", "geocoded_display_name": "São Vicente, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1031365, 32.8219059]}, "properties": {"name": "Seixal Beach", "query": "Seixal Beach Madeira", "region": "North Coast", "kind": "beach", "geocoded_display_name": "Praia do Porto do Seixal, Seixal, Porto Moniz, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.0951401, 32.8160824]}, "properties": {"name": "Véu da Noiva Viewpoint", "query": "Véu da Noiva viewpoint Madeira", "region": "North Coast", "kind": "viewpoint", "geocoded_display_name": "Véu da Noiva, Antiga Estrada Regional 101, Seixal, Porto Moniz, Madeira, 9270-130, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1579812, 32.8478767]}, "properties": {"name": "Ribeira da Janela", "query": "Ribeira da Janela Madeira", "region": "North Coast", "kind": "viewpoint", "geocoded_display_name": "Ribeira da Janela, Porto Moniz, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1701871, 32.8686566]}, "properties": {"name": "Porto Moniz Natural Pools", "query": "Piscinas Naturais do Porto Moniz", "region": "North Coast", "kind": "swim", "geocoded_display_name": "Piscinas Naturais do Porto Moniz, Vereda das Poças, Penedia, Porto Moniz, Madeira, 9270-052, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1782577, 32.7219412]}, "properties": {"name": "Calheta", "query": "Calheta Madeira", "region": "West & Southwest", "kind": "town", "geocoded_display_name": "Calheta, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1740887, 32.718565]}, "properties": {"name": "Praia da Calheta", "query": "Praia da Calheta", "region": "West & Southwest", "kind": "beach", "geocoded_display_name": "Praia da Calheta, Calheta, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.1040761, 32.6812371]}, "properties": {"name": "Ponta do Sol", "query": "Ponta do Sol Madeira", "region": "West & Southwest", "kind": "town", "geocoded_display_name": "Ponta do Sol, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.2111304, 32.7375582]}, "properties": {"name": "Jardim do Mar", "query": "Jardim do Mar Madeira", "region": "West & Southwest", "kind": "town", "geocoded_display_name": "Jardim do Mar, Calheta, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.227238, 32.7547748]}, "properties": {"name": "Paul do Mar", "query": "Paul do Mar Madeira", "region": "West & Southwest", "kind": "town", "geocoded_display_name": "Paul do Mar, Calheta, Madeira, Portugal"}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-17.2630691, 32.8139265]}, "properties": {"name": "Ponta do Pargo Lighthouse", "query": "Farol da Ponta do Pargo", "region": "West & Southwest", "kind": "viewpoint", "geocoded_display_name": "Farol da Ponta do Pargo, Rua Cesar Augusto Pestana, Ponta do Pargo, Calheta, Madeira, 9385-251, Portugal"}}]};
+    // ── Trail data (inline, from IFCN scrape) ──
+    const TRAILHEADS = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.314808333333335,33.09670833333334]},"properties":{"kind":"trailhead","code":"PR1","name_pt":"Vereda do Pico Branco e Terra Chã"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.941575,32.76021111111111]},"properties":{"kind":"trailhead","code":"PR1.1","name_pt":"Vereda da Ilha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.921133333333334,32.76481111111111]},"properties":{"kind":"trailhead","code":"PR1.2","name_pt":"Vereda do Pico Ruivo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.941575,32.76021111111111]},"properties":{"kind":"trailhead","code":"PR1.3","name_pt":"Vereda da Encumeada"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.886419444444442,32.73546388888889]},"properties":{"kind":"trailhead","code":"PR11","name_pt":"Vereda dos Balcões"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.987230555555556,32.71109722222222]},"properties":{"kind":"trailhead","code":"PR12","name_pt":"Caminho Real da Encumeada"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.107733333333336,32.76707222222222]},"properties":{"kind":"trailhead","code":"PR13","name_pt":"Vereda do Fanal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.140869444444444,32.80616388888889]},"properties":{"kind":"trailhead","code":"PR14","name_pt":"Levada dos Cedros"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.15788611111111,32.82606388888889]},"properties":{"kind":"trailhead","code":"PR15","name_pt":"Vereda da Ribeira da Janela"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.04945,32.779066666666665]},"properties":{"kind":"trailhead","code":"PR16","name_pt":"Levada Fajã do Rodrigues"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.01937222222222,32.754219444444445]},"properties":{"kind":"trailhead","code":"PR17","name_pt":"Caminho do Pináculo e Folhadal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.924641666666666,32.81691666666667]},"properties":{"kind":"trailhead","code":"PR18","name_pt":"Levada do Rei"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.21701111111111,32.752433333333336]},"properties":{"kind":"trailhead","code":"PR19","name_pt":"Caminho Real do Paul do Mar"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.966244444444445,32.742561111111115]},"properties":{"kind":"trailhead","code":"PR2","name_pt":"Vereda do Urzal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.21011111111111,32.74836388888889]},"properties":{"kind":"trailhead","code":"PR20","name_pt":"Vereda do Jardim do Mar"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.018925,32.75451388888889]},"properties":{"kind":"trailhead","code":"PR21","name_pt":"Caminho do Norte"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.01728888888889,32.75765833333333]},"properties":{"kind":"trailhead","code":"PR22","name_pt":"Vereda do Chão dos Louros"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.842944444444445,32.65408333333333]},"properties":{"kind":"trailhead","code":"PR23","name_pt":"Levada da Azenha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.33836111111111,33.08636111111112]},"properties":{"kind":"trailhead","code":"PR3","name_pt":"Levada do Pico do Castelo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.90311111111111,32.67619444444444]},"properties":{"kind":"trailhead","code":"PR3.1","name_pt":"Caminho Real do Monte"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.92477777777778,32.725944444444444]},"properties":{"kind":"trailhead","code":"PR4","name_pt":"Levada do Barreiro"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.82553611111111,32.74741111111111]},"properties":{"kind":"trailhead","code":"PR5","name_pt":"Vereda das Funduras"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.13368611111111,32.754625]},"properties":{"kind":"trailhead","code":"PR6","name_pt":"Levada das 25 Fontes"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.13368611111111,32.754625]},"properties":{"kind":"trailhead","code":"PR6.1","name_pt":"Levada do Risco"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.208383333333334,32.82934166666667]},"properties":{"kind":"trailhead","code":"PR7","name_pt":"Levada do Moinho"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.70103888888889,32.74335]},"properties":{"kind":"trailhead","code":"PR8","name_pt":"Vereda da Ponta de S. Lourenço"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.90579722222222,32.78377777777778]},"properties":{"kind":"trailhead","code":"PR9","name_pt":"Levada do Caldeirão Verde"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.12263888888889,32.77266111111111]},"properties":{"kind":"trailhead","code":"PR13.1","name_pt":"Vereda da Palha Carga"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.05951388888889,32.75746111111111]},"properties":{"kind":"trailhead","code":"PR27","name_pt":"Glaciar de Planalto"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.12708888888889,32.78160555555556]},"properties":{"kind":"trailhead","code":"PR28","name_pt":"Levada da Rocha Vermelha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.153569444444443,32.768972222222224]},"properties":{"kind":"trailhead","code":"PR6.4","name_pt":"Levada Velha do Rabaçal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.09946111111111,32.76246111111111]},"properties":{"kind":"trailhead","code":"PR6.5","name_pt":"Vereda do Pico Fernandes"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.149194444444444,32.75363611111111]},"properties":{"kind":"trailhead","code":"PR6.6","name_pt":"Vereda do Túnel do Cavalo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.133125,32.753680555555555]},"properties":{"kind":"trailhead","code":"PR6.8","name_pt":"Vereda da Câmara de Carga"}}]};
 
+    const ROUTE_LINES = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.314808333333335,33.09670833333334],[-16.299566666666667,33.093808333333335]]},"properties":{"code":"PR1","name_pt":"Vereda do Pico Branco e Terra Chã"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.941575,32.76021111111111],[-16.911655555555555,32.805949999999996]]},"properties":{"code":"PR1.1","name_pt":"Vereda da Ilha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.921133333333334,32.76481111111111],[-16.942522222222223,32.75888333333333]]},"properties":{"code":"PR1.2","name_pt":"Vereda do Pico Ruivo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.941575,32.76021111111111],[-17.018641666666667,32.75423888888889]]},"properties":{"code":"PR1.3","name_pt":"Vereda da Encumeada"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.886419444444442,32.73546388888889],[-16.890349999999998,32.74158888888889]]},"properties":{"code":"PR11","name_pt":"Vereda dos Balcões"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.987230555555556,32.71109722222222],[-17.020988888888887,32.75339722222222]]},"properties":{"code":"PR12","name_pt":"Caminho Real da Encumeada"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.107733333333336,32.76707222222222],[-17.14218333333333,32.80830833333333]]},"properties":{"code":"PR13","name_pt":"Vereda do Fanal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.140869444444444,32.80616388888889],[-17.157941666666666,32.82591388888889]]},"properties":{"code":"PR14","name_pt":"Levada dos Cedros"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.15788611111111,32.82606388888889],[-17.15502222222222,32.844122222222225]]},"properties":{"code":"PR15","name_pt":"Vereda da Ribeira da Janela"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.04945,32.779066666666665],[-17.07739722222222,32.78868333333333]]},"properties":{"code":"PR16","name_pt":"Levada Fajã do Rodrigues"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.01937222222222,32.754219444444445],[-17.04475277777778,32.74270277777778]]},"properties":{"code":"PR17","name_pt":"Caminho do Pináculo e Folhadal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.924641666666666,32.81691666666667],[-16.938122222222223,32.79610833333333]]},"properties":{"code":"PR18","name_pt":"Levada do Rei"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.21701111111111,32.752433333333336],[-17.223841666666665,32.752658333333336]]},"properties":{"code":"PR19","name_pt":"Caminho Real do Paul do Mar"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.966244444444445,32.742561111111115],[-16.978580555555553,32.78217222222222]]},"properties":{"code":"PR2","name_pt":"Vereda do Urzal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.21011111111111,32.74836388888889],[-17.21156111111111,32.73768611111111]]},"properties":{"code":"PR20","name_pt":"Vereda do Jardim do Mar"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.018925,32.75451388888889],[-17.023716666666665,32.77440277777778]]},"properties":{"code":"PR21","name_pt":"Caminho do Norte"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.01728888888889,32.75765833333333],[-17.017141666666667,32.75774166666667]]},"properties":{"code":"PR22","name_pt":"Vereda do Chão dos Louros"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.842944444444445,32.65408333333333],[-16.841777777777775,32.65819444444444]]},"properties":{"code":"PR23","name_pt":"Levada da Azenha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.33836111111111,33.08636111111112],[-16.32311111111111,33.0705]]},"properties":{"code":"PR3","name_pt":"Levada do Pico do Castelo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.92477777777778,32.725944444444444],[-16.909555555555553,32.695361111111104]]},"properties":{"code":"PR4","name_pt":"Levada do Barreiro"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.82553611111111,32.74741111111111],[-16.79791388888889,32.737547222222226]]},"properties":{"code":"PR5","name_pt":"Vereda das Funduras"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.13368611111111,32.754625],[-17.12537777777778,32.765505555555556]]},"properties":{"code":"PR6","name_pt":"Levada das 25 Fontes"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.13368611111111,32.754625],[-17.12537777777778,32.765505555555556]]},"properties":{"code":"PR6.1","name_pt":"Levada do Risco"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.208383333333334,32.82934166666667],[-17.17756388888889,32.85532222222222]]},"properties":{"code":"PR7","name_pt":"Levada do Moinho"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.70103888888889,32.74335],[-16.683605555555555,32.74223055555556]]},"properties":{"code":"PR8","name_pt":"Vereda da Ponta de S. Lourenço"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.90579722222222,32.78377777777778],[-16.936363888888888,32.77423611111111]]},"properties":{"code":"PR9","name_pt":"Levada do Caldeirão Verde"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.12263888888889,32.77266111111111],[-17.125580555555555,32.76564722222222]]},"properties":{"code":"PR13.1","name_pt":"Vereda da Palha Carga"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.05951388888889,32.75746111111111],[-16.897222222222222,32.77972222222222]]},"properties":{"code":"PR27","name_pt":"Glaciar de Planalto"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.12708888888889,32.78160555555556],[-17.147225,32.746050000000004]]},"properties":{"code":"PR28","name_pt":"Levada da Rocha Vermelha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.153569444444443,32.768972222222224],[-17.134944444444443,32.76161666666667]]},"properties":{"code":"PR6.4","name_pt":"Levada Velha do Rabaçal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.09946111111111,32.76246111111111],[-17.125580555555555,32.76564722222222]]},"properties":{"code":"PR6.5","name_pt":"Vereda do Pico Fernandes"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.149194444444444,32.75363611111111],[-17.134916666666665,32.76161666666667]]},"properties":{"code":"PR6.6","name_pt":"Vereda do Túnel do Cavalo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.133125,32.753680555555555],[-17.125480555555555,32.74831944444445]]},"properties":{"code":"PR6.8","name_pt":"Vereda da Câmara de Carga"}}]};
+
+    // ── Color + icon config ──
+    const KIND_CONFIG = {
+      // Trails
+      trailhead:   { color: '#16a34a', label: 'Trailhead', shape: 'circle', group: 'Trails' },
+      peak:        { color: '#6366f1', label: 'Summit', shape: 'triangle', group: 'Trails' },
+      // Places
+      town:        { color: '#0ea5e9', label: 'Town', shape: 'square', group: 'Places' },
+      market:      { color: '#f97316', label: 'Market', shape: 'square', group: 'Places' },
+      // Nature
+      viewpoint:   { color: '#f59e0b', label: 'Viewpoint', shape: 'diamond', group: 'Nature' },
+      garden:      { color: '#22c55e', label: 'Garden', shape: 'square', group: 'Nature' },
+      beach:       { color: '#06b6d4', label: 'Beach', shape: 'square', group: 'Nature' },
+      swim:        { color: '#0891b2', label: 'Swimming', shape: 'square', group: 'Nature' },
+      // Food & Drink
+      restaurant:  { color: '#ef4444', label: 'Restaurant', shape: 'square', group: 'Food & Drink' },
+      poncha:      { color: '#a855f7', label: 'Poncha Bar', shape: 'square', group: 'Food & Drink' },
+      wine:        { color: '#be185d', label: 'Wine Lodge', shape: 'square', group: 'Food & Drink' },
+      bakery:      { color: '#d97706', label: 'Bakery', shape: 'square', group: 'Food & Drink' },
+      // Other
+      nightlife:   { color: '#ec4899', label: 'Nightlife', shape: 'square', group: 'Other' },
+      'hidden-gem':{ color: '#14b8a6', label: 'Hidden Gem', shape: 'star', group: 'Other' },
+    };
+    const DEFAULT_CONFIG = { color: '#64748b', label: 'Other', shape: 'square', group: 'Other' };
+
+    function getConfig(kind) { return KIND_CONFIG[kind] || DEFAULT_CONFIG; }
+
+    // ── Icon factories ──
+    function makeIcon(color, shape, size) {
+      size = size || 14;
+      let svg;
+      if (shape === 'circle') {
+        svg = `<circle cx="${size/2}" cy="${size/2}" r="${size/2-2}" fill="${color}" stroke="white" stroke-width="2"/>`;
+      } else if (shape === 'diamond') {
+        const h = size/2;
+        svg = `<polygon points="${h},1 ${size-1},${h} ${h},${size-1} 1,${h}" fill="${color}" stroke="white" stroke-width="1.5"/>`;
+      } else if (shape === 'triangle') {
+        svg = `<polygon points="${size/2},1 ${size-1},${size-1} 1,${size-1}" fill="${color}" stroke="white" stroke-width="1.5"/>`;
+      } else if (shape === 'star') {
+        const cx=size/2, cy=size/2, r1=size/2-1, r2=r1*0.4;
+        let pts = '';
+        for (let i=0;i<5;i++) {
+          const a1 = (i*72-90)*Math.PI/180, a2 = ((i*72+36)-90)*Math.PI/180;
+          pts += `${cx+r1*Math.cos(a1)},${cy+r1*Math.sin(a1)} ${cx+r2*Math.cos(a2)},${cy+r2*Math.sin(a2)} `;
+        }
+        svg = `<polygon points="${pts.trim()}" fill="${color}" stroke="white" stroke-width="1"/>`;
+      } else {
+        const m = 2;
+        svg = `<rect x="${m}" y="${m}" width="${size-m*2}" height="${size-m*2}" rx="2" fill="${color}" stroke="white" stroke-width="1.5"/>`;
+      }
+      return new L.DivIcon({
+        className: '',
+        html: `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${svg}</svg>`,
+        iconSize: [size, size],
+        iconAnchor: [size/2, size/2],
+      });
+    }
+
+    // ── Map init ──
     const map = L.map('map', { zoomControl: true }).setView([32.75, -16.95], 10);
 
-    const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    function prPopupHtml(props) {
-      const title = `${props.code || ''} — ${props.name_pt || ''}`.replace(/^ — /,'').trim();
-      const kind = props.kind || '';
-      const url = props.panel_url || '';
-      return `
-        <div class="popup-title">${title}</div>
-        <div class="popup-kind">${kind}</div>
-        ${url ? `<div class="popup-url">Panel: <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a></div>` : ''}
-      `;
-    }
-
-    function poiPopupHtml(props) {
-      const title = props.name || '';
-      const kind = props.kind || '';
-      const region = props.region || '';
-      return `
-        <div class="popup-title">${title}</div>
-        <div class="popup-kind">${kind}</div>
-        ${region ? `<div class="popup-meta">Region: ${region}</div>` : ''}
-      `;
+    // ── Trail layers ──
+    function trailPopup(props) {
+      return `<div class="popup-title">${props.code || ''} — ${props.name_pt || ''}</div>
+              <div class="popup-kind" style="color:#16a34a">PR Trail</div>`;
     }
 
     const linesLayer = L.geoJSON(ROUTE_LINES, {
-      style: () => ({ color: '#2563eb', weight: 3, opacity: 0.75 }),
-      onEachFeature: (feature, layer) => layer.bindPopup(prPopupHtml(feature.properties))
-    });
-
-    const trailheadIcon = new L.DivIcon({
-      className: '',
-      html: '<div style="width:12px;height:12px;border-radius:999px;background:#16a34a;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.35)"></div>',
-      iconSize: [12,12],
-      iconAnchor: [6,6],
-    });
-
-    const trailEndIcon = new L.DivIcon({
-      className: '',
-      html: '<div style="width:12px;height:12px;border-radius:999px;background:#dc2626;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.35)"></div>',
-      iconSize: [12,12],
-      iconAnchor: [6,6],
-    });
-
-    const poiIcon = (color) => new L.DivIcon({
-      className: '',
-      html: `<div style="width:12px;height:12px;border-radius:4px;background:${color};border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,.35)"></div>`,
-      iconSize: [12,12],
-      iconAnchor: [6,6],
-    });
-
-    const poiColors = {
-      hub: '#7c3aed',
-      town: '#0ea5e9',
-      viewpoint: '#f59e0b',
-      garden: '#22c55e',
-      market: '#f97316',
-      beach: '#06b6d4',
-      swim: '#06b6d4',
-      trailhead: '#a855f7',
-      peak: '#111827',
-      default: '#64748b'
-    };
+      style: () => ({ color: '#3b82f6', weight: 3, opacity: 0.7, dashArray: '8 4' }),
+      onEachFeature: (f, layer) => layer.bindPopup(trailPopup(f.properties))
+    }).addTo(map);
 
     const headsLayer = L.geoJSON(TRAILHEADS, {
-      pointToLayer: (feature, latlng) => L.marker(latlng, { icon: trailheadIcon }),
-      onEachFeature: (feature, layer) => layer.bindPopup(prPopupHtml(feature.properties))
-    });
+      pointToLayer: (f, ll) => L.marker(ll, { icon: makeIcon('#16a34a', 'circle', 12) }),
+      onEachFeature: (f, layer) => layer.bindPopup(trailPopup(f.properties))
+    }).addTo(map);
 
-    const endsLayer = L.geoJSON(TRAIL_ENDS, {
-      pointToLayer: (feature, latlng) => L.marker(latlng, { icon: trailEndIcon }),
-      onEachFeature: (feature, layer) => layer.bindPopup(prPopupHtml(feature.properties))
-    });
+    // ── POI layers (loaded from GeoJSON file) ──
+    const poiLayerGroups = {};  // kind -> L.LayerGroup
+    const hiddenKinds = new Set();
 
-    const poiLayer = L.geoJSON(POIS, {
-      pointToLayer: (feature, latlng) => {
-        const props = feature.properties || {};
-        const kind = props.kind || 'default';
-        const color = poiColors[kind] || poiColors.default;
-        return L.marker(latlng, { icon: poiIcon(color) });
-      },
-      onEachFeature: (feature, layer) => layer.bindPopup(poiPopupHtml(feature.properties || {}))
-    });
+    function poiPopup(props) {
+      const cfg = getConfig(props.kind);
+      let html = `<div class="popup-title">${props.name || ''}</div>`;
+      html += `<div class="popup-kind" style="color:${cfg.color}">${cfg.label}</div>`;
+      if (props.tip) html += `<div class="popup-tip">${props.tip}</div>`;
+      if (props.region) html += `<div class="popup-region">${props.region}</div>`;
+      return html;
+    }
 
-    const overlays = {
-      'PR lines': linesLayer,
-      'PR trailheads (green)': headsLayer,
-      'PR trail ends (red)': endsLayer,
-      'Key POIs (squares)': poiLayer,
-    };
+    async function loadPOIs() {
+      try {
+        const resp = await fetch('./data/madeira_pois.geojson', { cache: 'no-store' });
+        const data = await resp.json();
 
-    linesLayer.addTo(map);
-    headsLayer.addTo(map);
-    poiLayer.addTo(map);
+        // Group features by kind
+        const byKind = {};
+        data.features.forEach(f => {
+          const kind = (f.properties && f.properties.kind) || 'default';
+          if (!byKind[kind]) byKind[kind] = [];
+          byKind[kind].push(f);
+        });
 
-    L.control.layers({'OpenStreetMap': osm}, overlays, { collapsed: false }).addTo(map);
+        // Create layer group per kind
+        Object.entries(byKind).forEach(([kind, features]) => {
+          const cfg = getConfig(kind);
+          const markers = features.map(f => {
+            const coords = f.geometry.coordinates;
+            const marker = L.marker([coords[1], coords[0]], { icon: makeIcon(cfg.color, cfg.shape, 14) });
+            marker.bindPopup(poiPopup(f.properties || {}));
+            return marker;
+          });
+          const group = L.layerGroup(markers).addTo(map);
+          poiLayerGroups[kind] = group;
+        });
 
-    const group = L.featureGroup([linesLayer, headsLayer, endsLayer, poiLayer]);
-    map.fitBounds(group.getBounds().pad(0.08));
+        buildLegend(byKind);
+        buildFilterBar(byKind);
+        fitAll();
+      } catch (err) {
+        console.error('Failed to load POIs:', err);
+      }
+    }
+
+    function fitAll() {
+      const allLayers = [linesLayer, headsLayer, ...Object.values(poiLayerGroups)];
+      const group = L.featureGroup(allLayers.filter(l => map.hasLayer(l)));
+      if (group.getLayers().length) map.fitBounds(group.getBounds().pad(0.06));
+    }
+
+    // ── Legend ──
+    function buildLegend(byKind) {
+      const legend = document.getElementById('legend');
+      const groups = {};
+
+      // Trail entry
+      groups['Trails'] = [{ kind: 'trailhead', count: TRAILHEADS.features.length, cfg: KIND_CONFIG.trailhead }];
+
+      // POI entries
+      Object.entries(byKind).forEach(([kind, features]) => {
+        const cfg = getConfig(kind);
+        if (!groups[cfg.group]) groups[cfg.group] = [];
+        groups[cfg.group].push({ kind, count: features.length, cfg });
+      });
+
+      let html = '<h3>Legend</h3>';
+      Object.entries(groups).forEach(([groupName, items]) => {
+        html += `<div class="legend-section"><div class="legend-section-title">${groupName}</div>`;
+        items.forEach(item => {
+          html += `<div class="legend-item" data-kind="${item.kind}" title="Click to toggle">
+            <div class="${item.cfg.shape === 'circle' ? 'dot' : 'square'}" style="background:${item.cfg.color}"></div>
+            <span>${item.cfg.label} (${item.count})</span>
+          </div>`;
+        });
+        html += '</div>';
+      });
+      legend.innerHTML = html;
+
+      // Click to toggle
+      legend.querySelectorAll('.legend-item').forEach(el => {
+        el.addEventListener('click', () => toggleKind(el.dataset.kind, el));
+      });
+    }
+
+    function toggleKind(kind, el) {
+      if (kind === 'trailhead') {
+        if (map.hasLayer(headsLayer)) { map.removeLayer(headsLayer); map.removeLayer(linesLayer); el.classList.add('hidden'); }
+        else { headsLayer.addTo(map); linesLayer.addTo(map); el.classList.remove('hidden'); }
+        return;
+      }
+      const group = poiLayerGroups[kind];
+      if (!group) return;
+      if (map.hasLayer(group)) { map.removeLayer(group); el.classList.add('hidden'); hiddenKinds.add(kind); }
+      else { group.addTo(map); el.classList.remove('hidden'); hiddenKinds.delete(kind); }
+      syncFilterBtns();
+    }
+
+    // ── Filter bar ──
+    function buildFilterBar(byKind) {
+      const bar = document.getElementById('filterBar');
+      const groups = {};
+      Object.entries(byKind).forEach(([kind, features]) => {
+        const cfg = getConfig(kind);
+        if (!groups[cfg.group]) groups[cfg.group] = [];
+        groups[cfg.group].push({ kind, cfg });
+      });
+
+      let html = '';
+      // "All" button
+      html += `<button class="filter-btn active" data-filter="all">All</button>`;
+      // Group buttons
+      Object.keys(groups).forEach(g => {
+        html += `<button class="filter-btn active" data-filter="group:${g}">${g}</button>`;
+      });
+      bar.innerHTML = html;
+
+      bar.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => handleFilter(btn, byKind, groups));
+      });
+    }
+
+    function handleFilter(btn, byKind, groups) {
+      const filter = btn.dataset.filter;
+      if (filter === 'all') {
+        // Show everything
+        Object.keys(poiLayerGroups).forEach(k => { poiLayerGroups[k].addTo(map); hiddenKinds.delete(k); });
+        headsLayer.addTo(map); linesLayer.addTo(map);
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+        document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('hidden'));
+      } else if (filter.startsWith('group:')) {
+        const groupName = filter.replace('group:', '');
+        const isActive = btn.classList.contains('active');
+        // Toggle all kinds in this group
+        Object.entries(byKind).forEach(([kind]) => {
+          const cfg = getConfig(kind);
+          if (cfg.group === groupName) {
+            if (isActive) { map.removeLayer(poiLayerGroups[kind]); hiddenKinds.add(kind); }
+            else { poiLayerGroups[kind].addTo(map); hiddenKinds.delete(kind); }
+          }
+        });
+        btn.classList.toggle('active');
+        syncLegend();
+      }
+    }
+
+    function syncFilterBtns() {
+      document.querySelectorAll('.filter-btn[data-filter^="group:"]').forEach(btn => {
+        const groupName = btn.dataset.filter.replace('group:', '');
+        const allHidden = Object.entries(poiLayerGroups).every(([kind, g]) => {
+          const cfg = getConfig(kind);
+          return cfg.group !== groupName || !map.hasLayer(g);
+        });
+        btn.classList.toggle('active', !allHidden);
+      });
+    }
+
+    function syncLegend() {
+      document.querySelectorAll('.legend-item').forEach(el => {
+        const kind = el.dataset.kind;
+        if (kind === 'trailhead') { el.classList.toggle('hidden', !map.hasLayer(headsLayer)); return; }
+        const g = poiLayerGroups[kind];
+        if (g) el.classList.toggle('hidden', !map.hasLayer(g));
+      });
+    }
+
+    // ── Init ──
+    loadPOIs();
   </script>
 </body>
 </html>
