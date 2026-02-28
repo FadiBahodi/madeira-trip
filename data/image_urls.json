@@ -174,6 +174,41 @@
       "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Blandy%27s_Wine_Lodge_-_Funchal_01.jpg/800px-Blandy%27s_Wine_Lodge_-_Funchal_01.jpg",
       "credit": "Photo by H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
       "source": "https://commons.wikimedia.org/wiki/File:Blandy%27s_Wine_Lodge_-_Funchal_01.jpg"
+    },
+    "savoy-palace": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg/800px-Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg",
+      "credit": "Photo by Paulo SP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Savoy_Palace,_Funchal_-_2022-02-14_-_DSC07846.jpg"
+    },
+    "reids-palace": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Funchal%2C_Reid%E2%80%99s_Palace_%28from_Ribeiro_Seco%29.jpg/800px-Funchal%2C_Reid%E2%80%99s_Palace_%28from_Ribeiro_Seco%29.jpg",
+      "credit": "Photo by Dr. Thomas Liptak, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Funchal,_Reid%E2%80%99s_Palace_(from_Ribeiro_Seco).jpg"
+    },
+    "cliff-bay": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/The_grand_Cliff_Bay_Hotel_in_Funchal%2C_Madeira_Island%2C_Portugal.jpg/800px-The_grand_Cliff_Bay_Hotel_in_Funchal%2C_Madeira_Island%2C_Portugal.jpg",
+      "credit": "Photo by Flickr user, CC BY 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:The_grand_Cliff_Bay_Hotel_in_Funchal,_Madeira_Island,_Portugal.jpg"
+    },
+    "castanheiro-hotel": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Hotel_Castanheiro_Boutique_Hotel_%2853224212600%29.jpg",
+      "credit": "Photo by Walter Schaerer, CC BY 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Hotel_Castanheiro_Boutique_Hotel_(53224212600).jpg"
+    },
+    "taberna-da-poncha": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Poncha.JPG",
+      "credit": "Photo by Koshelyev, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Poncha.JPG"
+    },
+    "machico": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Machico_and_the_nearby_airport_on_Madeira.JPG/800px-Machico_and_the_nearby_airport_on_Madeira.JPG",
+      "credit": "Photo by Donarreiskoffer, CC BY 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Machico_and_the_nearby_airport_on_Madeira.JPG"
+    },
+    "encumeada": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Encumeada%2C_Madeira%2C_view_of_mountain_range_from_pass.jpg/800px-Encumeada%2C_Madeira%2C_view_of_mountain_range_from_pass.jpg",
+      "credit": "Photo by Gerda Arendt, CC0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Encumeada,_Madeira,_view_of_mountain_range_from_pass.jpg"
     }
   }
 }
