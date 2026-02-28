@@ -1,12 +1,12 @@
 {
   "meta": {
-    "version": "1.0",
-    "last_updated": "2026-02-27",
-    "total_items": 196,
+    "version": "2.0",
+    "last_updated": "2026-02-28",
+    "total_items": 217,
     "by_kind": {
       "restaurant": 59,
+      "trail": 41,
       "viewpoint": 35,
-      "trail": 23,
       "poncha": 15,
       "town": 12,
       "bakery": 11,
@@ -15,11 +15,12 @@
       "wine": 7,
       "swim": 6,
       "garden": 6,
-      "hidden-gem": 3,
+      "hidden-gem": 6,
       "market": 2,
       "peak": 1,
       "nightlife": 1
-    }
+    },
+    "trail_reservation_note": "All PR trails require mandatory online reservation via SIMplifica (simplifica.madeira.gov.pt) as of Jan 1, 2026. EUR 4.50/person/trail. 30-minute entry windows. No-show fine EUR 250."
   },
   "items": [
     {
@@ -46,7 +47,9 @@
       "headlamp": true,
       "status": "closed",
       "trail_type": "vereda",
-      "top_pick": false
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr12-vereda-do-pico-ruivo",
@@ -73,7 +76,9 @@
       "status": "open",
       "trail_type": "vereda",
       "top_pick": true,
-      "day_suggestion": "Day 1 (Clear Sky)"
+      "day_suggestion": "Day 1 (Clear Sky)",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr6-levada-das-25-fontes",
@@ -88,7 +93,7 @@
       "image_credit": "Photo by muffinn from Worcester, UK, CC BY 2.0, via Wikimedia Commons",
       "code": "PR6",
       "difficulty": "Moderate",
-      "distance_km": 9.0,
+      "distance_km": 11.0,
       "elevation_m": 300,
       "time_hours": "3-4",
       "rating": 4.5,
@@ -100,7 +105,9 @@
       "status": "open",
       "trail_type": "levada",
       "top_pick": true,
-      "day_suggestion": "Day 2"
+      "day_suggestion": "Day 2",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr61-levada-do-risco",
@@ -127,7 +134,9 @@
       "status": "open",
       "trail_type": "levada",
       "top_pick": true,
-      "day_suggestion": "Day 2"
+      "day_suggestion": "Day 2",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr8-vereda-da-ponta-de-sao-lourenco",
@@ -154,7 +163,9 @@
       "status": "open",
       "trail_type": "vereda",
       "top_pick": true,
-      "day_suggestion": "Day 1 (Coast)"
+      "day_suggestion": "Day 1 (Coast)",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr9-levada-do-caldeirao-verde",
@@ -181,7 +192,9 @@
       "status": "open",
       "trail_type": "levada",
       "top_pick": true,
-      "day_suggestion": "Day 3"
+      "day_suggestion": "Day 3",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr10-levada-do-furado",
@@ -195,7 +208,7 @@
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Levada_do_Furado%2C_Madeira_-_2013-04-05_-_90145216.jpg/800px-Levada_do_Furado%2C_Madeira_-_2013-04-05_-_90145216.jpg",
       "image_credit": "Photo by Sergey Ashmarin, CC BY-SA 3.0, via Wikimedia Commons",
       "code": "PR10",
-      "difficulty": "Easy",
+      "difficulty": "Moderate",
       "distance_km": 11.0,
       "elevation_m": 200,
       "time_hours": "4-6",
@@ -207,7 +220,9 @@
       "headlamp": false,
       "status": "closed",
       "trail_type": "levada",
-      "top_pick": false
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr11-vereda-dos-balcoes",
@@ -234,7 +249,9 @@
       "status": "open",
       "trail_type": "vereda",
       "top_pick": true,
-      "day_suggestion": "Day 1 or 3 (bonus)"
+      "day_suggestion": "Day 1 or 3 (bonus)",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr13-vereda-do-fanal",
@@ -248,7 +265,7 @@
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1517.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1517.jpg",
       "image_credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
       "code": "PR13",
-      "difficulty": "Hard",
+      "difficulty": "Moderate",
       "distance_km": 10.8,
       "elevation_m": 500,
       "time_hours": "4-5",
@@ -260,7 +277,9 @@
       "headlamp": false,
       "status": "open",
       "trail_type": "vereda",
-      "top_pick": false
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr17-caminho-do-pinaculo-e-folhadal",
@@ -286,7 +305,9 @@
       "headlamp": true,
       "status": "partial",
       "trail_type": "levada",
-      "top_pick": false
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr18-levada-do-rei",
@@ -312,7 +333,9 @@
       "headlamp": false,
       "status": "open",
       "trail_type": "levada",
-      "top_pick": false
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "cabo-girao-skywalk",
@@ -1153,7 +1176,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Fine Dining / French-Portuguese",
       "price_range": "€€€",
-      "must_order": "Terroir Experience tasting menu"
+      "must_order": "Terroir Experience tasting menu",
+      "rating": 4.5,
+      "review_count": 1800,
+      "rating_source": "Google Maps"
     },
     {
       "id": "desarma",
@@ -1168,7 +1194,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Modern Madeiran",
       "price_range": "€€€",
-      "must_order": "The Chef's Battle tasting menu"
+      "must_order": "The Chef's Battle tasting menu",
+      "rating": 4.9,
+      "review_count": 279,
+      "rating_source": "Google Maps"
     },
     {
       "id": "william-restaurant",
@@ -1183,7 +1212,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Refined Portuguese",
       "price_range": "€€€",
-      "must_order": "Discovery tasting menu"
+      "must_order": "Discovery tasting menu",
+      "rating": 4.6,
+      "review_count": 399,
+      "rating_source": "Google Maps"
     },
     {
       "id": "joy-restaurant",
@@ -1198,7 +1230,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Contemporary Fine Dining",
       "price_range": "€€€",
-      "must_order": "Seasonal tasting menu"
+      "must_order": "Seasonal tasting menu",
+      "rating": 5.0,
+      "review_count": 203,
+      "rating_source": "Google Maps"
     },
     {
       "id": "avista",
@@ -1213,7 +1248,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Mediterranean",
       "price_range": "€€",
-      "must_order": "Algarve red shrimp shared plates"
+      "must_order": "Algarve red shrimp shared plates",
+      "rating": 4.5,
+      "review_count": 1779,
+      "rating_source": "Google Maps"
     },
     {
       "id": "casal-da-penha",
@@ -1228,7 +1266,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Black scabbardfish filet"
+      "must_order": "Black scabbardfish filet",
+      "rating": 4.7,
+      "review_count": 6084,
+      "rating_source": "Google Maps"
     },
     {
       "id": "armazem-do-sal",
@@ -1243,7 +1284,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Modern Madeiran",
       "price_range": "€€",
-      "must_order": "Shrimp risotto, poncha cocktail"
+      "must_order": "Shrimp risotto, poncha cocktail",
+      "rating": 4.3,
+      "review_count": 1500,
+      "rating_source": "Google Maps"
     },
     {
       "id": "tipografia",
@@ -1258,7 +1302,10 @@
       "image_credit": "Espada preta, Carlos Teixidor Cadenas, CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Portuguese-Mediterranean-Italian",
       "price_range": "€€",
-      "must_order": "Revisited espada com banana"
+      "must_order": "Revisited espada com banana",
+      "rating": 4.6,
+      "review_count": 547,
+      "rating_source": "Google Maps"
     },
     {
       "id": "5-sentidos",
@@ -1273,7 +1320,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Creative Portuguese",
       "price_range": "€€",
-      "must_order": "Parrotfish, chocolate tart with salted caramel"
+      "must_order": "Parrotfish, chocolate tart with salted caramel",
+      "rating": 4.7,
+      "review_count": 712,
+      "rating_source": "Google Maps"
     },
     {
       "id": "kampo",
@@ -1288,7 +1338,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Contemporary",
       "price_range": "€€€",
-      "must_order": "White chocolate, olive, and passion fruit dessert"
+      "must_order": "White chocolate, olive, and passion fruit dessert",
+      "rating": 4.7,
+      "review_count": 500,
+      "rating_source": "Google Maps"
     },
     {
       "id": "akua",
@@ -1303,7 +1356,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood",
       "price_range": "€€",
-      "must_order": "Day's catch from display window"
+      "must_order": "Day's catch from display window",
+      "rating": 4.7,
+      "review_count": 1132,
+      "rating_source": "Google Maps"
     },
     {
       "id": "la-ao-fundo",
@@ -1318,7 +1374,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Madeiran Fusion",
       "price_range": "€€",
-      "must_order": "Tuna or swordfish"
+      "must_order": "Tuna or swordfish",
+      "rating": 4.1,
+      "review_count": 5294,
+      "rating_source": "Google Maps"
     },
     {
       "id": "goya",
@@ -1333,7 +1392,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Fine Dining",
       "price_range": "€€€",
-      "must_order": "Passion fruit souffle"
+      "must_order": "Passion fruit souffle",
+      "rating": 4.6,
+      "review_count": 3874,
+      "rating_source": "Google Maps"
     },
     {
       "id": "santa-maria-restaurant",
@@ -1348,7 +1410,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Portuguese-Japanese Fusion",
       "price_range": "€€",
-      "must_order": "Black pork cheek with truffle puree"
+      "must_order": "Black pork cheek with truffle puree",
+      "rating": 4.4,
+      "review_count": 3233,
+      "rating_source": "Google Maps"
     },
     {
       "id": "taberna-madeira",
@@ -1363,7 +1428,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Grilled limpets (lapas), milho frito"
+      "must_order": "Grilled limpets (lapas), milho frito",
+      "rating": 4.6,
+      "review_count": 4801,
+      "rating_source": "Google Maps"
     },
     {
       "id": "peixaria-no-mercado",
@@ -1378,7 +1446,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Seafood",
       "price_range": "€€",
-      "must_order": "Cod croquettes with homemade tartar sauce"
+      "must_order": "Cod croquettes with homemade tartar sauce",
+      "rating": 4.7,
+      "review_count": 2825,
+      "rating_source": "Google Maps"
     },
     {
       "id": "zarcos",
@@ -1393,7 +1464,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Steaks with milho frito"
+      "must_order": "Steaks with milho frito",
+      "rating": 4.4,
+      "review_count": 1638,
+      "rating_source": "Google Maps"
     },
     {
       "id": "rustikus",
@@ -1408,7 +1482,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Traditional Portuguese",
       "price_range": "€",
-      "must_order": "Prato do dia (daily special)"
+      "must_order": "Prato do dia (daily special)",
+      "rating": 4.9,
+      "review_count": 181,
+      "rating_source": "Google Maps"
     },
     {
       "id": "a-tendinha",
@@ -1423,7 +1500,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Daily whiteboard fish or meat"
+      "must_order": "Daily whiteboard fish or meat",
+      "rating": 4.9,
+      "review_count": 200,
+      "rating_source": "Google Maps"
     },
     {
       "id": "snack-bar-bela-5",
@@ -1438,7 +1518,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Daily specials"
+      "must_order": "Daily specials",
+      "rating": 4.8,
+      "review_count": 2168,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-londres",
@@ -1453,7 +1536,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Tuna steak with fried corn"
+      "must_order": "Tuna steak with fried corn",
+      "rating": 4.4,
+      "review_count": 500,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-dos-combatentes",
@@ -1468,7 +1554,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Traditional Portuguese",
       "price_range": "€€",
-      "must_order": "Fish dishes, stuffed vegetables"
+      "must_order": "Fish dishes, stuffed vegetables",
+      "rating": 4.5,
+      "review_count": 3024,
+      "rating_source": "Google Maps"
     },
     {
       "id": "ja-fui-jaquet",
@@ -1483,7 +1572,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Four-course lunch special"
+      "must_order": "Four-course lunch special",
+      "rating": 4.7,
+      "review_count": 793,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-americano",
@@ -1498,7 +1590,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Madeiran Tapas",
       "price_range": "€",
-      "must_order": "House tuna with sweet potatoes"
+      "must_order": "House tuna with sweet potatoes",
+      "rating": 4.5,
+      "review_count": 768,
+      "rating_source": "Google Maps"
     },
     {
       "id": "barra-azul",
@@ -1513,7 +1608,10 @@
       "image_credit": "Espada preta, Carlos Teixidor Cadenas, CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Seafood / Traditional",
       "price_range": "€€",
-      "must_order": "Limpets, beef picados"
+      "must_order": "Limpets, beef picados",
+      "rating": 4.2,
+      "review_count": 400,
+      "rating_source": "Google Maps"
     },
     {
       "id": "a-bica",
@@ -1528,7 +1626,10 @@
       "image_credit": "Espada preta, Carlos Teixidor Cadenas, CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Espada com banana"
+      "must_order": "Espada com banana",
+      "rating": 4.6,
+      "review_count": 300,
+      "rating_source": "Google Maps"
     },
     {
       "id": "doca-do-cavacas-restaurant",
@@ -1543,7 +1644,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Seafood",
       "price_range": "€€",
-      "must_order": "Red snapper, espada com banana"
+      "must_order": "Red snapper, espada com banana",
+      "rating": 4.4,
+      "review_count": 400,
+      "rating_source": "Google Maps"
     },
     {
       "id": "informal",
@@ -1558,7 +1662,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Portuguese-Asian Fusion",
       "price_range": "€€",
-      "must_order": "Ramen, tempura vegetables"
+      "must_order": "Ramen, tempura vegetables",
+      "rating": 4.7,
+      "review_count": 3409,
+      "rating_source": "Google Maps"
     },
     {
       "id": "sete-mares",
@@ -1573,7 +1680,10 @@
       "image_credit": "Câmara de Lobos, H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Seafood / Traditional",
       "price_range": "€€",
-      "must_order": "Tomato onion soup with poached egg, prego no bolo do caco"
+      "must_order": "Tomato onion soup with poached egg, prego no bolo do caco",
+      "rating": 4.4,
+      "review_count": 500,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-santo-antonio",
@@ -1588,7 +1698,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Espetada on laurel skewers, grilled chicken with milho frito"
+      "must_order": "Espetada on laurel skewers, grilled chicken with milho frito",
+      "rating": 4.7,
+      "review_count": 9085,
+      "rating_source": "Google Maps"
     },
     {
       "id": "as-vides",
@@ -1603,7 +1716,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Traditional espetada with fried corn"
+      "must_order": "Traditional espetada with fried corn",
+      "rating": 4.5,
+      "review_count": 1903,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-polar",
@@ -1618,7 +1734,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Espetada a Madeirense, passion fruit pudding"
+      "must_order": "Espetada a Madeirense, passion fruit pudding",
+      "rating": 4.7,
+      "review_count": 4112,
+      "rating_source": "Google Maps"
     },
     {
       "id": "vila-da-carne",
@@ -1633,7 +1752,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Meat / Traditional",
       "price_range": "€€",
-      "must_order": "Espetada, premium meats"
+      "must_order": "Espetada, premium meats",
+      "rating": 4.4,
+      "review_count": 2499,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-lagar",
@@ -1648,7 +1770,10 @@
       "image_credit": "Câmara de Lobos, H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Traditional Madeiran cuisine, espetada"
+      "must_order": "Traditional Madeiran cuisine, espetada",
+      "rating": 4.5,
+      "review_count": 6608,
+      "rating_source": "Google Maps"
     },
     {
       "id": "vila-do-peixe",
@@ -1663,7 +1788,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood",
       "price_range": "€€",
-      "must_order": "Day's catch -- tuna, sea bream, scabbardfish, grilled with salt"
+      "must_order": "Day's catch -- tuna, sea bream, scabbardfish, grilled with salt",
+      "rating": 4.3,
+      "review_count": 4317,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-viola",
@@ -1678,7 +1806,10 @@
       "image_credit": "Câmara de Lobos, H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Meat / Premium",
       "price_range": "€€€",
-      "must_order": "Dry-aged beef steaks (bifes)"
+      "must_order": "Dry-aged beef steaks (bifes)",
+      "rating": 4.6,
+      "review_count": 3669,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-orca",
@@ -1693,7 +1824,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood / Traditional",
       "price_range": "€€",
-      "must_order": "Bife de atum, gambas a diablo"
+      "must_order": "Bife de atum, gambas a diablo",
+      "rating": 3.6,
+      "review_count": 259,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-polo-norte",
@@ -1708,7 +1842,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Portuguese",
       "price_range": "€€",
-      "must_order": "Beef espetada"
+      "must_order": "Beef espetada",
+      "rating": 3.7,
+      "review_count": 1565,
+      "rating_source": "Google Maps"
     },
     {
       "id": "sea-view-restaurante",
@@ -1723,7 +1860,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood",
       "price_range": "€€",
-      "must_order": "Fish soup, grilled tuna"
+      "must_order": "Fish soup, grilled tuna",
+      "rating": 4.2,
+      "review_count": 400,
+      "rating_source": "Google Maps"
     },
     {
       "id": "conchinha-bar",
@@ -1738,7 +1878,10 @@
       "image_credit": "Representative: Madeiran cuisine, Zona Velha do Funchal, CC BY-SA 4.0 via Wikimedia",
       "cuisine": "Cafe / Light Meals",
       "price_range": "€",
-      "must_order": "Maracuja cheesecake"
+      "must_order": "Maracuja cheesecake",
+      "rating": 4.2,
+      "review_count": 2534,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-quinta-do-furao",
@@ -1753,7 +1896,10 @@
       "image_credit": "Representative: Madeiran cuisine, Espetada, CC BY-SA 3.0 via Wikimedia",
       "cuisine": "Modern Madeiran",
       "price_range": "€€",
-      "must_order": "Oxtail tureen, slow-cooked beef cheek"
+      "must_order": "Oxtail tureen, slow-cooked beef cheek",
+      "rating": 4.4,
+      "review_count": 3012,
+      "rating_source": "Google Maps"
     },
     {
       "id": "cantinho-da-serra",
@@ -1768,7 +1914,10 @@
       "image_credit": "Representative: Madeiran cuisine, Lapas grelhadas, CC BY-SA 2.5 via Wikimedia",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Madeiran stew, carne de vinha d'alhos"
+      "must_order": "Madeiran stew, carne de vinha d'alhos",
+      "rating": 4.4,
+      "review_count": 1736,
+      "rating_source": "Google Maps"
     },
     {
       "id": "marcels-bistro",
@@ -1783,7 +1932,10 @@
       "image_credit": "Representative: Madeiran cuisine, Zona Velha do Funchal, CC BY-SA 4.0 via Wikimedia",
       "cuisine": "Bistro",
       "price_range": "€€",
-      "must_order": "Prawns, bacalhau"
+      "must_order": "Prawns, bacalhau",
+      "rating": 4.5,
+      "review_count": 2379,
+      "rating_source": "Google Maps"
     },
     {
       "id": "quebramar",
@@ -1798,7 +1950,10 @@
       "image_credit": "Representative: Madeiran cuisine, Espetada, CC BY-SA 3.0 via Wikimedia",
       "cuisine": "Traditional Portuguese",
       "price_range": "€€",
-      "must_order": "Caldo da Romaria (pilgrimage soup)"
+      "must_order": "Caldo da Romaria (pilgrimage soup)",
+      "rating": 4.2,
+      "review_count": 400,
+      "rating_source": "Google Maps"
     },
     {
       "id": "taberna-de-sao-vicente",
@@ -1813,7 +1968,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Portuguese",
       "price_range": "€",
-      "must_order": "Bacalhau, bife espetada"
+      "must_order": "Bacalhau, bife espetada",
+      "rating": 4.3,
+      "review_count": 901,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-lavrador",
@@ -1828,7 +1986,10 @@
       "image_credit": "Representative: Madeiran cuisine, Zona Velha do Funchal, CC BY-SA 4.0 via Wikimedia",
       "cuisine": "Interactive / Traditional",
       "price_range": "€€",
-      "must_order": "Hot stone beef/tuna, bolo de mel"
+      "must_order": "Hot stone beef/tuna, bolo de mel",
+      "rating": 4.7,
+      "review_count": 2387,
+      "rating_source": "Google Maps"
     },
     {
       "id": "brasa-viva",
@@ -1843,7 +2004,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Espetada"
+      "must_order": "Espetada",
+      "rating": 4.5,
+      "review_count": 199,
+      "rating_source": "Google Maps"
     },
     {
       "id": "fontes-do-horacio",
@@ -1858,7 +2022,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€€",
-      "must_order": "Espetada, bife da casa"
+      "must_order": "Espetada, bife da casa",
+      "rating": 4.7,
+      "review_count": 1807,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-beira-mar",
@@ -1873,7 +2040,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood / Traditional",
       "price_range": "€€",
-      "must_order": "Polvo (octopus), grilled limpets"
+      "must_order": "Polvo (octopus), grilled limpets",
+      "rating": 4.5,
+      "review_count": 355,
+      "rating_source": "Google Maps"
     },
     {
       "id": "leme-marisqueira",
@@ -1888,7 +2058,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood / Mediterranean",
       "price_range": "€€",
-      "must_order": "Seafood platter"
+      "must_order": "Seafood platter",
+      "rating": 4.7,
+      "review_count": 2278,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-o-farolim",
@@ -1903,7 +2076,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Grilled Seafood",
       "price_range": "€€",
-      "must_order": "Grilled limpets, tuna steaks"
+      "must_order": "Grilled limpets, tuna steaks",
+      "rating": 4.7,
+      "review_count": 2320,
+      "rating_source": "Google Maps"
     },
     {
       "id": "o-forno",
@@ -1918,7 +2094,10 @@
       "image_credit": "Espetada, Sirujs Enobs, CC BY-SA 3.0, via Wikimedia Commons",
       "cuisine": "Traditional Madeiran",
       "price_range": "€",
-      "must_order": "Garlic prawns, beef espetada"
+      "must_order": "Garlic prawns, beef espetada",
+      "rating": 4.5,
+      "review_count": 517,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-mercado-velho",
@@ -1933,7 +2112,10 @@
       "image_credit": "Representative: Madeiran cuisine, Espetada, CC BY-SA 3.0 via Wikimedia",
       "cuisine": "Traditional Portuguese",
       "price_range": "€€",
-      "must_order": "Mussels, shrimp, cod"
+      "must_order": "Mussels, shrimp, cod",
+      "rating": 4.2,
+      "review_count": 1455,
+      "rating_source": "Google Maps"
     },
     {
       "id": "a-pipa",
@@ -1948,7 +2130,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Seafood / Traditional",
       "price_range": "€",
-      "must_order": "Tuna steaks, homemade poncha, limpets"
+      "must_order": "Tuna steaks, homemade poncha, limpets",
+      "rating": 4.7,
+      "review_count": 782,
+      "rating_source": "Google Maps"
     },
     {
       "id": "restaurante-praca-do-engenho",
@@ -1963,7 +2148,10 @@
       "image_credit": "Lapas grelhadas, Adriao, CC BY-SA 2.5, via Wikimedia Commons",
       "cuisine": "Light Meals / Seafood",
       "price_range": "€",
-      "must_order": "Fish dishes"
+      "must_order": "Fish dishes",
+      "rating": 3.6,
+      "review_count": 874,
+      "rating_source": "Google Maps"
     },
     {
       "id": "sabores-do-curral",
@@ -1978,7 +2166,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "Madeiran / Chestnut",
       "price_range": "€€",
-      "must_order": "Chestnut soup, pork loin with chestnuts"
+      "must_order": "Chestnut soup, pork loin with chestnuts",
+      "rating": 4.6,
+      "review_count": 2935,
+      "rating_source": "Google Maps"
     },
     {
       "id": "abrigo-do-pastor",
@@ -1993,22 +2184,28 @@
       "image_credit": "Representative: Madeiran cuisine, Lapas grelhadas, CC BY-SA 2.5 via Wikimedia",
       "cuisine": "Game / Mountain Meats",
       "price_range": "€€",
-      "must_order": "Wild boar, espetada de vaca com osso"
+      "must_order": "Wild boar, espetada de vaca com osso",
+      "rating": 4.6,
+      "review_count": 6917,
+      "rating_source": "Google Maps"
     },
     {
       "id": "las-carabaibas",
-      "name": "Las Carabaibas",
+      "name": "Las Caraibas",
       "lat": 32.815,
       "lng": -17.1,
       "kind": "restaurant",
       "region": "North Coast",
       "tip": "Limited menu focused on quality execution in Seixal. Bacalhau Verde, gambas soup served in a bread loaf.",
-      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Las+Carabaibas+Madeira+Portugal",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Las+Caraibas+Seixal+Madeira+Portugal",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1149.jpg/600px-Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1149.jpg",
       "image_credit": "Representative: Madeiran cuisine, Zona Velha do Funchal, CC BY-SA 4.0 via Wikimedia",
       "cuisine": "Seafood / Traditional",
       "price_range": "€€",
-      "must_order": "Bacalhau Verde, gambas soup in bread loaf"
+      "must_order": "Bacalhau Verde, gambas soup in bread loaf",
+      "rating": 4.8,
+      "review_count": 300,
+      "rating_source": "Google Maps"
     },
     {
       "id": "talho-do-canico",
@@ -2023,7 +2220,10 @@
       "image_credit": "Zona Velha, Funchal, PESP/Wikimedia (DarwIn), CC BY-SA 4.0, via Wikimedia Commons",
       "cuisine": "DIY Grill / Butcher",
       "price_range": "€",
-      "must_order": "DIY espetada -- choose your cut"
+      "must_order": "DIY espetada -- choose your cut",
+      "rating": 4.6,
+      "review_count": 136,
+      "rating_source": "Google Maps"
     },
     {
       "id": "mercado-dos-lavradores",
@@ -2658,8 +2858,8 @@
       "region": "East & Northeast",
       "tip": "THE most underrated hike in Madeira (Reddit consensus). Coastal cliffs, 300m drops, carved-into-cliff path. Machico to Porto da Cruz. FREE, no reservation needed.",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Vereda+do+Larano+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null,
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Vereda_Cani%C3%A7al-Boca_do_Risco%2C_Parque_Natural_da_Madeira_-_2018-04-08_-_IMG_3616.jpg/800px-Vereda_Cani%C3%A7al-Boca_do_Risco%2C_Parque_Natural_da_Madeira_-_2018-04-08_-_IMG_3616.jpg",
+      "image_credit": "Paulo SP / DarwIn, CC BY-SA 4.0, via Wikimedia Commons",
       "code": "Unofficial",
       "difficulty": "Moderate",
       "distance_km": 10.0,
@@ -2674,7 +2874,8 @@
       "status": "open",
       "trail_type": "point-to-point",
       "top_pick": true,
-      "day_suggestion": "Day 4 (Adventure)"
+      "day_suggestion": "Day 4 (Adventure)",
+      "reservation_required": false
     },
     {
       "id": "savoy-palace",
@@ -2940,8 +3141,10 @@
       "trail_type": "point-to-point",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR3.1+-+Caminho+Real+do+Monte+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg/800px-2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg",
+      "image_credit": "Luis Miguel Bugallo Sanchez, CC BY-SA 4.0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr5-vereda-das-funduras",
@@ -2966,8 +3169,10 @@
       "trail_type": "point-to-point",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR5+-+Vereda+das+Funduras+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Orl%C3%AD_sk%C3%A1la.jpg/800px-Orl%C3%AD_sk%C3%A1la.jpg",
+      "image_credit": "Ondrej Zvacek, CC BY 2.5, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr12-caminho-real-da-encumeada",
@@ -2992,8 +3197,10 @@
       "trail_type": "point-to-point",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR12+-+Caminho+Real+da+Encumeada+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Encumeada%2C_Madeira%2C_fern_tree_along_trail_steps.jpg/800px-Encumeada%2C_Madeira%2C_fern_tree_along_trail_steps.jpg",
+      "image_credit": "Gerda Arendt, CC0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr14-levada-dos-cedros",
@@ -3018,8 +3225,10 @@
       "trail_type": "levada",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR14+-+Levada+dos+Cedros+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr20-vereda-do-jardim-do-mar",
@@ -3044,8 +3253,10 @@
       "trail_type": "point-to-point",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR20+-+Vereda+do+Jardim+do+Mar+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Jardim_do_Mar_Madeira.JPG/800px-Jardim_do_Mar_Madeira.JPG",
+      "image_credit": "Dreizung, CC0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr23-levada-da-azenha",
@@ -3070,8 +3281,10 @@
       "trail_type": "out-and-back",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR23+-+Levada+da+Azenha+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr62-lagoa-do-vento",
@@ -3097,8 +3310,10 @@
       "top_pick": true,
       "day_suggestion": "Day 2 (Alternative)",
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.2%2F6.3+-+Lagoa+do+Vento+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Madeira_-Wasserfall_%28Lagoa_do_Vento%29.jpg/800px-Madeira_-Wasserfall_%28Lagoa_do_Vento%29.jpg",
+      "image_credit": "OlDie1966, CC BY-SA 4.0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "caldeirao-do-inferno",
@@ -3123,8 +3338,9 @@
       "trail_type": "out-and-back",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Caldeir%C3%A3o+do+Inferno+Extension+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Waterfall_at_Levada_do_Caldeir%C3%A3o_do_Inferno_%2838043758726%29.jpg/800px-Waterfall_at_Levada_do_Caldeir%C3%A3o_do_Inferno_%2838043758726%29.jpg",
+      "image_credit": "VillageHero, CC BY-SA 2.0, via Wikimedia Commons",
+      "reservation_required": false
     },
     {
       "id": "levada-nova-levada-do-moinho",
@@ -3149,8 +3365,9 @@
       "trail_type": "loop",
       "top_pick": true,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Levada+Nova+%26+Levada+do+Moinho+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Levada_do_Moinho_03.jpg/800px-Levada_do_Moinho_03.jpg",
+      "image_credit": "Sarang, Public Domain, via Wikimedia Commons",
+      "reservation_required": false
     },
     {
       "id": "pico-grande",
@@ -3175,8 +3392,10 @@
       "trail_type": "out-and-back",
       "top_pick": true,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Pico+Grande+%28via+PR12%29+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Encumeada%2C_Madeira%2C_saddle_towards_Pico_Grande_on_PR_1.3.jpg/800px-Encumeada%2C_Madeira%2C_saddle_towards_Pico_Grande_on_PR_1.3.jpg",
+      "image_credit": "Gerda Arendt, CC0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
     },
     {
       "id": "pr64-levada-velha-do-rabacal",
@@ -3201,8 +3420,550 @@
       "trail_type": "point-to-point",
       "top_pick": false,
       "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.4+-+Levada+Velha+do+Raba%C3%A7al+Madeira+Portugal",
-      "image_url": null,
-      "image_credit": null
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/25Fontes-Madeira-2013.JPG/800px-25Fontes-Madeira-2013.JPG",
+      "image_credit": "Bjorn Christian Torrissen, CC BY-SA 3.0, via Wikimedia Commons",
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr1.1-vereda-da-ilha",
+      "name": "PR1.1 - Vereda da Ilha",
+      "lat": 32.7614,
+      "lng": -16.9404,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Traverses from Pico Ruivo shelter through two Natura 2000 ecosystems. Steep descent through laurel forest to Ilha village. Less crowded than PR1.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR1.1+Vereda+da+Ilha+Madeira+Portugal",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg/800px-2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg",
+      "image_credit": "Luis Miguel Bugallo Sanchez, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR1.1",
+      "difficulty": "Moderate",
+      "distance_km": 8.2,
+      "elevation_m": 1274,
+      "time_hours": "3",
+      "rating": 4.5,
+      "review_count": 150,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr1.3-vereda-da-encumeada",
+      "name": "PR1.3 - Vereda da Encumeada",
+      "lat": 32.7576,
+      "lng": -16.95,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Ridge walk from Pico Ruivo westward to Encumeada pass. Crosses laurel forest and volcanic escarpment. Currently closed due to 2024 fire damage.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR1.3+Vereda+da+Encumeada+Madeira+Portugal",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Encumeada%2C_Madeira%2C_fern_tree_along_trail_steps.jpg/800px-Encumeada%2C_Madeira%2C_fern_tree_along_trail_steps.jpg",
+      "image_credit": "Gerda Arendt, CC0, via Wikimedia Commons",
+      "code": "PR1.3",
+      "difficulty": "Moderate",
+      "distance_km": 11.2,
+      "elevation_m": 755,
+      "time_hours": "5",
+      "rating": 4.5,
+      "review_count": 200,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "closed",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr2-vereda-do-urzal",
+      "name": "PR2 - Vereda do Urzal",
+      "lat": 32.734,
+      "lng": -16.975,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Epic south-to-north coast crossing. Climbs from Curral das Freiras through indigenous laurel forest to Boaventura. One of the island's great traverse routes.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR2+Vereda+do+Urzal+Madeira+Portugal",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Valley_view_from_Boca_dos_Namorados_in_Curral_das_Freiras%2C_C%C3%A2mara_de_Lobos%2C_Madeira%2C_2023_May.jpg/800px-Valley_view_from_Boca_dos_Namorados_in_Curral_das_Freiras%2C_C%C3%A2mara_de_Lobos%2C_Madeira%2C_2023_May.jpg",
+      "image_credit": "Ximonic (Simo Rasanen), CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR2",
+      "difficulty": "Hard",
+      "distance_km": 10.6,
+      "elevation_m": 931,
+      "time_hours": "5",
+      "rating": 4.5,
+      "review_count": 120,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr3-vereda-do-burro",
+      "name": "PR3 - Vereda do Burro",
+      "lat": 32.737,
+      "lng": -16.9287,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Easy descent from Pico do Areeiro to Funchal Ecological Park. Passes Poco da Neve (1813 snow reservoir). Great alternative to PR1 for high mountain experience.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR3+Vereda+do+Burro+Pico+do+Areeiro+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg/800px-2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg",
+      "image_credit": "Luis Miguel Bugallo Sanchez, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR3",
+      "difficulty": "Easy",
+      "distance_km": 7.2,
+      "elevation_m": 600,
+      "time_hours": "2.7",
+      "rating": 4.3,
+      "review_count": 200,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr4-levada-do-barreiro",
+      "name": "PR4 - Levada do Barreiro",
+      "lat": 32.738,
+      "lng": -16.925,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Connects Poco da Neve to Funchal Ecological Park. Family-friendly with panoramic views over Funchal. Currently partially open.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR4+Levada+do+Barreiro+Madeira+Portugal",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg/800px-2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg",
+      "image_credit": "Luis Miguel Bugallo Sanchez, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR4",
+      "difficulty": "Easy",
+      "distance_km": 5.2,
+      "elevation_m": 200,
+      "time_hours": "2.2",
+      "rating": 4.2,
+      "review_count": 80,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "partial",
+      "trail_type": "levada",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr6.5-vereda-do-pico-fernandes",
+      "name": "PR6.5 - Vereda do Pico Fernandes",
+      "lat": 32.765,
+      "lng": -17.065,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Quiet backdoor route to Rabacal valley from Paul da Serra. 360-degree panorama from Pico Fernandes at 1,400m. Less crowded approach to 25 Fontes.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.5+Pico+Fernandes+Rabacal+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR6.5",
+      "difficulty": "Moderate",
+      "distance_km": 3.8,
+      "elevation_m": 350,
+      "time_hours": "1.5",
+      "rating": 4.4,
+      "review_count": 60,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr6.6-vereda-do-tunel-do-cavalo",
+      "name": "PR6.6 - Vereda do Tunel do Cavalo",
+      "lat": 32.768,
+      "lng": -17.06,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Unique trail featuring an 800m tunnel built 1863-1877. Requires flashlight and waterproof shoes. Hidden gem alternative approach to 25 Fontes.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.6+Tunel+do+Cavalo+Rabacal+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR6.6",
+      "difficulty": "Moderate",
+      "distance_km": 2.3,
+      "elevation_m": 150,
+      "time_hours": "2.5",
+      "rating": 4.5,
+      "review_count": 40,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 1,
+      "headlamp": true,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr6.7-camara-de-carga-rabacal",
+      "name": "PR6.7 - Camara de Carga do Rabacal",
+      "lat": 32.77,
+      "lng": -17.058,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Short but steep descent along water channel to a nearly 1km tunnel into Rabacal. Can combine with PR28, PR13, PR6 for 25km mega-loop.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.7+Rabacal+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR6.7",
+      "difficulty": "Hard",
+      "distance_km": 1.8,
+      "elevation_m": 300,
+      "time_hours": "1",
+      "rating": 4.3,
+      "review_count": 30,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 1,
+      "headlamp": true,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr6.8-levada-do-paul-ii",
+      "name": "PR6.8 - Levada do Paul II (Accessible Trail)",
+      "lat": 32.772,
+      "lng": -17.08,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Madeira's wheelchair-accessible trail on Paul da Serra plateau. Wide smooth surface, suitable for strollers. Follows levada through flowering gorse. Almost never crowded.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR6.8+Levada+do+Paul+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR6.8",
+      "difficulty": "Easy",
+      "distance_km": 2.4,
+      "elevation_m": 30,
+      "time_hours": "0.75",
+      "rating": 4.0,
+      "review_count": 20,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "levada",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr9.1-caldeirao-verde-accessible",
+      "name": "PR9.1 - Caldeirao Verde (Accessible Trail)",
+      "lat": 32.79,
+      "lng": -16.905,
+      "kind": "trail",
+      "region": "East",
+      "tip": "Accessible variant of the Caldeirao Verde levada. Wheelchair and stroller friendly. Peaceful forested walk without the tunnels and exposure of full PR9.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR9.1+Caldeirao+Verde+accessible+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Waterfall_at_Levada_do_Caldeir%C3%A3o_do_Inferno_%2838043758726%29.jpg/800px-Waterfall_at_Levada_do_Caldeir%C3%A3o_do_Inferno_%2838043758726%29.jpg",
+      "image_credit": "VillageHero, CC BY-SA 2.0, via Wikimedia Commons",
+      "code": "PR9.1",
+      "difficulty": "Easy",
+      "distance_km": 2.0,
+      "elevation_m": 50,
+      "time_hours": "0.75",
+      "rating": 4.3,
+      "review_count": 50,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "levada",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr13.1-vereda-da-palha-carga",
+      "name": "PR13.1 - Vereda da Palha Carga",
+      "lat": 32.775,
+      "lng": -17.072,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "The quiet backdoor route to 25 Fontes waterfall. Descends old firewood-carrying path through laurissilva. Far less crowded than main PR6 approach. A genuine hidden gem.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR13.1+Palha+Carga+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR13.1",
+      "difficulty": "Moderate",
+      "distance_km": 4.0,
+      "elevation_m": 400,
+      "time_hours": "2.5",
+      "rating": 4.5,
+      "review_count": 40,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": true,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr15-vereda-da-ribeira-da-janela",
+      "name": "PR15 - Vereda da Ribeira da Janela",
+      "lat": 32.8441,
+      "lng": -17.1551,
+      "kind": "trail",
+      "region": "North Coast",
+      "tip": "Old footpath from Fanal to Ribeira da Janela. Descends through forest to agricultural terraces, vineyards, and Madeira's longest watercourse.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR15+Ribeira+da+Janela+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR15",
+      "difficulty": "Moderate",
+      "distance_km": 2.7,
+      "elevation_m": 420,
+      "time_hours": "1.5",
+      "rating": 4.2,
+      "review_count": 60,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr16-levada-faja-do-rodrigues",
+      "name": "PR16 - Levada Faja do Rodrigues",
+      "lat": 32.82,
+      "lng": -17.04,
+      "kind": "trail",
+      "region": "North Coast",
+      "tip": "Lush forest path to multiple waterfalls with tunnel passages leading to an epic canyon. One of the most spectacular levada walks. Currently closed.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR16+Levada+Faja+Rodrigues+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR16",
+      "difficulty": "Moderate",
+      "distance_km": 6.0,
+      "elevation_m": 300,
+      "time_hours": "3",
+      "rating": 4.6,
+      "review_count": 150,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 2,
+      "headlamp": true,
+      "status": "closed",
+      "trail_type": "levada",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr19-caminho-real-paul-do-mar",
+      "name": "PR19 - Caminho Real do Paul do Mar",
+      "lat": 32.7525,
+      "lng": -17.2171,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Historic royal road from Prazeres down 534m to the fishing village of Paul do Mar. Stone-paved steps, agricultural terraces. Ends at waterfront bars. Short but steep.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR19+Paul+do+Mar+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR19",
+      "difficulty": "Moderate",
+      "distance_km": 1.8,
+      "elevation_m": 534,
+      "time_hours": "1.3",
+      "rating": 4.3,
+      "review_count": 80,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr21-caminho-do-norte",
+      "name": "PR21 - Caminho do Norte",
+      "lat": 32.7545,
+      "lng": -17.0189,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Historic trading route between south and north villages. Traverses UNESCO laurissilva forest. Ends at Ribeira Grande, known for traditional wicker basket weaving.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR21+Caminho+do+Norte+Encumeada+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR21",
+      "difficulty": "Moderate",
+      "distance_km": 3.2,
+      "elevation_m": 680,
+      "time_hours": "1.5",
+      "rating": 4.3,
+      "review_count": 60,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr22-vereda-do-chao-dos-louros",
+      "name": "PR22 - Vereda do Chao dos Louros",
+      "lat": 32.7602,
+      "lng": -17.0182,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Short circular loop through Natura 2000 laurissilva forest. Natural viewpoint over Sao Vicente valley. Quick add-on for hikers at Encumeada.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR22+Chao+dos+Louros+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR22",
+      "difficulty": "Easy",
+      "distance_km": 1.9,
+      "elevation_m": 60,
+      "time_hours": "0.75",
+      "rating": 4.2,
+      "review_count": 40,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "open",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr27-glaciar-de-planalto",
+      "name": "PR27 - Glaciar de Planalto",
+      "lat": 32.7576,
+      "lng": -17.0595,
+      "kind": "trail",
+      "region": "Central Mountains",
+      "tip": "Unique geological trail showing glaciation evidence from ~25,000 years ago. U-shaped glacial valley, eroded cinder cone, moraine deposits. Only geological tourism trail on Madeira. Currently closed.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR27+Glaciar+Planalto+Bica+da+Cana+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg/800px-2016._Pico_Ruivo._Madeira._Portugal_%2716.jpg",
+      "image_credit": "Luis Miguel Bugallo Sanchez, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR27",
+      "difficulty": "Easy",
+      "distance_km": 4.6,
+      "elevation_m": 131,
+      "time_hours": "1.5",
+      "rating": 4.3,
+      "review_count": 30,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 0,
+      "headlamp": false,
+      "status": "closed",
+      "trail_type": "vereda",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "pr28-levada-da-rocha-vermelha",
+      "name": "PR28 - Levada da Rocha Vermelha",
+      "lat": 32.7428,
+      "lng": -17.1505,
+      "kind": "trail",
+      "region": "West & Southwest",
+      "tip": "Adventurous trail from Fanal with a 1.6km dark tunnel, waterfalls, and epic views of Rabacal valley. Can combine with PR13 for mega-loop. Currently closed.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=PR28+Rocha+Vermelha+Fanal+Madeira",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1532.jpg",
+      "image_credit": "Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "code": "PR28",
+      "difficulty": "Hard",
+      "distance_km": 10.8,
+      "elevation_m": 460,
+      "time_hours": "4",
+      "rating": 4.5,
+      "review_count": 50,
+      "rating_source": "AllTrails",
+      "fee_eur": 4.5,
+      "tunnels": 1,
+      "headlamp": true,
+      "status": "closed",
+      "trail_type": "levada",
+      "top_pick": false,
+      "reservation_required": true,
+      "reservation_url": "https://simplifica.madeira.gov.pt"
+    },
+    {
+      "id": "calhau-da-lapa",
+      "name": "Calhau da Lapa",
+      "lat": 32.682,
+      "lng": -17.12,
+      "kind": "hidden-gem",
+      "region": "West & Southwest",
+      "tip": "700 steps down to a waterfall, swimming spot, and colorful fishermen's cave-houses inside volcanic cliffs. One of Madeira's best-kept secrets. Bring water and good shoes.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Calhau+da+Lapa+Madeira+Portugal",
+      "image_url": "",
+      "image_credit": ""
+    },
+    {
+      "id": "cascata-dos-anjos",
+      "name": "Cascata dos Anjos",
+      "lat": 32.7475,
+      "lng": -17.033,
+      "kind": "hidden-gem",
+      "region": "West & Southwest",
+      "tip": "Waterfall that pours directly over the coastal road ER 101. Drive through it or stop and walk under. Unique photo opportunity. Best after rain.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Cascata+dos+Anjos+Madeira+Portugal",
+      "image_url": "",
+      "image_credit": ""
+    },
+    {
+      "id": "engenhos-do-norte-rum-distillery",
+      "name": "Engenhos do Norte Rum Distillery",
+      "lat": 32.817,
+      "lng": -16.834,
+      "kind": "hidden-gem",
+      "region": "East",
+      "tip": "Only steam-powered rum distillery in Europe. Vintage 1920s equipment still in use. Free tours during sugarcane season (Mar-Apr). Try the aged agricole rum. In Porto da Cruz.",
+      "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Engenhos+do+Norte+Porto+da+Cruz+Madeira",
+      "image_url": "",
+      "image_credit": ""
     }
   ]
 }

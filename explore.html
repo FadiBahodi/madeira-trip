@@ -607,7 +607,11 @@
       // Rating
       let ratingHtml = '';
       if (item.kind === 'trail' && item.rating) {
-        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()})` : ''}</span></div>`;
+        const statusBadge = item.status === 'closed' ? ' <span style="color:var(--red);font-weight:700;font-size:11px;background:rgba(248,113,113,0.15);padding:1px 6px;border-radius:4px;margin-left:4px">CLOSED</span>' : (item.status === 'partial' ? ' <span style="color:var(--amber);font-weight:700;font-size:11px;background:rgba(251,191,36,0.15);padding:1px 6px;border-radius:4px;margin-left:4px">PARTIAL</span>' : '');
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()})` : ''}${statusBadge}</span></div>`;
+      }
+      if (item.kind === 'restaurant' && item.rating) {
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()} reviews)` : ''} <span style="color:var(--muted);font-size:11px">Google Maps</span></span></div>`;
       }
       if (item.kind === 'viewpoint' && item.worth_it) {
         ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.worth_it / 2)}</span><span class="rating-text">${item.worth_it}/10</span></div>`;
@@ -716,7 +720,13 @@
 
       // Rating
       if (item.rating && item.kind === 'trail') {
-        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'AllTrails'})</span>` : ''}</div>`;
+        const statusLabel = item.status === 'closed' ? '<span style="color:var(--red);font-weight:700;font-size:13px;background:rgba(248,113,113,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">CLOSED</span>' : (item.status === 'partial' ? '<span style="color:var(--amber);font-weight:700;font-size:13px;background:rgba(251,191,36,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">PARTIAL</span>' : '<span style="color:var(--green);font-weight:700;font-size:13px;background:rgba(52,211,153,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">OPEN</span>');
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'AllTrails'})</span>` : ''} ${statusLabel}</div>`;
+        if (item.reservation_required) {
+          html += `<div style="margin-top:8px;font-size:13px;color:var(--amber);background:rgba(251,191,36,0.1);padding:8px 12px;border-radius:8px;border:1px solid rgba(251,191,36,0.2)">Reservation required: <strong>€${item.fee_eur}</strong>/person via <a href="https://simplifica.madeira.gov.pt" target="_blank" style="color:var(--accent2)">SIMplifica</a>. Book 30-min entry slot. No-show fine: €250.</div>`;
+        }
+      } else if (item.rating && item.kind === 'restaurant') {
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on Google Maps)</span>` : ''}</div>`;
       } else if (item.rating && item.kind === 'hotel') {
         html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating / 2)}</span> <strong>${item.rating}/10</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count} reviews)</span>` : ''}</div>`;
       }
