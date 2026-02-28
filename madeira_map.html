@@ -277,11 +277,11 @@
 
     // ── SVG icon factory ──
     function makeIcon(color, size) {
-      size = size || 14;
+      size = size || 18;
       return new L.DivIcon({
         className: '',
-        html: `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-          <circle cx="${size/2}" cy="${size/2}" r="${size/2-1.5}" fill="${color}" stroke="white" stroke-width="2" />
+        html: `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,0.5))">
+          <circle cx="${size/2}" cy="${size/2}" r="${size/2-2}" fill="${color}" stroke="white" stroke-width="2.5" />
         </svg>`,
         iconSize: [size, size], iconAnchor: [size/2, size/2],
       });
@@ -300,8 +300,8 @@
     const satTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19, attribution: '&copy; Esri, Maxar'
     });
-    osmTiles.addTo(map);
-    L.control.layers({ 'Street': osmTiles, 'Terrain': topoTiles, 'Satellite': satTiles }, null, { position: 'bottomright' }).addTo(map);
+    satTiles.addTo(map);
+    L.control.layers({ 'Satellite': satTiles, 'Terrain': topoTiles, 'Street': osmTiles }, null, { position: 'bottomright' }).addTo(map);
 
     // ── Data state ──
     let allItems = [];
@@ -613,19 +613,38 @@
     }
 
     function renderTrailPaths(geojson) {
+      // Glow layer (wider, semi-transparent underneath)
+      L.geoJSON(geojson, {
+        style: (feature) => {
+          const diff = feature.properties.difficulty || 'Moderate';
+          return {
+            color: DIFF_COLORS[diff] || '#3b82f6',
+            weight: 10,
+            opacity: 0.25,
+            lineCap: 'round', lineJoin: 'round',
+          };
+        },
+        interactive: false,
+      }).addTo(map);
+
+      // Main trail lines
       L.geoJSON(geojson, {
         style: (feature) => {
           const diff = feature.properties.difficulty || 'Moderate';
           return {
             color: DIFF_COLORS[diff] || '#3b82f6',
             weight: 4,
-            opacity: 0.8,
+            opacity: 0.9,
+            lineCap: 'round', lineJoin: 'round',
           };
         },
         onEachFeature: (feature, layer) => {
           const props = feature.properties;
           layer.bindPopup(trailPopupHtml(props), { maxWidth: 280 });
           trailLayers[props.code] = layer;
+          // Highlight on hover
+          layer.on('mouseover', function() { this.setStyle({ weight: 7, opacity: 1 }); });
+          layer.on('mouseout', function() { this.setStyle({ weight: 4, opacity: 0.9 }); });
         }
       }).addTo(map);
     }

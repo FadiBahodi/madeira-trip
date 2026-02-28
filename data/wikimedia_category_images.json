@@ -1,0 +1,138 @@
+{
+  "poncha": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Poncha.jpg/600px-Poncha.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Poncha.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Poncha.jpg",
+    "credit": "Mitsjol, CC BY-SA 4.0",
+    "description": "A glass of freshly poured Poncha, served in a restaurant in Funchal",
+    "use_for": "poncha bars, cocktail bars, traditional drink spots"
+  },
+  "espetada": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Espetada%2CBoaventura-Sao_Jorge_-_panoramio.jpg/600px-Espetada%2CBoaventura-Sao_Jorge_-_panoramio.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Espetada%2CBoaventura-Sao_Jorge_-_panoramio.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Espetada,Boaventura-Sao_Jorge_-_panoramio.jpg",
+    "credit": "Sirujs Enobs, CC BY-SA 3.0",
+    "description": "Espetada (beef skewer on laurel stick), Boaventura/Sao Jorge, Madeira",
+    "use_for": "restaurants serving espetada, traditional meat restaurants"
+  },
+  "espetada_alt": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Espetada%2C_Levada_Grande%2C_Madeira.jpg/600px-Espetada%2C_Levada_Grande%2C_Madeira.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Espetada%2C_Levada_Grande%2C_Madeira.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Espetada,_Levada_Grande,_Madeira.jpg",
+    "credit": "Gerda Arendt, CC0 (Public Domain)",
+    "description": "Espetada, Levada Grande, Madeira",
+    "use_for": "restaurants serving espetada, traditional Madeiran cuisine"
+  },
+  "bolo_do_caco": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Bolo_do_caco.jpg/600px-Bolo_do_caco.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Bolo_do_caco.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Bolo_do_caco.jpg",
+    "credit": "Kostia, CC0 (Public Domain)",
+    "description": "Bolo do caco - traditional Madeiran flatbread",
+    "use_for": "bakeries, cafes, casual eateries serving bolo do caco"
+  },
+  "bolo_do_caco_fresh": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Bolo_do_caco_acabadinhos_de_cozer.jpg/600px-Bolo_do_caco_acabadinhos_de_cozer.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Bolo_do_caco_acabadinhos_de_cozer.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Bolo_do_caco_acabadinhos_de_cozer.jpg",
+    "credit": "Ana Cake Design, CC BY-SA 4.0",
+    "description": "Bolo do caco freshly baked - typical Madeiran flatbread",
+    "use_for": "bakeries, street food vendors, traditional bread spots"
+  },
+  "bolo_do_caco_street_vendors": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Vendedores_de_Bolo_do_Caco%2C_Funchal%2C_Madeira_-_Jan_2012.jpg/600px-Vendedores_de_Bolo_do_Caco%2C_Funchal%2C_Madeira_-_Jan_2012.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Vendedores_de_Bolo_do_Caco%2C_Funchal%2C_Madeira_-_Jan_2012.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Vendedores_de_Bolo_do_Caco,_Funchal,_Madeira_-_Jan_2012.jpg",
+    "credit": "Stephen Colebourne, CC BY 2.0",
+    "description": "Street vendors selling Bolo do Caco in Funchal, Madeira",
+    "use_for": "street food, casual eateries, bolo do caco vendors"
+  },
+  "mercado_dos_lavradores": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2011-03-05_03-13_Madeira_160_Funchal%2C_Mercado_dos_Lavradores.jpg/600px-2011-03-05_03-13_Madeira_160_Funchal%2C_Mercado_dos_Lavradores.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/2011-03-05_03-13_Madeira_160_Funchal%2C_Mercado_dos_Lavradores.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:2011-03-05_03-13_Madeira_160_Funchal,_Mercado_dos_Lavradores.jpg",
+    "credit": "Allie_Caulfield, CC BY 2.0",
+    "description": "Fruit and produce stand at Mercado dos Lavradores, Funchal",
+    "use_for": "markets, food markets, Mercado dos Lavradores"
+  },
+  "mercado_fish_market": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Madeira_Markt_in_Funchal.JPG/600px-Madeira_Markt_in_Funchal.JPG",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Madeira_Markt_in_Funchal.JPG",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Madeira_Markt_in_Funchal.JPG",
+    "credit": "Cookaa, CC BY-SA 3.0",
+    "description": "Fresh fish at the market in Funchal (Mercado dos Lavradores fish section)",
+    "use_for": "fish markets, seafood restaurants near the market"
+  },
+  "madeira_wine_blandys": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Blandys_Winery_-_Funchal%2C_Madeira.jpg/600px-Blandys_Winery_-_Funchal%2C_Madeira.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Blandys_Winery_-_Funchal%2C_Madeira.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Blandys_Winery_-_Funchal,_Madeira.jpg",
+    "credit": "Richard Gray, CC BY 2.0",
+    "description": "Blandy's wine storage of vintage Madeira wine",
+    "use_for": "wine lodges, Blandy's, Madeira wine tasting, wine bars"
+  },
+  "madeira_wine_doliveiras": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/D%27Oliveiras_tasting_hall._Funchal%2C_Madeira.jpg/600px-D%27Oliveiras_tasting_hall._Funchal%2C_Madeira.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/D%27Oliveiras_tasting_hall._Funchal%2C_Madeira.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:D%27Oliveiras_tasting_hall._Funchal,_Madeira.jpg",
+    "credit": "Volodymyr Vlasenko, CC BY-SA 3.0",
+    "description": "D'Oliveiras tasting hall, Funchal, Madeira",
+    "use_for": "wine tasting venues, Madeira wine lodges, wine experiences"
+  },
+  "pastel_de_nata": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Past%C3%A9is_de_Bel%C3%A9m.JPG/600px-Past%C3%A9is_de_Bel%C3%A9m.JPG",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Past%C3%A9is_de_Bel%C3%A9m.JPG",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Past%C3%A9is_de_Bel%C3%A9m.JPG",
+    "credit": "SergioPT, CC BY-SA 4.0",
+    "description": "Pasteis de Belem (Portuguese custard tarts) at Pastelaria de Belem, Lisbon",
+    "use_for": "bakeries, cafes, Portuguese pastry shops, pastelarias"
+  },
+  "lapas_grelhadas": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Lapas_grelhadas.JPG/600px-Lapas_grelhadas.JPG",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Lapas_grelhadas.JPG",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Lapas_grelhadas.JPG",
+    "credit": "Adriao, CC BY-SA 2.5",
+    "description": "Lapas grelhadas (grilled limpets) - traditional Madeira Islands dish, photographed in Porto Santo",
+    "use_for": "seafood restaurants, traditional restaurants serving lapas, coastal eateries"
+  },
+  "espada_preta": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Aphanopus_carbo%2C_pez_sable_negro%2C_peixe-espada-preto%2C_en_el_Mercado_dos_Lavradores%2C_de_Funchal%2C_Madeira%2C_Portugal.jpg/600px-Aphanopus_carbo%2C_pez_sable_negro%2C_peixe-espada-preto%2C_en_el_Mercado_dos_Lavradores%2C_de_Funchal%2C_Madeira%2C_Portugal.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/2/25/Aphanopus_carbo%2C_pez_sable_negro%2C_peixe-espada-preto%2C_en_el_Mercado_dos_Lavradores%2C_de_Funchal%2C_Madeira%2C_Portugal.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Aphanopus_carbo,_pez_sable_negro,_peixe-espada-preto,_en_el_Mercado_dos_Lavradores,_de_Funchal,_Madeira,_Portugal.jpg",
+    "credit": "Carlos Teixidor Cadenas, CC BY-SA 4.0",
+    "description": "Black scabbardfish (peixe-espada-preto) at Mercado dos Lavradores, Funchal, Madeira",
+    "use_for": "restaurants serving espada, seafood restaurants, fish restaurants"
+  },
+  "bolo_de_mel": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/%22Bolo_de_mel%22_cakes%2C_Madeira.jpg/600px-%22Bolo_de_mel%22_cakes%2C_Madeira.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/%22Bolo_de_mel%22_cakes%2C_Madeira.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:%22Bolo_de_mel%22_cakes,_Madeira.jpg",
+    "credit": "Tim Walker, CC BY 2.0",
+    "description": "Bolo de mel (honey/molasses cake) - traditional Madeira specialty, rich cake made with molasses",
+    "use_for": "bakeries, dessert spots, traditional cake shops, pastelarias"
+  },
+  "porto_moniz_pools": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Natural_swimming_pool%2C_Porto_Moniz%2C_Madeira.JPG/600px-Natural_swimming_pool%2C_Porto_Moniz%2C_Madeira.JPG",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Natural_swimming_pool%2C_Porto_Moniz%2C_Madeira.JPG",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Natural_swimming_pool,_Porto_Moniz,_Madeira.JPG",
+    "credit": "Donar Reiskoffer, CC BY 3.0",
+    "description": "Natural swimming pool at Porto Moniz, Madeira",
+    "use_for": "swimming spots, natural pools, Porto Moniz attractions, outdoor activities"
+  },
+  "funchal_old_town": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1149.jpg/600px-Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1149.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1149.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:Zona_Velha_do_Funchal,_Funchal,_Madeira_-_IMG_1149.jpg",
+    "credit": "PESP/Wikimedia (DarwIn), CC BY-SA 4.0",
+    "description": "Zona Velha do Funchal (Old Town), Funchal, Madeira",
+    "use_for": "old town restaurants, Rua Santa Maria bars, Zona Velha dining, nightlife"
+  },
+  "camara_de_lobos": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/C%C3%A2mara_de_Lobos_-_Fishing_boats_01.jpg/600px-C%C3%A2mara_de_Lobos_-_Fishing_boats_01.jpg",
+    "full_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/C%C3%A2mara_de_Lobos_-_Fishing_boats_01.jpg",
+    "commons_page": "https://commons.wikimedia.org/wiki/File:C%C3%A2mara_de_Lobos_-_Fishing_boats_01.jpg",
+    "credit": "H. Zell, CC BY-SA 3.0",
+    "description": "Fishing boats in the harbor of Camara de Lobos, Madeira, Portugal",
+    "use_for": "Camara de Lobos restaurants, fishing village bars, poncha bars in Camara de Lobos"
+  }
+}

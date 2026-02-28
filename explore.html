@@ -11,6 +11,7 @@
       --surface2: #1a2332;
       --surface3: #1f2b3d;
       --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.12);
       --text: #e8eefc;
       --muted: rgba(232,238,252,0.55);
       --accent: #3b82f6;
@@ -22,6 +23,7 @@
       --pink: #ec4899;
       --teal: #14b8a6;
       --cyan: #06b6d4;
+      --orange: #fb923c;
       --radius: 14px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,7 +40,7 @@
       border-bottom: 1px solid var(--border);
     }
     .topbar-inner {
-      max-width: 1400px; margin: 0 auto; padding: 0 16px;
+      max-width: 1440px; margin: 0 auto; padding: 0 16px;
       display: flex; align-items: center; gap: 8px; height: 56px;
     }
     .topbar a.home {
@@ -67,13 +69,38 @@
     }
     .tab:hover { color: var(--text); background: var(--surface); }
     .tab.active { color: var(--accent2); background: var(--surface); }
-    .tab .count {
-      font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 4px;
+    .tab .count { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+
+    /* ── Category hero banner ── */
+    .category-hero {
+      position: relative; width: 100%; height: 200px; overflow: hidden;
+      display: flex; align-items: flex-end;
     }
+    .category-hero img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover; filter: brightness(0.5);
+    }
+    .category-hero .hero-overlay {
+      position: relative; z-index: 1; width: 100%; padding: 24px 28px;
+      background: linear-gradient(transparent, rgba(10,15,26,0.95));
+    }
+    .category-hero .hero-title {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+    }
+    .category-hero .hero-desc {
+      font-size: 14px; color: rgba(232,238,252,0.7); margin-top: 4px; max-width: 600px;
+    }
+    .category-hero .hero-stats {
+      display: flex; gap: 20px; margin-top: 8px;
+    }
+    .category-hero .hero-stat {
+      font-size: 13px; color: rgba(232,238,252,0.6);
+    }
+    .category-hero .hero-stat strong { color: var(--text); font-weight: 700; }
 
     /* ── Controls bar ── */
     .controls {
-      max-width: 1400px; margin: 0 auto; padding: 16px 20px 0;
+      max-width: 1440px; margin: 0 auto; padding: 16px 20px 0;
       display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
     }
     .search-box {
@@ -83,9 +110,7 @@
     }
     .search-box:focus { border-color: var(--accent); }
     .search-box::placeholder { color: var(--muted); }
-    .select-wrap {
-      position: relative;
-    }
+    .select-wrap { position: relative; }
     .select-wrap select {
       appearance: none; padding: 9px 32px 9px 12px; font-size: 13px; font-weight: 600;
       background: var(--surface); color: var(--text); border: 1px solid var(--border);
@@ -103,11 +128,9 @@
     }
     .sort-btn:hover { color: var(--text); }
     .sort-btn.active { color: var(--accent2); border-color: var(--accent); }
-    .results-count {
-      font-size: 13px; color: var(--muted); font-weight: 500; padding: 4px 0;
-    }
+    .results-count { font-size: 13px; color: var(--muted); font-weight: 500; padding: 4px 0; }
 
-    /* ── Difficulty filter (only visible for trails) ── */
+    /* ── Difficulty filter ── */
     .difficulty-filter { display: flex; gap: 4px; }
     .diff-btn {
       padding: 6px 12px; font-size: 12px; font-weight: 700; border-radius: 8px;
@@ -123,38 +146,79 @@
 
     /* ── Card grid ── */
     .card-grid {
-      max-width: 1400px; margin: 0 auto; padding: 16px 20px 80px;
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      max-width: 1440px; margin: 0 auto; padding: 16px 20px 80px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 16px;
     }
     @media (max-width: 600px) {
       .card-grid { grid-template-columns: 1fr; padding: 12px 12px 80px; }
       .controls { padding: 12px 12px 0; }
+      .category-hero { height: 160px; }
+      .category-hero .hero-title { font-size: 22px; }
     }
 
     /* ── Card ── */
     .card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: all 0.2s; animation: fadeIn 0.3s ease;
+      overflow: hidden; transition: all 0.25s; animation: fadeIn 0.35s ease;
+      cursor: pointer;
     }
-    .card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .card:hover {
+      border-color: rgba(59,130,246,0.35); transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
     .card-img {
-      height: 180px; background: var(--surface2); position: relative; overflow: hidden;
+      height: 200px; position: relative; overflow: hidden;
     }
     .card-img img {
       width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s;
     }
+    .card:hover .card-img img { transform: scale(1.05); }
+
+    /* Gradient placeholders per kind */
     .card-img .placeholder {
       width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-      font-size: 48px; opacity: 0.15;
+      font-size: 56px; position: relative;
     }
+    .card-img .placeholder::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.3;
+    }
+    .card-img[data-kind="restaurant"] .placeholder { background: linear-gradient(135deg, #1a0a0a, #2d1515); }
+    .card-img[data-kind="restaurant"] .placeholder::before { background: radial-gradient(ellipse at 30% 40%, rgba(239,68,68,0.3), transparent 70%); }
+    .card-img[data-kind="poncha"] .placeholder { background: linear-gradient(135deg, #1a0f20, #2a1530); }
+    .card-img[data-kind="poncha"] .placeholder::before { background: radial-gradient(ellipse at 50% 50%, rgba(168,85,247,0.3), transparent 70%); }
+    .card-img[data-kind="wine"] .placeholder { background: linear-gradient(135deg, #1a0a15, #2d1020); }
+    .card-img[data-kind="wine"] .placeholder::before { background: radial-gradient(ellipse at 50% 50%, rgba(190,24,93,0.3), transparent 70%); }
+    .card-img[data-kind="bakery"] .placeholder { background: linear-gradient(135deg, #1a1408, #2d2510); }
+    .card-img[data-kind="bakery"] .placeholder::before { background: radial-gradient(ellipse at 50% 50%, rgba(217,119,6,0.3), transparent 70%); }
+    .card-img[data-kind="trail"] .placeholder { background: linear-gradient(135deg, #0a1a12, #102d1a); }
+    .card-img[data-kind="trail"] .placeholder::before { background: radial-gradient(ellipse at 40% 50%, rgba(22,163,74,0.3), transparent 70%); }
+    .card-img[data-kind="viewpoint"] .placeholder { background: linear-gradient(135deg, #1a1408, #2d2015); }
+    .card-img[data-kind="viewpoint"] .placeholder::before { background: radial-gradient(ellipse at 50% 40%, rgba(245,158,11,0.3), transparent 70%); }
+    .card-img[data-kind="swim"] .placeholder,
+    .card-img[data-kind="beach"] .placeholder { background: linear-gradient(135deg, #081a1a, #0a2530); }
+    .card-img[data-kind="swim"] .placeholder::before,
+    .card-img[data-kind="beach"] .placeholder::before { background: radial-gradient(ellipse at 50% 60%, rgba(6,182,212,0.3), transparent 70%); }
+    .card-img[data-kind="garden"] .placeholder { background: linear-gradient(135deg, #0a1a0f, #0f2d18); }
+    .card-img[data-kind="garden"] .placeholder::before { background: radial-gradient(ellipse at 50% 50%, rgba(34,197,94,0.3), transparent 70%); }
+    .card-img[data-kind="hotel"] .placeholder { background: linear-gradient(135deg, #1a150a, #2d2510); }
+    .card-img[data-kind="hotel"] .placeholder::before { background: radial-gradient(ellipse at 50% 40%, rgba(251,191,36,0.3), transparent 70%); }
+    .card-img[data-kind="hidden-gem"] .placeholder { background: linear-gradient(135deg, #0a1a18, #102d28); }
+    .card-img[data-kind="hidden-gem"] .placeholder::before { background: radial-gradient(ellipse at 50% 50%, rgba(20,184,166,0.3), transparent 70%); }
+
     .card-img .badges {
       position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-wrap: wrap;
     }
+    .card-img .top-pick {
+      position: absolute; top: 10px; right: 10px;
+      padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 800;
+      background: rgba(251,191,36,0.9); color: #000; letter-spacing: 0.05em;
+    }
     .badge {
-      padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;
+      padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 700;
       backdrop-filter: blur(8px); text-transform: uppercase; letter-spacing: 0.04em;
     }
     .badge-green { background: rgba(22,163,74,0.85); color: #fff; }
@@ -164,6 +228,7 @@
     .badge-purple { background: rgba(168,85,247,0.85); color: #fff; }
     .badge-teal { background: rgba(20,184,166,0.85); color: #fff; }
     .badge-pink { background: rgba(236,72,153,0.85); color: #fff; }
+    .badge-cyan { background: rgba(6,182,212,0.85); color: #fff; }
     .badge-dark { background: rgba(17,24,39,0.85); color: var(--text); }
     .badge-status-open { background: rgba(22,163,74,0.9); }
     .badge-status-closed { background: rgba(220,38,38,0.9); }
@@ -176,38 +241,23 @@
     }
     .card-region { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
 
-    /* Stats row */
-    .card-stats {
-      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px;
-    }
-    .stat {
-      font-size: 13px; color: rgba(232,238,252,0.75);
-    }
+    .card-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .stat { font-size: 13px; color: rgba(232,238,252,0.75); }
     .stat strong { color: var(--text); font-weight: 600; }
 
-    /* Rating */
-    .card-rating {
-      display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
-    }
+    .card-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
     .stars { color: var(--amber); font-size: 14px; letter-spacing: 1px; }
     .rating-text { font-size: 13px; color: var(--muted); }
 
-    /* Tip text */
     .card-tip {
       font-size: 13px; color: rgba(232,238,252,0.7); margin-bottom: 10px;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
       overflow: hidden; line-height: 1.5;
     }
 
-    /* Must order / highlight */
-    .card-highlight {
-      font-size: 13px; color: var(--green); margin-bottom: 8px; font-weight: 600;
-    }
+    .card-highlight { font-size: 13px; color: var(--green); margin-bottom: 8px; font-weight: 600; }
 
-    /* Actions */
-    .card-actions {
-      display: flex; gap: 6px; flex-wrap: wrap;
-    }
+    .card-actions { display: flex; gap: 6px; flex-wrap: wrap; }
     .btn-sm {
       display: inline-flex; align-items: center; gap: 4px;
       padding: 5px 10px; font-size: 12px; font-weight: 600;
@@ -218,17 +268,94 @@
     .btn-sm.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
     .btn-sm.primary:hover { background: #2563eb; }
 
-    /* ── Empty state ── */
-    .empty-state {
-      grid-column: 1 / -1; text-align: center; padding: 60px 20px;
-      color: var(--muted);
+    /* ── Detail modal ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      display: none; align-items: flex-end; justify-content: center;
     }
-    .empty-state p { font-size: 15px; }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      width: 100%; max-width: 700px; max-height: 90vh; overflow-y: auto;
+      background: var(--bg); border-radius: 20px 20px 0 0;
+      border: 1px solid var(--border2); border-bottom: none;
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @media (min-width: 768px) {
+      .modal-overlay { align-items: center; }
+      .modal { border-radius: 20px; border-bottom: 1px solid var(--border2); max-height: 85vh; }
+    }
+    .modal-close {
+      position: sticky; top: 0; z-index: 10; display: flex; justify-content: center;
+      padding: 12px 0 8px; background: var(--bg);
+    }
+    .modal-close-bar {
+      width: 40px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.2);
+      cursor: pointer;
+    }
+    .modal-close-btn {
+      position: absolute; right: 16px; top: 10px; width: 32px; height: 32px;
+      border-radius: 50%; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 18px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .modal-close-btn:hover { border-color: var(--accent); }
+    .modal-img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .modal-img-placeholder {
+      width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;
+      font-size: 72px; opacity: 0.15; background: var(--surface);
+    }
+    .modal-body { padding: 0 24px 32px; }
+    .modal-body h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .modal-kind {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      font-weight: 700; margin-bottom: 12px;
+    }
+    .modal-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .modal-badge {
+      padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; color: #fff;
+    }
+    .modal-stats {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px; margin-bottom: 16px;
+    }
+    .modal-stat {
+      background: var(--surface); border-radius: 10px; padding: 10px 14px;
+    }
+    .modal-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .modal-stat-value { font-size: 18px; font-weight: 700; color: var(--text); }
+    .modal-rating {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 16px;
+    }
+    .modal-rating .stars { color: var(--amber); letter-spacing: 2px; font-size: 18px; }
+    .modal-must-order {
+      color: var(--green); font-weight: 700; margin-bottom: 12px; font-size: 15px;
+    }
+    .modal-tip {
+      font-size: 14px; color: rgba(232,238,252,0.8); line-height: 1.6;
+      border-left: 3px solid var(--accent); padding: 10px 16px; margin-bottom: 20px;
+      background: var(--surface); border-radius: 0 10px 10px 0;
+    }
+    .modal-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .modal-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; font-size: 14px; font-weight: 700;
+      border-radius: 10px; text-decoration: none; transition: all 0.15s;
+      color: #fff; background: var(--accent); border: none; cursor: pointer;
+    }
+    .modal-btn:hover { background: #2563eb; }
+    .modal-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .modal-btn.secondary:hover { border-color: var(--accent); }
+    .modal-credit {
+      font-size: 11px; color: var(--muted); margin-top: 16px;
+      padding-top: 12px; border-top: 1px solid var(--border);
+    }
 
-    /* ── Loading ── */
-    .loading {
-      grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--muted);
-    }
+    /* ── Empty state ── */
+    .empty-state { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--muted); }
+    .empty-state p { font-size: 15px; }
+    .loading { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--muted); }
     .spinner {
       display: inline-block; width: 20px; height: 20px;
       border: 2px solid var(--border); border-top-color: var(--accent);
@@ -260,8 +387,11 @@
     </div>
   </div>
 
+  <!-- Category hero banner -->
+  <div class="category-hero" id="categoryHero" style="display:none;"></div>
+
   <div class="controls" id="controls">
-    <input class="search-box" id="search" type="search" placeholder="Search all locations..." />
+    <input class="search-box" id="search" type="search" placeholder="Search all 196 locations..." />
     <div class="select-wrap">
       <select id="regionFilter">
         <option value="">All Regions</option>
@@ -289,6 +419,17 @@
     <div class="loading"><span class="spinner"></span> Loading explorer data...</div>
   </div>
 
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-close">
+        <div class="modal-close-bar" id="modalCloseBar"></div>
+        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
   <script>
     // ── State ──
     let allItems = [];
@@ -300,24 +441,69 @@
 
     // ── Kind config ──
     const KIND_META = {
-      trail:       { icon: '\u{1F5FB}', label: 'Hike', badgeClass: 'badge-green' },
-      restaurant:  { icon: '\u{1F37D}', label: 'Restaurant', badgeClass: 'badge-red' },
-      viewpoint:   { icon: '\u{1F304}', label: 'Viewpoint', badgeClass: 'badge-amber' },
-      swim:        { icon: '\u{1F30A}', label: 'Swimming', badgeClass: 'badge-blue' },
-      beach:       { icon: '\u{1F3D6}', label: 'Beach', badgeClass: 'badge-cyan' },
-      garden:      { icon: '\u{1F33A}', label: 'Garden', badgeClass: 'badge-green' },
-      poncha:      { icon: '\u{1F378}', label: 'Poncha Bar', badgeClass: 'badge-purple' },
-      wine:        { icon: '\u{1F377}', label: 'Wine Lodge', badgeClass: 'badge-pink' },
-      bakery:      { icon: '\u{1F950}', label: 'Bakery', badgeClass: 'badge-amber' },
-      nightlife:   { icon: '\u{1F3B6}', label: 'Nightlife', badgeClass: 'badge-pink' },
-      'hidden-gem':{ icon: '\u{2728}',  label: 'Hidden Gem', badgeClass: 'badge-teal' },
-      town:        { icon: '\u{1F3D8}', label: 'Town', badgeClass: 'badge-blue' },
-      market:      { icon: '\u{1F6D2}', label: 'Market', badgeClass: 'badge-amber' },
-      peak:        { icon: '\u{26F0}',  label: 'Summit', badgeClass: 'badge-dark' },
-      hotel:       { icon: '\u{1F3E8}', label: 'Hotel', badgeClass: 'badge-amber' },
+      trail:       { icon: '\u{1F5FB}', label: 'Hike', badgeClass: 'badge-green', color: '#16a34a' },
+      restaurant:  { icon: '\u{1F37D}', label: 'Restaurant', badgeClass: 'badge-red', color: '#ef4444' },
+      viewpoint:   { icon: '\u{1F304}', label: 'Viewpoint', badgeClass: 'badge-amber', color: '#f59e0b' },
+      swim:        { icon: '\u{1F30A}', label: 'Swimming', badgeClass: 'badge-blue', color: '#0891b2' },
+      beach:       { icon: '\u{1F3D6}', label: 'Beach', badgeClass: 'badge-cyan', color: '#06b6d4' },
+      garden:      { icon: '\u{1F33A}', label: 'Garden', badgeClass: 'badge-green', color: '#22c55e' },
+      poncha:      { icon: '\u{1F378}', label: 'Poncha Bar', badgeClass: 'badge-purple', color: '#a855f7' },
+      wine:        { icon: '\u{1F377}', label: 'Wine Lodge', badgeClass: 'badge-pink', color: '#be185d' },
+      bakery:      { icon: '\u{1F950}', label: 'Bakery', badgeClass: 'badge-amber', color: '#d97706' },
+      nightlife:   { icon: '\u{1F3B6}', label: 'Nightlife', badgeClass: 'badge-pink', color: '#ec4899' },
+      'hidden-gem':{ icon: '\u{2728}',  label: 'Hidden Gem', badgeClass: 'badge-teal', color: '#14b8a6' },
+      town:        { icon: '\u{1F3D8}', label: 'Town', badgeClass: 'badge-blue', color: '#0ea5e9' },
+      market:      { icon: '\u{1F6D2}', label: 'Market', badgeClass: 'badge-amber', color: '#f97316' },
+      peak:        { icon: '\u{26F0}',  label: 'Summit', badgeClass: 'badge-dark', color: '#6366f1' },
+      hotel:       { icon: '\u{1F3E8}', label: 'Hotel', badgeClass: 'badge-amber', color: '#f59e0b' },
     };
 
-    // ── Stars renderer ──
+    // Category hero images & descriptions
+    const CATEGORY_HEROES = {
+      trail: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/G%C3%B3rski_szlak_pieszy_PR1_z_Pico_Arreiro_do_Pico_Ruivo_-_Vereda_do_Areeiro_-_Madeira%2C_Portugalia%2C_sierpie%C5%84_2022.jpg/1200px-G%C3%B3rski_szlak_pieszy_PR1_z_Pico_Arreiro_do_Pico_Ruivo_-_Vereda_do_Areeiro_-_Madeira%2C_Portugalia%2C_sierpie%C5%84_2022.jpg',
+        title: 'Hiking Trails',
+        desc: 'Levadas, mountain peaks, and laurel forests. AllTrails ratings, difficulty, distances, tunnel counts.',
+      },
+      restaurant: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1151.jpg/1200px-Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1151.jpg',
+        title: 'Restaurants',
+        desc: 'From Michelin-starred fine dining to hidden local lunch spots. Espetada, lapas, espada preta.',
+      },
+      viewpoint: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Cabo_Gir%C3%A3o_-_Skywalk.JPG/1200px-Cabo_Gir%C3%A3o_-_Skywalk.JPG',
+        title: 'Viewpoints (Miradouros)',
+        desc: 'Dramatic cliff edges, valley overlooks, and mountain panoramas. Worth-it scores out of 10.',
+      },
+      'swim,beach': {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Madeira_-_Porto_Moniz_-_01_-_Piscinas_naturales.jpg/1200px-Madeira_-_Porto_Moniz_-_01_-_Piscinas_naturales.jpg',
+        title: 'Swimming Spots',
+        desc: 'Volcanic natural pools, black sand beaches, and secret swim spots along the coast.',
+      },
+      'poncha,wine,bakery': {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/f/fc/Poncha.JPG',
+        title: 'Bars, Wine & Bakeries',
+        desc: 'Poncha bars, Madeira wine lodges, and bakeries with bolo do caco and pastel de nata.',
+      },
+      garden: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg/1200px-Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg',
+        title: 'Gardens',
+        desc: 'Tropical gardens, camellia collections, and botanical wonders. March = peak bloom.',
+      },
+      'hidden-gem': {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2010-03-01_16_08_47_Portugal-Sal%C3%A3o.jpg/1200px-2010-03-01_16_08_47_Portugal-Sal%C3%A3o.jpg',
+        title: 'Hidden Gems',
+        desc: 'Off-the-beaten-path discoveries from Reddit and travel blogs.',
+      },
+      hotel: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg/1200px-Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg',
+        title: 'Hotels',
+        desc: 'From luxury resorts to boutique gems. Honest reviews, March pricing, neighborhoods.',
+      },
+    };
+
+    const DIFF_COLORS = { Easy: '#16a34a', Moderate: '#d97706', Hard: '#dc2626' };
+
     function renderStars(rating, max) {
       max = max || 5;
       const full = Math.floor(rating);
@@ -330,9 +516,35 @@
       return s;
     }
 
+    // ── Category hero ──
+    function updateCategoryHero() {
+      const hero = document.getElementById('categoryHero');
+      const cat = CATEGORY_HEROES[activeKindFilter];
+      if (!cat || activeKindFilter === 'all') {
+        hero.style.display = 'none';
+        return;
+      }
+      const kinds = activeKindFilter.split(',');
+      const count = allItems.filter(i => kinds.includes(i.kind)).length;
+      const withImg = allItems.filter(i => kinds.includes(i.kind) && i.image_url).length;
+
+      hero.style.display = 'flex';
+      hero.innerHTML = `
+        <img src="${cat.img}" alt="${cat.title}" loading="lazy" onerror="this.style.display='none'" />
+        <div class="hero-overlay">
+          <div class="hero-title">${cat.title}</div>
+          <div class="hero-desc">${cat.desc}</div>
+          <div class="hero-stats">
+            <span class="hero-stat"><strong>${count}</strong> locations</span>
+            ${withImg ? `<span class="hero-stat"><strong>${withImg}</strong> with photos</span>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
     // ── Card builder ──
     function buildCard(item) {
-      const km = KIND_META[item.kind] || { icon: '\u{1F4CD}', label: item.kind, badgeClass: 'badge-dark' };
+      const km = KIND_META[item.kind] || { icon: '\u{1F4CD}', label: item.kind, badgeClass: 'badge-dark', color: '#666' };
       const hasImage = item.image_url && item.image_url !== 'null' && item.image_url !== null;
 
       let imgHtml;
@@ -366,7 +578,11 @@
           badges += ` <span class="badge ${tc}">${item.tier}</span>`;
         }
         if (item.price_range_eur) badges += ` <span class="badge badge-dark">\u20AC${item.price_range_eur}/night</span>`;
-        if (item.highlight) badges += ` <span class="badge badge-green">${item.highlight}</span>`;
+      }
+
+      let topPickHtml = '';
+      if (item.top_pick || item.day_suggestion) {
+        topPickHtml = `<span class="top-pick">TOP PICK</span>`;
       }
 
       // Stats
@@ -384,41 +600,27 @@
         const parts = [];
         if (item.altitude_m) parts.push(`<span class="stat"><strong>${item.altitude_m}</strong>m altitude</span>`);
         if (item.best_time) parts.push(`<span class="stat">Best: <strong>${item.best_time}</strong></span>`);
+        if (item.worth_it) parts.push(`<span class="stat">Worth: <strong>${item.worth_it}/10</strong></span>`);
         statsHtml = `<div class="card-stats">${parts.join('')}</div>`;
       }
 
       // Rating
       let ratingHtml = '';
       if (item.kind === 'trail' && item.rating) {
-        ratingHtml = `<div class="card-rating">
-          <span class="stars">${renderStars(item.rating)}</span>
-          <span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()} reviews)` : ''}</span>
-        </div>`;
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()})` : ''}</span></div>`;
       }
       if (item.kind === 'viewpoint' && item.worth_it) {
-        ratingHtml = `<div class="card-rating">
-          <span class="stars">${renderStars(item.worth_it / 2)}</span>
-          <span class="rating-text">Worth it: ${item.worth_it}/10</span>
-        </div>`;
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.worth_it / 2)}</span><span class="rating-text">${item.worth_it}/10</span></div>`;
       }
       if (item.kind === 'hotel' && item.rating) {
-        ratingHtml = `<div class="card-rating">
-          <span class="stars">${renderStars(item.rating / 2)}</span>
-          <span class="rating-text">${item.rating}/10${item.rating_source ? ' ' + item.rating_source : ''}${item.review_count ? ` (${item.review_count} reviews)` : ''}</span>
-        </div>`;
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating / 2)}</span><span class="rating-text">${item.rating}/10${item.rating_source ? ' ' + item.rating_source : ''}</span></div>`;
       }
 
       // Highlight
       let highlightHtml = '';
-      if (item.must_order) {
-        highlightHtml = `<div class="card-highlight">Must order: ${item.must_order}</div>`;
-      }
-      if (item.cuisine) {
-        highlightHtml = `<div class="card-highlight">${item.cuisine}</div>` + highlightHtml;
-      }
-      if (item.kind === 'hotel' && item.neighborhood) {
-        highlightHtml = `<div class="card-highlight">${item.neighborhood}</div>` + highlightHtml;
-      }
+      if (item.cuisine) highlightHtml += `<div class="card-highlight" style="color:var(--orange)">${item.cuisine}</div>`;
+      if (item.must_order) highlightHtml += `<div class="card-highlight">Must try: ${item.must_order}</div>`;
+      if (item.kind === 'hotel' && item.neighborhood) highlightHtml += `<div class="card-highlight" style="color:var(--amber)">${item.neighborhood}</div>`;
 
       // Tip
       const tipHtml = item.tip ? `<div class="card-tip">${item.tip}</div>` : '';
@@ -426,21 +628,19 @@
       // Actions
       let actionsHtml = '';
       if (item.google_maps_url) {
-        actionsHtml += `<a class="btn-sm primary" href="${item.google_maps_url}" target="_blank" rel="noopener">Google Maps</a>`;
+        actionsHtml += `<a class="btn-sm primary" href="${item.google_maps_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>`;
       }
-      actionsHtml += `<a class="btn-sm" href="./madeira_map.html?poi=${item.id}">Show on Map</a>`;
-      if (item.kind === 'trail') {
-        actionsHtml += `<a class="btn-sm" href="./itinerary.html#hikes">Trail Guide</a>`;
-      }
+      actionsHtml += `<a class="btn-sm" href="./madeira_map.html?poi=${item.id}" onclick="event.stopPropagation()">Show on Map</a>`;
 
       return `
-        <div class="card" data-kind="${item.kind}" data-region="${item.region || ''}" data-difficulty="${item.difficulty || ''}" data-id="${item.id}">
-          <div class="card-img">
+        <div class="card" data-kind="${item.kind}" data-region="${item.region || ''}" data-difficulty="${item.difficulty || ''}" data-id="${item.id}" onclick="openModal('${item.id}')">
+          <div class="card-img" data-kind="${item.kind}">
             ${imgHtml}
             <div class="badges">${badges}</div>
+            ${topPickHtml}
           </div>
           <div class="card-body">
-            <div class="card-name">${item.code ? item.code + ' — ' : ''}${item.name}</div>
+            <div class="card-name">${item.code ? item.code + ' \u2014 ' : ''}${item.name}</div>
             <div class="card-region">${item.region || ''}</div>
             ${statsHtml}
             ${ratingHtml}
@@ -452,27 +652,119 @@
       `;
     }
 
+    // ── Detail modal ──
+    function openModal(id) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+      const km = KIND_META[item.kind] || { icon: '\u{1F4CD}', label: item.kind, color: '#666' };
+      const hasImg = item.image_url && item.image_url !== null;
+
+      let html = '';
+      if (hasImg) {
+        html += `<img class="modal-img" src="${item.image_url}" alt="${item.name}" onerror="this.outerHTML='<div class=modal-img-placeholder>${km.icon}</div>'" />`;
+      } else {
+        html += `<div class="modal-img-placeholder">${km.icon}</div>`;
+      }
+
+      html += '<div class="modal-body">';
+      html += `<h2>${item.code ? item.code + ' \u2014 ' : ''}${item.name}</h2>`;
+      html += `<div class="modal-kind" style="color:${km.color}">${km.label}${item.region ? ' \u00B7 ' + item.region : ''}</div>`;
+
+      // Badges
+      let badges = '';
+      if (item.difficulty) badges += `<span class="modal-badge" style="background:${DIFF_COLORS[item.difficulty] || '#666'}">${item.difficulty}</span>`;
+      if (item.price_range) badges += `<span class="modal-badge" style="background:#374151">${item.price_range}</span>`;
+      if (item.status && item.status !== 'open') {
+        const sc = item.status === 'closed' ? '#dc2626' : '#d97706';
+        badges += `<span class="modal-badge" style="background:${sc}">${item.status.toUpperCase()}</span>`;
+      }
+      if (item.entry_fee) {
+        const fee = item.free ? 'FREE' : item.entry_fee;
+        badges += `<span class="modal-badge" style="background:#374151">${fee}</span>`;
+      }
+      if (item.tier) {
+        const tc = item.tier === 'luxury' ? '#d97706' : '#3b82f6';
+        badges += `<span class="modal-badge" style="background:${tc}">${item.tier}</span>`;
+      }
+      if (item.top_pick || item.day_suggestion) {
+        badges += `<span class="modal-badge" style="background:#fbbf24;color:#000">TOP PICK</span>`;
+      }
+      if (badges) html += `<div class="modal-badges">${badges}</div>`;
+
+      // Stats grid
+      const stats = [];
+      if (item.distance_km) stats.push(['Distance', item.distance_km + ' km']);
+      if (item.elevation_m) stats.push(['Elevation', item.elevation_m + 'm']);
+      if (item.time_hours) stats.push(['Duration', item.time_hours + 'h']);
+      if (item.fee_eur !== undefined && item.fee_eur !== null) stats.push(['Trail Fee', '\u20AC' + item.fee_eur]);
+      if (item.tunnels) stats.push(['Tunnels', item.tunnels]);
+      if (item.altitude_m) stats.push(['Altitude', item.altitude_m + 'm']);
+      if (item.best_time) stats.push(['Best Time', item.best_time]);
+      if (item.cuisine) stats.push(['Cuisine', item.cuisine]);
+      if (item.swim_type) stats.push(['Type', item.swim_type]);
+      if (item.hours) stats.push(['Hours', item.hours]);
+      if (item.worth_it) stats.push(['Worth It', item.worth_it + '/10']);
+      if (item.price_range_eur) stats.push(['Price', '\u20AC' + item.price_range_eur + '/night']);
+      if (item.headlamp) stats.push(['Headlamp', 'Required']);
+      if (stats.length) {
+        html += '<div class="modal-stats">';
+        stats.forEach(([label, value]) => {
+          html += `<div class="modal-stat"><div class="modal-stat-label">${label}</div><div class="modal-stat-value">${value}</div></div>`;
+        });
+        html += '</div>';
+      }
+
+      // Rating
+      if (item.rating && item.kind === 'trail') {
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'AllTrails'})</span>` : ''}</div>`;
+      } else if (item.rating && item.kind === 'hotel') {
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating / 2)}</span> <strong>${item.rating}/10</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count} reviews)</span>` : ''}</div>`;
+      }
+
+      if (item.must_order) html += `<div class="modal-must-order">Must order: ${item.must_order}</div>`;
+      if (item.highlight) html += `<div class="modal-must-order" style="color:var(--amber)">${item.highlight}</div>`;
+      if (item.day_suggestion) html += `<div class="modal-must-order" style="color:var(--accent2)">Suggested: ${item.day_suggestion}</div>`;
+
+      if (item.tip) html += `<div class="modal-tip">${item.tip}</div>`;
+
+      // Actions
+      html += '<div class="modal-actions">';
+      if (item.google_maps_url) html += `<a class="modal-btn" href="${item.google_maps_url}" target="_blank" rel="noopener">Open Google Maps</a>`;
+      html += `<a class="modal-btn secondary" href="./madeira_map.html?poi=${item.id}">Show on Map</a>`;
+      if (item.kind === 'trail') html += `<a class="modal-btn secondary" href="./itinerary.html#hikes">Full Trail Guide</a>`;
+      html += '</div>';
+
+      if (item.image_credit) html += `<div class="modal-credit">${item.image_credit}</div>`;
+      html += '</div>';
+
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) closeModal();
+    });
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    document.getElementById('modalCloseBar').addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
     // ── Filtering & sorting ──
     function getFilteredItems() {
       let items = allItems;
-
-      // Kind filter
       if (activeKindFilter !== 'all') {
         const kinds = activeKindFilter.split(',');
         items = items.filter(i => kinds.includes(i.kind));
       }
-
-      // Region filter
-      if (activeRegion) {
-        items = items.filter(i => i.region === activeRegion);
-      }
-
-      // Difficulty filter (only for trails)
+      if (activeRegion) items = items.filter(i => i.region === activeRegion);
       if (activeDifficulty !== 'all' && activeKindFilter === 'trail') {
         items = items.filter(i => i.difficulty === activeDifficulty);
       }
-
-      // Search
       if (searchQuery) {
         const q = searchQuery.toLowerCase();
         items = items.filter(i =>
@@ -484,19 +776,20 @@
           (i.region && i.region.toLowerCase().includes(q))
         );
       }
-
-      // Sort
       items = [...items];
       if (activeSort === 'rating') {
         items.sort((a, b) => {
-          const ra = a.rating || a.worth_it || 0;
-          const rb = b.rating || b.worth_it || 0;
+          // Top picks first
+          const ta = (a.top_pick || a.day_suggestion) ? 1 : 0;
+          const tb = (b.top_pick || b.day_suggestion) ? 1 : 0;
+          if (tb !== ta) return tb - ta;
+          const ra = a.rating || (a.worth_it ? a.worth_it / 2 : 0);
+          const rb = b.rating || (b.worth_it ? b.worth_it / 2 : 0);
           return rb - ra;
         });
       } else if (activeSort === 'name') {
         items.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
       }
-
       return items;
     }
 
@@ -541,11 +834,8 @@
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         activeKindFilter = tab.dataset.filter;
-
-        // Show/hide difficulty filter
-        const diffFilter = document.getElementById('diffFilter');
-        diffFilter.style.display = activeKindFilter === 'trail' ? 'flex' : 'none';
-
+        document.getElementById('diffFilter').style.display = activeKindFilter === 'trail' ? 'flex' : 'none';
+        updateCategoryHero();
         renderCards();
       });
     });
@@ -586,6 +876,15 @@
         allItems = data.items || [];
         updateTabCounts();
         renderCards();
+
+        // Check for deep link hash
+        if (window.location.hash) {
+          const id = window.location.hash.slice(1);
+          const item = allItems.find(i => i.id === id);
+          if (item) {
+            setTimeout(() => openModal(id), 300);
+          }
+        }
       } catch (err) {
         document.getElementById('cardGrid').innerHTML =
           `<div class="empty-state"><p>Failed to load data: ${err.message}</p><p>If viewing locally, use a local server: <code>python3 -m http.server</code></p></div>`;

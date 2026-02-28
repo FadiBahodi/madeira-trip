@@ -10,6 +10,7 @@
       --surface: #111827;
       --surface2: #1a2332;
       --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.12);
       --text: #e8eefc;
       --muted: rgba(232,238,252,0.55);
       --accent: #3b82f6;
@@ -20,176 +21,134 @@
       --pink: #f472b6;
       --purple: #a78bfa;
       --radius: 16px;
-      --shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
+      background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
     }
 
-    /* Hero */
+    /* ── Hero with photo ── */
     .hero {
-      position: relative;
-      padding: 80px 24px 60px;
-      text-align: center;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 800px 400px at 30% 20%, rgba(59,130,246,0.15), transparent),
-        radial-gradient(ellipse 600px 300px at 70% 40%, rgba(52,211,153,0.1), transparent),
-        radial-gradient(ellipse 400px 200px at 50% 80%, rgba(244,114,182,0.08), transparent);
+      position: relative; min-height: 70vh; display: flex; align-items: center;
+      justify-content: center; text-align: center; overflow: hidden;
     }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg/1600px-Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg');
+      background-size: cover; background-position: center 40%;
+      filter: brightness(0.35);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 60px 24px; max-width: 700px; }
     .hero h1 {
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #fff, #60a5fa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: clamp(36px, 6vw, 64px); font-weight: 900;
+      letter-spacing: -0.03em; line-height: 1.05; color: #fff;
     }
     .hero .subtitle {
-      margin-top: 12px;
-      font-size: 18px;
-      color: var(--muted);
+      margin-top: 12px; font-size: 18px; color: rgba(255,255,255,0.7);
     }
     .hero .dates {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 20px;
-      padding: 8px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent2);
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+      padding: 8px 20px; background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px; font-size: 14px; font-weight: 600; color: #fff;
     }
     .hero-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 32px;
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 32px;
     }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 15px;
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px; font-weight: 700; font-size: 15px;
+      text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(59,130,246,0.3);
-    }
-    .btn-primary:hover { background: #2563eb; transform: translateY(-1px); }
-    .btn-secondary {
-      background: var(--surface2);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover { background: var(--surface); border-color: var(--accent); }
+    .btn-gold { background: var(--amber); color: #000; box-shadow: 0 4px 16px rgba(251,191,36,0.3); }
+    .btn-gold:hover { background: #f59e0b; transform: translateY(-1px); }
+    .btn-blue { background: var(--accent); color: #fff; box-shadow: 0 4px 16px rgba(59,130,246,0.3); }
+    .btn-blue:hover { background: #2563eb; transform: translateY(-1px); }
+    .btn-green { background: var(--green); color: #000; box-shadow: 0 4px 16px rgba(52,211,153,0.3); }
+    .btn-green:hover { background: #10b981; transform: translateY(-1px); }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: #fff; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.15); }
 
-    /* Container */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-    /* Alerts */
-    .alerts {
-      display: grid;
-      gap: 12px;
-      margin-top: -20px;
-      margin-bottom: 40px;
-    }
+    /* ── Alerts ── */
+    .alerts { display: grid; gap: 12px; margin-bottom: 40px; padding-top: 40px; }
     .alert {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 14px 18px;
-      border-radius: var(--radius);
-      background: var(--surface);
-      border: 1px solid var(--border);
+      display: flex; align-items: flex-start; gap: 12px; padding: 14px 18px;
+      border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border);
     }
-    .alert-icon {
-      font-size: 20px;
-      flex-shrink: 0;
-      line-height: 1.4;
-    }
+    .alert-icon { font-size: 20px; flex-shrink: 0; line-height: 1.4; }
     .alert-red { border-left: 3px solid var(--red); }
     .alert-amber { border-left: 3px solid var(--amber); }
     .alert-green { border-left: 3px solid var(--green); }
     .alert strong { color: var(--text); }
     .alert p { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .alert a { color: var(--accent2); }
 
-    /* Section */
-    section { margin-bottom: 48px; }
+    /* ── Section ── */
+    section { margin-bottom: 56px; }
     .section-title {
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent2);
-      margin-bottom: 16px;
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent2); margin-bottom: 16px;
     }
 
-    /* Cards grid */
+    /* ── Photo banner sections ── */
+    .photo-section {
+      position: relative; overflow: hidden; border-radius: var(--radius);
+      border: 1px solid var(--border); margin-bottom: 16px;
+    }
+    .photo-section img {
+      width: 100%; height: 200px; object-fit: cover; display: block;
+      filter: brightness(0.4);
+    }
+    .photo-section .ps-overlay {
+      position: absolute; inset: 0; display: flex; align-items: flex-end;
+      padding: 20px 24px; background: linear-gradient(transparent 30%, rgba(10,15,26,0.9));
+    }
+    .photo-section .ps-text { color: #fff; }
+    .photo-section h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .photo-section p { font-size: 14px; color: rgba(255,255,255,0.7); max-width: 500px; }
+    .photo-section .ps-badge {
+      position: absolute; top: 14px; right: 14px;
+      padding: 4px 12px; border-radius: 8px; font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* ── Stats strip ── */
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px; margin-bottom: 48px;
+    }
+    .stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; text-align: center;
+    }
+    .stat-value {
+      font-size: 28px; font-weight: 800;
+      background: linear-gradient(135deg, var(--accent2), var(--green));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* ── Card grid ── */
     .card-grid {
-      display: grid;
-      gap: 14px;
+      display: grid; gap: 14px;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
       transition: border-color 0.2s, transform 0.2s;
-      text-decoration: none;
-      color: var(--text);
-      display: block;
+      text-decoration: none; color: var(--text); display: block;
     }
-    a.card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .card-emoji {
-      font-size: 28px;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .card h3 {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    a.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
     .card .badge {
-      display: inline-block;
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 10px;
+      display: inline-block; padding: 3px 10px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; margin-top: 10px;
     }
     .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent2); }
     .badge-green { background: rgba(52,211,153,0.15); color: var(--green); }
@@ -197,101 +156,68 @@
     .badge-pink { background: rgba(244,114,182,0.15); color: var(--pink); }
     .badge-purple { background: rgba(167,139,250,0.15); color: var(--purple); }
 
-    /* Wide card */
-    .card-wide {
-      grid-column: 1 / -1;
+    /* ── Day overview cards with images ── */
+    .day-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+    .day-card {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); transition: all 0.2s;
+      text-decoration: none; color: var(--text); display: block;
     }
+    .day-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .day-card img {
+      width: 100%; height: 160px; object-fit: cover; display: block; filter: brightness(0.5);
+    }
+    .day-card .dc-overlay {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 16px;
+      background: linear-gradient(transparent 20%, rgba(10,15,26,0.9));
+    }
+    .day-card .dc-day {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--amber); margin-bottom: 4px;
+    }
+    .day-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .day-card p { font-size: 13px; color: rgba(255,255,255,0.6); }
 
-    /* Regions */
-    .regions {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-    .region-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 18px;
-      text-decoration: none;
-      color: var(--text);
-      display: block;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .region-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-    .region-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .region-card p { font-size: 13px; color: var(--muted); }
-
-    /* Stats strip */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-bottom: 48px;
-    }
-    .stat {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      text-align: center;
-    }
-    .stat-value {
-      font-size: 28px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent2), var(--green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* IFCN thumbs */
-    .thumbs {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: 1fr 1fr;
-    }
+    /* ── Thumbs ── */
+    .thumbs { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
     @media (max-width: 640px) { .thumbs { grid-template-columns: 1fr; } }
     .thumb {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      display: block;
-      text-decoration: none;
-      color: var(--text);
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface);
+      display: block; text-decoration: none; color: var(--text);
     }
     .thumb img { display: block; width: 100%; height: auto; }
     .thumb .cap { padding: 10px 14px; font-weight: 600; font-size: 14px; }
 
-    /* Footer */
     footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-      font-size: 13px;
-      border-top: 1px solid var(--border);
+      text-align: center; padding: 40px 20px; color: var(--muted);
+      font-size: 13px; border-top: 1px solid var(--border);
     }
     footer a { color: var(--accent2); }
+
+    @media (max-width: 640px) {
+      .hero { min-height: 60vh; }
+      .hero h1 { font-size: 32px; }
+      .day-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Hero with cinematic photo -->
   <div class="hero">
-    <h1>Madeira</h1>
-    <p class="subtitle">The ultimate trip atlas — map-first, geography-grouped, flexible</p>
-    <div class="dates">Mar 10 – 15, 2026 &nbsp;|&nbsp; 4 full days</div>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="./planner.html" style="background:var(--amber);color:#000">Battle Plan</a>
-      <a class="btn btn-primary" href="./madeira_map.html">Interactive Map</a>
-      <a class="btn btn-primary" href="./explore.html" style="background:var(--green)">Explorer</a>
-      <a class="btn btn-secondary" href="./itinerary.html">Full Guide</a>
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Madeira</h1>
+      <p class="subtitle">The ultimate trip atlas — 196 locations, interactive map, day-by-day battle plan</p>
+      <div class="dates">Mar 10 - 15, 2026 &nbsp;|&nbsp; 4 full days</div>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="./planner.html">Battle Plan</a>
+        <a class="btn btn-blue" href="./madeira_map.html">Interactive Map</a>
+        <a class="btn btn-green" href="./explore.html">Explorer</a>
+        <a class="btn btn-ghost" href="./itinerary.html">Full Guide</a>
+      </div>
     </div>
   </div>
 
@@ -316,151 +242,152 @@
       <div class="alert alert-amber">
         <span class="alert-icon">!</span>
         <div>
-          <strong>Trail booking MANDATORY — SIMplifica</strong>
-          <p>Every PR trail requires advance online booking. Book 1-3 days ahead at <a href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">simplifica.madeira.gov.pt</a>. Nature Wardens check QR codes.</p>
+          <strong>Trail booking MANDATORY — SIMplifica (EUR 4.50/person)</strong>
+          <p>Every PR trail requires advance online booking 1-3 days ahead at <a href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">simplifica.madeira.gov.pt</a>. Nature Wardens check QR codes at trailheads.</p>
         </div>
       </div>
       <div class="alert alert-green">
         <span class="alert-icon">i</span>
         <div>
           <strong>Rent a car — it's mandatory for this trip</strong>
-          <p>No Uber in Madeira, buses don't reach trailheads. March prices: €10-25/day. Book automatic transmission in advance.</p>
+          <p>No Uber in Madeira, buses don't reach trailheads. March prices: EUR 10-25/day. Book automatic transmission in advance.</p>
         </div>
       </div>
     </section>
 
     <!-- Stats -->
     <div class="stats">
-      <div class="stat">
-        <div class="stat-value">30+</div>
-        <div class="stat-label">PR Hiking Trails</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">33</div>
-        <div class="stat-label">Viewpoints (Miradouros)</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">80+</div>
-        <div class="stat-label">Restaurants Reviewed</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">13</div>
-        <div class="stat-label">Swimming Spots</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">15+</div>
-        <div class="stat-label">Poncha Bars</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Gardens</div>
-      </div>
+      <div class="stat"><div class="stat-value">23</div><div class="stat-label">Hiking Trails</div></div>
+      <div class="stat"><div class="stat-value">35</div><div class="stat-label">Viewpoints</div></div>
+      <div class="stat"><div class="stat-value">59</div><div class="stat-label">Restaurants</div></div>
+      <div class="stat"><div class="stat-value">15</div><div class="stat-label">Poncha Bars</div></div>
+      <div class="stat"><div class="stat-value">13</div><div class="stat-label">Swim Spots</div></div>
+      <div class="stat"><div class="stat-value">8</div><div class="stat-label">Hotels</div></div>
     </div>
 
     <!-- Battle Plan -->
     <section>
-      <div class="section-title">Your Battle Plan — Day-by-Day</div>
-      <a class="card" href="./planner.html" style="display:block;max-width:700px;margin:0 auto 32px;border-color:rgba(251,191,36,0.3);">
-        <span class="card-emoji">&#x26A1;</span>
-        <h3>Battle Plan — 4 Days, Every Stop Mapped</h3>
-        <p>Day-by-day timeline with route maps, drive times, Google Maps links, weather-adaptive Plan A/B for each day. Hotel comparison, curated trail picks, packing list. THE practical page.</p>
-        <span class="badge badge-amber">THE PLAN</span>
+      <div class="section-title">Your Battle Plan</div>
+      <a class="photo-section" href="./planner.html" style="display:block;text-decoration:none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Vista_desde_el_pico_de_Arieiro%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_147-153_PAN.jpg/1400px-Vista_desde_el_pico_de_Arieiro%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_147-153_PAN.jpg" alt="Pico do Arieiro panorama" loading="lazy" />
+        <div class="ps-overlay">
+          <div class="ps-text">
+            <h3>Battle Plan — 4 Days, Every Stop Mapped</h3>
+            <p>Day-by-day timeline with route maps, drive times, Google Maps links, weather-adaptive Plan A/B, hotel comparison, curated trail picks.</p>
+          </div>
+        </div>
+        <span class="ps-badge" style="background:var(--amber);color:#000;">THE PLAN</span>
       </a>
     </section>
 
     <!-- Explorer -->
     <section>
-      <div class="section-title">Visual Explorer — Browse Everything</div>
-      <a class="card" href="./explore.html" style="display:block;max-width:700px;margin:0 auto 32px;border-color:rgba(52,211,153,0.3);">
-        <span class="card-emoji">&#x1F50D;</span>
-        <h3>Explorer — Photos, Ratings, Filters</h3>
-        <p>Interactive card browser for every location. Filter by type, region, difficulty. Star ratings, Google Maps links, photos from Wikimedia Commons. The visual way to plan.</p>
-        <span class="badge badge-green">Visual Browser</span>
+      <div class="section-title">Visual Explorer</div>
+      <a class="photo-section" href="./explore.html" style="display:block;text-decoration:none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1885.jpg/1400px-C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1885.jpg" alt="Camara de Lobos" loading="lazy" />
+        <div class="ps-overlay">
+          <div class="ps-text">
+            <h3>Explorer — 196 Locations with Photos, Ratings, Filters</h3>
+            <p>Interactive card browser. Filter by hikes, restaurants, viewpoints, swimming, bars. Star ratings, Google Maps links, Wikimedia photos.</p>
+          </div>
+        </div>
+        <span class="ps-badge" style="background:var(--green);color:#000;">BROWSE ALL</span>
       </a>
     </section>
 
-    <!-- Guide sections -->
+    <!-- 4-Day Shape with photos -->
     <section>
-      <div class="section-title">The Full Guide — 6 Tabs of Everything</div>
+      <div class="section-title">Recommended 4-Day Shape</div>
+      <div class="day-grid">
+        <a class="day-card" href="./planner.html#day1">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Pico_Ruivo_Peak.jpg/800px-Pico_Ruivo_Peak.jpg" alt="Pico Ruivo" loading="lazy" />
+          <div class="dc-overlay">
+            <div class="dc-day">Day 1</div>
+            <h3>Mountain Peaks</h3>
+            <p>Sunrise at Pico do Arieiro + PR1.2 to Pico Ruivo. Or PR8 if peaks are fogged.</p>
+          </div>
+        </a>
+        <a class="day-card" href="./planner.html#day2">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Madeira_-_Levada_das_25_Fontes_%2823997585133%29.jpg/800px-Madeira_-_Levada_das_25_Fontes_%2823997585133%29.jpg" alt="25 Fontes" loading="lazy" />
+          <div class="dc-overlay">
+            <div class="dc-day">Day 2</div>
+            <h3>Waterfalls & Forest</h3>
+            <p>PR6 + PR6.1 at Rabacal. Fanal forest. Porto Moniz pools. North coast.</p>
+          </div>
+        </a>
+        <a class="day-card" href="./planner.html#day3">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Levada_do_Caldeir%C3%A3o_Verde%2C_Madeira_%2809611%29.jpg/800px-Levada_do_Caldeir%C3%A3o_Verde%2C_Madeira_%2809611%29.jpg" alt="Caldeirao Verde" loading="lazy" />
+          <div class="dc-overlay">
+            <div class="dc-day">Day 3</div>
+            <h3>Deep Green Levada</h3>
+            <p>PR9 Caldeirao Verde (tunnels + waterfall). Santana. Wine tasting evening.</p>
+          </div>
+        </a>
+        <a class="day-card" href="./planner.html#day4">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg/800px-Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg" alt="Monte Palace" loading="lazy" />
+          <div class="dc-overlay">
+            <div class="dc-day">Day 4</div>
+            <h3>Gardens + Sunset</h3>
+            <p>Palheiro Gardens. Market. Cabo Girao. Sunset espetada at Estreito.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Full Guide -->
+    <section>
+      <div class="section-title">Deep-Dive Guides</div>
       <div class="card-grid">
         <a class="card" href="./itinerary.html#atlas">
-          <span class="card-emoji">&#x1F5FA;</span>
           <h3>Atlas & Day Plans</h3>
-          <p>Region-by-region breakdown with day loop ideas, recommended itineraries, hidden gems, rules of the game, and weather pivot strategies.</p>
+          <p>Region-by-region breakdown, recommended itineraries, weather pivot strategies.</p>
           <span class="badge badge-blue">Start Here</span>
         </a>
         <a class="card" href="./itinerary.html#food">
-          <span class="card-emoji">&#x1F37D;</span>
           <h3>Food & Drink</h3>
-          <p>80+ restaurants, poncha bars, bakeries, wine tasting. Specific names, dishes, prices. From Michelin stars to €6.90 local lunch spots.</p>
+          <p>80+ restaurants, poncha bars, bakeries, wine tasting. Specific names, dishes, prices.</p>
           <span class="badge badge-green">40KB of Recs</span>
         </a>
         <a class="card" href="./itinerary.html#hikes">
-          <span class="card-emoji">&#x1F6B6;</span>
           <h3>Hiking Trails</h3>
-          <p>Every PR trail with distance, elevation, difficulty, tunnels, crowd levels, AllTrails ratings, Reddit opinions, and trail combinations.</p>
-          <span class="badge badge-amber">11 Trails Deep-Dived</span>
+          <p>Every PR trail: distance, elevation, tunnels, AllTrails ratings, Reddit opinions.</p>
+          <span class="badge badge-amber">23 Trails</span>
         </a>
         <a class="card" href="./itinerary.html#viewpoints">
-          <span class="card-emoji">&#x1F304;</span>
           <h3>Viewpoints & Swimming</h3>
-          <p>33 viewpoints ranked with GPS, best time of day, parking. 13 swimming spots with March conditions. 6 gardens with prices and hours.</p>
-          <span class="badge badge-pink">GPS Coordinates</span>
+          <p>35 viewpoints ranked. 13 swimming spots. 6 gardens with prices and hours.</p>
+          <span class="badge badge-pink">Worth-It Scores</span>
         </a>
         <a class="card" href="./itinerary.html#logistics">
-          <span class="card-emoji">&#x1F697;</span>
-          <h3>Logistics & Practical</h3>
-          <p>Car rental, parking at trailheads, SIMplifica walkthrough, packing list, budget breakdown, emergency contacts, weather strategies.</p>
-          <span class="badge badge-purple">The Boring-But-Critical Stuff</span>
+          <h3>Logistics</h3>
+          <p>Car rental, SIMplifica walkthrough, packing list, budget, emergency contacts.</p>
+          <span class="badge badge-purple">The Critical Stuff</span>
         </a>
         <a class="card" href="./itinerary.html#hotels">
-          <span class="card-emoji">&#x1F3E8;</span>
           <h3>Hotels</h3>
-          <p>Luxury to budget across Funchal and regional options. Honest pros/cons, March pricing, parking, breakfast quality, neighborhood guide.</p>
+          <p>Luxury to budget. Honest pros/cons, March pricing, breakfast, neighborhoods.</p>
           <span class="badge badge-amber">Honest Reviews</span>
         </a>
       </div>
     </section>
 
-    <!-- Quick day overview -->
+    <!-- Map & Downloads -->
     <section>
-      <div class="section-title">Recommended 4-Day Shape</div>
-      <div class="card-grid">
-        <div class="card">
-          <h3>Day 1 — Peaks</h3>
-          <p>Sunrise at Pico do Areeiro + PR1.2 to Pico Ruivo summit. Or PR8 Sao Lourenco if peaks are fogged.</p>
-        </div>
-        <div class="card">
-          <h3>Day 2 — Waterfalls & Forest</h3>
-          <p>PR6 + PR6.1 at Rabacal. Fanal ancient forest. Porto Moniz pools. North coast drive.</p>
-        </div>
-        <div class="card">
-          <h3>Day 3 — Deep Green Levada</h3>
-          <p>PR9 Caldeirao Verde (tunnels + waterfall) OR PR10 Levada do Furado. Santana. Wine tasting evening.</p>
-        </div>
-        <div class="card">
-          <h3>Day 4 — Gardens + Sunset</h3>
-          <p>Palheiro Gardens (camellias peak!). Market. Cabo Girao. Sunset espetada at Estreito de Camara de Lobos.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Map files -->
-    <section>
-      <div class="section-title">Map & Data Files</div>
+      <div class="section-title">Map & Data</div>
       <div class="card-grid">
         <a class="card" href="./madeira_map.html">
-          <h3>Interactive Map</h3>
-          <p>OpenStreetMap + Leaflet with PR trailheads, viewpoints, towns, beaches, gardens. Open full-screen.</p>
+          <h3>Interactive Satellite Map</h3>
+          <p>196 POIs with photos, real trail paths, marker clustering, search. Satellite/terrain/street views.</p>
+          <span class="badge badge-blue">Full-Screen Map</span>
         </a>
         <div class="card">
-          <h3>Downloads</h3>
+          <h3>Offline Downloads</h3>
           <p>
             <a href="./data/madeira_map_full.kml" download style="color:var(--accent2)">KML (PR + POIs)</a> &mdash;
             <a href="./data/madeira_pr_trails.kml" download style="color:var(--accent2)">KML (PR only)</a> &mdash;
             <a href="./data/madeira_pr_trails.geojson" download style="color:var(--accent2)">GeoJSON (PR)</a>
           </p>
-          <p style="margin-top:8px">Import into Google My Maps, OsmAnd, or Organic Maps for offline use on your phone.</p>
+          <p style="margin-top:8px;font-size:13px;color:var(--muted)">Import into Google My Maps, OsmAnd, or Organic Maps for offline use on your phone.</p>
         </div>
       </div>
     </section>
@@ -480,25 +407,25 @@
       </div>
     </section>
 
-    <!-- Quick links -->
+    <!-- Essential links -->
     <section>
       <div class="section-title">Essential Links</div>
       <div class="card-grid">
         <a class="card" href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">
           <h3>SIMplifica (Book Trails)</h3>
-          <p>Mandatory trail reservation portal. Book your PR hike slots here.</p>
+          <p>Mandatory trail reservation portal. EUR 4.50/person. Book 1-3 days ahead.</p>
         </a>
         <a class="card" href="https://webcammadeira.com" target="_blank" rel="noopener">
           <h3>Webcams</h3>
-          <p>Check weather across the island each morning before committing to a plan.</p>
+          <p>Check real-time weather across the island each morning before committing to a plan.</p>
         </a>
         <a class="card" href="https://visitmadeira.com" target="_blank" rel="noopener">
           <h3>Visit Madeira (Official)</h3>
-          <p>Official tourism board. Viewpoint directory, swimming spots, events.</p>
+          <p>Official tourism board. Trail status, viewpoints, swimming spots, events.</p>
         </a>
         <a class="card" href="https://ifcn.madeira.gov.pt" target="_blank" rel="noopener">
-          <h3>IFCN (Trail Status)</h3>
-          <p>Official trail authority. Current closures, conditions, and trail panels.</p>
+          <h3>IFCN (Trail Authority)</h3>
+          <p>Official trail status, closures, conditions. Check before booking any trail.</p>
         </a>
       </div>
     </section>
@@ -506,8 +433,8 @@
   </div>
 
   <footer>
-    Built with deep research for the best trip possible.
-    <br>Data from Visit Madeira, IFCN, AllTrails, Reddit, TripAdvisor, and travel blogs.
+    196 locations with photos, ratings & Google Maps links.
+    <br>Data from Visit Madeira, IFCN, AllTrails, Reddit, TripAdvisor, Wikimedia Commons, and travel blogs.
   </footer>
 </body>
 </html>
