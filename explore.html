@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madeira Explorer — Browse Everything</title>
+  <style>
+    :root {
+      --bg: #0a0f1a;
+      --surface: #111827;
+      --surface2: #1a2332;
+      --surface3: #1f2b3d;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8eefc;
+      --muted: rgba(232,238,252,0.55);
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --red: #f87171;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --teal: #14b8a6;
+      --cyan: #06b6d4;
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+    }
+
+    /* ── Topbar ── */
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,15,26,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: 1400px; margin: 0 auto; padding: 0 16px;
+      display: flex; align-items: center; gap: 8px; height: 56px;
+    }
+    .topbar a.home {
+      color: var(--text); text-decoration: none; font-weight: 700; font-size: 14px;
+      padding: 6px 12px; border-radius: 8px; background: var(--surface);
+      border: 1px solid var(--border); flex-shrink: 0;
+    }
+    .topbar a.home:hover { border-color: var(--accent); }
+    .topbar .nav-btn {
+      color: var(--text); text-decoration: none; font-weight: 600; font-size: 13px;
+      padding: 6px 14px; border-radius: 8px; flex-shrink: 0;
+    }
+    .topbar .nav-btn.map { background: var(--accent); }
+    .topbar .nav-btn.guide { background: var(--surface); border: 1px solid var(--border); }
+
+    /* ── Tab bar ── */
+    .tabs {
+      display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none;
+      flex: 1; margin: 0 8px;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      padding: 7px 14px; font-size: 13px; font-weight: 600; color: var(--muted);
+      cursor: pointer; border-radius: 8px; white-space: nowrap; transition: all 0.15s;
+      border: none; background: none; flex-shrink: 0;
+    }
+    .tab:hover { color: var(--text); background: var(--surface); }
+    .tab.active { color: var(--accent2); background: var(--surface); }
+    .tab .count {
+      font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 4px;
+    }
+
+    /* ── Controls bar ── */
+    .controls {
+      max-width: 1400px; margin: 0 auto; padding: 16px 20px 0;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .search-box {
+      flex: 1; min-width: 200px; padding: 9px 14px; font-size: 14px;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      border-radius: 10px; outline: none; transition: border-color 0.15s;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .search-box::placeholder { color: var(--muted); }
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      appearance: none; padding: 9px 32px 9px 12px; font-size: 13px; font-weight: 600;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer; outline: none;
+    }
+    .select-wrap::after {
+      content: '\25BE'; position: absolute; right: 12px; top: 50%;
+      transform: translateY(-50%); color: var(--muted); pointer-events: none; font-size: 12px;
+    }
+    .sort-btns { display: flex; gap: 4px; }
+    .sort-btn {
+      padding: 7px 12px; font-size: 12px; font-weight: 600; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .sort-btn:hover { color: var(--text); }
+    .sort-btn.active { color: var(--accent2); border-color: var(--accent); }
+    .results-count {
+      font-size: 13px; color: var(--muted); font-weight: 500; padding: 4px 0;
+    }
+
+    /* ── Difficulty filter (only visible for trails) ── */
+    .difficulty-filter { display: flex; gap: 4px; }
+    .diff-btn {
+      padding: 6px 12px; font-size: 12px; font-weight: 700; border-radius: 8px;
+      cursor: pointer; border: 1px solid var(--border); transition: all 0.15s;
+      background: var(--surface); color: var(--muted);
+    }
+    .diff-btn:hover { color: var(--text); }
+    .diff-btn.active { color: #fff; }
+    .diff-btn[data-diff="Easy"].active { background: #16a34a; border-color: #16a34a; }
+    .diff-btn[data-diff="Moderate"].active { background: #d97706; border-color: #d97706; }
+    .diff-btn[data-diff="Hard"].active { background: #dc2626; border-color: #dc2626; }
+    .diff-btn[data-diff="all"].active { background: var(--accent); border-color: var(--accent); }
+
+    /* ── Card grid ── */
+    .card-grid {
+      max-width: 1400px; margin: 0 auto; padding: 16px 20px 80px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; padding: 12px 12px 80px; }
+      .controls { padding: 12px 12px 0; }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: all 0.2s; animation: fadeIn 0.3s ease;
+    }
+    .card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .card-img {
+      height: 180px; background: var(--surface2); position: relative; overflow: hidden;
+    }
+    .card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .card-img .placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      font-size: 48px; opacity: 0.15;
+    }
+    .card-img .badges {
+      position: absolute; top: 10px; left: 10px; display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .badge {
+      padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 700;
+      backdrop-filter: blur(8px); text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .badge-green { background: rgba(22,163,74,0.85); color: #fff; }
+    .badge-amber { background: rgba(217,119,6,0.85); color: #fff; }
+    .badge-red { background: rgba(220,38,38,0.85); color: #fff; }
+    .badge-blue { background: rgba(59,130,246,0.85); color: #fff; }
+    .badge-purple { background: rgba(168,85,247,0.85); color: #fff; }
+    .badge-teal { background: rgba(20,184,166,0.85); color: #fff; }
+    .badge-pink { background: rgba(236,72,153,0.85); color: #fff; }
+    .badge-dark { background: rgba(17,24,39,0.85); color: var(--text); }
+    .badge-status-open { background: rgba(22,163,74,0.9); }
+    .badge-status-closed { background: rgba(220,38,38,0.9); }
+    .badge-status-partial { background: rgba(217,119,6,0.9); }
+
+    .card-body { padding: 14px 16px 16px; }
+    .card-name {
+      font-size: 17px; font-weight: 700; margin-bottom: 2px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-region { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+
+    /* Stats row */
+    .card-stats {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .stat {
+      font-size: 13px; color: rgba(232,238,252,0.75);
+    }
+    .stat strong { color: var(--text); font-weight: 600; }
+
+    /* Rating */
+    .card-rating {
+      display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+    }
+    .stars { color: var(--amber); font-size: 14px; letter-spacing: 1px; }
+    .rating-text { font-size: 13px; color: var(--muted); }
+
+    /* Tip text */
+    .card-tip {
+      font-size: 13px; color: rgba(232,238,252,0.7); margin-bottom: 10px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; line-height: 1.5;
+    }
+
+    /* Must order / highlight */
+    .card-highlight {
+      font-size: 13px; color: var(--green); margin-bottom: 8px; font-weight: 600;
+    }
+
+    /* Actions */
+    .card-actions {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .btn-sm {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 5px 10px; font-size: 12px; font-weight: 600;
+      border-radius: 6px; text-decoration: none; transition: all 0.15s;
+      color: var(--text); background: var(--surface2); border: 1px solid var(--border);
+    }
+    .btn-sm:hover { border-color: var(--accent); background: var(--surface3); }
+    .btn-sm.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-sm.primary:hover { background: #2563eb; }
+
+    /* ── Empty state ── */
+    .empty-state {
+      grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+      color: var(--muted);
+    }
+    .empty-state p { font-size: 15px; }
+
+    /* ── Loading ── */
+    .loading {
+      grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--muted);
+    }
+    .spinner {
+      display: inline-block; width: 20px; height: 20px;
+      border: 2px solid var(--border); border-top-color: var(--accent);
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      margin-right: 8px; vertical-align: middle;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="home" href="./index.html">Home</a>
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="trail">Hikes</button>
+        <button class="tab" data-filter="restaurant">Restaurants</button>
+        <button class="tab" data-filter="viewpoint">Viewpoints</button>
+        <button class="tab" data-filter="swim,beach">Swimming</button>
+        <button class="tab" data-filter="poncha,wine,bakery">Bars & Drinks</button>
+        <button class="tab" data-filter="garden">Gardens</button>
+        <button class="tab" data-filter="hidden-gem">Hidden Gems</button>
+      </div>
+      <a class="nav-btn guide" href="./itinerary.html">Guides</a>
+      <a class="nav-btn map" href="./madeira_map.html">Map</a>
+    </div>
+  </div>
+
+  <div class="controls" id="controls">
+    <input class="search-box" id="search" type="search" placeholder="Search all locations..." />
+    <div class="select-wrap">
+      <select id="regionFilter">
+        <option value="">All Regions</option>
+        <option value="Funchal & South">Funchal & South</option>
+        <option value="Central Mountains">Central Mountains</option>
+        <option value="East">East</option>
+        <option value="North Coast">North Coast</option>
+        <option value="West & Southwest">West & Southwest</option>
+      </select>
+    </div>
+    <div class="difficulty-filter" id="diffFilter" style="display:none;">
+      <button class="diff-btn active" data-diff="all">All</button>
+      <button class="diff-btn" data-diff="Easy">Easy</button>
+      <button class="diff-btn" data-diff="Moderate">Moderate</button>
+      <button class="diff-btn" data-diff="Hard">Hard</button>
+    </div>
+    <div class="sort-btns">
+      <button class="sort-btn active" data-sort="rating">Top Rated</button>
+      <button class="sort-btn" data-sort="name">A-Z</button>
+    </div>
+    <div class="results-count" id="resultsCount"></div>
+  </div>
+
+  <div class="card-grid" id="cardGrid">
+    <div class="loading"><span class="spinner"></span> Loading explorer data...</div>
+  </div>
+
+  <script>
+    // ── State ──
+    let allItems = [];
+    let activeKindFilter = 'all';
+    let activeRegion = '';
+    let activeDifficulty = 'all';
+    let activeSort = 'rating';
+    let searchQuery = '';
+
+    // ── Kind config ──
+    const KIND_META = {
+      trail:       { icon: '\u{1F5FB}', label: 'Hike', badgeClass: 'badge-green' },
+      restaurant:  { icon: '\u{1F37D}', label: 'Restaurant', badgeClass: 'badge-red' },
+      viewpoint:   { icon: '\u{1F304}', label: 'Viewpoint', badgeClass: 'badge-amber' },
+      swim:        { icon: '\u{1F30A}', label: 'Swimming', badgeClass: 'badge-blue' },
+      beach:       { icon: '\u{1F3D6}', label: 'Beach', badgeClass: 'badge-cyan' },
+      garden:      { icon: '\u{1F33A}', label: 'Garden', badgeClass: 'badge-green' },
+      poncha:      { icon: '\u{1F378}', label: 'Poncha Bar', badgeClass: 'badge-purple' },
+      wine:        { icon: '\u{1F377}', label: 'Wine Lodge', badgeClass: 'badge-pink' },
+      bakery:      { icon: '\u{1F950}', label: 'Bakery', badgeClass: 'badge-amber' },
+      nightlife:   { icon: '\u{1F3B6}', label: 'Nightlife', badgeClass: 'badge-pink' },
+      'hidden-gem':{ icon: '\u{2728}',  label: 'Hidden Gem', badgeClass: 'badge-teal' },
+      town:        { icon: '\u{1F3D8}', label: 'Town', badgeClass: 'badge-blue' },
+      market:      { icon: '\u{1F6D2}', label: 'Market', badgeClass: 'badge-amber' },
+      peak:        { icon: '\u{26F0}',  label: 'Summit', badgeClass: 'badge-dark' },
+    };
+
+    // ── Stars renderer ──
+    function renderStars(rating, max) {
+      max = max || 5;
+      const full = Math.floor(rating);
+      const half = rating - full >= 0.3;
+      let s = '';
+      for (let i = 0; i < full; i++) s += '\u2605';
+      if (half) s += '\u2605';
+      const empty = max - full - (half ? 1 : 0);
+      for (let i = 0; i < empty; i++) s += '\u2606';
+      return s;
+    }
+
+    // ── Card builder ──
+    function buildCard(item) {
+      const km = KIND_META[item.kind] || { icon: '\u{1F4CD}', label: item.kind, badgeClass: 'badge-dark' };
+      const hasImage = item.image_url && item.image_url !== 'null' && item.image_url !== null;
+
+      let imgHtml;
+      if (hasImage) {
+        imgHtml = `<img src="${item.image_url}" alt="${item.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=placeholder>${km.icon}</div>'" />`;
+      } else {
+        imgHtml = `<div class="placeholder">${km.icon}</div>`;
+      }
+
+      // Badges
+      let badges = `<span class="badge ${km.badgeClass}">${km.label}</span>`;
+      if (item.kind === 'trail') {
+        if (item.difficulty) {
+          const dc = item.difficulty === 'Easy' ? 'badge-green' : item.difficulty === 'Moderate' ? 'badge-amber' : 'badge-red';
+          badges += ` <span class="badge ${dc}">${item.difficulty}</span>`;
+        }
+        if (item.status && item.status !== 'open') {
+          badges += ` <span class="badge badge-status-${item.status}">${item.status.toUpperCase()}</span>`;
+        }
+      }
+      if (item.kind === 'restaurant' && item.price_range) {
+        badges += ` <span class="badge badge-dark">${item.price_range}</span>`;
+      }
+      if (item.kind === 'viewpoint' && item.entry_fee) {
+        const freeText = (item.entry_fee === 'Free' || item.entry_fee === '0' || item.free) ? 'FREE' : item.entry_fee;
+        badges += ` <span class="badge badge-dark">${freeText}</span>`;
+      }
+
+      // Stats
+      let statsHtml = '';
+      if (item.kind === 'trail') {
+        const parts = [];
+        if (item.distance_km) parts.push(`<span class="stat"><strong>${item.distance_km}</strong> km</span>`);
+        if (item.elevation_m) parts.push(`<span class="stat"><strong>${item.elevation_m}</strong>m elev</span>`);
+        if (item.time_hours) parts.push(`<span class="stat"><strong>${item.time_hours}</strong>h</span>`);
+        if (item.fee_eur !== undefined && item.fee_eur !== null) parts.push(`<span class="stat"><strong>\u20AC${item.fee_eur}</strong></span>`);
+        if (item.tunnels) parts.push(`<span class="stat"><strong>${item.tunnels}</strong> tunnels</span>`);
+        statsHtml = `<div class="card-stats">${parts.join('')}</div>`;
+      }
+      if (item.kind === 'viewpoint') {
+        const parts = [];
+        if (item.altitude_m) parts.push(`<span class="stat"><strong>${item.altitude_m}</strong>m altitude</span>`);
+        if (item.best_time) parts.push(`<span class="stat">Best: <strong>${item.best_time}</strong></span>`);
+        statsHtml = `<div class="card-stats">${parts.join('')}</div>`;
+      }
+
+      // Rating
+      let ratingHtml = '';
+      if (item.kind === 'trail' && item.rating) {
+        ratingHtml = `<div class="card-rating">
+          <span class="stars">${renderStars(item.rating)}</span>
+          <span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()} reviews)` : ''}</span>
+        </div>`;
+      }
+      if (item.kind === 'viewpoint' && item.worth_it) {
+        ratingHtml = `<div class="card-rating">
+          <span class="stars">${renderStars(item.worth_it / 2)}</span>
+          <span class="rating-text">Worth it: ${item.worth_it}/10</span>
+        </div>`;
+      }
+
+      // Highlight
+      let highlightHtml = '';
+      if (item.must_order) {
+        highlightHtml = `<div class="card-highlight">Must order: ${item.must_order}</div>`;
+      }
+      if (item.cuisine) {
+        highlightHtml = `<div class="card-highlight">${item.cuisine}</div>` + highlightHtml;
+      }
+
+      // Tip
+      const tipHtml = item.tip ? `<div class="card-tip">${item.tip}</div>` : '';
+
+      // Actions
+      let actionsHtml = '';
+      if (item.google_maps_url) {
+        actionsHtml += `<a class="btn-sm primary" href="${item.google_maps_url}" target="_blank" rel="noopener">Google Maps</a>`;
+      }
+      actionsHtml += `<a class="btn-sm" href="./madeira_map.html?poi=${item.id}">Show on Map</a>`;
+      if (item.kind === 'trail') {
+        actionsHtml += `<a class="btn-sm" href="./itinerary.html#hikes">Trail Guide</a>`;
+      }
+
+      return `
+        <div class="card" data-kind="${item.kind}" data-region="${item.region || ''}" data-difficulty="${item.difficulty || ''}" data-id="${item.id}">
+          <div class="card-img">
+            ${imgHtml}
+            <div class="badges">${badges}</div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">${item.code ? item.code + ' — ' : ''}${item.name}</div>
+            <div class="card-region">${item.region || ''}</div>
+            ${statsHtml}
+            ${ratingHtml}
+            ${highlightHtml}
+            ${tipHtml}
+            <div class="card-actions">${actionsHtml}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ── Filtering & sorting ──
+    function getFilteredItems() {
+      let items = allItems;
+
+      // Kind filter
+      if (activeKindFilter !== 'all') {
+        const kinds = activeKindFilter.split(',');
+        items = items.filter(i => kinds.includes(i.kind));
+      }
+
+      // Region filter
+      if (activeRegion) {
+        items = items.filter(i => i.region === activeRegion);
+      }
+
+      // Difficulty filter (only for trails)
+      if (activeDifficulty !== 'all' && activeKindFilter === 'trail') {
+        items = items.filter(i => i.difficulty === activeDifficulty);
+      }
+
+      // Search
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        items = items.filter(i =>
+          (i.name && i.name.toLowerCase().includes(q)) ||
+          (i.tip && i.tip.toLowerCase().includes(q)) ||
+          (i.cuisine && i.cuisine.toLowerCase().includes(q)) ||
+          (i.must_order && i.must_order.toLowerCase().includes(q)) ||
+          (i.code && i.code.toLowerCase().includes(q)) ||
+          (i.region && i.region.toLowerCase().includes(q))
+        );
+      }
+
+      // Sort
+      items = [...items];
+      if (activeSort === 'rating') {
+        items.sort((a, b) => {
+          const ra = a.rating || a.worth_it || 0;
+          const rb = b.rating || b.worth_it || 0;
+          return rb - ra;
+        });
+      } else if (activeSort === 'name') {
+        items.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+      }
+
+      return items;
+    }
+
+    function renderCards() {
+      const grid = document.getElementById('cardGrid');
+      const items = getFilteredItems();
+      const count = document.getElementById('resultsCount');
+
+      if (items.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><p>No locations match your filters. Try broadening your search.</p></div>';
+        count.textContent = 'No results';
+        return;
+      }
+
+      grid.innerHTML = items.map(buildCard).join('');
+      count.textContent = `Showing ${items.length} location${items.length !== 1 ? 's' : ''}`;
+    }
+
+    function updateTabCounts() {
+      document.querySelectorAll('.tab').forEach(tab => {
+        const filter = tab.dataset.filter;
+        let c;
+        if (filter === 'all') {
+          c = allItems.length;
+        } else {
+          const kinds = filter.split(',');
+          c = allItems.filter(i => kinds.includes(i.kind)).length;
+        }
+        let countEl = tab.querySelector('.count');
+        if (!countEl) {
+          countEl = document.createElement('span');
+          countEl.className = 'count';
+          tab.appendChild(countEl);
+        }
+        countEl.textContent = `(${c})`;
+      });
+    }
+
+    // ── Event handlers ──
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        activeKindFilter = tab.dataset.filter;
+
+        // Show/hide difficulty filter
+        const diffFilter = document.getElementById('diffFilter');
+        diffFilter.style.display = activeKindFilter === 'trail' ? 'flex' : 'none';
+
+        renderCards();
+      });
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderCards();
+    });
+
+    document.getElementById('regionFilter').addEventListener('change', (e) => {
+      activeRegion = e.target.value;
+      renderCards();
+    });
+
+    document.querySelectorAll('.diff-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeDifficulty = btn.dataset.diff;
+        renderCards();
+      });
+    });
+
+    document.querySelectorAll('.sort-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeSort = btn.dataset.sort;
+        renderCards();
+      });
+    });
+
+    // ── Load data ──
+    async function init() {
+      try {
+        const resp = await fetch('./data/madeira_data.json', { cache: 'no-store' });
+        const data = await resp.json();
+        allItems = data.items || [];
+        updateTabCounts();
+        renderCards();
+      } catch (err) {
+        document.getElementById('cardGrid').innerHTML =
+          `<div class="empty-state"><p>Failed to load data: ${err.message}</p><p>If viewing locally, use a local server: <code>python3 -m http.server</code></p></div>`;
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

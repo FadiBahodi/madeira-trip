@@ -1,0 +1,179 @@
+{
+  "images": {
+    "ponta-de-sao-lourenco": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg/800px-Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg",
+      "credit": "Photo by Diego Delso, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Ponta_de_S%C3%A3o_Louren%C3%A7o,_Madeira,_Portugal,_2019-05-28,_DD_31.jpg"
+    },
+    "levada-25-fontes": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Madeira_-_Levada_das_25_Fontes_%2823997585133%29.jpg/800px-Madeira_-_Levada_das_25_Fontes_%2823997585133%29.jpg",
+      "credit": "Photo by muffinn from Worcester, UK, CC BY 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira_-_Levada_das_25_Fontes_(23997585133).jpg"
+    },
+    "risco-waterfall": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Der_Risco-Wasserfall_im_Nebel.jpg/800px-Der_Risco-Wasserfall_im_Nebel.jpg",
+      "credit": "Photo by GerritR, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Der_Risco-Wasserfall_im_Nebel.jpg"
+    },
+    "caldeirao-verde": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Levada_do_Caldeir%C3%A3o_Verde%2C_Madeira_%2809611%29.jpg/800px-Levada_do_Caldeir%C3%A3o_Verde%2C_Madeira_%2809611%29.jpg",
+      "credit": "Photo by Günter Seggebäing, Coesfeld, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Levada_do_Caldeir%C3%A3o_Verde,_Madeira_(09611).jpg"
+    },
+    "pico-areeiro-pico-ruivo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/G%C3%B3rski_szlak_pieszy_PR1_z_Pico_Arreiro_do_Pico_Ruivo_-_Vereda_do_Areeiro_-_Madeira%2C_Portugalia%2C_sierpie%C5%84_2022.jpg/800px-G%C3%B3rski_szlak_pieszy_PR1_z_Pico_Arreiro_do_Pico_Ruivo_-_Vereda_do_Areeiro_-_Madeira%2C_Portugalia%2C_sierpie%C5%84_2022.jpg",
+      "credit": "Photo by Krzysztof Popławski, CC BY 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:G%C3%B3rski_szlak_pieszy_PR1_z_Pico_Arreiro_do_Pico_Ruivo_-_Vereda_do_Areeiro_-_Madeira,_Portugalia,_sierpie%C5%84_2022.jpg"
+    },
+    "pico-ruivo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Pico_Ruivo_Peak.jpg/800px-Pico_Ruivo_Peak.jpg",
+      "credit": "Photo by The Kopf System, CC BY-SA 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Pico_Ruivo_Peak.jpg"
+    },
+    "balcoes-viewpoint": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/View_from_Balc%C3%B5es_-_Madeira.jpg/800px-View_from_Balc%C3%B5es_-_Madeira.jpg",
+      "credit": "Photo by H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:View_from_Balc%C3%B5es_-_Madeira.jpg"
+    },
+    "fanal-forest": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1517.jpg/800px-Fanal_%28Madeira%2C_Portugal%29%2C_Lorbeerwald_--_2025_--_1517.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Fanal_(Madeira,_Portugal),_Lorbeerwald_--_2025_--_1517.jpg"
+    },
+    "levada-do-rei": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Levada_do_Rei%2C_Madeira%2C_PR_10%2C_waterfall.jpg/800px-Levada_do_Rei%2C_Madeira%2C_PR_10%2C_waterfall.jpg",
+      "credit": "Photo by Gerda Arendt, CC0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Levada_do_Rei,_Madeira,_PR_10,_waterfall.jpg"
+    },
+    "pinaculo-folhadal": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Pr_17%2C_Encumeada%2C_Madeira%2C_ferns_in_drizzling_water.jpg/800px-Pr_17%2C_Encumeada%2C_Madeira%2C_ferns_in_drizzling_water.jpg",
+      "credit": "Photo by Gerda Arendt, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Pr_17,_Encumeada,_Madeira,_ferns_in_drizzling_water.jpg"
+    },
+    "levada-do-furado": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Levada_do_Furado%2C_Madeira_-_2013-04-05_-_90145216.jpg/800px-Levada_do_Furado%2C_Madeira_-_2013-04-05_-_90145216.jpg",
+      "credit": "Photo by Sergey Ashmarin, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Levada_do_Furado,_Madeira_-_2013-04-05_-_90145216.jpg"
+    },
+    "cabo-girao": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Cabo_Gir%C3%A3o_-_Skywalk.JPG/800px-Cabo_Gir%C3%A3o_-_Skywalk.JPG",
+      "credit": "Photo by Dirk Klaassen, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Cabo_Gir%C3%A3o_-_Skywalk.JPG"
+    },
+    "eira-do-serrado": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Curral_das_Freiras_from_Eira_do_Serrado%2C_C%C3%A2mara_de_Lobos%2C_Madeira%2C_2023_May.jpg/800px-Curral_das_Freiras_from_Eira_do_Serrado%2C_C%C3%A2mara_de_Lobos%2C_Madeira%2C_2023_May.jpg",
+      "credit": "Photo by Ximonic (Simo Räsänen), CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Curral_das_Freiras_from_Eira_do_Serrado,_C%C3%A2mara_de_Lobos,_Madeira,_2023_May.jpg"
+    },
+    "pico-do-areeiro": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Vista_desde_el_pico_de_Arieiro%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_147-153_PAN.jpg/800px-Vista_desde_el_pico_de_Arieiro%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_147-153_PAN.jpg",
+      "credit": "Photo by Diego Delso, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Vista_desde_el_pico_de_Arieiro,_Madeira,_Portugal,_2019-05-30,_DD_147-153_PAN.jpg"
+    },
+    "miradouro-dos-balcoes": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Balcoes03.jpg/800px-Balcoes03.jpg",
+      "credit": "Photo by Ramessos, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Balcoes03.jpg"
+    },
+    "ponta-do-rosto": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/2016_Vista_da_costa_desde_a_Ponta_do_Rosto_ate_a_Ponta_do_Castelo._Ponta_de_S%C3%A3o_Louren%C3%A7o._Madeira._Portugal-3.jpg/800px-2016_Vista_da_costa_desde_a_Ponta_do_Rosto_ate_a_Ponta_do_Castelo._Ponta_de_S%C3%A3o_Louren%C3%A7o._Madeira._Portugal-3.jpg",
+      "credit": "Photo by Luis Miguel Bugallo Sánchez (Lmbuga), CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:2016_Vista_da_costa_desde_a_Ponta_do_Rosto_ate_a_Ponta_do_Castelo._Ponta_de_S%C3%A3o_Louren%C3%A7o._Madeira._Portugal-3.jpg"
+    },
+    "veu-da-noiva": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Mirador_del_Velo_de_Novia%2C_Seixal%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_68.jpg/800px-Mirador_del_Velo_de_Novia%2C_Seixal%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_68.jpg",
+      "credit": "Photo by Diego Delso, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Mirador_del_Velo_de_Novia,_Seixal,_Madeira,_Portugal,_2019-05-30,_DD_68.jpg"
+    },
+    "ribeira-da-janela": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Ribeira_da_Janela_%28Madeira%2C_Portugal%29%2C_K%C3%BCste_--_2025_--_1557.jpg/800px-Ribeira_da_Janela_%28Madeira%2C_Portugal%29%2C_K%C3%BCste_--_2025_--_1557.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Ribeira_da_Janela_(Madeira,_Portugal),_K%C3%BCste_--_2025_--_1557.jpg"
+    },
+    "ponta-do-pargo": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Ponta_do_Pargo_%28Madeira%2C_Portugal%29%2C_Farol_da_Ponta_do_Pargo_--_2025_--_1814.jpg/800px-Ponta_do_Pargo_%28Madeira%2C_Portugal%29%2C_Farol_da_Ponta_do_Pargo_--_2025_--_1814.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Ponta_do_Pargo_(Madeira,_Portugal),_Farol_da_Ponta_do_Pargo_--_2025_--_1814.jpg"
+    },
+    "porto-moniz": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Madeira_-_Porto_Moniz_-_01_-_Piscinas_naturales.jpg/800px-Madeira_-_Porto_Moniz_-_01_-_Piscinas_naturales.jpg",
+      "credit": "Photo by Xosema, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira_-_Porto_Moniz_-_01_-_Piscinas_naturales.jpg"
+    },
+    "seixal-beach": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Black_sand_beach_%2840216297634%29.jpg/800px-Black_sand_beach_%2840216297634%29.jpg",
+      "credit": "Photo by VinceTraveller, CC BY 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Black_sand_beach_(40216297634).jpg"
+    },
+    "praia-da-calheta": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Madeira-Calheta-harbour-public_sand_beach-99ASD.jpg/800px-Madeira-Calheta-harbour-public_sand_beach-99ASD.jpg",
+      "credit": "Photo by Asurnipal, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira-Calheta-harbour-public_sand_beach-99ASD.jpg"
+    },
+    "prainha": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Prainha_Beach_%2842402305755%29.jpg/800px-Prainha_Beach_%2842402305755%29.jpg",
+      "credit": "Photo by Michael Gaylard, CC BY 2.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Prainha_Beach_(42402305755).jpg"
+    },
+    "doca-do-cavacas": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Doca_do_Cavacas_-_Funchal_01.jpg/800px-Doca_do_Cavacas_-_Funchal_01.jpg",
+      "credit": "Photo by H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Doca_do_Cavacas_-_Funchal_01.jpg"
+    },
+    "faja-dos-padres": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Madeira-Quinta_Grande-Faja_dos_Padres-01ASD.jpg/800px-Madeira-Quinta_Grande-Faja_dos_Padres-01ASD.jpg",
+      "credit": "Photo by Asurnipal, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira-Quinta_Grande-Faja_dos_Padres-01ASD.jpg"
+    },
+    "monte-palace": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg/800px-Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg",
+      "credit": "Photo by H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg"
+    },
+    "botanical-garden": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg/800px-Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Santa_Maria_Maior_(Madeira,_Portugal),_Jardim_Bot%C3%A2nico_da_Madeira,_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg"
+    },
+    "palheiro-gardens": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Madeira%2C_Palheiro_Gardens_-_Geranium_maderense_IMG_2314.JPG/800px-Madeira%2C_Palheiro_Gardens_-_Geranium_maderense_IMG_2314.JPG",
+      "credit": "Photo by Hedwig Storch, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira,_Palheiro_Gardens_-_Geranium_maderense_IMG_2314.JPG"
+    },
+    "camara-de-lobos": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1885.jpg/800px-C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1885.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:C%C3%A2mara_de_Lobos_(Madeira,_Portugal),_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1885.jpg"
+    },
+    "funchal-old-town": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1151.jpg/800px-Zona_Velha_do_Funchal%2C_Funchal%2C_Madeira_-_IMG_1151.jpg",
+      "credit": "Photo by PESP/Wikimedia, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Zona_Velha_do_Funchal,_Funchal,_Madeira_-_IMG_1151.jpg"
+    },
+    "santana": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Casas_de_Santana_traditional_houses_in_Santana%2C_Madeira%2C_2023_May.jpg/800px-Casas_de_Santana_traditional_houses_in_Santana%2C_Madeira%2C_2023_May.jpg",
+      "credit": "Photo by Ximonic (Simo Räsänen), CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Casas_de_Santana_traditional_houses_in_Santana,_Madeira,_2023_May.jpg"
+    },
+    "curral-das-freiras": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Madeira._Looking_down_to_the_Valley_of_the_Nuns._Height_1096_Mtrs._%2851858582442%29.jpg/800px-Madeira._Looking_down_to_the_Valley_of_the_Nuns._Height_1096_Mtrs._%2851858582442%29.jpg",
+      "credit": "Photo by Anne and David from Kent, England UK, Public Domain, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Madeira._Looking_down_to_the_Valley_of_the_Nuns._Height_1096_Mtrs._(51858582442).jpg"
+    },
+    "mercado-dos-lavradores": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Funchal_%28Madeira%2C_Portugal%29%2C_Mercado_dos_Lavradores_--_2025_--_0997.jpg/800px-Funchal_%28Madeira%2C_Portugal%29%2C_Mercado_dos_Lavradores_--_2025_--_0997.jpg",
+      "credit": "Photo by Dietmar Rabich, CC BY-SA 4.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Funchal_(Madeira,_Portugal),_Mercado_dos_Lavradores_--_2025_--_0997.jpg"
+    },
+    "achadas-da-cruz": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2010-03-01_16_08_47_Portugal-Sal%C3%A3o.jpg/800px-2010-03-01_16_08_47_Portugal-Sal%C3%A3o.jpg",
+      "credit": "Photo by Hansueli Krapf, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:2010-03-01_16_08_47_Portugal-Sal%C3%A3o.jpg"
+    },
+    "blandys-wine-lodge": {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Blandy%27s_Wine_Lodge_-_Funchal_01.jpg/800px-Blandy%27s_Wine_Lodge_-_Funchal_01.jpg",
+      "credit": "Photo by H. Zell, CC BY-SA 3.0, via Wikimedia Commons",
+      "source": "https://commons.wikimedia.org/wiki/File:Blandy%27s_Wine_Lodge_-_Funchal_01.jpg"
+    }
+  }
+}

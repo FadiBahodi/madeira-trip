@@ -5,347 +5,631 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Madeira Interactive Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <style>
-    html, body { height: 100%; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+    :root {
+      --bg: #0a0f1a; --surface: #111827; --surface2: #1a2332; --surface3: #1f2b3d;
+      --border: rgba(255,255,255,0.08); --text: #e8eefc; --muted: rgba(232,238,252,0.55);
+      --accent: #3b82f6; --accent2: #60a5fa; --green: #34d399; --amber: #fbbf24; --red: #f87171;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
     #map { height: 100%; }
 
-    /* Home button */
-    .home-btn {
-      position: fixed; top: 12px; left: 56px; z-index: 1000;
-      background: #111827; color: #e8eefc; border: 1px solid rgba(255,255,255,0.15);
-      padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 700;
-      text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      transition: border-color 0.15s;
+    /* ── Top controls bar ── */
+    .map-topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 52px;
+      background: rgba(10,15,26,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 12px; gap: 8px;
     }
-    .home-btn:hover { border-color: #3b82f6; color: #fff; }
+    .map-topbar a.home-link {
+      color: var(--text); text-decoration: none; font-weight: 700; font-size: 13px;
+      padding: 6px 12px; border-radius: 8px; background: var(--surface);
+      border: 1px solid var(--border); flex-shrink: 0;
+    }
+    .map-topbar a.home-link:hover { border-color: var(--accent); }
+    .map-topbar .search-wrap { flex: 1; max-width: 320px; position: relative; }
+    .map-topbar .search-input {
+      width: 100%; padding: 7px 12px 7px 32px; font-size: 13px;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; outline: none;
+    }
+    .map-topbar .search-input:focus { border-color: var(--accent); }
+    .map-topbar .search-input::placeholder { color: var(--muted); }
+    .map-topbar .search-icon {
+      position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+      color: var(--muted); font-size: 14px; pointer-events: none;
+    }
+    .search-results {
+      position: absolute; top: 100%; left: 0; right: 0; margin-top: 4px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      max-height: 300px; overflow-y: auto; display: none; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .search-results.show { display: block; }
+    .search-result {
+      padding: 8px 12px; cursor: pointer; font-size: 13px; color: var(--text);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
+    }
+    .search-result:last-child { border-bottom: none; }
+    .search-result:hover { background: var(--surface2); }
+    .search-result .sr-kind { font-size: 11px; color: var(--muted); }
 
-    /* Legend panel */
-    .legend {
-      position: fixed; bottom: 24px; left: 12px; z-index: 1000;
-      background: rgba(17,24,39,0.92); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-      padding: 14px 16px; color: #e8eefc; font-size: 12px;
-      max-width: 200px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    .map-topbar .nav-links { display: flex; gap: 6px; margin-left: auto; }
+    .map-topbar .nav-btn {
+      color: var(--text); text-decoration: none; font-weight: 600; font-size: 12px;
+      padding: 6px 12px; border-radius: 8px; flex-shrink: 0;
     }
-    .legend h3 { font-size: 13px; font-weight: 700; margin: 0 0 10px; color: #60a5fa; }
-    .legend-item {
-      display: flex; align-items: center; gap: 8px; padding: 3px 0;
-      cursor: pointer; opacity: 1; transition: opacity 0.15s;
-    }
-    .legend-item.hidden { opacity: 0.3; }
-    .legend-item .dot {
-      width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
-      border: 2px solid rgba(255,255,255,0.4);
-    }
-    .legend-item .square {
-      width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
-      border: 2px solid rgba(255,255,255,0.4);
-    }
-    .legend-section { margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); }
-    .legend-section:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-    .legend-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(232,238,252,0.5); margin-bottom: 4px; }
+    .map-topbar .nav-btn.explore { background: var(--surface); border: 1px solid var(--border); }
+    .map-topbar .nav-btn.guide { background: var(--surface); border: 1px solid var(--border); }
 
-    /* Popup styling */
-    .leaflet-popup-content-wrapper {
-      background: #1a2332; color: #e8eefc; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .leaflet-popup-tip { background: #1a2332; }
-    .leaflet-popup-content { margin: 12px 14px; font-size: 13px; line-height: 1.5; }
-    .popup-title { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
-    .popup-kind { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    .popup-tip { font-size: 13px; color: rgba(232,238,252,0.8); border-left: 3px solid #3b82f6; padding-left: 8px; margin: 8px 0; }
-    .popup-region { font-size: 11px; color: rgba(232,238,252,0.5); margin-top: 6px; }
-    .popup-url a { color: #60a5fa; font-size: 12px; word-break: break-all; }
-    .popup-panel-link { margin-top: 8px; }
-    .popup-panel-link a { color: #60a5fa; font-size: 12px; text-decoration: none; }
-    .popup-panel-link a:hover { text-decoration: underline; }
-
-    /* Filter bar */
+    /* ── Filter chips bar ── */
     .filter-bar {
-      position: fixed; top: 12px; right: 12px; z-index: 1000;
-      display: flex; gap: 6px; flex-wrap: wrap; max-width: 340px; justify-content: flex-end;
+      position: fixed; top: 58px; left: 12px; z-index: 900;
+      display: flex; gap: 4px; flex-wrap: wrap; max-width: 460px;
     }
-    .filter-btn {
-      background: rgba(17,24,39,0.9); color: #e8eefc; border: 1px solid rgba(255,255,255,0.15);
-      padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
-      cursor: pointer; transition: all 0.15s; backdrop-filter: blur(8px);
+    .chip {
+      padding: 5px 10px; font-size: 11px; font-weight: 700; border-radius: 6px;
+      cursor: pointer; border: 1px solid var(--border); transition: all 0.15s;
+      background: rgba(17,24,39,0.9); color: var(--muted); backdrop-filter: blur(8px);
+      display: flex; align-items: center; gap: 4px;
     }
-    .filter-btn:hover { border-color: #3b82f6; }
-    .filter-btn.active { background: #3b82f6; border-color: #3b82f6; }
+    .chip:hover { color: var(--text); }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .chip .chip-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── Sidebar info panel ── */
+    .info-panel {
+      position: fixed; top: 0; right: -420px; width: 400px; height: 100%; z-index: 1100;
+      background: var(--bg); border-left: 1px solid var(--border);
+      overflow-y: auto; transition: right 0.3s ease; box-shadow: -4px 0 24px rgba(0,0,0,0.4);
+    }
+    .info-panel.open { right: 0; }
+    .info-panel-close {
+      position: absolute; top: 12px; right: 12px; width: 32px; height: 32px;
+      border-radius: 50%; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-size: 18px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; z-index: 10;
+    }
+    .info-panel-close:hover { border-color: var(--accent); }
+    .info-panel-img { width: 100%; height: 220px; object-fit: cover; display: block; background: var(--surface); }
+    .info-panel-img-placeholder {
+      width: 100%; height: 220px; display: flex; align-items: center; justify-content: center;
+      background: var(--surface); font-size: 64px; opacity: 0.15;
+    }
+    .info-panel-body { padding: 20px; }
+    .info-panel-body h2 { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .info-panel-body .ip-kind {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 12px; font-weight: 700;
+    }
+    .info-panel-body .ip-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .ip-badge {
+      padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;
+      color: #fff;
+    }
+    .info-panel-body .ip-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px;
+    }
+    .ip-stat {
+      background: var(--surface); border-radius: 8px; padding: 10px 12px;
+    }
+    .ip-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .ip-stat-value { font-size: 16px; font-weight: 700; color: var(--text); }
+    .info-panel-body .ip-rating {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+      font-size: 15px;
+    }
+    .ip-rating .stars { color: var(--amber); letter-spacing: 2px; }
+    .info-panel-body .ip-tip {
+      font-size: 14px; color: rgba(232,238,252,0.8); line-height: 1.6;
+      border-left: 3px solid var(--accent); padding: 8px 14px; margin-bottom: 16px;
+      background: var(--surface); border-radius: 0 8px 8px 0;
+    }
+    .info-panel-body .ip-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .ip-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; font-size: 13px; font-weight: 700;
+      border-radius: 8px; text-decoration: none; transition: all 0.15s;
+      color: #fff; background: var(--accent); border: none; cursor: pointer;
+    }
+    .ip-btn:hover { background: #2563eb; }
+    .ip-btn.secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .ip-btn.secondary:hover { border-color: var(--accent); }
+
+    .ip-credit { font-size: 11px; color: var(--muted); margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+    /* ── Overlay for panel on mobile ── */
+    .panel-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1050;
+      background: rgba(0,0,0,0.5); display: none;
+    }
+    .panel-overlay.show { display: block; }
 
     @media (max-width: 600px) {
-      .legend { display: none; }
-      .filter-bar { top: auto; bottom: 12px; right: 8px; left: 8px; max-width: none; justify-content: center; }
+      .info-panel { width: 100%; right: -100%; }
+      .filter-bar { top: 58px; left: 6px; right: 6px; max-width: none; }
+      .chip { font-size: 10px; padding: 4px 7px; }
     }
+
+    /* ── Custom Leaflet popup ── */
+    .leaflet-popup-content-wrapper {
+      background: var(--surface) !important; color: var(--text) !important;
+      border-radius: 12px !important; border: 1px solid var(--border) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+    }
+    .leaflet-popup-tip { background: var(--surface) !important; }
+    .leaflet-popup-content { margin: 0 !important; width: 280px !important; }
+    .popup-card { font-size: 13px; }
+    .popup-card img {
+      width: 100%; height: 140px; object-fit: cover; display: block;
+      border-radius: 12px 12px 0 0;
+    }
+    .popup-card .pc-body { padding: 10px 14px 12px; }
+    .popup-card .pc-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .popup-card .pc-kind { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .popup-card .pc-badges { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; }
+    .popup-card .pc-badge {
+      padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; color: #fff;
+    }
+    .popup-card .pc-stats { font-size: 12px; color: rgba(232,238,252,0.7); margin-bottom: 4px; }
+    .popup-card .pc-rating { display: flex; align-items: center; gap: 4px; margin-bottom: 6px; }
+    .popup-card .pc-rating .stars { color: var(--amber); font-size: 13px; }
+    .popup-card .pc-rating .rv { font-size: 11px; color: var(--muted); }
+    .popup-card .pc-tip { font-size: 12px; color: rgba(232,238,252,0.7); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .popup-card .pc-actions { display: flex; gap: 6px; }
+    .popup-card .pc-btn {
+      padding: 4px 8px; font-size: 11px; font-weight: 600; border-radius: 5px;
+      text-decoration: none; color: var(--text); background: var(--surface2); border: 1px solid var(--border);
+    }
+    .popup-card .pc-btn:hover { border-color: var(--accent); }
+    .popup-card .pc-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* ── Trail popup ── */
+    .trail-popup { font-size: 13px; padding: 12px 14px; }
+    .trail-popup .tp-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .trail-popup .tp-badges { display: flex; gap: 4px; margin-bottom: 8px; }
+    .trail-popup .tp-badge { padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 700; color: #fff; }
+    .trail-popup .tp-stats { font-size: 12px; color: rgba(232,238,252,0.7); margin-bottom: 6px; }
+    .trail-popup .tp-rating { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+    .trail-popup .tp-rating .stars { color: var(--amber); font-size: 13px; }
+
+    /* ── Cluster overrides ── */
+    .marker-cluster-small { background-color: rgba(59,130,246,0.3) !important; }
+    .marker-cluster-small div { background-color: rgba(59,130,246,0.7) !important; color: #fff !important; font-weight: 700 !important; }
+    .marker-cluster-medium { background-color: rgba(168,85,247,0.3) !important; }
+    .marker-cluster-medium div { background-color: rgba(168,85,247,0.7) !important; color: #fff !important; font-weight: 700 !important; }
+    .marker-cluster-large { background-color: rgba(236,72,153,0.3) !important; }
+    .marker-cluster-large div { background-color: rgba(236,72,153,0.7) !important; color: #fff !important; font-weight: 700 !important; }
+
+    /* ── Layer control ── */
+    .leaflet-control-layers {
+      background: var(--surface) !important; border: 1px solid var(--border) !important;
+      color: var(--text) !important; border-radius: 10px !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+    }
+    .leaflet-control-layers label { color: var(--text) !important; }
+    .leaflet-control-layers-separator { border-top-color: var(--border) !important; }
   </style>
 </head>
 <body>
-  <div id="map"></div>
-  <a class="home-btn" href="./index.html">Home</a>
 
+  <!-- Top controls -->
+  <div class="map-topbar">
+    <a class="home-link" href="./index.html">Home</a>
+    <div class="search-wrap">
+      <span class="search-icon">&#x1F50D;</span>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search locations..." />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+    <div class="nav-links">
+      <a class="nav-btn explore" href="./explore.html">Explorer</a>
+      <a class="nav-btn guide" href="./itinerary.html">Guides</a>
+    </div>
+  </div>
+
+  <!-- Filter chips -->
   <div class="filter-bar" id="filterBar"></div>
 
-  <div class="legend" id="legend"></div>
+  <!-- Sidebar panel -->
+  <div class="panel-overlay" id="panelOverlay"></div>
+  <div class="info-panel" id="infoPanel">
+    <button class="info-panel-close" id="panelClose">&times;</button>
+    <div id="panelContent"></div>
+  </div>
+
+  <div id="map" style="padding-top: 52px; height: 100%;"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script>
-    // ── Trail data (inline, from IFCN scrape) ──
-    const TRAILHEADS = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.314808333333335,33.09670833333334]},"properties":{"kind":"trailhead","code":"PR1","name_pt":"Vereda do Pico Branco e Terra Chã"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.941575,32.76021111111111]},"properties":{"kind":"trailhead","code":"PR1.1","name_pt":"Vereda da Ilha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.921133333333334,32.76481111111111]},"properties":{"kind":"trailhead","code":"PR1.2","name_pt":"Vereda do Pico Ruivo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.941575,32.76021111111111]},"properties":{"kind":"trailhead","code":"PR1.3","name_pt":"Vereda da Encumeada"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.886419444444442,32.73546388888889]},"properties":{"kind":"trailhead","code":"PR11","name_pt":"Vereda dos Balcões"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.987230555555556,32.71109722222222]},"properties":{"kind":"trailhead","code":"PR12","name_pt":"Caminho Real da Encumeada"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.107733333333336,32.76707222222222]},"properties":{"kind":"trailhead","code":"PR13","name_pt":"Vereda do Fanal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.140869444444444,32.80616388888889]},"properties":{"kind":"trailhead","code":"PR14","name_pt":"Levada dos Cedros"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.15788611111111,32.82606388888889]},"properties":{"kind":"trailhead","code":"PR15","name_pt":"Vereda da Ribeira da Janela"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.04945,32.779066666666665]},"properties":{"kind":"trailhead","code":"PR16","name_pt":"Levada Fajã do Rodrigues"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.01937222222222,32.754219444444445]},"properties":{"kind":"trailhead","code":"PR17","name_pt":"Caminho do Pináculo e Folhadal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.924641666666666,32.81691666666667]},"properties":{"kind":"trailhead","code":"PR18","name_pt":"Levada do Rei"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.21701111111111,32.752433333333336]},"properties":{"kind":"trailhead","code":"PR19","name_pt":"Caminho Real do Paul do Mar"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.966244444444445,32.742561111111115]},"properties":{"kind":"trailhead","code":"PR2","name_pt":"Vereda do Urzal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.21011111111111,32.74836388888889]},"properties":{"kind":"trailhead","code":"PR20","name_pt":"Vereda do Jardim do Mar"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.018925,32.75451388888889]},"properties":{"kind":"trailhead","code":"PR21","name_pt":"Caminho do Norte"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.01728888888889,32.75765833333333]},"properties":{"kind":"trailhead","code":"PR22","name_pt":"Vereda do Chão dos Louros"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.842944444444445,32.65408333333333]},"properties":{"kind":"trailhead","code":"PR23","name_pt":"Levada da Azenha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.33836111111111,33.08636111111112]},"properties":{"kind":"trailhead","code":"PR3","name_pt":"Levada do Pico do Castelo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.90311111111111,32.67619444444444]},"properties":{"kind":"trailhead","code":"PR3.1","name_pt":"Caminho Real do Monte"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.92477777777778,32.725944444444444]},"properties":{"kind":"trailhead","code":"PR4","name_pt":"Levada do Barreiro"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.82553611111111,32.74741111111111]},"properties":{"kind":"trailhead","code":"PR5","name_pt":"Vereda das Funduras"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.13368611111111,32.754625]},"properties":{"kind":"trailhead","code":"PR6","name_pt":"Levada das 25 Fontes"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.13368611111111,32.754625]},"properties":{"kind":"trailhead","code":"PR6.1","name_pt":"Levada do Risco"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.208383333333334,32.82934166666667]},"properties":{"kind":"trailhead","code":"PR7","name_pt":"Levada do Moinho"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.70103888888889,32.74335]},"properties":{"kind":"trailhead","code":"PR8","name_pt":"Vereda da Ponta de S. Lourenço"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-16.90579722222222,32.78377777777778]},"properties":{"kind":"trailhead","code":"PR9","name_pt":"Levada do Caldeirão Verde"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.12263888888889,32.77266111111111]},"properties":{"kind":"trailhead","code":"PR13.1","name_pt":"Vereda da Palha Carga"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.05951388888889,32.75746111111111]},"properties":{"kind":"trailhead","code":"PR27","name_pt":"Glaciar de Planalto"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.12708888888889,32.78160555555556]},"properties":{"kind":"trailhead","code":"PR28","name_pt":"Levada da Rocha Vermelha"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.153569444444443,32.768972222222224]},"properties":{"kind":"trailhead","code":"PR6.4","name_pt":"Levada Velha do Rabaçal"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.09946111111111,32.76246111111111]},"properties":{"kind":"trailhead","code":"PR6.5","name_pt":"Vereda do Pico Fernandes"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.149194444444444,32.75363611111111]},"properties":{"kind":"trailhead","code":"PR6.6","name_pt":"Vereda do Túnel do Cavalo"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-17.133125,32.753680555555555]},"properties":{"kind":"trailhead","code":"PR6.8","name_pt":"Vereda da Câmara de Carga"}}]};
-
-    const ROUTE_LINES = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.314808333333335,33.09670833333334],[-16.299566666666667,33.093808333333335]]},"properties":{"code":"PR1","name_pt":"Vereda do Pico Branco e Terra Chã"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.941575,32.76021111111111],[-16.911655555555555,32.805949999999996]]},"properties":{"code":"PR1.1","name_pt":"Vereda da Ilha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.921133333333334,32.76481111111111],[-16.942522222222223,32.75888333333333]]},"properties":{"code":"PR1.2","name_pt":"Vereda do Pico Ruivo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.941575,32.76021111111111],[-17.018641666666667,32.75423888888889]]},"properties":{"code":"PR1.3","name_pt":"Vereda da Encumeada"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.886419444444442,32.73546388888889],[-16.890349999999998,32.74158888888889]]},"properties":{"code":"PR11","name_pt":"Vereda dos Balcões"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.987230555555556,32.71109722222222],[-17.020988888888887,32.75339722222222]]},"properties":{"code":"PR12","name_pt":"Caminho Real da Encumeada"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.107733333333336,32.76707222222222],[-17.14218333333333,32.80830833333333]]},"properties":{"code":"PR13","name_pt":"Vereda do Fanal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.140869444444444,32.80616388888889],[-17.157941666666666,32.82591388888889]]},"properties":{"code":"PR14","name_pt":"Levada dos Cedros"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.15788611111111,32.82606388888889],[-17.15502222222222,32.844122222222225]]},"properties":{"code":"PR15","name_pt":"Vereda da Ribeira da Janela"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.04945,32.779066666666665],[-17.07739722222222,32.78868333333333]]},"properties":{"code":"PR16","name_pt":"Levada Fajã do Rodrigues"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.01937222222222,32.754219444444445],[-17.04475277777778,32.74270277777778]]},"properties":{"code":"PR17","name_pt":"Caminho do Pináculo e Folhadal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.924641666666666,32.81691666666667],[-16.938122222222223,32.79610833333333]]},"properties":{"code":"PR18","name_pt":"Levada do Rei"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.21701111111111,32.752433333333336],[-17.223841666666665,32.752658333333336]]},"properties":{"code":"PR19","name_pt":"Caminho Real do Paul do Mar"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.966244444444445,32.742561111111115],[-16.978580555555553,32.78217222222222]]},"properties":{"code":"PR2","name_pt":"Vereda do Urzal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.21011111111111,32.74836388888889],[-17.21156111111111,32.73768611111111]]},"properties":{"code":"PR20","name_pt":"Vereda do Jardim do Mar"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.018925,32.75451388888889],[-17.023716666666665,32.77440277777778]]},"properties":{"code":"PR21","name_pt":"Caminho do Norte"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.01728888888889,32.75765833333333],[-17.017141666666667,32.75774166666667]]},"properties":{"code":"PR22","name_pt":"Vereda do Chão dos Louros"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.842944444444445,32.65408333333333],[-16.841777777777775,32.65819444444444]]},"properties":{"code":"PR23","name_pt":"Levada da Azenha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.33836111111111,33.08636111111112],[-16.32311111111111,33.0705]]},"properties":{"code":"PR3","name_pt":"Levada do Pico do Castelo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.92477777777778,32.725944444444444],[-16.909555555555553,32.695361111111104]]},"properties":{"code":"PR4","name_pt":"Levada do Barreiro"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.82553611111111,32.74741111111111],[-16.79791388888889,32.737547222222226]]},"properties":{"code":"PR5","name_pt":"Vereda das Funduras"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.13368611111111,32.754625],[-17.12537777777778,32.765505555555556]]},"properties":{"code":"PR6","name_pt":"Levada das 25 Fontes"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.13368611111111,32.754625],[-17.12537777777778,32.765505555555556]]},"properties":{"code":"PR6.1","name_pt":"Levada do Risco"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.208383333333334,32.82934166666667],[-17.17756388888889,32.85532222222222]]},"properties":{"code":"PR7","name_pt":"Levada do Moinho"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.70103888888889,32.74335],[-16.683605555555555,32.74223055555556]]},"properties":{"code":"PR8","name_pt":"Vereda da Ponta de S. Lourenço"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-16.90579722222222,32.78377777777778],[-16.936363888888888,32.77423611111111]]},"properties":{"code":"PR9","name_pt":"Levada do Caldeirão Verde"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.12263888888889,32.77266111111111],[-17.125580555555555,32.76564722222222]]},"properties":{"code":"PR13.1","name_pt":"Vereda da Palha Carga"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.05951388888889,32.75746111111111],[-16.897222222222222,32.77972222222222]]},"properties":{"code":"PR27","name_pt":"Glaciar de Planalto"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.12708888888889,32.78160555555556],[-17.147225,32.746050000000004]]},"properties":{"code":"PR28","name_pt":"Levada da Rocha Vermelha"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.153569444444443,32.768972222222224],[-17.134944444444443,32.76161666666667]]},"properties":{"code":"PR6.4","name_pt":"Levada Velha do Rabaçal"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.09946111111111,32.76246111111111],[-17.125580555555555,32.76564722222222]]},"properties":{"code":"PR6.5","name_pt":"Vereda do Pico Fernandes"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.149194444444444,32.75363611111111],[-17.134916666666665,32.76161666666667]]},"properties":{"code":"PR6.6","name_pt":"Vereda do Túnel do Cavalo"}},{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-17.133125,32.753680555555555],[-17.125480555555555,32.74831944444445]]},"properties":{"code":"PR6.8","name_pt":"Vereda da Câmara de Carga"}}]};
-
-    // ── Color + icon config ──
+    // ── Config ──
     const KIND_CONFIG = {
-      // Trails
-      trailhead:   { color: '#16a34a', label: 'Trailhead', shape: 'circle', group: 'Trails' },
-      peak:        { color: '#6366f1', label: 'Summit', shape: 'triangle', group: 'Trails' },
-      // Places
-      town:        { color: '#0ea5e9', label: 'Town', shape: 'square', group: 'Places' },
-      market:      { color: '#f97316', label: 'Market', shape: 'square', group: 'Places' },
-      // Nature
-      viewpoint:   { color: '#f59e0b', label: 'Viewpoint', shape: 'diamond', group: 'Nature' },
-      garden:      { color: '#22c55e', label: 'Garden', shape: 'square', group: 'Nature' },
-      beach:       { color: '#06b6d4', label: 'Beach', shape: 'square', group: 'Nature' },
-      swim:        { color: '#0891b2', label: 'Swimming', shape: 'square', group: 'Nature' },
-      // Food & Drink
-      restaurant:  { color: '#ef4444', label: 'Restaurant', shape: 'square', group: 'Food & Drink' },
-      poncha:      { color: '#a855f7', label: 'Poncha Bar', shape: 'square', group: 'Food & Drink' },
-      wine:        { color: '#be185d', label: 'Wine Lodge', shape: 'square', group: 'Food & Drink' },
-      bakery:      { color: '#d97706', label: 'Bakery', shape: 'square', group: 'Food & Drink' },
-      // Other
-      nightlife:   { color: '#ec4899', label: 'Nightlife', shape: 'square', group: 'Other' },
-      'hidden-gem':{ color: '#14b8a6', label: 'Hidden Gem', shape: 'star', group: 'Other' },
+      trail:       { color: '#16a34a', label: 'Hike', icon: '\u{1F5FB}' },
+      restaurant:  { color: '#ef4444', label: 'Restaurant', icon: '\u{1F37D}' },
+      viewpoint:   { color: '#f59e0b', label: 'Viewpoint', icon: '\u{1F304}' },
+      swim:        { color: '#0891b2', label: 'Swimming', icon: '\u{1F30A}' },
+      beach:       { color: '#06b6d4', label: 'Beach', icon: '\u{1F3D6}' },
+      garden:      { color: '#22c55e', label: 'Garden', icon: '\u{1F33A}' },
+      poncha:      { color: '#a855f7', label: 'Poncha', icon: '\u{1F378}' },
+      wine:        { color: '#be185d', label: 'Wine', icon: '\u{1F377}' },
+      bakery:      { color: '#d97706', label: 'Bakery', icon: '\u{1F950}' },
+      nightlife:   { color: '#ec4899', label: 'Nightlife', icon: '\u{1F3B6}' },
+      'hidden-gem':{ color: '#14b8a6', label: 'Hidden Gem', icon: '\u{2728}' },
+      town:        { color: '#0ea5e9', label: 'Town', icon: '\u{1F3D8}' },
+      market:      { color: '#f97316', label: 'Market', icon: '\u{1F6D2}' },
+      peak:        { color: '#6366f1', label: 'Summit', icon: '\u{26F0}' },
     };
-    const DEFAULT_CONFIG = { color: '#64748b', label: 'Other', shape: 'square', group: 'Other' };
+    const DIFF_COLORS = { Easy: '#16a34a', Moderate: '#d97706', Hard: '#dc2626' };
+    const DEFAULT_CFG = { color: '#64748b', label: 'Other', icon: '\u{1F4CD}' };
+    function getCfg(kind) { return KIND_CONFIG[kind] || DEFAULT_CFG; }
 
-    function getConfig(kind) { return KIND_CONFIG[kind] || DEFAULT_CONFIG; }
+    function renderStars(r, max) {
+      max = max || 5; const f = Math.floor(r); const h = r - f >= 0.3;
+      let s = ''; for (let i = 0; i < f; i++) s += '\u2605';
+      if (h) s += '\u2605';
+      for (let i = 0; i < max - f - (h?1:0); i++) s += '\u2606';
+      return s;
+    }
 
-    // ── Icon factories ──
-    function makeIcon(color, shape, size) {
+    // ── SVG icon factory ──
+    function makeIcon(color, size) {
       size = size || 14;
-      let svg;
-      if (shape === 'circle') {
-        svg = `<circle cx="${size/2}" cy="${size/2}" r="${size/2-2}" fill="${color}" stroke="white" stroke-width="2"/>`;
-      } else if (shape === 'diamond') {
-        const h = size/2;
-        svg = `<polygon points="${h},1 ${size-1},${h} ${h},${size-1} 1,${h}" fill="${color}" stroke="white" stroke-width="1.5"/>`;
-      } else if (shape === 'triangle') {
-        svg = `<polygon points="${size/2},1 ${size-1},${size-1} 1,${size-1}" fill="${color}" stroke="white" stroke-width="1.5"/>`;
-      } else if (shape === 'star') {
-        const cx=size/2, cy=size/2, r1=size/2-1, r2=r1*0.4;
-        let pts = '';
-        for (let i=0;i<5;i++) {
-          const a1 = (i*72-90)*Math.PI/180, a2 = ((i*72+36)-90)*Math.PI/180;
-          pts += `${cx+r1*Math.cos(a1)},${cy+r1*Math.sin(a1)} ${cx+r2*Math.cos(a2)},${cy+r2*Math.sin(a2)} `;
-        }
-        svg = `<polygon points="${pts.trim()}" fill="${color}" stroke="white" stroke-width="1"/>`;
-      } else {
-        const m = 2;
-        svg = `<rect x="${m}" y="${m}" width="${size-m*2}" height="${size-m*2}" rx="2" fill="${color}" stroke="white" stroke-width="1.5"/>`;
-      }
       return new L.DivIcon({
         className: '',
-        html: `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${svg}</svg>`,
-        iconSize: [size, size],
-        iconAnchor: [size/2, size/2],
+        html: `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+          <circle cx="${size/2}" cy="${size/2}" r="${size/2-1.5}" fill="${color}" stroke="white" stroke-width="2" />
+        </svg>`,
+        iconSize: [size, size], iconAnchor: [size/2, size/2],
       });
     }
 
     // ── Map init ──
-    const map = L.map('map', { zoomControl: true }).setView([32.75, -16.95], 10);
+    const map = L.map('map', { zoomControl: true, zoomControlPosition: 'bottomright' }).setView([32.75, -16.95], 11);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+    // Tile layers
+    const osmTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    const topoTiles = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      maxZoom: 17, attribution: '&copy; OpenTopoMap'
+    });
+    const satTiles = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19, attribution: '&copy; Esri, Maxar'
+    });
+    osmTiles.addTo(map);
+    L.control.layers({ 'Street': osmTiles, 'Terrain': topoTiles, 'Satellite': satTiles }, null, { position: 'bottomright' }).addTo(map);
 
-    // ── Trail layers ──
-    function trailPopup(props) {
-      return `<div class="popup-title">${props.code || ''} — ${props.name_pt || ''}</div>
-              <div class="popup-kind" style="color:#16a34a">PR Trail</div>`;
-    }
-
-    const linesLayer = L.geoJSON(ROUTE_LINES, {
-      style: () => ({ color: '#3b82f6', weight: 3, opacity: 0.7, dashArray: '8 4' }),
-      onEachFeature: (f, layer) => layer.bindPopup(trailPopup(f.properties))
-    }).addTo(map);
-
-    const headsLayer = L.geoJSON(TRAILHEADS, {
-      pointToLayer: (f, ll) => L.marker(ll, { icon: makeIcon('#16a34a', 'circle', 12) }),
-      onEachFeature: (f, layer) => layer.bindPopup(trailPopup(f.properties))
-    }).addTo(map);
-
-    // ── POI layers (loaded from GeoJSON file) ──
-    const poiLayerGroups = {};  // kind -> L.LayerGroup
+    // ── Data state ──
+    let allItems = [];
+    let allMarkers = {};  // id → marker
+    let trailLayers = {}; // code → polyline
+    let clusterGroup;
     const hiddenKinds = new Set();
 
-    function poiPopup(props) {
-      const cfg = getConfig(props.kind);
-      let html = `<div class="popup-title">${props.name || ''}</div>`;
-      html += `<div class="popup-kind" style="color:${cfg.color}">${cfg.label}</div>`;
-      if (props.tip) html += `<div class="popup-tip">${props.tip}</div>`;
-      if (props.region) html += `<div class="popup-region">${props.region}</div>`;
+    // ── Popup HTML for POIs ──
+    function poiPopupHtml(item) {
+      const cfg = getCfg(item.kind);
+      const hasImg = item.image_url && item.image_url !== null;
+      let html = '<div class="popup-card">';
+      if (hasImg) html += `<img src="${item.image_url}" alt="${item.name}" loading="lazy" onerror="this.style.display='none'" />`;
+      html += '<div class="pc-body">';
+      html += `<div class="pc-title">${item.code ? item.code + ' — ' : ''}${item.name}</div>`;
+      html += `<div class="pc-kind" style="color:${cfg.color}">${cfg.label}${item.region ? ' &middot; ' + item.region : ''}</div>`;
+
+      // Badges
+      let badges = '';
+      if (item.difficulty) {
+        badges += `<span class="pc-badge" style="background:${DIFF_COLORS[item.difficulty] || '#666'}">${item.difficulty}</span>`;
+      }
+      if (item.price_range) badges += `<span class="pc-badge" style="background:#374151">${item.price_range}</span>`;
+      if (item.status && item.status !== 'open') {
+        const sc = item.status === 'closed' ? '#dc2626' : '#d97706';
+        badges += `<span class="pc-badge" style="background:${sc}">${item.status.toUpperCase()}</span>`;
+      }
+      if (item.entry_fee && item.kind === 'viewpoint') {
+        badges += `<span class="pc-badge" style="background:#374151">${item.free ? 'FREE' : item.entry_fee}</span>`;
+      }
+      if (badges) html += `<div class="pc-badges">${badges}</div>`;
+
+      // Stats
+      if (item.kind === 'trail') {
+        const parts = [];
+        if (item.distance_km) parts.push(`${item.distance_km} km`);
+        if (item.elevation_m) parts.push(`${item.elevation_m}m elev`);
+        if (item.time_hours) parts.push(`${item.time_hours}h`);
+        if (item.fee_eur !== undefined && item.fee_eur !== null) parts.push(`\u20AC${item.fee_eur}`);
+        if (parts.length) html += `<div class="pc-stats">${parts.join(' &middot; ')}</div>`;
+      }
+      if (item.kind === 'viewpoint' && item.altitude_m) {
+        html += `<div class="pc-stats">${item.altitude_m}m altitude${item.best_time ? ' &middot; Best: ' + item.best_time : ''}</div>`;
+      }
+
+      // Rating
+      if (item.rating) {
+        html += `<div class="pc-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rv">${item.rating}/5${item.review_count ? ' (' + item.review_count.toLocaleString() + ')' : ''}</span></div>`;
+      } else if (item.worth_it) {
+        html += `<div class="pc-rating"><span class="stars">${renderStars(item.worth_it/2)}</span><span class="rv">${item.worth_it}/10</span></div>`;
+      }
+
+      if (item.must_order) html += `<div style="color:#34d399;font-size:12px;font-weight:600;margin-bottom:4px">Try: ${item.must_order}</div>`;
+      if (item.tip) html += `<div class="pc-tip">${item.tip}</div>`;
+
+      // Actions
+      html += '<div class="pc-actions">';
+      if (item.google_maps_url) html += `<a class="pc-btn primary" href="${item.google_maps_url}" target="_blank">Google Maps</a>`;
+      html += `<a class="pc-btn" href="javascript:void(0)" onclick="openPanel('${item.id}')">Details</a>`;
+      html += '</div></div></div>';
       return html;
     }
 
-    async function loadPOIs() {
-      try {
-        const resp = await fetch('./data/madeira_pois.geojson', { cache: 'no-store' });
-        const data = await resp.json();
-
-        // Group features by kind
-        const byKind = {};
-        data.features.forEach(f => {
-          const kind = (f.properties && f.properties.kind) || 'default';
-          if (!byKind[kind]) byKind[kind] = [];
-          byKind[kind].push(f);
-        });
-
-        // Create layer group per kind
-        Object.entries(byKind).forEach(([kind, features]) => {
-          const cfg = getConfig(kind);
-          const markers = features.map(f => {
-            const coords = f.geometry.coordinates;
-            const marker = L.marker([coords[1], coords[0]], { icon: makeIcon(cfg.color, cfg.shape, 14) });
-            marker.bindPopup(poiPopup(f.properties || {}));
-            return marker;
-          });
-          const group = L.layerGroup(markers).addTo(map);
-          poiLayerGroups[kind] = group;
-        });
-
-        buildLegend(byKind);
-        buildFilterBar(byKind);
-        fitAll();
-      } catch (err) {
-        console.error('Failed to load POIs:', err);
+    // ── Trail popup ──
+    function trailPopupHtml(trail) {
+      let html = '<div class="trail-popup">';
+      html += `<div class="tp-title">${trail.code} — ${trail.name}</div>`;
+      let badges = '';
+      if (trail.difficulty) badges += `<span class="tp-badge" style="background:${DIFF_COLORS[trail.difficulty]}">${trail.difficulty}</span>`;
+      if (badges) html += `<div class="tp-badges">${badges}</div>`;
+      const parts = [];
+      if (trail.distance_km) parts.push(`${trail.distance_km} km`);
+      if (parts.length) html += `<div class="tp-stats">${parts.join(' &middot; ')}</div>`;
+      // Try to find matching item for rating data
+      const item = allItems.find(i => i.code === trail.code);
+      if (item && item.rating) {
+        html += `<div class="tp-rating"><span class="stars">${renderStars(item.rating)}</span> ${item.rating}/5${item.review_count ? ' (' + item.review_count.toLocaleString() + ')' : ''}</div>`;
       }
+      html += '</div>';
+      return html;
     }
 
-    function fitAll() {
-      const allLayers = [linesLayer, headsLayer, ...Object.values(poiLayerGroups)];
-      const group = L.featureGroup(allLayers.filter(l => map.hasLayer(l)));
-      if (group.getLayers().length) map.fitBounds(group.getBounds().pad(0.06));
-    }
+    // ── Sidebar panel ──
+    const panel = document.getElementById('infoPanel');
+    const panelContent = document.getElementById('panelContent');
+    const panelOverlay = document.getElementById('panelOverlay');
 
-    // ── Legend ──
-    function buildLegend(byKind) {
-      const legend = document.getElementById('legend');
-      const groups = {};
-
-      // Trail entry
-      groups['Trails'] = [{ kind: 'trailhead', count: TRAILHEADS.features.length, cfg: KIND_CONFIG.trailhead }];
-
-      // POI entries
-      Object.entries(byKind).forEach(([kind, features]) => {
-        const cfg = getConfig(kind);
-        if (!groups[cfg.group]) groups[cfg.group] = [];
-        groups[cfg.group].push({ kind, count: features.length, cfg });
-      });
-
-      let html = '<h3>Legend</h3>';
-      Object.entries(groups).forEach(([groupName, items]) => {
-        html += `<div class="legend-section"><div class="legend-section-title">${groupName}</div>`;
-        items.forEach(item => {
-          html += `<div class="legend-item" data-kind="${item.kind}" title="Click to toggle">
-            <div class="${item.cfg.shape === 'circle' ? 'dot' : 'square'}" style="background:${item.cfg.color}"></div>
-            <span>${item.cfg.label} (${item.count})</span>
-          </div>`;
-        });
-        html += '</div>';
-      });
-      legend.innerHTML = html;
-
-      // Click to toggle
-      legend.querySelectorAll('.legend-item').forEach(el => {
-        el.addEventListener('click', () => toggleKind(el.dataset.kind, el));
-      });
-    }
-
-    function toggleKind(kind, el) {
-      if (kind === 'trailhead') {
-        if (map.hasLayer(headsLayer)) { map.removeLayer(headsLayer); map.removeLayer(linesLayer); el.classList.add('hidden'); }
-        else { headsLayer.addTo(map); linesLayer.addTo(map); el.classList.remove('hidden'); }
-        return;
-      }
-      const group = poiLayerGroups[kind];
-      if (!group) return;
-      if (map.hasLayer(group)) { map.removeLayer(group); el.classList.add('hidden'); hiddenKinds.add(kind); }
-      else { group.addTo(map); el.classList.remove('hidden'); hiddenKinds.delete(kind); }
-      syncFilterBtns();
-    }
-
-    // ── Filter bar ──
-    function buildFilterBar(byKind) {
-      const bar = document.getElementById('filterBar');
-      const groups = {};
-      Object.entries(byKind).forEach(([kind, features]) => {
-        const cfg = getConfig(kind);
-        if (!groups[cfg.group]) groups[cfg.group] = [];
-        groups[cfg.group].push({ kind, cfg });
-      });
+    function openPanel(id) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+      const cfg = getCfg(item.kind);
+      const hasImg = item.image_url && item.image_url !== null;
 
       let html = '';
-      // "All" button
-      html += `<button class="filter-btn active" data-filter="all">All</button>`;
-      // Group buttons
-      Object.keys(groups).forEach(g => {
-        html += `<button class="filter-btn active" data-filter="group:${g}">${g}</button>`;
+      if (hasImg) {
+        html += `<img class="info-panel-img" src="${item.image_url}" alt="${item.name}" onerror="this.outerHTML='<div class=info-panel-img-placeholder>${cfg.icon}</div>'" />`;
+      } else {
+        html += `<div class="info-panel-img-placeholder">${cfg.icon}</div>`;
+      }
+
+      html += '<div class="info-panel-body">';
+      html += `<h2>${item.code ? item.code + ' — ' : ''}${item.name}</h2>`;
+      html += `<div class="ip-kind" style="color:${cfg.color}">${cfg.label}${item.region ? ' &middot; ' + item.region : ''}</div>`;
+
+      // Badges
+      let badges = '';
+      if (item.difficulty) badges += `<span class="ip-badge" style="background:${DIFF_COLORS[item.difficulty]}">${item.difficulty}</span>`;
+      if (item.price_range) badges += `<span class="ip-badge" style="background:#374151">${item.price_range}</span>`;
+      if (item.status && item.status !== 'open') {
+        const sc = item.status === 'closed' ? '#dc2626' : '#d97706';
+        badges += `<span class="ip-badge" style="background:${sc}">${item.status.toUpperCase()}</span>`;
+      }
+      if (item.entry_fee) {
+        const fee = item.free ? 'FREE' : item.entry_fee;
+        badges += `<span class="ip-badge" style="background:#374151">${fee}</span>`;
+      }
+      if (badges) html += `<div class="ip-badges">${badges}</div>`;
+
+      // Stats grid
+      const stats = [];
+      if (item.distance_km) stats.push(['Distance', item.distance_km + ' km']);
+      if (item.elevation_m) stats.push(['Elevation', item.elevation_m + 'm']);
+      if (item.time_hours) stats.push(['Time', item.time_hours + 'h']);
+      if (item.fee_eur !== undefined && item.fee_eur !== null) stats.push(['Fee', '\u20AC' + item.fee_eur]);
+      if (item.tunnels) stats.push(['Tunnels', item.tunnels]);
+      if (item.altitude_m) stats.push(['Altitude', item.altitude_m + 'm']);
+      if (item.best_time) stats.push(['Best Time', item.best_time]);
+      if (item.cuisine) stats.push(['Cuisine', item.cuisine]);
+      if (item.swim_type) stats.push(['Type', item.swim_type]);
+      if (item.hours) stats.push(['Hours', item.hours]);
+      if (stats.length) {
+        html += '<div class="ip-stats">';
+        stats.forEach(([label, value]) => {
+          html += `<div class="ip-stat"><div class="ip-stat-label">${label}</div><div class="ip-stat-value">${value}</div></div>`;
+        });
+        html += '</div>';
+      }
+
+      // Rating
+      if (item.rating) {
+        html += `<div class="ip-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted)">(${item.review_count.toLocaleString()} reviews)</span>` : ''}${item.rating_source ? ` <span style="color:var(--muted);font-size:12px">&middot; ${item.rating_source}</span>` : ''}</div>`;
+      } else if (item.worth_it) {
+        html += `<div class="ip-rating"><span class="stars">${renderStars(item.worth_it/2)}</span> <strong>Worth it: ${item.worth_it}/10</strong></div>`;
+      }
+
+      if (item.must_order) html += `<div style="color:var(--green);font-weight:700;margin-bottom:12px">Must order: ${item.must_order}</div>`;
+      if (item.tip) html += `<div class="ip-tip">${item.tip}</div>`;
+
+      // Actions
+      html += '<div class="ip-actions">';
+      if (item.google_maps_url) html += `<a class="ip-btn" href="${item.google_maps_url}" target="_blank">Open in Google Maps</a>`;
+      html += `<a class="ip-btn secondary" href="./explore.html#${item.id}">View in Explorer</a>`;
+      if (item.kind === 'trail') html += `<a class="ip-btn secondary" href="./itinerary.html#hikes">Trail Guide</a>`;
+      html += '</div>';
+
+      if (item.image_credit) html += `<div class="ip-credit">${item.image_credit}</div>`;
+      html += '</div>';
+
+      panelContent.innerHTML = html;
+      panel.classList.add('open');
+      panelOverlay.classList.add('show');
+    }
+
+    function closePanel() {
+      panel.classList.remove('open');
+      panelOverlay.classList.remove('show');
+    }
+    document.getElementById('panelClose').addEventListener('click', closePanel);
+    panelOverlay.addEventListener('click', closePanel);
+
+    // ── Filter chips ──
+    function buildFilterChips() {
+      const bar = document.getElementById('filterBar');
+      const kindCounts = {};
+      allItems.forEach(i => { kindCounts[i.kind] = (kindCounts[i.kind] || 0) + 1; });
+
+      let html = '<div class="chip active" data-kind="all">All</div>';
+      Object.entries(KIND_CONFIG).forEach(([kind, cfg]) => {
+        if (kindCounts[kind]) {
+          html += `<div class="chip" data-kind="${kind}"><span class="chip-dot" style="background:${cfg.color}"></span>${cfg.label} (${kindCounts[kind]})</div>`;
+        }
       });
       bar.innerHTML = html;
 
-      bar.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => handleFilter(btn, byKind, groups));
+      bar.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const kind = chip.dataset.kind;
+          if (kind === 'all') {
+            hiddenKinds.clear();
+            bar.querySelectorAll('.chip').forEach(c => c.classList.add('active'));
+          } else {
+            const isActive = chip.classList.contains('active');
+            if (isActive) { hiddenKinds.add(kind); chip.classList.remove('active'); }
+            else { hiddenKinds.delete(kind); chip.classList.add('active'); }
+            // Update "All" chip
+            bar.querySelector('[data-kind="all"]').classList.toggle('active', hiddenKinds.size === 0);
+          }
+          refreshMarkerVisibility();
+        });
       });
     }
 
-    function handleFilter(btn, byKind, groups) {
-      const filter = btn.dataset.filter;
-      if (filter === 'all') {
-        // Show everything
-        Object.keys(poiLayerGroups).forEach(k => { poiLayerGroups[k].addTo(map); hiddenKinds.delete(k); });
-        headsLayer.addTo(map); linesLayer.addTo(map);
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
-        document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('hidden'));
-      } else if (filter.startsWith('group:')) {
-        const groupName = filter.replace('group:', '');
-        const isActive = btn.classList.contains('active');
-        // Toggle all kinds in this group
-        Object.entries(byKind).forEach(([kind]) => {
-          const cfg = getConfig(kind);
-          if (cfg.group === groupName) {
-            if (isActive) { map.removeLayer(poiLayerGroups[kind]); hiddenKinds.add(kind); }
-            else { poiLayerGroups[kind].addTo(map); hiddenKinds.delete(kind); }
-          }
+    function refreshMarkerVisibility() {
+      if (!clusterGroup) return;
+      clusterGroup.clearLayers();
+      allItems.forEach(item => {
+        if (!hiddenKinds.has(item.kind) && allMarkers[item.id]) {
+          clusterGroup.addLayer(allMarkers[item.id]);
+        }
+      });
+    }
+
+    // ── Search ──
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      if (q.length < 2) { searchResults.classList.remove('show'); return; }
+      const matches = allItems.filter(i =>
+        (i.name && i.name.toLowerCase().includes(q)) ||
+        (i.code && i.code.toLowerCase().includes(q))
+      ).slice(0, 8);
+
+      if (matches.length === 0) { searchResults.classList.remove('show'); return; }
+
+      searchResults.innerHTML = matches.map(m => {
+        const cfg = getCfg(m.kind);
+        return `<div class="search-result" data-id="${m.id}">
+          <span style="color:${cfg.color}">${cfg.icon}</span>
+          <span>${m.code ? m.code + ' — ' : ''}${m.name}</span>
+          <span class="sr-kind">${cfg.label}</span>
+        </div>`;
+      }).join('');
+      searchResults.classList.add('show');
+
+      searchResults.querySelectorAll('.search-result').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.dataset.id;
+          flyToItem(id);
+          searchResults.classList.remove('show');
+          searchInput.value = '';
         });
-        btn.classList.toggle('active');
-        syncLegend();
+      });
+    });
+
+    searchInput.addEventListener('blur', () => {
+      setTimeout(() => searchResults.classList.remove('show'), 200);
+    });
+
+    function flyToItem(id) {
+      const marker = allMarkers[id];
+      if (marker) {
+        map.flyTo(marker.getLatLng(), 15, { duration: 1 });
+        setTimeout(() => marker.openPopup(), 1100);
       }
     }
 
-    function syncFilterBtns() {
-      document.querySelectorAll('.filter-btn[data-filter^="group:"]').forEach(btn => {
-        const groupName = btn.dataset.filter.replace('group:', '');
-        const allHidden = Object.entries(poiLayerGroups).every(([kind, g]) => {
-          const cfg = getConfig(kind);
-          return cfg.group !== groupName || !map.hasLayer(g);
+    // ── Load data ──
+    async function loadData() {
+      try {
+        const [dataResp, trailResp] = await Promise.all([
+          fetch('./data/madeira_data.json', { cache: 'no-store' }),
+          fetch('./data/trail_paths.geojson', { cache: 'no-store' })
+        ]);
+
+        const data = await dataResp.json();
+        allItems = data.items || [];
+
+        // Trail paths
+        const trailGeo = await trailResp.json();
+        renderTrailPaths(trailGeo);
+
+        // POI markers
+        clusterGroup = L.markerClusterGroup({
+          maxClusterRadius: 50,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
         });
-        btn.classList.toggle('active', !allHidden);
-      });
+
+        allItems.forEach(item => {
+          if (!item.lat || !item.lng) return;
+          const cfg = getCfg(item.kind);
+          const marker = L.marker([item.lat, item.lng], { icon: makeIcon(cfg.color, 14) });
+          marker.bindPopup(poiPopupHtml(item), { maxWidth: 300, minWidth: 280 });
+          allMarkers[item.id] = marker;
+          if (!hiddenKinds.has(item.kind)) {
+            clusterGroup.addLayer(marker);
+          }
+        });
+
+        map.addLayer(clusterGroup);
+        buildFilterChips();
+
+        // Deep-link: ?poi=xxx
+        const params = new URLSearchParams(window.location.search);
+        const poiId = params.get('poi');
+        if (poiId) {
+          setTimeout(() => {
+            flyToItem(poiId);
+            setTimeout(() => openPanel(poiId), 1200);
+          }, 500);
+        }
+
+      } catch (err) {
+        console.error('Failed to load data:', err);
+      }
     }
 
-    function syncLegend() {
-      document.querySelectorAll('.legend-item').forEach(el => {
-        const kind = el.dataset.kind;
-        if (kind === 'trailhead') { el.classList.toggle('hidden', !map.hasLayer(headsLayer)); return; }
-        const g = poiLayerGroups[kind];
-        if (g) el.classList.toggle('hidden', !map.hasLayer(g));
-      });
+    function renderTrailPaths(geojson) {
+      L.geoJSON(geojson, {
+        style: (feature) => {
+          const diff = feature.properties.difficulty || 'Moderate';
+          return {
+            color: DIFF_COLORS[diff] || '#3b82f6',
+            weight: 4,
+            opacity: 0.8,
+          };
+        },
+        onEachFeature: (feature, layer) => {
+          const props = feature.properties;
+          layer.bindPopup(trailPopupHtml(props), { maxWidth: 280 });
+          trailLayers[props.code] = layer;
+        }
+      }).addTo(map);
     }
 
     // ── Init ──
-    loadPOIs();
+    loadData();
   </script>
 </body>
 </html>
