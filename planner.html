@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Battle Plan — Madeira Mar 10-15</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <style>
+    :root {
+      --bg: #0a0f1a; --surface: #111827; --surface2: #1a2332; --surface3: #1f2b3d;
+      --border: rgba(255,255,255,0.08); --text: #e8eefc; --muted: rgba(232,238,252,0.55);
+      --accent: #3b82f6; --accent2: #60a5fa; --green: #34d399; --amber: #fbbf24; --red: #f87171;
+      --orange: #fb923c; --purple: #a78bfa;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Nav ── */
+    .topnav {
+      position: sticky; top: 0; z-index: 100; background: rgba(10,15,26,0.94);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; padding: 0 20px; height: 52px; gap: 12px;
+    }
+    .topnav .brand { font-weight: 800; font-size: 15px; letter-spacing: -0.3px; flex-shrink: 0; color: var(--text); }
+    .topnav .nav-links { display: flex; gap: 6px; margin-left: auto; }
+    .topnav .nav-btn {
+      font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px;
+      color: var(--text); background: var(--surface); border: 1px solid var(--border);
+    }
+    .topnav .nav-btn:hover { border-color: var(--accent); text-decoration: none; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center; padding: 48px 20px 32px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(52,211,153,0.06));
+    }
+    .hero h1 { font-size: 36px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; }
+    .hero h1 span { color: var(--green); }
+    .hero .sub { color: var(--muted); font-size: 15px; max-width: 600px; margin: 0 auto; }
+    .hero .trip-meta {
+      display: flex; justify-content: center; gap: 24px; margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .hero .trip-meta .m-item {
+      font-size: 13px; color: var(--muted);
+    }
+    .hero .trip-meta .m-item strong { color: var(--text); }
+
+    /* ── Day tabs ── */
+    .day-tabs-wrap {
+      position: sticky; top: 52px; z-index: 90; background: rgba(10,15,26,0.96);
+      backdrop-filter: blur(14px); border-bottom: 1px solid var(--border);
+      padding: 0 16px; overflow-x: auto;
+    }
+    .day-tabs {
+      display: flex; gap: 4px; max-width: 1100px; margin: 0 auto;
+      padding: 10px 0;
+    }
+    .day-tab {
+      padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 8px;
+      cursor: pointer; border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); white-space: nowrap; transition: all 0.15s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .day-tab:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+    .day-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .day-tab .tab-emoji { font-size: 14px; }
+    .day-tab .tab-date { font-weight: 400; opacity: 0.7; }
+
+    /* ── Main content ── */
+    .main-content { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+    /* ── Day section ── */
+    .day-section { display: none; animation: fadeIn 0.3s ease; }
+    .day-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .day-header {
+      padding: 28px 0 20px; display: flex; align-items: flex-start; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .day-header .dh-icon { font-size: 40px; }
+    .day-header .dh-text h2 { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+    .day-header .dh-text .dh-sub { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .day-header .dh-badge {
+      margin-left: auto; padding: 6px 14px; border-radius: 8px; font-size: 12px;
+      font-weight: 700; align-self: center;
+    }
+
+    /* ── Plan toggle ── */
+    .plan-toggle {
+      display: flex; gap: 8px; margin-bottom: 16px;
+    }
+    .plan-btn {
+      padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 700;
+      cursor: pointer; border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); transition: all 0.15s;
+    }
+    .plan-btn:hover { color: var(--text); }
+    .plan-btn.active { background: var(--green); border-color: var(--green); color: #000; }
+    .plan-content { display: none; }
+    .plan-content.active { display: block; }
+
+    /* ── Map ── */
+    .day-map {
+      width: 100%; height: 380px; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border); margin-bottom: 20px;
+    }
+    @media (max-width: 640px) { .day-map { height: 280px; } }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 40px; margin-bottom: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 15px; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .tl-item {
+      position: relative; margin-bottom: 16px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 16px; transition: border-color 0.2s;
+    }
+    .tl-item:hover { border-color: rgba(255,255,255,0.15); }
+    .tl-item::before {
+      content: ''; position: absolute; left: -32px; top: 18px;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid var(--accent); background: var(--bg);
+    }
+    .tl-item.hike::before { border-color: var(--green); background: var(--green); }
+    .tl-item.food::before { border-color: var(--amber); background: var(--amber); }
+    .tl-item.view::before { border-color: var(--purple); background: var(--purple); }
+    .tl-item.swim::before { border-color: var(--accent2); background: var(--accent2); }
+    .tl-item.logistics::before { border-color: var(--muted); }
+
+    .tl-top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+    .tl-time {
+      font-size: 12px; font-weight: 800; color: var(--accent2);
+      background: rgba(59,130,246,0.12); padding: 2px 8px; border-radius: 4px;
+    }
+    .tl-name { font-size: 15px; font-weight: 700; }
+    .tl-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .tl-badge.hike { background: rgba(52,211,153,0.15); color: var(--green); }
+    .tl-badge.food { background: rgba(251,191,36,0.15); color: var(--amber); }
+    .tl-badge.view { background: rgba(167,139,250,0.15); color: var(--purple); }
+    .tl-badge.swim { background: rgba(96,165,250,0.15); color: var(--accent2); }
+    .tl-badge.logistics { background: rgba(255,255,255,0.06); color: var(--muted); }
+    .tl-badge.hotel { background: rgba(251,146,60,0.15); color: var(--orange); }
+    .tl-badge.garden { background: rgba(52,211,153,0.15); color: var(--green); }
+    .tl-badge.culture { background: rgba(167,139,250,0.15); color: var(--purple); }
+    .tl-badge.poncha { background: rgba(251,191,36,0.15); color: var(--amber); }
+
+    .tl-desc { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .tl-stats {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 6px;
+    }
+    .tl-stat { font-size: 12px; color: var(--muted); }
+    .tl-stat strong { color: var(--text); }
+    .tl-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tl-link {
+      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--accent2);
+    }
+    .tl-link:hover { border-color: var(--accent); text-decoration: none; }
+
+    .tl-drive {
+      display: flex; align-items: center; gap: 6px; padding: 6px 0 0; margin-top: 8px;
+      border-top: 1px solid var(--border); font-size: 11px; color: var(--muted);
+    }
+    .tl-drive .drive-icon { opacity: 0.4; }
+
+    /* ── Tips bar ── */
+    .tips-bar {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 32px;
+    }
+    .tips-bar h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--amber); margin-bottom: 8px; }
+    .tips-bar ul { list-style: none; }
+    .tips-bar li { font-size: 13px; color: var(--muted); padding: 3px 0; }
+    .tips-bar li::before { content: '!'; font-weight: 900; color: var(--amber); margin-right: 8px; }
+
+    /* ── Hotels section ── */
+    .hotels-section {
+      padding: 40px 0 60px; border-top: 1px solid var(--border); margin-top: 24px;
+    }
+    .hotels-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .hotels-section .hs-sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+    .hotel-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .hotel-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 20px; transition: border-color 0.2s; position: relative;
+    }
+    .hotel-card:hover { border-color: rgba(255,255,255,0.15); }
+    .hotel-card .hc-highlight {
+      position: absolute; top: 12px; right: 12px; font-size: 10px; font-weight: 800;
+      padding: 3px 8px; border-radius: 4px; text-transform: uppercase;
+      background: rgba(52,211,153,0.15); color: var(--green);
+    }
+    .hotel-card h3 { font-size: 16px; font-weight: 800; margin-bottom: 4px; padding-right: 100px; }
+    .hotel-card .hc-neighborhood { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .hotel-card .hc-rating {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .hotel-card .hc-score {
+      font-size: 14px; font-weight: 900; color: var(--green);
+      background: rgba(52,211,153,0.12); padding: 2px 8px; border-radius: 6px;
+    }
+    .hotel-card .hc-source { font-size: 11px; color: var(--muted); }
+    .hotel-card .hc-price {
+      font-size: 20px; font-weight: 900; color: var(--text); margin-bottom: 4px;
+    }
+    .hotel-card .hc-price span { font-size: 12px; font-weight: 400; color: var(--muted); }
+    .hotel-card .hc-tier {
+      font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+      display: inline-block; margin-bottom: 10px;
+    }
+    .hc-tier.luxury { background: rgba(251,191,36,0.15); color: var(--amber); }
+    .hc-tier.mid-range { background: rgba(59,130,246,0.12); color: var(--accent2); }
+    .hotel-card .hc-tip { font-size: 12px; color: var(--muted); margin-bottom: 10px; line-height: 1.5; }
+    .hotel-card .hc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+    .hotel-card .hc-tag {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      background: var(--surface2); color: var(--muted);
+    }
+    .hotel-card .hc-tag.pro { background: rgba(52,211,153,0.1); color: var(--green); }
+    .hotel-card .hc-tag.con { background: rgba(248,113,113,0.1); color: var(--red); }
+    .hotel-card .hc-links { display: flex; gap: 8px; }
+    .hotel-card .hc-link {
+      font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 6px;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--accent2);
+    }
+    .hotel-card .hc-link:hover { border-color: var(--accent); text-decoration: none; }
+
+    /* ── Logistics quick-ref ── */
+    .logistics-strip {
+      padding: 32px 0 48px; border-top: 1px solid var(--border);
+    }
+    .logistics-strip h2 { font-size: 22px; font-weight: 800; margin-bottom: 16px; }
+    .log-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .log-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px;
+    }
+    .log-card h4 { font-size: 13px; font-weight: 800; color: var(--amber); margin-bottom: 6px; }
+    .log-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .log-card a { color: var(--accent2); }
+
+    /* ── Curated trails banner ── */
+    .curated-banner {
+      background: linear-gradient(135deg, rgba(52,211,153,0.08), rgba(59,130,246,0.06));
+      border: 1px solid rgba(52,211,153,0.2); border-radius: 14px;
+      padding: 24px; margin: 32px 0;
+    }
+    .curated-banner h2 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .curated-banner .cb-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .trail-picks {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;
+    }
+    .trail-pick {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .trail-pick .tp-rank {
+      width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-weight: 900; font-size: 14px; flex-shrink: 0;
+    }
+    .tp-rank.must { background: var(--green); color: #000; }
+    .tp-rank.bonus { background: var(--surface3); color: var(--muted); }
+    .trail-pick .tp-info h4 { font-size: 14px; font-weight: 700; }
+    .trail-pick .tp-info .tp-meta { font-size: 12px; color: var(--muted); }
+    .trail-pick .tp-info .tp-why { font-size: 12px; color: var(--green); margin-top: 2px; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 26px; }
+      .day-header .dh-icon { font-size: 28px; }
+      .day-header .dh-text h2 { font-size: 18px; }
+      .hotel-grid { grid-template-columns: 1fr; }
+      .trail-picks { grid-template-columns: 1fr; }
+      .timeline { padding-left: 32px; }
+      .day-tab { padding: 6px 12px; font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="topnav">
+  <a href="index.html" class="brand">Madeira 2026</a>
+  <div class="nav-links">
+    <a href="explore.html" class="nav-btn">Explorer</a>
+    <a href="madeira_map.html" class="nav-btn">Map</a>
+    <a href="itinerary.html" class="nav-btn">Full Guide</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>The <span>Battle Plan</span></h1>
+  <p class="sub">4 full days, weather-adaptive, every stop mapped. Click a day to see the route, timeline, and alternatives.</p>
+  <div class="trip-meta">
+    <div class="m-item"><strong>Tue Mar 10</strong> Arrive 17:15</div>
+    <div class="m-item"><strong>Sun Mar 15</strong> Depart 11:10</div>
+    <div class="m-item"><strong>4 full days</strong> of exploring</div>
+    <div class="m-item"><strong>7 curated trails</strong></div>
+  </div>
+</section>
+
+<!-- Day tabs -->
+<div class="day-tabs-wrap">
+  <div class="day-tabs" id="dayTabs">
+    <div class="day-tab active" data-day="0"><span class="tab-emoji">&#9992;</span> Arrival <span class="tab-date">Mar 10</span></div>
+    <div class="day-tab" data-day="1"><span class="tab-emoji">&#9968;</span> Day 1: Peaks <span class="tab-date">Mar 11</span></div>
+    <div class="day-tab" data-day="2"><span class="tab-emoji">&#127754;</span> Day 2: West <span class="tab-date">Mar 12</span></div>
+    <div class="day-tab" data-day="3"><span class="tab-emoji">&#127795;</span> Day 3: Northeast <span class="tab-date">Mar 13</span></div>
+    <div class="day-tab" data-day="4"><span class="tab-emoji">&#127774;</span> Day 4: Culture <span class="tab-date">Mar 14</span></div>
+    <div class="day-tab" data-day="5"><span class="tab-emoji">&#9992;</span> Departure <span class="tab-date">Mar 15</span></div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="main-content">
+
+  <!-- Day 0: Arrival -->
+  <div class="day-section active" id="day-0">
+    <div class="day-header">
+      <div class="dh-icon">&#9992;</div>
+      <div class="dh-text">
+        <h2>Tuesday, March 10 — Arrival</h2>
+        <div class="dh-sub">Land at 17:15 &middot; Pick up car &middot; Settle in &middot; First dinner</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(96,165,250,0.15);color:var(--accent2)">Light evening</div>
+    </div>
+    <div class="day-map" id="map-0"></div>
+    <div class="timeline">
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">17:15</span><span class="tl-name">Land at Madeira Airport</span><span class="tl-badge logistics">Logistics</span></div>
+        <div class="tl-desc">Pick up rental car at airport. Get automatic transmission. Drive takes ~25 min to Funchal via VR1 highway.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6942,-16.7745" target="_blank">Google Maps</a>
+        </div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min drive to Funchal</div>
+      </div>
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">18:00</span><span class="tl-name">Hotel Check-in</span><span class="tl-badge hotel">Hotel</span></div>
+        <div class="tl-desc">Check into Funchal hotel. Drop bags, freshen up. See hotel comparison below for recommendations.</div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">20:00</span><span class="tl-name">Taberna Madeira</span><span class="tl-badge food">Dinner</span></div>
+        <div class="tl-desc">Zona Velha (Old Town). Local seasonal menu. Great first-night choice. Alternative: Zarcos (more central, reliable).</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.644,-16.908" target="_blank">Google Maps</a>
+        </div>
+      </div>
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">21:30</span><span class="tl-name">Book Tomorrow's Trails</span><span class="tl-badge logistics">Planning</span></div>
+        <div class="tl-desc">Check webcams (webcammadeira.com). Book PR trail slots on SIMplifica. Screenshot the QR codes (no signal at trailheads).</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">SIMplifica</a>
+          <a class="tl-link" href="https://webcammadeira.com" target="_blank">Webcams</a>
+        </div>
+      </div>
+    </div>
+    <div class="tips-bar">
+      <h3>Evening Checklist</h3>
+      <ul>
+        <li>Rental car: Get SCDW (zero excess). Use local companies (Insular, AutoRentaCar)</li>
+        <li>Download offline Google Maps for Madeira island</li>
+        <li>Weather check decides tomorrow: clear = peaks, cloudy = coast</li>
+        <li>SIMplifica trail booking: pick a 30-min entry slot from sunrise onward</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 1: Peaks / East -->
+  <div class="day-section" id="day-1">
+    <div class="day-header">
+      <div class="dh-icon">&#9968;</div>
+      <div class="dh-text">
+        <h2>Wednesday, March 11 — Peaks or East</h2>
+        <div class="dh-sub">Weather decides: clear sky = summit day, cloudy peaks = east coast</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(52,211,153,0.15);color:var(--green)">Big hike day</div>
+    </div>
+    <div class="plan-toggle">
+      <div class="plan-btn active" data-plan="1a">Plan A: Clear Sky (Peaks)</div>
+      <div class="plan-btn" data-plan="1b">Plan B: Cloudy (East Coast)</div>
+    </div>
+
+    <!-- Plan A -->
+    <div class="plan-content active" id="plan-1a">
+      <div class="day-map" id="map-1a"></div>
+      <div class="timeline">
+        <div class="tl-item logistics">
+          <div class="tl-top"><span class="tl-time">06:00</span><span class="tl-name">Drive to Pico do Areeiro</span><span class="tl-badge logistics">Drive</span></div>
+          <div class="tl-desc">45 min from Funchal. 1818m altitude. Near-freezing at dawn — wear warm layers. Road can close in bad weather.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7403,-16.9287" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item view">
+          <div class="tl-top"><span class="tl-time">06:45</span><span class="tl-name">Sunrise at Pico do Areeiro</span><span class="tl-badge view">Viewpoint</span></div>
+          <div class="tl-desc">Above the clouds. One of those moments you came to Madeira for. PR1 partial walk to Pedra Rija viewpoint (1.2 km, still open).</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>1818m</strong> altitude</div>
+            <div class="tl-stat"><strong>3-8°C</strong> at dawn</div>
+            <div class="tl-stat"><strong>€4.50</strong> trail fee</div>
+          </div>
+        </div>
+        <div class="tl-item hike">
+          <div class="tl-top"><span class="tl-time">09:00</span><span class="tl-name">PR1.2 — Pico Ruivo Summit</span><span class="tl-badge hike">Hike</span></div>
+          <div class="tl-desc">Drive to Achada do Teixeira trailhead (~45 min). THE way to reach Madeira's highest peak (1862m). 5.6 km round trip. Clear morning = above the clouds.</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>5.6 km</strong> round trip</div>
+            <div class="tl-stat"><strong>2.5-3h</strong></div>
+            <div class="tl-stat"><strong>Moderate</strong></div>
+            <div class="tl-stat">&#11088; <strong>4.6</strong> AllTrails</div>
+          </div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7653,-16.9209" target="_blank">Google Maps</a>
+            <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">Book Slot</a>
+            <a class="tl-link" href="madeira_map.html?poi=pr12-vereda-do-pico-ruivo" target="_blank">Show on Map</a>
+          </div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 45 min drive to trailhead from Areeiro</div>
+        </div>
+        <div class="tl-item logistics">
+          <div class="tl-top"><span class="tl-time">12:30</span><span class="tl-name">Santana</span><span class="tl-badge culture">Culture</span></div>
+          <div class="tl-desc">Traditional A-frame thatched houses. Quick 15-min photo stop. Iconic Madeira image.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.8049,-16.8813" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 30 min drive from PR1.2 trailhead</div>
+        </div>
+        <div class="tl-item food">
+          <div class="tl-top"><span class="tl-time">13:00</span><span class="tl-name">Quinta do Furao</span><span class="tl-badge food">Lunch</span></div>
+          <div class="tl-desc">Cliff-edge restaurant in Santana. Oxtail tureen, sea views. One of the best lunches on the island.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.8,-16.88" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1h drive back to Funchal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan B -->
+    <div class="plan-content" id="plan-1b">
+      <div class="day-map" id="map-1b"></div>
+      <div class="timeline">
+        <div class="tl-item hike">
+          <div class="tl-top"><span class="tl-time">08:00</span><span class="tl-name">PR8 — Ponta de Sao Lourenco</span><span class="tl-badge hike">Hike</span></div>
+          <div class="tl-desc">THE most visually dramatic hike. Arid peninsula, ocean on both sides, volcanic colors. No shade — hat + sunscreen + water. Arrive by 8am (parking fills by 10).</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>7.4 km</strong> round trip</div>
+            <div class="tl-stat"><strong>3-4h</strong></div>
+            <div class="tl-stat"><strong>Moderate</strong></div>
+            <div class="tl-stat">&#11088; <strong>4.7</strong> AllTrails</div>
+            <div class="tl-stat"><strong>€4.50</strong></div>
+          </div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7493,-16.7066" target="_blank">Google Maps</a>
+            <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">Book Slot</a>
+            <a class="tl-link" href="madeira_map.html?poi=pr8-vereda-da-ponta-de-sao-lourenco" target="_blank">Show on Map</a>
+          </div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 40 min from Funchal</div>
+        </div>
+        <div class="tl-item swim">
+          <div class="tl-top"><span class="tl-time">12:00</span><span class="tl-name">Prainha Beach</span><span class="tl-badge swim">Beach</span></div>
+          <div class="tl-desc">Madeira's ONLY natural sandy beach. Volcanic black/copper sand in a sheltered cove. Clear, calm water. Near Canical.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.738,-16.71" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 10 min from PR8 trailhead</div>
+        </div>
+        <div class="tl-item food">
+          <div class="tl-top"><span class="tl-time">13:30</span><span class="tl-name">O Forno — Machico</span><span class="tl-badge food">Lunch</span></div>
+          <div class="tl-desc">Garlic prawns are the move. Complimentary ginja (cherry liqueur) with every meal. Honest local food.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.722,-16.765" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item logistics">
+          <div class="tl-top"><span class="tl-time">15:00</span><span class="tl-name">Porto da Cruz</span><span class="tl-badge culture">Culture</span></div>
+          <div class="tl-desc">Quiet north-coast village. Penha d'Aguia rock backdrop. Seawater pool. Engenho do Norte rum distillery. Hidden gem.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7725,-16.8286" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item hike">
+          <div class="tl-top"><span class="tl-time">16:00</span><span class="tl-name">PR11 — Balcoes Viewpoint</span><span class="tl-badge hike">Bonus Hike</span></div>
+          <div class="tl-desc">Quick 1.5h round trip to an incredible viewpoint over central peaks. Best view-to-effort ratio on the island. Stack it if you have energy.</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>3 km</strong></div>
+            <div class="tl-stat"><strong>1.5h</strong></div>
+            <div class="tl-stat"><strong>Easy</strong></div>
+          </div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7355,-16.8864" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 45 min back to Funchal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-bar">
+      <h3>Day 1 Tips</h3>
+      <ul>
+        <li>Check webcams at 6am. If Areeiro is clear = Plan A. If fogged = Plan B (east coast works in cloud)</li>
+        <li>PR1 (full Areeiro-Ruivo ridge) is CLOSED until April 2026. Use PR1.2 from Achada do Teixeira instead</li>
+        <li>Areeiro sunrise: wear warm layers (3-8°C), bring headlamp for pre-dawn walk</li>
+        <li>PR8: zero shade. Hat, sunscreen, 1.5L water minimum. Parking fills by 10am</li>
+        <li>Book tomorrow's PR slots tonight based on weather forecast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 2: West -->
+  <div class="day-section" id="day-2">
+    <div class="day-header">
+      <div class="dh-icon">&#127754;</div>
+      <div class="dh-text">
+        <h2>Thursday, March 12 — Waterfalls + Forest: West</h2>
+        <div class="dh-sub">Rabaçal levadas &middot; Ancient forest &middot; Lava pools &middot; North coast</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(96,165,250,0.15);color:var(--accent2)">Full day out</div>
+    </div>
+    <div class="day-map" id="map-2"></div>
+    <div class="timeline">
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">07:30</span><span class="tl-name">Drive to Rabaçal</span><span class="tl-badge logistics">Drive</span></div>
+        <div class="tl-desc">~1h 15min from Funchal via VE3. Park at the top, take free shuttle down to trailhead. Arrive by 8:30 — limited parking.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.762,-17.068" target="_blank">Google Maps</a></div>
+      </div>
+      <div class="tl-item hike">
+        <div class="tl-top"><span class="tl-time">09:00</span><span class="tl-name">PR6 — 25 Fontes + PR6.1 Risco</span><span class="tl-badge hike">Hike</span></div>
+        <div class="tl-desc">THE most famous waterfall levada. 800m tunnel (headlamp required!). Ends at 25-spring lagoon. Same start point — do both trails as a combo.</div>
+        <div class="tl-stats">
+          <div class="tl-stat"><strong>PR6:</strong> 9 km, 3-4h</div>
+          <div class="tl-stat"><strong>PR6.1:</strong> 3 km, 1.5h</div>
+          <div class="tl-stat"><strong>Moderate</strong></div>
+          <div class="tl-stat">&#11088; <strong>4.5</strong> / <strong>4.4</strong></div>
+          <div class="tl-stat"><strong>€4.50 each</strong></div>
+        </div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">Book Slot</a>
+          <a class="tl-link" href="madeira_map.html?poi=pr6-levada-das-25-fontes" target="_blank">Show on Map</a>
+        </div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 30 min drive to Fanal</div>
+      </div>
+      <div class="tl-item view">
+        <div class="tl-top"><span class="tl-time">14:30</span><span class="tl-name">Fanal Forest</span><span class="tl-badge view">Ancient Forest</span></div>
+        <div class="tl-desc">UNESCO laurisilva. Ancient twisted laurel trees disappearing into fog. Most atmospheric spot on the island. Best in fog/post-rain (March = good timing).</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.815211,-17.152339" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 30 min to Porto Moniz</div>
+      </div>
+      <div class="tl-item swim">
+        <div class="tl-top"><span class="tl-time">16:00</span><span class="tl-name">Porto Moniz Natural Pools</span><span class="tl-badge swim">Swim</span></div>
+        <div class="tl-desc">Classic lava pools. €3 paid complex (lifeguards, changing rooms) or FREE Cachalote pools (more raw). Water 17-19°C in March — bracing but doable.</div>
+        <div class="tl-stats">
+          <div class="tl-stat"><strong>€3</strong> paid / <strong>free</strong> Cachalote</div>
+        </div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.866601,-17.175722" target="_blank">Google Maps (Paid)</a></div>
+      </div>
+      <div class="tl-item view">
+        <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">Veu da Noiva (Bridal Veil)</span><span class="tl-badge view">Viewpoint</span></div>
+        <div class="tl-desc">Waterfall cascading from cliff into ocean. Quick photo stop en route back. Best after rain.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.816096,-17.095091" target="_blank">Google Maps</a></div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">17:30</span><span class="tl-name">Dinner Decision</span><span class="tl-badge food">Dinner</span></div>
+        <div class="tl-desc"><strong>Option A:</strong> Restaurante Orca in Porto Moniz (tuna steak, ocean views, right by the pools). <strong>Option B:</strong> Drive back to Funchal (~1.5h) for more choice.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.867,-17.175" target="_blank">Orca on Maps</a>
+        </div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1.5h drive back to Funchal if not dining in Porto Moniz</div>
+      </div>
+    </div>
+    <div class="tips-bar">
+      <h3>Day 2 Tips</h3>
+      <ul>
+        <li>HEADLAMP is mandatory for PR6 (800m dark tunnel). Phone flashlight is NOT enough</li>
+        <li>Rabaçal shuttle: runs regularly, but arrive by 8:30am for parking</li>
+        <li>PR6 + PR6.1 share the same start point — do both as a combo (4-5h total)</li>
+        <li>Fanal forest: fencing installed in 2026, you must stay on designated paths</li>
+        <li>This is the longest driving day (~3h total). Consider staying overnight in Porto Moniz or Calheta</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 3: Northeast -->
+  <div class="day-section" id="day-3">
+    <div class="day-header">
+      <div class="dh-icon">&#127795;</div>
+      <div class="dh-text">
+        <h2>Friday, March 13 — Deep Green Levada: Northeast</h2>
+        <div class="dh-sub">Caldeirão Verde tunnels &middot; Laurisilva forest &middot; Santana houses &middot; Wine tasting</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(52,211,153,0.15);color:var(--green)">Adventure day</div>
+    </div>
+    <div class="day-map" id="map-3"></div>
+    <div class="timeline">
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">07:30</span><span class="tl-name">Drive to Queimadas</span><span class="tl-badge logistics">Drive</span></div>
+        <div class="tl-desc">50 min from Funchal. Forest park trailhead. Good parking area.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7828,-16.9116" target="_blank">Google Maps</a></div>
+      </div>
+      <div class="tl-item hike">
+        <div class="tl-top"><span class="tl-time">08:30</span><span class="tl-name">PR9 — Caldeirão Verde</span><span class="tl-badge hike">Hike</span></div>
+        <div class="tl-desc">Peak "levada drama." Laurisilva forest, multiple long tunnels, ends at a waterfall amphitheater. This is the levada hike that people rave about. BRING HEADLAMP.</div>
+        <div class="tl-stats">
+          <div class="tl-stat"><strong>17.4 km</strong> round trip</div>
+          <div class="tl-stat"><strong>5-7h</strong></div>
+          <div class="tl-stat"><strong>Moderate-Hard</strong></div>
+          <div class="tl-stat">&#11088; <strong>4.6</strong> AllTrails</div>
+          <div class="tl-stat"><strong>€4.50</strong></div>
+        </div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">Book Slot</a>
+          <a class="tl-link" href="madeira_map.html?poi=pr9-levada-do-caldeirao-verde" target="_blank">Show on Map</a>
+        </div>
+      </div>
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">14:00</span><span class="tl-name">Santana Houses</span><span class="tl-badge culture">Culture</span></div>
+        <div class="tl-desc">Traditional A-frame thatched houses. Quick photo stop, 15 min. Grab a snack if needed.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.8049,-16.8813" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 15 min from Queimadas</div>
+      </div>
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">15:00</span><span class="tl-name">Ribeiro Frio</span><span class="tl-badge culture">Culture</span></div>
+        <div class="tl-desc">Trout farm (free, quick stop). Mountain forest setting. Good place for a coffee break.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7396,-16.8869" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 20 min from Santana</div>
+      </div>
+      <div class="tl-item hike">
+        <div class="tl-top"><span class="tl-time">15:30</span><span class="tl-name">PR11 — Balcoes Viewpoint</span><span class="tl-badge hike">Bonus Hike</span></div>
+        <div class="tl-desc">Quick 1.5 km walk from Ribeiro Frio to an incredible viewpoint. Central peaks panorama. Best view-to-effort ratio on the island. Do this if you have any energy left.</div>
+        <div class="tl-stats">
+          <div class="tl-stat"><strong>3 km</strong></div>
+          <div class="tl-stat"><strong>1.5h</strong></div>
+          <div class="tl-stat"><strong>Easy</strong></div>
+        </div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7355,-16.8864" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 40 min back to Funchal</div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">20:00</span><span class="tl-name">Wine Tasting + Dinner</span><span class="tl-badge poncha">Wine</span></div>
+        <div class="tl-desc"><strong>Blandy's Wine Lodge</strong> or <strong>Pereira d'Oliveira</strong> (free tastings with cakes). Then dinner in Zona Velha — you've earned it after PR9.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.649,-16.909" target="_blank">Pereira d'Oliveira</a>
+        </div>
+      </div>
+    </div>
+    <div class="tips-bar">
+      <h3>Day 3 Tips</h3>
+      <ul>
+        <li>PR9 has MULTIPLE long dark tunnels. Headlamp is non-negotiable (not phone flashlight)</li>
+        <li>PR9 is 17.4 km round trip — longest hike of the trip. Start early, bring lunch/snacks</li>
+        <li>Water: carry 1.5-2L minimum. No refill points on trail</li>
+        <li>If PR9 feels too long: PR10 (Levada do Furado) is shorter but currently closed. Check status</li>
+        <li>Ribeiro Frio to Balcoes is a 5-min drive + 45-min walk each way — totally worth it</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 4: Culture + Sunset -->
+  <div class="day-section" id="day-4">
+    <div class="day-header">
+      <div class="dh-icon">&#127774;</div>
+      <div class="dh-text">
+        <h2>Saturday, March 14 — Culture + Sunset</h2>
+        <div class="dh-sub">Gardens &middot; Markets &middot; Skywalk &middot; Espetada dinner &middot; Or one last hike</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(251,191,36,0.15);color:var(--amber)">Flex day</div>
+    </div>
+    <div class="plan-toggle">
+      <div class="plan-btn active" data-plan="4a">Plan A: Culture + Sunset</div>
+      <div class="plan-btn" data-plan="4b">Plan B: One More Hike</div>
+    </div>
+
+    <!-- Plan A -->
+    <div class="plan-content active" id="plan-4a">
+      <div class="day-map" id="map-4a"></div>
+      <div class="timeline">
+        <div class="tl-item view">
+          <div class="tl-top"><span class="tl-time">09:00</span><span class="tl-name">Palheiro Gardens</span><span class="tl-badge garden">Garden</span></div>
+          <div class="tl-desc">Camellias in PEAK BLOOM in March. This is THE time to visit. English estate feel, 35 acres. €11 entry.</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>€11</strong> entry</div>
+            <div class="tl-stat"><strong>1.5-2h</strong></div>
+          </div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6598,-16.8673" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 15 min back to Funchal center</div>
+        </div>
+        <div class="tl-item logistics">
+          <div class="tl-top"><span class="tl-time">11:00</span><span class="tl-name">Mercado dos Lavradores</span><span class="tl-badge culture">Market</span></div>
+          <div class="tl-desc">Funchal's famous farmers market. Exotic fruit, flowers, fish market. Buy from upper floor (ground-floor fruit sellers are tourist traps).</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6487,-16.9035" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item food">
+          <div class="tl-top"><span class="tl-time">12:00</span><span class="tl-name">Fabrica Santo Antonio</span><span class="tl-badge food">Bakery</span></div>
+          <div class="tl-desc">Open since 1893. Bolo de mel (honey cake), traditional biscuits. A Funchal institution.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.647,-16.912" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item food">
+          <div class="tl-top"><span class="tl-time">13:00</span><span class="tl-name">Lunch in Funchal</span><span class="tl-badge food">Lunch</span></div>
+          <div class="tl-desc">Flexible — use the Explorer to pick a restaurant. Recommendations: Gaviao Novo (seafood), Kampo (creative), Terra (views).</div>
+          <div class="tl-links"><a class="tl-link" href="explore.html" target="_blank">Browse Restaurants</a></div>
+        </div>
+        <div class="tl-item view">
+          <div class="tl-top"><span class="tl-time">16:00</span><span class="tl-name">Cabo Girao Skywalk</span><span class="tl-badge view">Viewpoint</span></div>
+          <div class="tl-desc">580m glass platform over the ocean. Go at golden hour — skip 10am-2pm (coach tour crowds). Free (possibly €2-5 in 2026). 15 min stop.</div>
+          <div class="tl-stats"><div class="tl-stat"><strong>580m</strong> cliff drop</div></div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.656658,-17.004539" target="_blank">Google Maps</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 20 min from Funchal</div>
+        </div>
+        <div class="tl-item logistics">
+          <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">Camara de Lobos</span><span class="tl-badge culture">Culture</span></div>
+          <div class="tl-desc">Churchill's fishing village. Colourful boats in the harbour. Poncha at Bar Filhos D'Anjos (birthplace of poncha).</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6485,-16.9752" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item food">
+          <div class="tl-top"><span class="tl-time">18:30</span><span class="tl-name">Espetada Sunset Dinner</span><span class="tl-badge food">Dinner</span></div>
+          <div class="tl-desc"><strong>Santo Antonio</strong> (Estreito) or <strong>As Vides</strong> (the FIRST espetada restaurant). Beef on laurel wood skewer, hung above the table. THE Madeira dining experience.</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6555,-16.9555" target="_blank">Santo Antonio</a>
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.656,-16.958" target="_blank">As Vides</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan B -->
+    <div class="plan-content" id="plan-4b">
+      <div class="day-map" id="map-4b"></div>
+      <div class="timeline">
+        <div class="tl-item hike">
+          <div class="tl-top"><span class="tl-time">08:00</span><span class="tl-name">Vereda do Larano</span><span class="tl-badge hike">Hike</span></div>
+          <div class="tl-desc">THE most underrated hike in Madeira (Reddit consensus). Coastal cliffs, 300m drops, carved-into-cliff path at 4km mark. Machico to Porto da Cruz. FREE — no reservation needed!</div>
+          <div class="tl-stats">
+            <div class="tl-stat"><strong>10 km</strong> point-to-point</div>
+            <div class="tl-stat"><strong>4-5h</strong></div>
+            <div class="tl-stat"><strong>Moderate</strong></div>
+            <div class="tl-stat">&#11088; <strong>4.8</strong> AllTrails</div>
+            <div class="tl-stat"><strong>FREE</strong></div>
+          </div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.735,-16.76" target="_blank">Google Maps (Start)</a></div>
+          <div class="tl-drive"><span class="drive-icon">&#128663;</span> 35 min from Funchal to Machico start</div>
+        </div>
+        <div class="tl-item swim">
+          <div class="tl-top"><span class="tl-time">13:00</span><span class="tl-name">Porto da Cruz</span><span class="tl-badge swim">Swim + Poncha</span></div>
+          <div class="tl-desc">End point of Larano. Seawater pool. Poncha at A Pipa (best on north coast, closed Sun/Mon). Taxi or second car back to Machico.</div>
+          <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.7725,-16.8286" target="_blank">Google Maps</a></div>
+        </div>
+        <div class="tl-item view">
+          <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">Sunset: Ponta do Rosto or Cabo Girao</span><span class="tl-badge view">Sunset</span></div>
+          <div class="tl-desc">Ponta do Rosto (tip of São Lourenço, both coasts visible) or Cabo Girão (580m glass skywalk). Golden hour magic.</div>
+          <div class="tl-links">
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.749275,-16.706601" target="_blank">Ponta do Rosto</a>
+            <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.656658,-17.004539" target="_blank">Cabo Girao</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-bar">
+      <h3>Day 4 Tips</h3>
+      <ul>
+        <li>Plan A is a recovery/culture day — perfect after 3 days of hiking</li>
+        <li>Plan B (Larano) is point-to-point. You need a taxi back (~€15) or two cars. Worth it</li>
+        <li>Palheiro Gardens: camellias are in PEAK bloom in March. This is genuinely the best time</li>
+        <li>Mercado dos Lavradores: buy from UPPER floor. Ground-floor fruit sellers overcharge tourists</li>
+        <li>Last dinner — go for the espetada. It's THE Madeira food experience you can't replicate elsewhere</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Day 5: Departure -->
+  <div class="day-section" id="day-5">
+    <div class="day-header">
+      <div class="dh-icon">&#9992;</div>
+      <div class="dh-text">
+        <h2>Sunday, March 15 — Departure</h2>
+        <div class="dh-sub">Flight at 11:10 &middot; Quick morning routine &middot; Last coffee &middot; Duty-free wine</div>
+      </div>
+      <div class="dh-badge" style="background:rgba(248,113,113,0.15);color:var(--red)">Travel day</div>
+    </div>
+    <div class="day-map" id="map-5"></div>
+    <div class="timeline">
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">08:00</span><span class="tl-name">Pack & Checkout</span><span class="tl-badge hotel">Hotel</span></div>
+        <div class="tl-desc">Pack up. Return any borrowed items. Check nothing left behind.</div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">08:30</span><span class="tl-name">Last Coffee</span><span class="tl-badge food">Breakfast</span></div>
+        <div class="tl-desc">Opan Bakery or A Confeitaria. One last pastel de nata and galão. Quick but meaningful.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.645,-16.91" target="_blank">Opan Bakery</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.648,-16.911" target="_blank">A Confeitaria</a>
+        </div>
+      </div>
+      <div class="tl-item logistics">
+        <div class="tl-top"><span class="tl-time">09:30</span><span class="tl-name">Drive to Airport</span><span class="tl-badge logistics">Drive</span></div>
+        <div class="tl-desc">25-30 min drive. Return rental car. Allow 1h buffer before 11:10 flight.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=32.6942,-16.7745" target="_blank">Google Maps</a></div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">10:00</span><span class="tl-name">Duty-Free Wine</span><span class="tl-badge poncha">Wine</span></div>
+        <div class="tl-desc">Buy Madeira wine at duty-free. Recommendation: Blandy's 10-year Malmsey (~€30). A bottle of Madeira wine lasts literally forever (it's already cooked).</div>
+      </div>
+    </div>
+    <div class="tips-bar">
+      <h3>Departure Tips</h3>
+      <ul>
+        <li>Madeira Airport has a famously short runway (notorious crosswinds). Don't panic if the landing was exciting on arrival</li>
+        <li>Return rental car with same fuel level (avoid airport fuel surcharges)</li>
+        <li>Blandy's 10-year Malmsey at duty-free is the best wine souvenir value</li>
+        <li>Take one last look at the island from the plane — you'll already be planning to come back</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Curated Trails -->
+  <div class="curated-banner">
+    <h2>7 Trails You Should Actually Do</h2>
+    <p class="cb-sub">Out of 30+ trails on the island, these are the ones that matter for a 4-day trip. Sorted by priority.</p>
+    <div class="trail-picks">
+      <div class="trail-pick">
+        <div class="tp-rank must">1</div>
+        <div class="tp-info">
+          <h4>PR8 — Ponta de Sao Lourenco</h4>
+          <div class="tp-meta">7.4 km &middot; 3-4h &middot; Moderate &middot; &#11088; 4.7</div>
+          <div class="tp-why">Most visually dramatic hike. Ocean both sides, volcanic colors.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank must">2</div>
+        <div class="tp-info">
+          <h4>PR1.2 — Pico Ruivo Summit</h4>
+          <div class="tp-meta">5.6 km &middot; 2.5-3h &middot; Moderate &middot; &#11088; 4.6</div>
+          <div class="tp-why">Madeira's highest peak. Above the clouds on clear mornings.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank must">3</div>
+        <div class="tp-info">
+          <h4>PR6 + PR6.1 — 25 Fontes + Risco</h4>
+          <div class="tp-meta">12 km combo &middot; 4-5h &middot; Moderate &middot; &#11088; 4.5/4.4</div>
+          <div class="tp-why">THE waterfall levada combo. 800m tunnel, 25-spring lagoon.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank must">4</div>
+        <div class="tp-info">
+          <h4>PR9 — Caldeirão Verde</h4>
+          <div class="tp-meta">17.4 km &middot; 5-7h &middot; Mod-Hard &middot; &#11088; 4.6</div>
+          <div class="tp-why">Peak levada drama. Tunnels + waterfall amphitheater.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank bonus">5</div>
+        <div class="tp-info">
+          <h4>PR11 — Balcoes Viewpoint</h4>
+          <div class="tp-meta">3 km &middot; 1.5h &middot; Easy &middot; &#11088; 4.3</div>
+          <div class="tp-why">Best view-to-effort ratio. Quick bonus after bigger hikes.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank bonus">6</div>
+        <div class="tp-info">
+          <h4>Vereda do Larano</h4>
+          <div class="tp-meta">10 km &middot; 4-5h &middot; Moderate &middot; &#11088; 4.8</div>
+          <div class="tp-why">Most underrated hike. FREE, no reservation. Carved-into-cliff path.</div>
+        </div>
+      </div>
+      <div class="trail-pick">
+        <div class="tp-rank bonus">7</div>
+        <div class="tp-info">
+          <h4>Pico do Areeiro (PR1 partial)</h4>
+          <div class="tp-meta">2.4 km &middot; 1-1.5h &middot; Easy &middot; &#11088; 4.7</div>
+          <div class="tp-why">Sunrise above the clouds. Combine with PR1.2 summit day.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hotels Section -->
+  <section class="hotels-section" id="hotels">
+    <h2>Where to Stay</h2>
+    <p class="hs-sub">Funchal is your base. March = low season, prices 30-50% below summer. Booking.com ratings. Pick your vibe.</p>
+    <div class="hotel-grid" id="hotelGrid"></div>
+  </section>
+
+  <!-- Logistics -->
+  <section class="logistics-strip">
+    <h2>Need-to-Know Logistics</h2>
+    <div class="log-grid">
+      <div class="log-card">
+        <h4>Trail Reservations</h4>
+        <p>MANDATORY for all PR trails. Book on <a href="https://simplifica.madeira.gov.pt" target="_blank">SIMplifica</a>. Pick a 30-min entry slot. €4.50/trail. Screenshot QR code (no signal at trailheads).</p>
+      </div>
+      <div class="log-card">
+        <h4>Rental Car</h4>
+        <p>You NEED one. March: €10-15/day manual, €15-25/day automatic. Get SCDW (zero excess). Use local companies: Insular Car, AutoRentaCar.</p>
+      </div>
+      <div class="log-card">
+        <h4>Weather Strategy</h4>
+        <p>Check webcams EVERY morning: <a href="https://webcammadeira.com" target="_blank">webcammadeira.com</a>. Clear peaks = summit day. Cloudy peaks = coast or forest day. South coast is sunnier than north.</p>
+      </div>
+      <div class="log-card">
+        <h4>PR1 is CLOSED</h4>
+        <p>Full Areeiro→Ruivo ridge closed until April 2026. Use PR1.2 from Achada do Teixeira instead. You can still walk 1.2 km from Areeiro to Pedra Rija viewpoint.</p>
+      </div>
+      <div class="log-card">
+        <h4>Cable Car CLOSED</h4>
+        <p>Funchal-Monte cable car closed Jan 5 – Apr 5, 2026 for renovation. Monte reachable by taxi, bus #20/21, or car. Toboggan ride still runs.</p>
+      </div>
+      <div class="log-card">
+        <h4>Essential Gear</h4>
+        <p>Hiking shoes (NOT sneakers), rain jacket, headlamp (tunnels), layers (coast 18°C, peaks 3°C), 1.5L water, hat + sunscreen for PR8.</p>
+      </div>
+      <div class="log-card">
+        <h4>Cash Needed</h4>
+        <p>Rural bars, cable cars (Achadas da Cruz €3), small spots are cash-only. ATMs in Funchal, none at trailheads. Carry €50-100 for the day.</p>
+      </div>
+      <div class="log-card">
+        <h4>Poncha Protocol</h4>
+        <p>~50% rum masked by fruit sweetness. Designate a driver. Drink it fresh at a bar (NEVER buy bottled). €3/glass at Taberna da Poncha.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+// ── Hotel data ──
+const hotels = [
+  {id:'savoy-palace',name:'Savoy Palace',neighborhood:'Lido / Sao Martinho',rating:9.3,ratingSource:'Booking.com',price:'185-350',tier:'luxury',highlight:'Best all-round luxury',tip:'Biggest 5-star. Largest spa in Portugal. Two rooftop infinity pools. Watch for hidden sunbed charges.',pros:['Best facilities on island','Huge spa + pools','Modern & impressive'],cons:['Hidden sunbed charges','No direct sea access'],lat:32.637,lng:-16.950,gmaps:'https://www.google.com/maps/search/?api=1&query=32.637,-16.950'},
+  {id:'reids-palace',name:"Reid's Palace (Belmond)",neighborhood:'Cliff / Funchal west',rating:9.7,ratingSource:'Booking.com (968 reviews)',price:'300-550',tier:'luxury',highlight:'Money is no object',tip:'Since 1891. Churchill painted here. Cliff-top panoramas. Michelin-starred dining. Free parking + breakfast.',pros:['Irreplaceable heritage','World-class service','Free parking','Michelin dining'],cons:['Most expensive','Can feel stuffy','Not walkable to Old Town'],lat:32.641,lng:-16.926,gmaps:'https://www.google.com/maps/search/?api=1&query=32.641,-16.926'},
+  {id:'cliff-bay',name:'The Cliff Bay',neighborhood:'Lido',rating:null,ratingSource:'Tripexpert #3 in Madeira',price:'200-400',tier:'luxury',highlight:'Best for foodies',tip:'Direct ocean access + 2 Michelin star Il Gallo d\'Oro on-site. More serene than Savoy.',pros:['Ocean access','2 Michelin stars','Serene gardens'],cons:['Smaller facilities','Standard rooms dated'],lat:32.637,lng:-16.940,gmaps:'https://www.google.com/maps/search/?api=1&query=32.637,-16.940'},
+  {id:'quinta-casa-branca',name:'Quinta da Casa Branca',neighborhood:'Lido',rating:null,ratingSource:'Small Luxury Hotels',price:'150-280',tier:'luxury',highlight:'Best atmosphere',tip:'Boutique 5-star on historic wine estate. 43 rooms. Private garden paradise. Book Manor House suites.',pros:['Unique estate feel','Exceptional breakfast','Boutique service'],cons:['Standard rooms small','No ocean views'],lat:32.642,lng:-16.944,gmaps:'https://www.google.com/maps/search/?api=1&query=32.642,-16.944'},
+  {id:'castanheiro',name:'Castanheiro Boutique Hotel',neighborhood:'City Center',rating:null,ratingSource:'MadeiraLovers top pick',price:'99-160',tier:'mid-range',highlight:'Best value in Funchal',tip:'Most central location. Walk to everything. Rooftop pool with panoramic views. From €99/night.',pros:['Unbeatable location','Rooftop pool','Great breakfast','Staff praised'],cons:['No sea access','Compact rooms','City noise'],lat:32.649,lng:-16.913,gmaps:'https://www.google.com/maps/search/?api=1&query=32.649,-16.913'},
+  {id:'vine-hotel',name:'The Vine Hotel',neighborhood:'City Center',rating:null,ratingSource:'Europe Leading Design Hotel',price:'120-200',tier:'mid-range',highlight:'Most stylish',tip:'Wine-themed design hotel. Rooftop infinity pool. UVA Restaurant is genuinely good.',pros:['Design-forward','Great rooftop bar','Good restaurant'],cons:['Compact rooms','Small pool'],lat:32.648,lng:-16.910,gmaps:'https://www.google.com/maps/search/?api=1&query=32.648,-16.910'},
+  {id:'porto-santa-maria',name:'Porto Santa Maria',neighborhood:'Old Town (Zona Velha)',rating:null,ratingSource:'PortoBay group',price:'100-170',tier:'mid-range',highlight:'Best budget play',tip:'Old Town waterfront. Adults only. All rooms have kitchenettes. 30+ restaurants within 3-min walk.',pros:['Old Town magic','Kitchenette saves money','Adults-only quiet'],cons:['Dated furnishings','Small pool'],lat:32.647,lng:-16.903,gmaps:'https://www.google.com/maps/search/?api=1&query=32.647,-16.903'},
+  {id:'saccharum',name:'Saccharum (Calheta)',neighborhood:'Calheta (outside Funchal)',rating:null,ratingSource:'Savoy Signature',price:'130-190',tier:'mid-range',highlight:'Best sunset hotel',tip:'West coast = unforgettable sunsets. Fly rooftop bar. Near only sandy beach. Consider for 1-night split stay.',pros:['Spectacular sunsets','Sandy beach nearby','Modern design'],cons:['Inconsistent service','Limited dining outside hotel'],lat:32.717,lng:-17.172,gmaps:'https://www.google.com/maps/search/?api=1&query=32.717,-17.172'}
+];
+
+// ── Render hotels ──
+const hotelGrid = document.getElementById('hotelGrid');
+hotels.forEach(h => {
+  const card = document.createElement('div');
+  card.className = 'hotel-card';
+  card.innerHTML = `
+    <div class="hc-highlight">${h.highlight}</div>
+    <h3>${h.name}</h3>
+    <div class="hc-neighborhood">${h.neighborhood}</div>
+    ${h.rating ? `<div class="hc-rating"><span class="hc-score">${h.rating}/10</span><span class="hc-source">${h.ratingSource}</span></div>` : (h.ratingSource ? `<div class="hc-rating"><span class="hc-source">${h.ratingSource}</span></div>` : '')}
+    <div class="hc-price">€${h.price} <span>/night (March)</span></div>
+    <span class="hc-tier ${h.tier}">${h.tier}</span>
+    <div class="hc-tip">${h.tip}</div>
+    <div class="hc-tags">
+      ${h.pros.map(p => `<span class="hc-tag pro">+ ${p}</span>`).join('')}
+      ${h.cons.map(c => `<span class="hc-tag con">- ${c}</span>`).join('')}
+    </div>
+    <div class="hc-links">
+      <a class="hc-link" href="${h.gmaps}" target="_blank">Google Maps</a>
+      <a class="hc-link" href="madeira_map.html?poi=${h.id}" target="_blank">Show on Map</a>
+    </div>
+  `;
+  hotelGrid.appendChild(card);
+});
+
+// ── Day tab switching ──
+const tabs = document.querySelectorAll('.day-tab');
+const sections = document.querySelectorAll('.day-section');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const day = tab.dataset.day;
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    sections.forEach(s => s.classList.remove('active'));
+    document.getElementById('day-' + day).classList.add('active');
+    // Init map for this day if not already
+    initDayMap(day);
+    window.scrollTo({top: document.querySelector('.day-tabs-wrap').offsetTop - 52, behavior: 'smooth'});
+  });
+});
+
+// ── Plan toggle ──
+document.querySelectorAll('.plan-toggle').forEach(toggle => {
+  toggle.querySelectorAll('.plan-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggle.querySelectorAll('.plan-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const planId = btn.dataset.plan;
+      const parent = toggle.parentElement;
+      parent.querySelectorAll('.plan-content').forEach(pc => pc.classList.remove('active'));
+      document.getElementById('plan-' + planId).classList.add('active');
+      initPlanMap(planId);
+    });
+  });
+});
+
+// ── Maps ──
+const maps = {};
+const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const tileAttr = '&copy; OpenStreetMap';
+const topoUrl = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
+const topoAttr = 'OpenTopoMap';
+
+// Route definitions: arrays of [lat, lng] waypoints
+const routes = {
+  '0': {
+    center: [32.67, -16.85], zoom: 11,
+    stops: [
+      {lat:32.6942,lng:-16.7745,name:'Airport',icon:'logistics'},
+      {lat:32.648,lng:-16.913,name:'Hotel (Funchal)',icon:'hotel'},
+      {lat:32.644,lng:-16.908,name:'Taberna Madeira',icon:'food'}
+    ]
+  },
+  '1a': {
+    center: [32.77, -16.91], zoom: 11,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
+      {lat:32.7403,lng:-16.9287,name:'Pico do Areeiro',icon:'view'},
+      {lat:32.7653,lng:-16.9209,name:'PR1.2 (Pico Ruivo)',icon:'hike'},
+      {lat:32.8049,lng:-16.8813,name:'Santana',icon:'culture'},
+      {lat:32.8,lng:-16.88,name:'Quinta do Furao',icon:'food'}
+    ]
+  },
+  '1b': {
+    center: [32.74, -16.80], zoom: 11,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
+      {lat:32.7493,lng:-16.7066,name:'PR8 Sao Lourenco',icon:'hike'},
+      {lat:32.738,lng:-16.71,name:'Prainha Beach',icon:'swim'},
+      {lat:32.722,lng:-16.765,name:'O Forno (Machico)',icon:'food'},
+      {lat:32.7725,lng:-16.8286,name:'Porto da Cruz',icon:'culture'},
+      {lat:32.7355,lng:-16.8864,name:'PR11 Balcoes',icon:'hike'}
+    ]
+  },
+  '2': {
+    center: [32.81, -17.10], zoom: 10,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
+      {lat:32.762,lng:-17.068,name:'Rabaçal (PR6+PR6.1)',icon:'hike'},
+      {lat:32.815211,lng:-17.152339,name:'Fanal Forest',icon:'view'},
+      {lat:32.866601,lng:-17.175722,name:'Porto Moniz Pools',icon:'swim'},
+      {lat:32.816096,lng:-17.095091,name:'Veu da Noiva',icon:'view'},
+      {lat:32.867,lng:-17.175,name:'Restaurante Orca',icon:'food'}
+    ]
+  },
+  '3': {
+    center: [32.75, -16.90], zoom: 11,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
+      {lat:32.7828,lng:-16.9116,name:'Queimadas (PR9)',icon:'hike'},
+      {lat:32.8049,lng:-16.8813,name:'Santana',icon:'culture'},
+      {lat:32.7396,lng:-16.8869,name:'Ribeiro Frio',icon:'culture'},
+      {lat:32.7355,lng:-16.8864,name:'PR11 Balcoes',icon:'hike'},
+      {lat:32.649,lng:-16.909,name:'Wine Tasting',icon:'food'}
+    ]
+  },
+  '4a': {
+    center: [32.655, -16.94], zoom: 12,
+    stops: [
+      {lat:32.6598,lng:-16.8673,name:'Palheiro Gardens',icon:'view'},
+      {lat:32.6487,lng:-16.9035,name:'Mercado dos Lavradores',icon:'culture'},
+      {lat:32.647,lng:-16.912,name:'Fabrica Santo Antonio',icon:'food'},
+      {lat:32.656658,lng:-17.004539,name:'Cabo Girao Skywalk',icon:'view'},
+      {lat:32.6485,lng:-16.9752,name:'Camara de Lobos',icon:'culture'},
+      {lat:32.6555,lng:-16.9555,name:'Santo Antonio (dinner)',icon:'food'}
+    ]
+  },
+  '4b': {
+    center: [32.73, -16.80], zoom: 11,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
+      {lat:32.735,lng:-16.76,name:'Vereda do Larano',icon:'hike'},
+      {lat:32.7725,lng:-16.8286,name:'Porto da Cruz',icon:'swim'},
+      {lat:32.749275,lng:-16.706601,name:'Ponta do Rosto',icon:'view'}
+    ]
+  },
+  '5': {
+    center: [32.67, -16.85], zoom: 11,
+    stops: [
+      {lat:32.648,lng:-16.913,name:'Hotel',icon:'hotel'},
+      {lat:32.645,lng:-16.91,name:'Opan Bakery',icon:'food'},
+      {lat:32.6942,lng:-16.7745,name:'Airport',icon:'logistics'}
+    ]
+  }
+};
+
+const iconColors = {
+  logistics: '#94a3b8', hike: '#34d399', food: '#fbbf24', view: '#a78bfa',
+  swim: '#60a5fa', culture: '#fb923c', hotel: '#fb923c'
+};
+
+function createNumberedIcon(num, type) {
+  const color = iconColors[type] || '#3b82f6';
+  return L.divIcon({
+    className: 'route-marker',
+    html: `<div style="width:28px;height:28px;border-radius:50%;background:${color};color:#000;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.8);box-shadow:0 2px 8px rgba(0,0,0,0.4);">${num}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14]
+  });
+}
+
+function initMapForRoute(mapId, routeKey) {
+  if (maps[mapId]) return; // Already initialized
+  const el = document.getElementById(mapId);
+  if (!el) return;
+
+  const route = routes[routeKey];
+  if (!route) return;
+
+  const map = L.map(el, {zoomControl: false}).setView(route.center, route.zoom);
+  L.control.zoom({position:'topright'}).addTo(map);
+
+  const street = L.tileLayer(tileUrl, {attribution: tileAttr});
+  const topo = L.tileLayer(topoUrl, {attribution: topoAttr, maxZoom: 17});
+  street.addTo(map);
+  L.control.layers({'Street': street, 'Terrain': topo}, null, {position:'topright'}).addTo(map);
+
+  // Draw route line
+  const coords = route.stops.map(s => [s.lat, s.lng]);
+  L.polyline(coords, {
+    color: '#3b82f6', weight: 3, opacity: 0.7, dashArray: '8, 8'
+  }).addTo(map);
+
+  // Add numbered markers
+  route.stops.forEach((stop, i) => {
+    const marker = L.marker([stop.lat, stop.lng], {
+      icon: createNumberedIcon(i + 1, stop.icon)
+    }).addTo(map);
+    marker.bindPopup(`<div style="font-weight:700;font-size:13px;">${i+1}. ${stop.name}</div>`, {className:'dark-popup'});
+  });
+
+  // Fit bounds
+  if (coords.length > 1) {
+    map.fitBounds(L.latLngBounds(coords).pad(0.15));
+  }
+
+  maps[mapId] = map;
+}
+
+function initDayMap(day) {
+  const dayStr = String(day);
+  if (dayStr === '1' || dayStr === '4') {
+    // Has plan A/B — init the active plan
+    const activeBtn = document.querySelector(`#day-${day} .plan-btn.active`);
+    if (activeBtn) initPlanMap(activeBtn.dataset.plan);
+  } else {
+    initMapForRoute('map-' + day, dayStr);
+  }
+}
+
+function initPlanMap(planId) {
+  initMapForRoute('map-' + planId, planId);
+}
+
+// Init first day's map
+setTimeout(() => initDayMap('0'), 100);
+
+// Dark popup style
+const style = document.createElement('style');
+style.textContent = `.dark-popup .leaflet-popup-content-wrapper{background:#111827;color:#e8eefc;border-radius:8px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 4px 12px rgba(0,0,0,0.4);}.dark-popup .leaflet-popup-tip{background:#111827;}`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>

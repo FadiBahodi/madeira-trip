@@ -252,7 +252,9 @@
         <button class="tab" data-filter="poncha,wine,bakery">Bars & Drinks</button>
         <button class="tab" data-filter="garden">Gardens</button>
         <button class="tab" data-filter="hidden-gem">Hidden Gems</button>
+        <button class="tab" data-filter="hotel">Hotels</button>
       </div>
+      <a class="nav-btn guide" href="./planner.html" style="color:#fbbf24;">Battle Plan</a>
       <a class="nav-btn guide" href="./itinerary.html">Guides</a>
       <a class="nav-btn map" href="./madeira_map.html">Map</a>
     </div>
@@ -312,6 +314,7 @@
       town:        { icon: '\u{1F3D8}', label: 'Town', badgeClass: 'badge-blue' },
       market:      { icon: '\u{1F6D2}', label: 'Market', badgeClass: 'badge-amber' },
       peak:        { icon: '\u{26F0}',  label: 'Summit', badgeClass: 'badge-dark' },
+      hotel:       { icon: '\u{1F3E8}', label: 'Hotel', badgeClass: 'badge-amber' },
     };
 
     // ── Stars renderer ──
@@ -357,6 +360,14 @@
         const freeText = (item.entry_fee === 'Free' || item.entry_fee === '0' || item.free) ? 'FREE' : item.entry_fee;
         badges += ` <span class="badge badge-dark">${freeText}</span>`;
       }
+      if (item.kind === 'hotel') {
+        if (item.tier) {
+          const tc = item.tier === 'luxury' ? 'badge-amber' : 'badge-blue';
+          badges += ` <span class="badge ${tc}">${item.tier}</span>`;
+        }
+        if (item.price_range_eur) badges += ` <span class="badge badge-dark">\u20AC${item.price_range_eur}/night</span>`;
+        if (item.highlight) badges += ` <span class="badge badge-green">${item.highlight}</span>`;
+      }
 
       // Stats
       let statsHtml = '';
@@ -390,6 +401,12 @@
           <span class="rating-text">Worth it: ${item.worth_it}/10</span>
         </div>`;
       }
+      if (item.kind === 'hotel' && item.rating) {
+        ratingHtml = `<div class="card-rating">
+          <span class="stars">${renderStars(item.rating / 2)}</span>
+          <span class="rating-text">${item.rating}/10${item.rating_source ? ' ' + item.rating_source : ''}${item.review_count ? ` (${item.review_count} reviews)` : ''}</span>
+        </div>`;
+      }
 
       // Highlight
       let highlightHtml = '';
@@ -398,6 +415,9 @@
       }
       if (item.cuisine) {
         highlightHtml = `<div class="card-highlight">${item.cuisine}</div>` + highlightHtml;
+      }
+      if (item.kind === 'hotel' && item.neighborhood) {
+        highlightHtml = `<div class="card-highlight">${item.neighborhood}</div>` + highlightHtml;
       }
 
       // Tip
