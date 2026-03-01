@@ -380,6 +380,7 @@
         <button class="tab" data-filter="garden">Gardens</button>
         <button class="tab" data-filter="hidden-gem">Hidden Gems</button>
         <button class="tab" data-filter="hotel">Hotels</button>
+        <button class="tab" data-filter="activity">Activities</button>
       </div>
       <a class="nav-btn guide" href="./planner.html" style="color:#fbbf24;">Battle Plan</a>
       <a class="nav-btn guide" href="./itinerary.html">Guides</a>
@@ -391,15 +392,10 @@
   <div class="category-hero" id="categoryHero" style="display:none;"></div>
 
   <div class="controls" id="controls">
-    <input class="search-box" id="search" type="search" placeholder="Search all 196 locations..." />
+    <input class="search-box" id="search" type="search" placeholder="Search all 264 locations..." />
     <div class="select-wrap">
       <select id="regionFilter">
         <option value="">All Regions</option>
-        <option value="Funchal & South">Funchal & South</option>
-        <option value="Central Mountains">Central Mountains</option>
-        <option value="East">East</option>
-        <option value="North Coast">North Coast</option>
-        <option value="West & Southwest">West & Southwest</option>
       </select>
     </div>
     <div class="difficulty-filter" id="diffFilter" style="display:none;">
@@ -456,6 +452,7 @@
       market:      { icon: '\u{1F6D2}', label: 'Market', badgeClass: 'badge-amber', color: '#f97316' },
       peak:        { icon: '\u{26F0}',  label: 'Summit', badgeClass: 'badge-dark', color: '#6366f1' },
       hotel:       { icon: '\u{1F3E8}', label: 'Hotel', badgeClass: 'badge-amber', color: '#f59e0b' },
+      activity:    { icon: '\u{1F3AF}', label: 'Activity', badgeClass: 'badge-teal', color: '#14b8a6' },
     };
 
     // Category hero images & descriptions
@@ -497,8 +494,13 @@
       },
       hotel: {
         img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg/1200px-Savoy_Palace%2C_Funchal_-_2022-02-14_-_DSC07846.jpg',
-        title: 'Hotels',
-        desc: 'From luxury resorts to boutique gems. Honest reviews, March pricing, neighborhoods.',
+        title: 'Hotels & Accommodation',
+        desc: '53 properties across all price ranges — from €40 hostels to €550 palaces. Sorted by Booking.com rating.',
+      },
+      activity: {
+        img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Dolphin_watching_in_Funchal%2C_Madeira.jpg/1200px-Dolphin_watching_in_Funchal%2C_Madeira.jpg',
+        title: 'Activities',
+        desc: 'Whale watching, toboggan rides, and unique Madeira experiences beyond hiking.',
       },
     };
 
@@ -573,11 +575,14 @@
         badges += ` <span class="badge badge-dark">${freeText}</span>`;
       }
       if (item.kind === 'hotel') {
-        if (item.tier) {
-          const tc = item.tier === 'luxury' ? 'badge-amber' : 'badge-blue';
-          badges += ` <span class="badge ${tc}">${item.tier}</span>`;
+        if (item.price_tier) {
+          const tc = item.price_tier === 'luxury' ? 'badge-amber' : item.price_tier === 'upper-mid' ? 'badge-purple' : item.price_tier === 'mid-range' ? 'badge-blue' : 'badge-green';
+          badges += ` <span class="badge ${tc}">${item.price_tier}</span>`;
         }
-        if (item.price_range_eur) badges += ` <span class="badge badge-dark">\u20AC${item.price_range_eur}/night</span>`;
+        if (item.price_range) badges += ` <span class="badge badge-dark">${item.price_range}/night</span>`;
+      }
+      if (item.kind === 'activity') {
+        if (item.entry_fee) badges += ` <span class="badge badge-dark">${item.entry_fee}</span>`;
       }
 
       let topPickHtml = '';
@@ -617,14 +622,18 @@
         ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.worth_it / 2)}</span><span class="rating-text">${item.worth_it}/10</span></div>`;
       }
       if (item.kind === 'hotel' && item.rating) {
-        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating / 2)}</span><span class="rating-text">${item.rating}/10${item.rating_source ? ' ' + item.rating_source : ''}</span></div>`;
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating / 2)}</span><span class="rating-text">${item.rating}/10${item.review_count ? ` (${item.review_count.toLocaleString()})` : ''} <span style="color:var(--muted);font-size:11px">${item.rating_source || 'Booking.com'}</span></span></div>`;
+      }
+      if (item.kind === 'activity' && item.rating) {
+        ratingHtml = `<div class="card-rating"><span class="stars">${renderStars(item.rating)}</span><span class="rating-text">${item.rating}/5${item.review_count ? ` (${item.review_count.toLocaleString()})` : ''} <span style="color:var(--muted);font-size:11px">${item.rating_source || ''}</span></span></div>`;
       }
 
       // Highlight
       let highlightHtml = '';
       if (item.cuisine) highlightHtml += `<div class="card-highlight" style="color:var(--orange)">${item.cuisine}</div>`;
       if (item.must_order) highlightHtml += `<div class="card-highlight">Must try: ${item.must_order}</div>`;
-      if (item.kind === 'hotel' && item.neighborhood) highlightHtml += `<div class="card-highlight" style="color:var(--amber)">${item.neighborhood}</div>`;
+      if (item.kind === 'hotel' && item.area) highlightHtml += `<div class="card-highlight" style="color:var(--amber)">${item.area}</div>`;
+      if (item.kind === 'hotel' && item.hotel_type) highlightHtml += `<div class="card-highlight" style="color:var(--muted);font-size:12px">${item.hotel_type}</div>`;
 
       // Tip
       const tipHtml = item.tip ? `<div class="card-tip">${item.tip}</div>` : '';
@@ -686,9 +695,12 @@
         const fee = item.free ? 'FREE' : item.entry_fee;
         badges += `<span class="modal-badge" style="background:#374151">${fee}</span>`;
       }
-      if (item.tier) {
-        const tc = item.tier === 'luxury' ? '#d97706' : '#3b82f6';
-        badges += `<span class="modal-badge" style="background:${tc}">${item.tier}</span>`;
+      if (item.price_tier) {
+        const tc = item.price_tier === 'luxury' ? '#d97706' : item.price_tier === 'upper-mid' ? '#a855f7' : item.price_tier === 'mid-range' ? '#3b82f6' : '#16a34a';
+        badges += `<span class="modal-badge" style="background:${tc}">${item.price_tier}</span>`;
+      }
+      if (item.price_range && item.kind === 'hotel') {
+        badges += `<span class="modal-badge" style="background:#374151">${item.price_range}/night</span>`;
       }
       if (item.top_pick || item.day_suggestion) {
         badges += `<span class="modal-badge" style="background:#fbbf24;color:#000">TOP PICK</span>`;
@@ -708,7 +720,9 @@
       if (item.swim_type) stats.push(['Type', item.swim_type]);
       if (item.hours) stats.push(['Hours', item.hours]);
       if (item.worth_it) stats.push(['Worth It', item.worth_it + '/10']);
-      if (item.price_range_eur) stats.push(['Price', '\u20AC' + item.price_range_eur + '/night']);
+      if (item.price_range && item.kind === 'hotel') stats.push(['Price', item.price_range + '/night']);
+      if (item.area && item.kind === 'hotel') stats.push(['Area', item.area]);
+      if (item.hotel_type) stats.push(['Type', item.hotel_type]);
       if (item.headlamp) stats.push(['Headlamp', 'Required']);
       if (stats.length) {
         html += '<div class="modal-stats">';
@@ -723,12 +737,14 @@
         const statusLabel = item.status === 'closed' ? '<span style="color:var(--red);font-weight:700;font-size:13px;background:rgba(248,113,113,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">CLOSED</span>' : (item.status === 'partial' ? '<span style="color:var(--amber);font-weight:700;font-size:13px;background:rgba(251,191,36,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">PARTIAL</span>' : '<span style="color:var(--green);font-weight:700;font-size:13px;background:rgba(52,211,153,0.15);padding:2px 10px;border-radius:6px;margin-left:8px">OPEN</span>');
         html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'AllTrails'})</span>` : ''} ${statusLabel}</div>`;
         if (item.reservation_required) {
-          html += `<div style="margin-top:8px;font-size:13px;color:var(--amber);background:rgba(251,191,36,0.1);padding:8px 12px;border-radius:8px;border:1px solid rgba(251,191,36,0.2)">Reservation required: <strong>€${item.fee_eur}</strong>/person via <a href="https://simplifica.madeira.gov.pt" target="_blank" style="color:var(--accent2)">SIMplifica</a>. Book 30-min entry slot. No-show fine: €250.</div>`;
+          html += `<div style="margin-top:8px;font-size:13px;color:var(--amber);background:rgba(251,191,36,0.1);padding:8px 12px;border-radius:8px;border:1px solid rgba(251,191,36,0.2)">Reservation required: <strong>€${item.fee_eur}</strong>/person via <a href="https://simplifica.madeira.gov.pt" target="_blank" style="color:var(--accent2)">SIMplifica</a>. Book 30-min entry slot. Fine €50-250 without reservation. Passes: 1-day €9 · 3-day €22.50 · 7-day €52.50.</div>`;
         }
       } else if (item.rating && item.kind === 'restaurant') {
         html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on Google Maps)</span>` : ''}</div>`;
       } else if (item.rating && item.kind === 'hotel') {
-        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating / 2)}</span> <strong>${item.rating}/10</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count} reviews)</span>` : ''}</div>`;
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating / 2)}</span> <strong>${item.rating}/10</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'Booking.com'})</span>` : ''}</div>`;
+      } else if (item.rating && item.kind === 'activity') {
+        html += `<div class="modal-rating"><span class="stars">${renderStars(item.rating)}</span> <strong>${item.rating}/5</strong>${item.review_count ? ` <span style="color:var(--muted);font-size:14px">(${item.review_count.toLocaleString()} reviews on ${item.rating_source || 'TripAdvisor'})</span>` : ''}</div>`;
       }
 
       if (item.must_order) html += `<div class="modal-must-order">Must order: ${item.must_order}</div>`;
@@ -783,7 +799,10 @@
           (i.cuisine && i.cuisine.toLowerCase().includes(q)) ||
           (i.must_order && i.must_order.toLowerCase().includes(q)) ||
           (i.code && i.code.toLowerCase().includes(q)) ||
-          (i.region && i.region.toLowerCase().includes(q))
+          (i.region && i.region.toLowerCase().includes(q)) ||
+          (i.area && i.area.toLowerCase().includes(q)) ||
+          (i.hotel_type && i.hotel_type.toLowerCase().includes(q)) ||
+          (i.price_tier && i.price_tier.toLowerCase().includes(q))
         );
       }
       items = [...items];
@@ -793,9 +812,14 @@
           const ta = (a.top_pick || a.day_suggestion) ? 1 : 0;
           const tb = (b.top_pick || b.day_suggestion) ? 1 : 0;
           if (tb !== ta) return tb - ta;
-          const ra = a.rating || (a.worth_it ? a.worth_it / 2 : 0);
-          const rb = b.rating || (b.worth_it ? b.worth_it / 2 : 0);
-          return rb - ra;
+          // Normalize ratings to 0-5 scale for comparison
+          const getNormRating = (i) => {
+            if (i.kind === 'hotel' && i.rating) return i.rating / 2; // /10 -> /5
+            if (i.rating) return i.rating;
+            if (i.worth_it) return i.worth_it / 2; // /10 -> /5
+            return 0;
+          };
+          return getNormRating(b) - getNormRating(a);
         });
       } else if (activeSort === 'name') {
         items.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
@@ -884,6 +908,14 @@
         const resp = await fetch('./data/madeira_data.json', { cache: 'no-store' });
         const data = await resp.json();
         allItems = data.items || [];
+        // Populate region filter dynamically
+        const regions = [...new Set(allItems.map(i => i.region).filter(Boolean))].sort();
+        const regionSel = document.getElementById('regionFilter');
+        regions.forEach(r => {
+          const opt = document.createElement('option');
+          opt.value = r; opt.textContent = r;
+          regionSel.appendChild(opt);
+        });
         updateTabCounts();
         renderCards();
 
