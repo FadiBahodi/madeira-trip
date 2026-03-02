@@ -98,6 +98,43 @@
     }
     .category-hero .hero-stat strong { color: var(--text); font-weight: 700; }
 
+    /* ── Concierge Picks ── */
+    .concierge-section {
+      max-width: 1440px; margin: 0 auto; padding: 16px 20px 0;
+    }
+    .concierge-header {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+    }
+    .concierge-header h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+    .concierge-header h2 span { color: var(--amber); }
+    .concierge-toggle {
+      font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer;
+      background: var(--surface); border: 1px solid var(--border); padding: 4px 12px;
+      border-radius: 6px; transition: all 0.15s;
+    }
+    .concierge-toggle:hover { color: var(--text); border-color: var(--accent); }
+    .concierge-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px;
+      margin-bottom: 8px;
+    }
+    .concierge-grid.collapsed { display: none; }
+    .cpick {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;
+      transition: border-color 0.15s;
+    }
+    .cpick:hover { border-color: rgba(255,255,255,0.15); }
+    .cpick .cp-icon { font-size: 20px; flex-shrink: 0; }
+    .cpick .cp-name { font-size: 13px; font-weight: 700; }
+    .cpick .cp-why { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .cpick .cp-links { display: flex; gap: 4px; margin-top: 4px; }
+    .cpick .cp-link {
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--accent2);
+      text-decoration: none;
+    }
+    .cpick .cp-link:hover { border-color: var(--accent); }
+
     /* ── Controls bar ── */
     .controls {
       max-width: 1440px; margin: 0 auto; padding: 16px 20px 0;
@@ -391,6 +428,97 @@
   <!-- Category hero banner -->
   <div class="category-hero" id="categoryHero" style="display:none;"></div>
 
+  <!-- Concierge Picks -->
+  <div class="concierge-section" id="conciergePicks">
+    <div class="concierge-header">
+      <h2><span>Concierge</span> Top Picks</h2>
+      <button class="concierge-toggle" id="conciergeToggle">Hide picks</button>
+    </div>
+    <div class="concierge-grid" id="conciergeGrid">
+      <div class="cpick">
+        <div class="cp-icon">&#9968;</div>
+        <div>
+          <div class="cp-name">PR8 — Ponta de S&#227;o Louren&#231;o</div>
+          <div class="cp-why">Most dramatic hike. Ocean both sides, volcanic colors. &#11088;4.7</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Ponta+de+Sao+Lourenco+PR8+Madeira" target="_blank">Maps</a>
+            <a class="cp-link" href="planner.html" target="_blank">In Battle Plan</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127754;</div>
+        <div>
+          <div class="cp-name">PR9 — Caldeir&#227;o Verde</div>
+          <div class="cp-why">THE levada hike. Tunnels, forest, waterfall amphitheater. &#11088;4.6</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Queimadas+Caldeirao+Verde+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127860;</div>
+        <div>
+          <div class="cp-name">Restaurante Santo Antonio</div>
+          <div class="cp-why">THE espetada experience. Since 1966. 9,000+ reviews. &#11088;4.7</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Santo+Antonio+Estreito+Camara+de+Lobos+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127963;</div>
+        <div>
+          <div class="cp-name">Castanheiro Boutique Hotel</div>
+          <div class="cp-why">Best value in Funchal. Walk to everything. Rooftop pool. 9.3/10</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127749;</div>
+        <div>
+          <div class="cp-name">Pico do Areeiro Sunrise</div>
+          <div class="cp-why">Above the clouds at 1818m. Free (drive up). Life-changing at dawn.</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Pico+do+Areeiro+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127866;</div>
+        <div>
+          <div class="cp-name">Pereira d'Oliveira Wine</div>
+          <div class="cp-why">Free tasting of 50-100yr wines. Funchal's best-kept secret.</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Pereira+d%27Oliveira+Funchal+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127796;</div>
+        <div>
+          <div class="cp-name">Porto Moniz Natural Pools</div>
+          <div class="cp-why">Volcanic lava pools on the coast. &#8364;3 or free (Cachalote). Iconic.</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Porto+Moniz+Natural+Pools+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="cpick">
+        <div class="cp-icon">&#127374;</div>
+        <div>
+          <div class="cp-name">Cabo Gir&#227;o Skywalk</div>
+          <div class="cp-why">Europe's highest cliff. 580m glass platform. Free. Go at golden hour.</div>
+          <div class="cp-links">
+            <a class="cp-link" href="https://www.google.com/maps/search/?api=1&query=Cabo+Girao+Skywalk+Madeira" target="_blank">Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="controls" id="controls">
     <input class="search-box" id="search" type="search" placeholder="Search all 264 locations..." />
     <div class="select-wrap">
@@ -427,6 +555,19 @@
   </div>
 
   <script>
+    // ── Concierge toggle ──
+    const conciergeToggle = document.getElementById('conciergeToggle');
+    const conciergeGrid = document.getElementById('conciergeGrid');
+    if (localStorage.getItem('madeira_concierge_hidden') === '1') {
+      conciergeGrid.classList.add('collapsed');
+      conciergeToggle.textContent = 'Show picks';
+    }
+    conciergeToggle.addEventListener('click', () => {
+      const hidden = conciergeGrid.classList.toggle('collapsed');
+      conciergeToggle.textContent = hidden ? 'Show picks' : 'Hide picks';
+      localStorage.setItem('madeira_concierge_hidden', hidden ? '1' : '0');
+    });
+
     // ── State ──
     let allItems = [];
     let activeKindFilter = 'all';
