@@ -101,48 +101,99 @@
     .check-item.done { text-decoration: line-through; opacity: 0.5; }
     .check-item a { color: var(--accent2); }
 
-    /* ── Hotel strategy section ── */
-    .strategy-section {
+    /* ── Hotel section ── */
+    .hotel-section {
       max-width: 1100px; margin: 0 auto; padding: 0 16px 24px;
     }
-    .strategy-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
-    .strategy-section .ss-sub { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
-    .strategy-tip {
+    .hotel-section h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.3px; }
+    .hotel-section .hs-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .hotel-tip {
       font-size: 13px; color: var(--green); background: rgba(52,211,153,0.08);
       border: 1px solid rgba(52,211,153,0.15); border-radius: 10px;
-      padding: 12px 16px; margin-bottom: 16px;
+      padding: 12px 16px; margin-bottom: 20px;
     }
-    .strategy-tip strong { color: var(--text); }
-    .strategy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
-    .strategy-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
-      padding: 20px; position: relative;
+    .hotel-tip strong { color: var(--text); }
+    /* Quick picks */
+    .quick-picks { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-bottom: 24px; }
+    .qp-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px; transition: border-color 0.15s;
     }
-    .strategy-card .sc-tier {
-      font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 6px;
-      display: inline-block; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;
+    .qp-card:hover { border-color: rgba(255,255,255,0.15); }
+    .qp-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .qp-label.best-value { color: var(--green); }
+    .qp-label.best-luxury { color: var(--amber); }
+    .qp-label.best-location { color: var(--accent2); }
+    .qp-label.best-outside { color: var(--orange); }
+    .qp-name { font-size: 14px; font-weight: 800; margin-bottom: 2px; }
+    .qp-detail { font-size: 11px; color: var(--muted); line-height: 1.5; }
+    .qp-detail .qp-price { color: var(--text); font-weight: 700; }
+    .qp-detail .qp-rating { color: var(--green); font-weight: 700; }
+    /* Neighborhood blocks */
+    .nh-block { margin-bottom: 20px; }
+    .nh-head {
+      display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px 12px 0 0;
+      cursor: pointer; user-select: none; transition: background 0.15s;
     }
-    .sc-tier.budget { background: rgba(52,211,153,0.15); color: var(--green); }
-    .sc-tier.sweet { background: rgba(59,130,246,0.12); color: var(--accent2); }
-    .sc-tier.luxury { background: rgba(251,191,36,0.15); color: var(--amber); }
-    .strategy-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 2px; }
-    .strategy-card .sc-price { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-    .strategy-pick {
-      padding: 10px 0; border-top: 1px solid var(--border);
+    .nh-head:hover { background: var(--surface2); }
+    .nh-head .nh-icon { font-size: 20px; flex-shrink: 0; }
+    .nh-head h3 { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+    .nh-head .nh-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .nh-head .nh-arrow { margin-left: auto; font-size: 14px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; padding-top: 2px; }
+    .nh-block.open .nh-head .nh-arrow { transform: rotate(180deg); }
+    .nh-block .nh-head { border-radius: 12px; }
+    .nh-block.open .nh-head { border-radius: 12px 12px 0 0; }
+    .nh-body {
+      display: none; border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 12px 12px; overflow: hidden;
     }
-    .strategy-pick:first-of-type { border-top: none; }
-    .strategy-pick .sp-name { font-size: 14px; font-weight: 700; }
-    .strategy-pick .sp-meta { font-size: 12px; color: var(--muted); }
-    .strategy-pick .sp-meta .sp-rating { color: var(--green); font-weight: 700; }
-    .strategy-pick .sp-links { display: flex; gap: 6px; margin-top: 4px; }
-    .strategy-pick .sp-link {
-      font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 5px;
+    .nh-block.open .nh-body { display: block; }
+    /* Hotel entry */
+    .hotel-entry {
+      padding: 14px 16px; border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; align-items: start;
+    }
+    .hotel-entry:first-child { border-top: none; }
+    .he-main { min-width: 0; }
+    .he-name { font-size: 14px; font-weight: 800; }
+    .he-name a { color: var(--text); }
+    .he-name a:hover { color: var(--accent2); }
+    .he-tagline { font-size: 12px; color: var(--muted); margin: 2px 0 6px; line-height: 1.4; }
+    .he-badges { display: flex; flex-wrap: wrap; gap: 4px; }
+    .he-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--muted);
+      white-space: nowrap;
+    }
+    .he-badge.pool { color: var(--accent2); border-color: rgba(59,130,246,0.2); }
+    .he-badge.parking { color: var(--green); border-color: rgba(52,211,153,0.2); }
+    .he-badge.breakfast { color: var(--amber); border-color: rgba(251,191,36,0.2); }
+    .he-badge.seaview { color: var(--purple); border-color: rgba(167,139,250,0.2); }
+    .he-badge.adults { color: var(--orange); border-color: rgba(251,146,60,0.2); }
+    .he-badge.kitchen { color: var(--green); border-color: rgba(52,211,153,0.2); }
+    .he-badge.michelin { color: var(--red); border-color: rgba(248,113,113,0.2); }
+    .he-stats {
+      text-align: right; white-space: nowrap; flex-shrink: 0;
+    }
+    .he-rating { font-size: 16px; font-weight: 900; color: var(--green); }
+    .he-price { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .he-links { display: flex; gap: 4px; margin-top: 4px; justify-content: flex-end; }
+    .he-link {
+      font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
       background: var(--surface2); border: 1px solid var(--border); color: var(--accent2);
     }
-    .strategy-pick .sp-link:hover { border-color: var(--accent); text-decoration: none; }
-    .strategy-more {
-      font-size: 12px; color: var(--accent2); margin-top: 12px; display: inline-block;
+    .he-link:hover { border-color: var(--accent); text-decoration: none; }
+    /* Practical info cards */
+    .hotel-practical { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; margin-top: 20px; }
+    .hp-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px;
     }
+    .hp-card h4 { font-size: 13px; font-weight: 800; margin-bottom: 6px; }
+    .hp-card p, .hp-card li { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .hp-card ul { padding-left: 16px; margin: 0; }
+    .hp-card li { margin-bottom: 3px; }
+    .hp-card strong { color: var(--text); }
 
     /* ── Weather callout ── */
     .weather-callout {
@@ -324,7 +375,11 @@
       .day-tab { padding: 6px 12px; font-size: 11px; }
       .primer-grid { grid-template-columns: 1fr; }
       .cl-columns { grid-template-columns: 1fr; }
-      .strategy-grid { grid-template-columns: 1fr; }
+      .quick-picks { grid-template-columns: 1fr 1fr; }
+      .hotel-practical { grid-template-columns: 1fr; }
+      .hotel-entry { grid-template-columns: 1fr; }
+      .he-stats { text-align: left; display: flex; gap: 12px; align-items: center; }
+      .he-links { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -453,97 +508,540 @@
 <!-- ============================================ -->
 <!-- WHERE TO STAY: Hotel Strategy                -->
 <!-- ============================================ -->
-<section class="strategy-section" id="hotels">
+<section class="hotel-section" id="hotels">
   <h2>Where to Stay</h2>
-  <p class="ss-sub">53 hotels in the <a href="explore.html?tab=hotel">Explorer</a>. Here are the best picks for each budget, all verified on Booking.com.</p>
-  <div class="strategy-tip">
-    <strong>Recommendation:</strong> Stay in Funchal all 4 nights — everything on the island is a 30-90 min drive. Optional: 1 night in Calheta or Porto Moniz on Day 2 to avoid the 1.5h drive back. March = low season, prices are 30-50% below summer.
+  <p class="hs-sub">25 hotels across 5 neighborhoods, verified on Booking.com. March = low season — prices 20-40% below summer.</p>
+
+  <div class="hotel-tip">
+    <strong>Strategy:</strong> Stay in Funchal all 4 nights — everywhere on the island is 30-90 min drive. Optional: 1 night in Calheta (sunset) or Porto Moniz (natural pools) on Day 2 to avoid the 1h+ drive back. Funchal parking runs ~&#8364;15/day; outside Funchal it's almost always free.
   </div>
-  <div class="strategy-grid">
-    <!-- Budget -->
-    <div class="strategy-card">
-      <span class="sc-tier budget">Budget</span>
-      <h3>&#8364;25-80/night</h3>
-      <p class="sc-price">Guesthouses and hostels. Don't sleep on these — ratings are stellar.</p>
-      <div class="strategy-pick">
-        <div class="sp-name">Casa da Piedade</div>
-        <div class="sp-meta"><span class="sp-rating">9.4/10</span> &middot; S&#227;o Vicente &middot; &#8364;50-80/night &middot; Guesthouse</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Casa+da+Piedade+Madeira+Portugal" target="_blank">Maps</a>
-          <a class="sp-link" href="explore.html?tab=hotel" target="_blank">Details</a>
-        </div>
-      </div>
-      <div class="strategy-pick">
-        <div class="sp-name">A Casa Do Caseiro</div>
-        <div class="sp-meta"><span class="sp-rating">9.2/10</span> &middot; Funchal (Santa Luzia) &middot; &#8364;50-80/night &middot; B&amp;B</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=A+Casa+Do+Caseiro+Funchal+Madeira+Portugal" target="_blank">Maps</a>
-        </div>
-      </div>
-      <div class="strategy-pick">
-        <div class="sp-name">Jaca Hostel</div>
-        <div class="sp-meta"><span class="sp-rating">9.1/10</span> &middot; Funchal Center &middot; &#8364;25-60/night &middot; Hostel</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira+Portugal" target="_blank">Maps</a>
-        </div>
-      </div>
-      <a class="strategy-more" href="explore.html?tab=hotel">All 53 hotels in Explorer &rarr;</a>
+
+  <!-- Quick Picks -->
+  <div class="quick-picks">
+    <div class="qp-card">
+      <div class="qp-label best-value">Best Value</div>
+      <div class="qp-name">Castanheiro Boutique</div>
+      <div class="qp-detail"><span class="qp-rating">8.7/10</span> &middot; <span class="qp-price">&#8364;99-160</span> &middot; Center. Walk to everything. Rooftop pool, spa, great breakfast. The value benchmark.</div>
     </div>
-    <!-- Sweet Spot -->
-    <div class="strategy-card">
-      <span class="sc-tier sweet">Sweet Spot</span>
-      <h3>&#8364;80-160/night</h3>
-      <p class="sc-price">Best value. Boutique hotels with character, central locations, great breakfast.</p>
-      <div class="strategy-pick">
-        <div class="sp-name">Castanheiro Boutique Hotel</div>
-        <div class="sp-meta"><span class="sp-rating">9.3/10</span> &middot; Funchal Center &middot; &#8364;99-160/night &middot; Walk to everything. Rooftop pool.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira+Portugal" target="_blank">Maps</a>
-        </div>
-      </div>
-      <div class="strategy-pick">
-        <div class="sp-name">Quinta do Fur&#227;o</div>
-        <div class="sp-meta"><span class="sp-rating">9.3/10</span> &middot; Santana &middot; &#8364;90-140/night &middot; Cliff-top boutique with vineyard. Best outside Funchal.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira+Portugal" target="_blank">Maps</a>
-        </div>
-      </div>
-      <div class="strategy-pick">
-        <div class="sp-name">ARTS IN Hotel Conde Carvalhal</div>
-        <div class="sp-meta"><span class="sp-rating">9.2/10</span> &middot; Funchal Center &middot; &#8364;90-160/night &middot; Art-focused, rooftop terrace.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira+Portugal" target="_blank">Maps</a>
-        </div>
-      </div>
-      <a class="strategy-more" href="explore.html?tab=hotel">All 53 hotels in Explorer &rarr;</a>
+    <div class="qp-card">
+      <div class="qp-label best-luxury">Highest Rated</div>
+      <div class="qp-name">Quinta Jardins do Lago</div>
+      <div class="qp-detail"><span class="qp-rating">9.7/10</span> &middot; <span class="qp-price">&#8364;148-360</span> &middot; #1 on TripAdvisor. Garden paradise. Free parking + breakfast. Extraordinary at &#8364;148.</div>
     </div>
-    <!-- Luxury -->
-    <div class="strategy-card">
-      <span class="sc-tier luxury">Treat Yourself</span>
-      <h3>&#8364;150+/night</h3>
-      <p class="sc-price">Special trip? These are genuinely exceptional. March prices make luxury surprisingly accessible.</p>
-      <div class="strategy-pick">
-        <div class="sp-name">Reid's Palace (Belmond)</div>
-        <div class="sp-meta"><span class="sp-rating">9.7/10</span> &middot; Funchal West &middot; &#8364;300-550/night &middot; Since 1891. Churchill painted here. Michelin dining.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira+Portugal" target="_blank">Maps</a>
+    <div class="qp-card">
+      <div class="qp-label best-location">Best Location</div>
+      <div class="qp-name">Three House Hotel</div>
+      <div class="qp-detail"><span class="qp-rating">9.6/10</span> &middot; <span class="qp-price">&#8364;120-200</span> &middot; Old Town. 13 apartments. Free parking + kitchen. Rooftop cocktail bar. Books out fast.</div>
+    </div>
+    <div class="qp-card">
+      <div class="qp-label best-outside">Budget Surprise</div>
+      <div class="qp-name">Quintinha S&#227;o Jo&#227;o</div>
+      <div class="qp-detail"><span class="qp-rating">9.0/10</span> &middot; <span class="qp-price">&#8364;93-200</span> &middot; Heights. A 5-star from &#8364;93. Free breakfast, parking, heated pools, spa. Best deal in Madeira.</div>
+    </div>
+  </div>
+
+  <!-- ─── Old Town / Zona Velha ─── -->
+  <div class="nh-block open" id="nh-oldtown">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#127863;</span>
+      <div>
+        <h3>Old Town / Zona Velha</h3>
+        <div class="nh-desc">The soul of Funchal. Painted doors, waterfront bars, Mercado dos Lavradores. 30+ restaurants in 3-min walk. Buzzy at night — best for foodies and walkers.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Three+House+Hotel+Funchal+Madeira" target="_blank">Three House Hotel</a></div>
+          <div class="he-tagline">Highest-rated in this guide. 13 apartments with full kitchens. Rooftop pool + cocktail bar. Free parking in Old Town (almost unheard of). Books out fast — reserve early.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge kitchen">Kitchen</span>
+            <span class="he-badge seaview">Rooftop View</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.6</div>
+          <div class="he-price">&#8364;120-200</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Three+House+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
         </div>
       </div>
-      <div class="strategy-pick">
-        <div class="sp-name">Quinta Jardins do Lago</div>
-        <div class="sp-meta"><span class="sp-rating">9.5/10</span> &middot; Funchal Heights &middot; &#8364;180-320/night &middot; Boutique manor, subtropical gardens, pool.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira+Portugal" target="_blank">Maps</a>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Barcelo+Funchal+Old+Town+Madeira" target="_blank">Barcel&#243; Funchal Old Town</a></div>
+          <div class="he-tagline">Only 5-star actually IN the Old Town. Rooftop pool with city panorama. Top-tier breakfast. No on-site parking — need public garage nearby.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool</span>
+            <span class="he-badge breakfast">Great Breakfast</span>
+            <span class="he-badge seaview">Sea View</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.1</div>
+          <div class="he-price">&#8364;150-250</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Barcelo+Funchal+Old+Town+Madeira" target="_blank">Maps</a></div>
         </div>
       </div>
-      <div class="strategy-pick">
-        <div class="sp-name">Quinta da Casa Branca</div>
-        <div class="sp-meta"><span class="sp-rating">9.4/10</span> &middot; Funchal Lido &middot; &#8364;150-280/night &middot; Wine estate. 43 rooms. Garden paradise.</div>
-        <div class="sp-links">
-          <a class="sp-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira+Portugal" target="_blank">Maps</a>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Porto+Santa+Maria+Hotel+Funchal+Madeira" target="_blank">Porto Santa Maria (Adults Only)</a></div>
+          <div class="he-tagline">Best for food lovers. All rooms have kitchenettes (grab fruit from the market next door). Seafront location. Adults-only = quiet. Furnishings dated in some rooms.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool</span>
+            <span class="he-badge kitchen">Kitchenette</span>
+            <span class="he-badge seaview">Sea View</span>
+            <span class="he-badge adults">Adults Only</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.8</div>
+          <div class="he-price">&#8364;100-180</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Porto+Santa+Maria+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
         </div>
       </div>
-      <a class="strategy-more" href="explore.html?tab=hotel">All 53 hotels in Explorer &rarr;</a>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Madeira+Funchal" target="_blank">Hotel Madeira</a></div>
+          <div class="he-tagline">Charming 3-star that punches above its weight. Rooftop "Panorama Bar" is a highlight at this price. 52 rooms. Small but clean. Great location for walking.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Rooftop Pool</span>
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.6</div>
+          <div class="he-price">&#8364;60-100</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Madeira+Funchal" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Pestana+CR7+Funchal+Madeira" target="_blank">Pestana CR7</a></div>
+          <div class="he-tagline">Marketing hotel that's actually decent. Modern design, rooftop pool, good breakfast. Ignore the branding — it's a solid 4-star. Some rooms feel dated for the price.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Rooftop Pool</span>
+            <span class="he-badge seaview">Sea View</span>
+            <span class="he-badge breakfast">Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.3</div>
+          <div class="he-price">&#8364;100-180</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+CR7+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Funchal Center / Sé ─── -->
+  <div class="nh-block" id="nh-center">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#9962;</span>
+      <div>
+        <h3>Funchal Center / S&#233;</h3>
+        <div class="nh-desc">Commercial heart. S&#233; Cathedral, Blandy's Wine Lodge, shops. 5-8 min walk to Old Town, 15-20 min to Lido. Best mid-range area — equidistant from everything.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Castanheiro Boutique Hotel</a></div>
+          <div class="he-tagline">THE best value in Funchal. Dead center — 2 min to shops, 5 to marina. Rooftop lap pool with views + jacuzzi. Til Spa (organic seaweed treatments). Breakfast buffet + cooked-to-order. Rooms are compact (city boutique sizing). From &#8364;99 in March.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Rooftop Pool</span>
+            <span class="he-badge breakfast">Great Breakfast</span>
+            <span class="he-badge parking">Parking (&#8364;15/d)</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.7</div>
+          <div class="he-price">&#8364;99-160</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Se+Boutique+Hotel+Funchal+Madeira" target="_blank">S&#233; Boutique Hotel</a></div>
+          <div class="he-tagline">Steps from S&#233; Cathedral. 3 min to Mercado. Couples rate location 9.7/10. Rooftop terrace (no pool). Excellent breakfast included in many rates. An underrated gem under &#8364;100 in March.</div>
+          <div class="he-badges">
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+            <span class="he-badge seaview">Rooftop Terrace</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.9</div>
+          <div class="he-price">&#8364;90-180</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Se+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=The+Vine+Hotel+Funchal+Madeira" target="_blank">The Vine Hotel</a></div>
+          <div class="he-tagline">Award-winning design hotel. Wine-themed. Rooftop infinity pool + bar. UVA Restaurant (French-Madeiran, genuinely good). Stylish, modern interiors. Rooms lean compact.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Infinity Pool</span>
+            <span class="he-badge breakfast">Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.5</div>
+          <div class="he-price">&#8364;120-200</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Vine+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Catedral+Funchal+Madeira" target="_blank">Hotel Catedral</a></div>
+          <div class="he-tagline">Honest budget hotel, unbeatable location. 3 min from cathedral. A bit dated (wallpaper could use a refresh) but rooms are clean. Parking 1km away is a pain if you have a rental car.</div>
+          <div class="he-badges">
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.2</div>
+          <div class="he-price">&#8364;60-100</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catedral+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira" target="_blank">Jaca Hostel</a></div>
+          <div class="he-tagline">Not a party hostel — more like a well-run guesthouse with dorm pricing. Bright rooms, comfy beds, excellent cleanliness. S&#227;o Pedro district, walk to marina. Best budget option in Funchal.</div>
+          <div class="he-badges">
+            <span class="he-badge">Hostel</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.7<span style="font-size:10px;color:var(--muted);font-weight:400"> loc</span></div>
+          <div class="he-price">&#8364;25-50</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Lido / São Martinho ─── -->
+  <div class="nh-block" id="nh-lido">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#127754;</span>
+      <div>
+        <h3>Lido / S&#227;o Martinho</h3>
+        <div class="nh-desc">Resort strip along the coast. Where the big luxury hotels cluster. Lido promenade, swimming complexes, spas. 25-40 min walk to Old Town (flat along coast) or 10 min by bus.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Reid's Palace (Belmond)</a></div>
+          <div class="he-tagline">THE iconic Madeira hotel. Since 1891 — Churchill painted here. Cliff-top with panoramic views. William Restaurant (Michelin-starred). Famous afternoon tea. Free parking + breakfast. Can feel stuffy (dress codes for dinner). Not walkable to Old Town. Book sea-view — it's the entire point.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">3 Pools</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+            <span class="he-badge michelin">Michelin</span>
+            <span class="he-badge seaview">Cliff-top Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.5</div>
+          <div class="he-price">&#8364;255-550</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Bay+Porto+Bay+Funchal+Madeira" target="_blank">The Cliff Bay (Porto Bay)</a></div>
+          <div class="he-tagline">The serious foodie luxury pick. Il Gallo d'Oro — Madeira's only 2-Michelin-star restaurant, on-site. Direct ocean access via saltwater pool at cliff base (Savoy doesn't have this). Free parking. More serene than Savoy — garden-focused, mature. Standard rooms feel a generation older.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool + Ocean Access</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge michelin">2 Michelin Stars</span>
+            <span class="he-badge seaview">Oceanfront</span>
+            <span class="he-badge breakfast">Great Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.4</div>
+          <div class="he-price">&#8364;150-350</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Bay+Porto+Bay+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Savoy+Palace+Funchal+Madeira" target="_blank">Savoy Palace</a></div>
+          <div class="he-tagline">Flashiest hotel on the island. 352 rooms. Laurea Spa (3,000 sqm — largest in Portugal). 2 rooftop infinity pools. 5 restaurants. Dramatic tropical architecture. Watch for hidden charges (&#8364;90 sunbed charges reported). No direct sea access.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">2 Infinity Pools</span>
+            <span class="he-badge parking">Parking (&#8364;15-20/d)</span>
+            <span class="he-badge breakfast">Great Breakfast</span>
+            <span class="he-badge seaview">Ocean View</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.3</div>
+          <div class="he-price">&#8364;185-350</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Savoy+Palace+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira" target="_blank">Quinta da Casa Branca</a></div>
+          <div class="he-tagline">The anti-resort. 43 rooms on a historic wine estate in 28,000 sqm of subtropical gardens. Feels like a private estate that happens to be a hotel. Exceptional breakfast. Manor House suites are the splurge. Standard rooms showing age. No ocean views.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">2 Pools</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge breakfast">Top Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.0</div>
+          <div class="he-price">&#8364;150-280</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Alto+Lido+Funchal+Madeira" target="_blank">Hotel Alto Lido</a></div>
+          <div class="he-tagline">The budget-to-mid Lido workhorse. From &#8364;67 for a 4-star with heated pools and sea views. 1,687 reviews — consistent. Breakfast is huge but mediocre quality (bad coffee). Renovated 2018.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">3 Heated Pools</span>
+            <span class="he-badge seaview">Sea View</span>
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.9</div>
+          <div class="he-price">&#8364;67-130</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Alto+Lido+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Madeira+Regency+Cliff+Funchal+Madeira" target="_blank">Madeira Regency Cliff (Adults Only)</a></div>
+          <div class="he-tagline">Hidden gem. Only 59 rooms, set INTO the cliff. Spectacular Atlantic views. Themed nightly dinner is a unique touch. Smaller and more intimate than the big Lido resorts. Ponta Gorda Lido 400 ft away.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool</span>
+            <span class="he-badge seaview">Cliff-edge Views</span>
+            <span class="he-badge adults">Adults Only</span>
+            <span class="he-badge breakfast">Dinner Incl.</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.8</div>
+          <div class="he-price">&#8364;110-170</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Madeira+Regency+Cliff+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Baia+Azul+Funchal+Madeira" target="_blank">Hotel Ba&#237;a Azul</a></div>
+          <div class="he-tagline">Best value in Lido. 3 pools, 3 restaurants, sea views, free breakfast — under &#8364;100 some nights in March. Recently renovated. Not the most characterful but reliable. Ask for sea-facing room.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">3 Pools</span>
+            <span class="he-badge breakfast">Free Breakfast</span>
+            <span class="he-badge seaview">Sea View</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.5</div>
+          <div class="he-price">&#8364;90-160</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Baia+Azul+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Funchal Heights ─── -->
+  <div class="nh-block" id="nh-heights">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#9968;</span>
+      <div>
+        <h3>Funchal Heights (Monte, S&#227;o Jo&#227;o)</h3>
+        <div class="nh-desc">Quiet hills above the city with panoramic views. Cooler, greener, peaceful. Cable car or 10-min drive to center. Best for couples seeking tranquility, garden lovers, and anyone with a rental car.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Quinta Jardins do Lago</a></div>
+          <div class="he-tagline">#1 on TripAdvisor, 9.7/10 on Booking.com. That's not a coincidence. 41-room garden paradise with heated pool. Staff service exceptional. Free parking + breakfast. Starting &#8364;148 in March for a 5-star is extraordinary. Some rooms have slightly dated decor. Restaurant prices climbing.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Heated Pool + Jacuzzi</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge breakfast">Top Breakfast</span>
+            <span class="he-badge seaview">Bay Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.7</div>
+          <div class="he-price">&#8364;148-360</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quintinha+Sao+Joao+Hotel+Funchal+Madeira" target="_blank">Quintinha S&#227;o Jo&#227;o</a></div>
+          <div class="he-tagline">A 5-star at 3-star prices. From &#8364;93 in March for free breakfast, free parking, indoor/outdoor heated pools, full spa. 42 rooms, charming not flashy. Trading walkability for serenity + extraordinary value. Arguably the best deal in this entire guide.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">2 Heated Pools</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge breakfast">Free Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.0</div>
+          <div class="he-price">&#8364;93-200</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quintinha+Sao+Joao+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira" target="_blank">ARTS IN Conde Carvalhal</a></div>
+          <div class="he-tagline">Most characterful mid-range option. Restored Madeiran mansion surrounded by botanical gardens. Panoramic views from every terrace. Free covered parking. Exceptional breakfast. ~900m from Old Town (walkable but hilly). Limited pool/spa.</div>
+          <div class="he-badges">
+            <span class="he-badge parking">Free Covered Parking</span>
+            <span class="he-badge breakfast">Top Breakfast</span>
+            <span class="he-badge seaview">Panoramic Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.9</div>
+          <div class="he-price">&#8364;82-175</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Outside Funchal ─── -->
+  <div class="nh-block" id="nh-outside">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#127963;</span>
+      <div>
+        <h3>Outside Funchal (Split-Stay Options)</h3>
+        <div class="nh-desc">For 1 night to break up driving or experience a different side of Madeira. Best combo: 3-4 nights Funchal + 1 night outside. Do NOT split into more than 2 bases on a 5-night trip.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Pestana+Churchill+Bay+Camara+de+Lobos+Madeira" target="_blank">Pestana Churchill Bay</a> <span style="font-size:11px;color:var(--muted)">— C&#226;mara de Lobos (10 min from Funchal)</span></div>
+          <div class="he-tagline">Best base outside Funchal. Charming fishing village Churchill loved. Real restaurants, real poncha bars, real character. Rooftop pool with bay views. 57 rooms. Close enough for day trips but distinct enough to feel different. From &#8364;80 with a 9.0 rating.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Rooftop Pool</span>
+            <span class="he-badge seaview">Bay Views</span>
+            <span class="he-badge breakfast">Great Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.0</div>
+          <div class="he-price">&#8364;80-150</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+Churchill+Bay+Camara+de+Lobos+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Estalagem+da+Ponta+do+Sol+Madeira" target="_blank">Estalagem da Ponta do Sol</a> <span style="font-size:11px;color:var(--muted)">— Ponta do Sol (30 min from Funchal)</span></div>
+          <div class="he-tagline">Most dramatic setting in this guide. Cliff-top renovated farmhouse with infinity pool overlooking the Atlantic. Sunniest village in Madeira ("Sun Point"). Couples rate 9.7/10. Better value than Saccharum for a similar sunset experience. Limited town dining.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Infinity Pool</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge seaview">Cliff-top Views</span>
+            <span class="he-badge breakfast">Breakfast Incl.</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.7<span style="font-size:10px;color:var(--muted);font-weight:400"> cpls</span></div>
+          <div class="he-price">&#8364;100-180</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Estalagem+da+Ponta+do+Sol+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira" target="_blank">Quinta do Fur&#227;o</a> <span style="font-size:11px;color:var(--muted)">— Santana (45 min from Funchal)</span></div>
+          <div class="he-tagline">Best hiking base on the island. Cliff-edge with dramatic north-coast views. 5 acres of organic gardens. 1,863 reviews at 9.3 is an extraordinary track record. Free parking + breakfast. Dinner quality inconsistent. Santana quiet at night. 1 night ideal, not multi-night.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Pool</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge breakfast">Free Breakfast</span>
+            <span class="he-badge seaview">Cliff Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.3</div>
+          <div class="he-price">&#8364;90-170</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Saccharum+Resort+Calheta+Madeira" target="_blank">Saccharum Resort &amp; Spa</a> <span style="font-size:11px;color:var(--muted)">— Calheta (40 min from Funchal)</span></div>
+          <div class="he-tagline">The sunset hotel. West-facing coast = unforgettable sunsets from the Fly rooftop bar or infinity pool. Sandy beach nearby (rare for Madeira). 252 rooms. Calheta is small — limited independent dining. Staff inconsistent. Best as 1-2 nights, not a base.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Infinity Pool</span>
+            <span class="he-badge seaview">Sunset Views</span>
+            <span class="he-badge breakfast">5-star Breakfast</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">9.0</div>
+          <div class="he-price">&#8364;130-230</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Saccharum+Resort+Calheta+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Aqua+Natura+Bay+Porto+Moniz+Madeira" target="_blank">Aqua Natura Bay</a> <span style="font-size:11px;color:var(--muted)">— Porto Moniz (1h10 from Funchal)</span></div>
+          <div class="he-tagline">Right by the famous volcanic rock pools (free guest access year-round). The play: arrive afternoon, enjoy pools at sunset without tourists, stay the night, swim at sunrise, drive back. Clean, friendly, good breakfast. 1 night ideal — Porto Moniz is remote with limited dining.</div>
+          <div class="he-badges">
+            <span class="he-badge pool">Natural Volcanic Pools</span>
+            <span class="he-badge parking">Free Parking</span>
+            <span class="he-badge seaview">Ocean + Mountain Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-rating">8.5</div>
+          <div class="he-price">&#8364;100-140</div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Aqua+Natura+Bay+Porto+Moniz+Madeira" target="_blank">Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Practical Info -->
+  <div class="hotel-practical">
+    <div class="hp-card">
+      <h4>Parking</h4>
+      <ul>
+        <li><strong>Free parking:</strong> Reid's, Cliff Bay, Quinta da Casa Branca, Quinta Jardins, Quintinha S&#227;o Jo&#227;o, ARTS IN, Three House, all outside-Funchal hotels</li>
+        <li><strong>Paid (~&#8364;15/day):</strong> Savoy Palace, Castanheiro, most central hotels</li>
+        <li><strong>No on-site:</strong> Barcel&#243; Old Town, S&#233; Boutique, Jaca Hostel (need public garage)</li>
+        <li>Street parking in Funchal center is nearly impossible and never free</li>
+      </ul>
+    </div>
+    <div class="hp-card">
+      <h4>Breakfast</h4>
+      <ul>
+        <li><strong>Outstanding:</strong> Quinta Jardins do Lago, Reid's, Castanheiro, Cliff Bay, Quinta da Casa Branca, ARTS IN</li>
+        <li><strong>Good:</strong> Barcel&#243;, Porto Santa Maria, Quintinha S&#227;o Jo&#227;o, Quinta do Fur&#227;o</li>
+        <li><strong>Big but meh:</strong> Hotel Alto Lido (quantity over quality, bad coffee)</li>
+        <li>Hotel breakfast in Madeira is generally excellent. Take it if included — saves time for early hiking starts</li>
+      </ul>
+    </div>
+    <div class="hp-card">
+      <h4>Split Stay?</h4>
+      <ul>
+        <li><strong>Safest bet:</strong> Funchal base all 4-5 nights. Nowhere is more than 90 min drive</li>
+        <li><strong>Best split:</strong> 3 nights Funchal + 1 night Calheta/Saccharum (sunset) or Porto Moniz (pools)</li>
+        <li><strong>Closest "escape":</strong> Pestana Churchill Bay in C&#226;mara de Lobos — 10 min from Funchal, different vibe</li>
+        <li>Do NOT split into more than 2 bases on a 5-night trip — packing/unpacking eats into short trips</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -638,7 +1136,7 @@
     <div class="timeline">
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">06:30</span><span class="tl-name">Drive to Pico do Areeiro</span><span class="tl-badge logistics">Drive</span></div>
-        <div class="tl-desc">35 min from Funchal. Check webcams FIRST. If fogged in, skip and go straight to <a href="#pr8">PR8</a> at 8am instead. 1818m altitude, near-freezing at dawn — warm layers essential.</div>
+        <div class="tl-desc">45 min from Funchal (mountain road, switchbacks). Check webcams FIRST. If fogged in, skip and go straight to <a href="#pr8">PR8</a> at 8am instead. 1818m altitude, near-freezing at dawn — warm layers essential.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Pico+do+Areeiro+Madeira+Portugal" target="_blank">Google Maps</a></div>
       </div>
       <div class="tl-item view">
@@ -652,7 +1150,7 @@
       </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">08:00</span><span class="tl-name">Drive to PR8 trailhead</span><span class="tl-badge logistics">Drive</span></div>
-        <div class="tl-desc">1h 15min drive from Areeiro down through Funchal and east to Baia d'Abra parking. Arrive by 9:15am — parking fills by 10am.</div>
+        <div class="tl-desc">~50 min drive from Areeiro down via mountain roads and east to Baia d'Abra parking. Arrive by 9:15am — parking fills by 10am.</div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1h 15min via ER103 + VR1</div>
       </div>
       <div class="tl-item hike" id="pr8">
@@ -680,7 +1178,7 @@
         <div class="tl-top"><span class="tl-time">14:00</span><span class="tl-name">O Forno — Machico</span><span class="tl-badge food">Lunch</span></div>
         <div class="tl-desc">Hilltop terrace. Garlic prawns are the move. Complimentary ginja (cherry liqueur) with every meal. <strong>&#11088; 4.5</strong> on Google. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Mercado+Velho+Machico+Madeira+Portugal" target="_blank">Mercado Velho</a> (&#11088;4.4, inside old market hall) or <a href="https://www.google.com/maps/search/?api=1&query=Baia+Beach+Club+Machico+Madeira" target="_blank">Baia Beach Club</a> (casual seafood right on the water).</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=O+Forno+Machico+Madeira+Portugal" target="_blank">Google Maps</a></div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 15 min from Prainha</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 10 min from Prainha</div>
       </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">15:30</span><span class="tl-name">Porto da Cruz + Rum Distillery</span><span class="tl-badge culture">Culture</span></div>
@@ -689,13 +1187,13 @@
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Engenhos+do+Norte+Porto+da+Cruz+Madeira" target="_blank">Distillery</a>
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Porto+da+Cruz+Madeira+Portugal" target="_blank">Village</a>
         </div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min from Machico</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 10 min from Machico</div>
       </div>
       <div class="tl-item food">
         <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">Poncha at A Pipa</span><span class="tl-badge poncha">Poncha</span></div>
         <div class="tl-desc">Best poncha on the north coast. <strong>&#11088; 4.7</strong> on Google. Fresh, not bottled. <strong>Closed Mon/Tue.</strong> Seawater pool right next door if you want a dip. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Rei+da+Poncha+Madeira+Portugal" target="_blank">Rei da Poncha</a> if A Pipa is closed.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=A+Pipa+Porto+da+Cruz+Madeira+Portugal" target="_blank">Google Maps</a></div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 45 min back to Funchal</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 30 min back to Funchal</div>
       </div>
     </div>
     <div class="tips-bar">
@@ -731,7 +1229,7 @@
     <div class="timeline">
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">07:30</span><span class="tl-name">Drive to Raba&#231;al</span><span class="tl-badge logistics">Drive</span></div>
-        <div class="tl-desc">~1h 15min from Funchal via VE3. Park at the top, take free shuttle down to trailhead. Arrive by 8:30 — limited parking.</div>
+        <div class="tl-desc">~50 min from Funchal via VE3. Park at the top, take free shuttle down to trailhead. Arrive by 8:30 — limited parking.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Rabacal+Trailhead+25+Fontes+Madeira+Portugal" target="_blank">Google Maps</a></div>
       </div>
       <div class="tl-item hike">
@@ -764,8 +1262,14 @@
         </div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Porto+Moniz+Natural+Pools+Madeira+Portugal" target="_blank">Google Maps (Paid)</a></div>
       </div>
+      <div class="tl-item swim">
+        <div class="tl-top"><span class="tl-time">16:45</span><span class="tl-name">Seixal Natural Pools</span><span class="tl-badge swim">Swim</span></div>
+        <div class="tl-desc">The locals' favorite — less crowded and wilder than Porto Moniz. Swim under a natural lava arch with waves crashing on the rocks. FREE. 15 min east of Porto Moniz, directly on your route back. <strong>Skip Porto Moniz pools and do these instead</strong> if you only have time for one.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Seixal+Natural+Swimming+Pools+Madeira+Portugal" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 15 min from Porto Moniz</div>
+      </div>
       <div class="tl-item view">
-        <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">V&#233;u da Noiva (Bridal Veil)</span><span class="tl-badge view">Viewpoint</span></div>
+        <div class="tl-top"><span class="tl-time">17:15</span><span class="tl-name">V&#233;u da Noiva (Bridal Veil)</span><span class="tl-badge view">Viewpoint</span></div>
         <div class="tl-desc">Waterfall cascading from cliff into ocean. Quick photo stop en route back. Best after rain.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Veu+da+Noiva+Bridal+Veil+Waterfall+Madeira+Portugal" target="_blank">Google Maps</a></div>
       </div>
@@ -776,7 +1280,7 @@
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Lavrador+Sao+Vicente+Madeira+Portugal" target="_blank">Lavrador &#11088;4.7</a>
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Las+Caraibas+Seixal+Madeira+Portugal" target="_blank">Las Caraibas &#11088;4.8</a>
         </div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1.5h drive back to Funchal if not dining in Porto Moniz</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1h 10min drive back to Funchal via VR1 if not dining north</div>
       </div>
     </div>
     <div class="tips-bar">
@@ -786,7 +1290,7 @@
         <li>Raba&#231;al shuttle: runs regularly, but arrive by 8:30am for parking</li>
         <li>PR6 + PR6.1 share the same start point — do both as a combo (4-5h total)</li>
         <li>Fanal forest: fencing installed in 2026, you must stay on designated paths</li>
-        <li>This is the longest driving day (~3h total). Consider staying overnight in Porto Moniz or Calheta to break it up</li>
+        <li>This is the longest driving day (~2.5h total). Consider staying overnight in Porto Moniz or Calheta to break it up</li>
       </ul>
     </div>
   </div>
@@ -829,11 +1333,17 @@
           <a class="tl-link" href="madeira_map.html?poi=pr9-levada-do-caldeirao-verde" target="_blank">Show on Map</a>
         </div>
       </div>
+      <div class="tl-item view">
+        <div class="tl-top"><span class="tl-time">14:15</span><span class="tl-name">Santana Traditional Houses</span><span class="tl-badge culture">Culture</span></div>
+        <div class="tl-desc">Quick 20-min photo stop. Iconic triangular thatched-roof <strong>palheiros</strong> — Madeira's most photographed buildings. Free to see from outside. The Santana Theme Park (&#8364;5) has restored originals you can enter. Right next to Queimadas — 5 min detour on your way to Ribeiro Frio.</div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Casas+Tipicas+Santana+Madeira+Portugal" target="_blank">Google Maps</a></div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 5 min from Queimadas, then 25 min to Ribeiro Frio</div>
+      </div>
       <div class="tl-item logistics">
-        <div class="tl-top"><span class="tl-time">14:30</span><span class="tl-name">Ribeiro Frio</span><span class="tl-badge culture">Culture</span></div>
+        <div class="tl-top"><span class="tl-time">14:45</span><span class="tl-name">Ribeiro Frio</span><span class="tl-badge culture">Culture</span></div>
         <div class="tl-desc">Trout farm (free, 10-min stop). Mountain forest setting. Good place for a coffee break.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Ribeiro+Frio+Trout+Farm+Madeira+Portugal" target="_blank">Google Maps</a></div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min from Queimadas</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min from Santana</div>
       </div>
       <div class="tl-item hike">
         <div class="tl-top"><span class="tl-time">15:00</span><span class="tl-name">PR11 — Balcoes Viewpoint</span><span class="tl-badge hike">Bonus Hike</span></div>
@@ -849,7 +1359,7 @@
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Miradouro+dos+Balcoes+Madeira+Portugal" target="_blank">Google Maps</a>
           <a class="tl-link" href="https://simplifica.madeira.gov.pt" target="_blank">Book Slot</a>
         </div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 40 min back to Funchal</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min back to Funchal</div>
       </div>
       <div class="tl-item food">
         <div class="tl-top"><span class="tl-time">18:00</span><span class="tl-name">Madeira Wine Tasting</span><span class="tl-badge poncha">Wine</span></div>
@@ -947,11 +1457,21 @@
         </div>
       </div>
       <div class="tl-item view">
+        <div class="tl-top"><span class="tl-time">15:00</span><span class="tl-name">Eira do Serrado — Valley of the Nuns</span><span class="tl-badge view">Viewpoint</span></div>
+        <div class="tl-desc">One of the most dramatic viewpoints in Madeira. Look down 300m into <strong>Curral das Freiras</strong> (Valley of the Nuns) — a hidden village completely enclosed by mountains. 15-min stop at the mirador. Optional: drive 10 min down into the village for chestnut soup and ginjinha. Free. Only 20 min from Funchal.</div>
+        <div class="tl-stats"><div class="tl-stat"><strong>Free</strong></div><div class="tl-stat"><strong>20 min</strong> from Funchal</div></div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Eira+do+Serrado+Viewpoint+Madeira+Portugal" target="_blank">Viewpoint</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Curral+das+Freiras+Madeira+Portugal" target="_blank">Village</a>
+        </div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min to Cabo Gir&#227;o</div>
+      </div>
+      <div class="tl-item view">
         <div class="tl-top"><span class="tl-time">16:00</span><span class="tl-name">Cabo Gir&#227;o Skywalk</span><span class="tl-badge view">Viewpoint</span></div>
         <div class="tl-desc">Europe's highest sea cliff — 580m glass platform over the ocean. Go at golden hour (4-5pm) to avoid coach tour crowds (10am-2pm). Free entry. 15-min stop.</div>
         <div class="tl-stats"><div class="tl-stat"><strong>580m</strong> cliff drop</div><div class="tl-stat"><strong>Free</strong></div></div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Cabo+Girao+Skywalk+Madeira+Portugal" target="_blank">Google Maps</a></div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 20 min from Funchal</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min from Eira do Serrado</div>
       </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">17:00</span><span class="tl-name">C&#226;mara de Lobos + Poncha</span><span class="tl-badge poncha">Poncha</span></div>
@@ -1177,6 +1697,7 @@ const routes = {
       {lat:32.762,lng:-17.068,name:'Raba\u00e7al (PR6+PR6.1)',icon:'hike'},
       {lat:32.815211,lng:-17.152339,name:'Fanal Forest',icon:'view'},
       {lat:32.866601,lng:-17.175722,name:'Porto Moniz Pools',icon:'swim'},
+      {lat:32.824,lng:-17.101,name:'Seixal Natural Pools',icon:'swim'},
       {lat:32.816096,lng:-17.095091,name:'V\u00e9u da Noiva',icon:'view'},
       {lat:32.8049,lng:-17.0375,name:'Restaurante Lavrador',icon:'food'}
     ]
@@ -1186,6 +1707,7 @@ const routes = {
     stops: [
       {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
       {lat:32.7828,lng:-16.9116,name:'Queimadas (PR9)',icon:'hike'},
+      {lat:32.8116,lng:-16.8788,name:'Santana Houses',icon:'culture'},
       {lat:32.7396,lng:-16.8869,name:'Ribeiro Frio',icon:'culture'},
       {lat:32.7355,lng:-16.8864,name:'PR11 Balcoes',icon:'hike'},
       {lat:32.649,lng:-16.909,name:'Wine Tasting',icon:'food'},
@@ -1200,6 +1722,7 @@ const routes = {
       {lat:32.6698,lng:-16.8897,name:'Monte Palace Garden',icon:'view'},
       {lat:32.6665,lng:-16.8920,name:'Toboggan Ride',icon:'culture'},
       {lat:32.648,lng:-16.913,name:'Lunch in Funchal',icon:'food'},
+      {lat:32.7162,lng:-16.9578,name:'Eira do Serrado (Valley of Nuns)',icon:'view'},
       {lat:32.656658,lng:-17.004539,name:'Cabo Gir\u00e3o Skywalk',icon:'view'},
       {lat:32.6485,lng:-16.9752,name:'C\u00e2mara de Lobos (Poncha)',icon:'culture'},
       {lat:32.6555,lng:-16.9555,name:'Espetada Dinner',icon:'food'}
