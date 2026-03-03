@@ -81,6 +81,9 @@
     .cl-group h4.nightly { color: var(--accent2); }
     .cl-group h4.gear { color: var(--green); }
     .cl-group h4.alerts { color: var(--orange); }
+    .cl-group h4.money { color: var(--amber); }
+    .cl-group h4.connectivity { color: var(--purple); }
+    .cl-group h4.emergency { color: var(--red); }
     .check-item {
       display: flex; align-items: flex-start; gap: 10px; padding: 6px 0;
       cursor: pointer; font-size: 13px; color: var(--muted); transition: color 0.15s;
@@ -469,8 +472,8 @@
   <div class="cl-columns">
     <div class="cl-group">
       <h4 class="now">Book Now</h4>
-      <label class="check-item" data-key="cl-hotel"><input type="checkbox"> Book hotel in Funchal (see strategy below)</label>
-      <label class="check-item" data-key="cl-car"><input type="checkbox"> Book rental car — automatic, SCDW insurance</label>
+      <label class="check-item" data-key="cl-hotel"><input type="checkbox"> Book hotel or Airbnb in Funchal (see <a href="#hotels">Where to Stay</a> below)</label>
+      <label class="check-item" data-key="cl-car"><input type="checkbox"> Book rental car — automatic, SCDW insurance. Local companies: <a href="https://www.autorentacar.net/en/" target="_blank">AutoRentaCar</a>, <a href="https://www.carrentmadeira.com/" target="_blank">Car Rent Madeira</a>, <a href="https://beyondmadeira.com/rent-car/" target="_blank">Beyond Madeira</a> (all include SCDW, no deposit). Compare on <a href="https://www.discovercars.com/portugal/madeira" target="_blank">DiscoverCars</a>. Automatic = 2x manual price — book early, limited supply</label>
       <label class="check-item" data-key="cl-flights"><input type="checkbox"> Confirm flights (arrive Mar 10 17:15, depart Mar 15 11:10)</label>
     </div>
     <div class="cl-group">
@@ -499,6 +502,27 @@
       <label class="check-item" data-key="cl-pr1"><input type="checkbox"> PR1 + PR1.2 CLOSED until April 25-26 (fire damage). You can walk 1.2 km to Pedra Rija viewpoint</label>
       <label class="check-item" data-key="cl-cable"><input type="checkbox"> Funchal-Monte cable car CLOSED until Apr 5 (renovation). Use taxi/bus #20 instead. Toboggan still runs</label>
       <label class="check-item" data-key="cl-pr3"><input type="checkbox"> PR3 (Vereda do Burro) CLOSED — fire damage. Skip entirely</label>
+    </div>
+    <div class="cl-group">
+      <h4 class="money">Budget &amp; Money</h4>
+      <label class="check-item" data-key="cl-budget"><input type="checkbox"> Daily budget: Budget ~&#8364;75 | Mid ~&#8364;125 | Luxury ~&#8364;275 per person (excl. flights)</label>
+      <label class="check-item" data-key="cl-card"><input type="checkbox"> Card accepted most places. Carry &#8364;50 cash for rural bars, cable cars, small shops</label>
+      <label class="check-item" data-key="cl-trailfee"><input type="checkbox"> Trail fees: &#8364;4.50/trail, online only via <a href="https://simplifica.madeira.gov.pt" target="_blank">SIMplifica</a>. No cash option at trailheads</label>
+      <label class="check-item" data-key="cl-parking"><input type="checkbox"> Funchal parking: &#8364;10-16/day in garages. Free on streets 8pm-8am + Sundays. Free outside Funchal</label>
+    </div>
+    <div class="cl-group">
+      <h4 class="connectivity">Connectivity</h4>
+      <label class="check-item" data-key="cl-roaming"><input type="checkbox"> EU SIM = free roaming (Madeira is Portugal = EU). No extra charges</label>
+      <label class="check-item" data-key="cl-esim"><input type="checkbox"> Non-EU: get an eSIM before flying — <a href="https://www.airalo.com/portugal" target="_blank">Airalo</a> ~&#8364;11 for 5GB/30 days</label>
+      <label class="check-item" data-key="cl-offline"><input type="checkbox"> NO cell signal on hiking trails — download offline Google Maps for ALL of Madeira before you go</label>
+      <label class="check-item" data-key="cl-tapwater"><input type="checkbox"> Tap water is safe to drink everywhere on the island. Skip bottled water</label>
+    </div>
+    <div class="cl-group">
+      <h4 class="emergency">Emergency Info</h4>
+      <label class="check-item" data-key="cl-112"><input type="checkbox"> 112 = European emergency number (police, fire, ambulance). Free from any phone</label>
+      <label class="check-item" data-key="cl-hospital"><input type="checkbox"> Hospital Dr. N&#233;lio Mendon&#231;a (central Funchal): +351 291 705 600 — 24h emergency</label>
+      <label class="check-item" data-key="cl-pharmacy"><input type="checkbox"> Pharmacies: green cross sign. 24h duty pharmacy rotates — schedule posted on any closed pharmacy's door</label>
+      <label class="check-item" data-key="cl-ehic"><input type="checkbox"> Bring EHIC card (EU citizens) or travel insurance (non-EU). Save photo of both to phone</label>
     </div>
   </div>
 </section>
@@ -541,7 +565,7 @@
   </div>
 
   <!-- ─── Old Town / Zona Velha ─── -->
-  <div class="nh-block open" id="nh-oldtown">
+  <div class="nh-block" id="nh-oldtown">
     <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
       <span class="nh-icon">&#127863;</span>
       <div>
@@ -565,7 +589,7 @@
         <div class="he-stats">
           <div class="he-rating">9.6</div>
           <div class="he-price">&#8364;120-200</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Three+House+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Three+House+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Three+House+Hotel+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -581,7 +605,7 @@
         <div class="he-stats">
           <div class="he-rating">9.1</div>
           <div class="he-price">&#8364;150-250</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Barcelo+Funchal+Old+Town+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Barcelo+Funchal+Old+Town+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Barcelo+Funchal+Old+Town" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -598,7 +622,7 @@
         <div class="he-stats">
           <div class="he-rating">8.8</div>
           <div class="he-price">&#8364;100-180</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Porto+Santa+Maria+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Porto+Santa+Maria+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Porto+Santa+Maria+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -613,7 +637,7 @@
         <div class="he-stats">
           <div class="he-rating">8.6</div>
           <div class="he-price">&#8364;60-100</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Madeira+Funchal" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Madeira+Funchal" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Hotel+Madeira+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -629,7 +653,7 @@
         <div class="he-stats">
           <div class="he-rating">8.3</div>
           <div class="he-price">&#8364;100-180</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+CR7+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+CR7+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Pestana+CR7+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
     </div>
@@ -659,7 +683,7 @@
         <div class="he-stats">
           <div class="he-rating">8.7</div>
           <div class="he-price">&#8364;99-160</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Castanheiro+Boutique+Hotel+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -674,7 +698,7 @@
         <div class="he-stats">
           <div class="he-rating">8.9</div>
           <div class="he-price">&#8364;90-180</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Se+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Se+Boutique+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Se+Boutique+Hotel+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -689,7 +713,7 @@
         <div class="he-stats">
           <div class="he-rating">8.5</div>
           <div class="he-price">&#8364;120-200</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Vine+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Vine+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=The+Vine+Hotel+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -703,7 +727,7 @@
         <div class="he-stats">
           <div class="he-rating">8.2</div>
           <div class="he-price">&#8364;60-100</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catedral+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catedral+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Hotel+Catedral+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -715,9 +739,9 @@
           </div>
         </div>
         <div class="he-stats">
-          <div class="he-rating">9.7<span style="font-size:10px;color:var(--muted);font-weight:400"> loc</span></div>
+          <div class="he-rating" style="font-size:13px">&#9733; 9.7<br><span style="font-size:10px;color:var(--muted);font-weight:400">location</span></div>
           <div class="he-price">&#8364;25-50</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Jaca+Hostel+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
     </div>
@@ -749,7 +773,7 @@
         <div class="he-stats">
           <div class="he-rating">9.5</div>
           <div class="he-price">&#8364;255-550</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Reids+Palace+Belmond+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -767,7 +791,7 @@
         <div class="he-stats">
           <div class="he-rating">9.4</div>
           <div class="he-price">&#8364;150-350</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Bay+Porto+Bay+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Bay+Porto+Bay+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=The+Cliff+Bay+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -784,7 +808,7 @@
         <div class="he-stats">
           <div class="he-rating">9.3</div>
           <div class="he-price">&#8364;185-350</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Savoy+Palace+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Savoy+Palace+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Savoy+Palace+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -800,7 +824,7 @@
         <div class="he-stats">
           <div class="he-rating">9.0</div>
           <div class="he-price">&#8364;150-280</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Quinta+da+Casa+Branca+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -816,7 +840,7 @@
         <div class="he-stats">
           <div class="he-rating">8.9</div>
           <div class="he-price">&#8364;67-130</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Alto+Lido+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Alto+Lido+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Hotel+Alto+Lido+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -833,7 +857,7 @@
         <div class="he-stats">
           <div class="he-rating">8.8</div>
           <div class="he-price">&#8364;110-170</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Madeira+Regency+Cliff+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Madeira+Regency+Cliff+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Madeira+Regency+Cliff+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -849,7 +873,7 @@
         <div class="he-stats">
           <div class="he-rating">8.5</div>
           <div class="he-price">&#8364;90-160</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Baia+Azul+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Hotel+Baia+Azul+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Hotel+Baia+Azul+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
     </div>
@@ -869,7 +893,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Quinta Jardins do Lago</a></div>
-          <div class="he-tagline">#1 on TripAdvisor, 9.7/10 on Booking.com. That's not a coincidence. 41-room garden paradise with heated pool. Staff service exceptional. Free parking + breakfast. Starting &#8364;148 in March for a 5-star is extraordinary. Some rooms have slightly dated decor. Restaurant prices climbing.</div>
+          <div class="he-tagline">#1 on TripAdvisor, 9.7/10 on Booking.com. That's not a coincidence. 41-room garden paradise with heated pool. Staff service exceptional. Free parking + breakfast. Starting &#8364;148 in March for a 5-star is a steal. Some rooms have slightly dated decor. Restaurant prices climbing.</div>
           <div class="he-badges">
             <span class="he-badge pool">Heated Pool + Jacuzzi</span>
             <span class="he-badge parking">Free Parking</span>
@@ -880,7 +904,7 @@
         <div class="he-stats">
           <div class="he-rating">9.7</div>
           <div class="he-price">&#8364;148-360</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Quinta+Jardins+do+Lago+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -896,7 +920,7 @@
         <div class="he-stats">
           <div class="he-rating">9.0</div>
           <div class="he-price">&#8364;93-200</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quintinha+Sao+Joao+Hotel+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quintinha+Sao+Joao+Hotel+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Quintinha+Sao+Joao+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -912,7 +936,7 @@
         <div class="he-stats">
           <div class="he-rating">8.9</div>
           <div class="he-price">&#8364;82-175</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=ARTS+IN+Conde+Carvalhal+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
     </div>
@@ -942,7 +966,7 @@
         <div class="he-stats">
           <div class="he-rating">9.0</div>
           <div class="he-price">&#8364;80-150</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+Churchill+Bay+Camara+de+Lobos+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Pestana+Churchill+Bay+Camara+de+Lobos+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Pestana+Churchill+Bay+Camara+de+Lobos" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -959,13 +983,13 @@
         <div class="he-stats">
           <div class="he-rating">9.7<span style="font-size:10px;color:var(--muted);font-weight:400"> cpls</span></div>
           <div class="he-price">&#8364;100-180</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Estalagem+da+Ponta+do+Sol+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Estalagem+da+Ponta+do+Sol+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Estalagem+Ponta+do+Sol" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira" target="_blank">Quinta do Fur&#227;o</a> <span style="font-size:11px;color:var(--muted)">— Santana (45 min from Funchal)</span></div>
-          <div class="he-tagline">Best hiking base on the island. Cliff-edge with dramatic north-coast views. 5 acres of organic gardens. 1,863 reviews at 9.3 is an extraordinary track record. Free parking + breakfast. Dinner quality inconsistent. Santana quiet at night. 1 night ideal, not multi-night.</div>
+          <div class="he-tagline">Best hiking base on the island. Cliff-edge with dramatic north-coast views. 5 acres of organic gardens. 1,863 reviews at 9.3 speaks for itself. Free parking + breakfast. Dinner quality inconsistent. Santana quiet at night. 1 night ideal, not multi-night.</div>
           <div class="he-badges">
             <span class="he-badge pool">Pool</span>
             <span class="he-badge parking">Free Parking</span>
@@ -976,7 +1000,7 @@
         <div class="he-stats">
           <div class="he-rating">9.3</div>
           <div class="he-price">&#8364;90-170</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+Santana+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Quinta+do+Furao+Santana" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -992,7 +1016,7 @@
         <div class="he-stats">
           <div class="he-rating">9.0</div>
           <div class="he-price">&#8364;130-230</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Saccharum+Resort+Calheta+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Saccharum+Resort+Calheta+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Saccharum+Resort+Calheta" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
@@ -1008,7 +1032,77 @@
         <div class="he-stats">
           <div class="he-rating">8.5</div>
           <div class="he-price">&#8364;100-140</div>
-          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Aqua+Natura+Bay+Porto+Moniz+Madeira" target="_blank">Maps</a></div>
+          <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Aqua+Natura+Bay+Porto+Moniz+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Aqua+Natura+Bay+Porto+Moniz" target="_blank">Book</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Airbnb & Self-Catering ─── -->
+  <div class="nh-block" id="nh-airbnb">
+    <div class="nh-head" onclick="this.parentElement.classList.toggle('open')">
+      <span class="nh-icon">&#127968;</span>
+      <div>
+        <h3>Airbnb &amp; Self-Catering</h3>
+        <div class="nh-desc">Kitchen saves &#8364;10-15/day on breakfast. Washing machine = lighter packing. March has tons of availability — prices 20-40% below summer.</div>
+      </div>
+      <span class="nh-arrow">&#9660;</span>
+    </div>
+    <div class="nh-body">
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name">Old Town / Zona Velha</div>
+          <div class="he-tagline">Best walkability. Restaurants on your doorstep, painted doors, Mercado nearby. Refurbished flats with character. Most popular area for short-term rentals — book early for the best picks.</div>
+          <div class="he-badges">
+            <span class="he-badge kitchen">Kitchen</span>
+            <span class="he-badge">Best Walkability</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-price" style="font-size:14px;font-weight:800">&#8364;80-120<span style="font-size:10px;font-weight:400">/night</span></div>
+          <div class="he-links"><a class="he-link" href="https://www.airbnb.com/s/Zona-Velha--Funchal--Madeira/homes" target="_blank">Search</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name">City Center / S&#233;</div>
+          <div class="he-tagline">Equidistant from everything. Near Blandy's Wine Lodge, shops, museums. Good selection of renovated apartments. Slightly cheaper than Old Town.</div>
+          <div class="he-badges">
+            <span class="he-badge kitchen">Kitchen</span>
+            <span class="he-badge">Central</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-price" style="font-size:14px;font-weight:800">&#8364;70-110<span style="font-size:10px;font-weight:400">/night</span></div>
+          <div class="he-links"><a class="he-link" href="https://www.airbnb.com/s/Funchal--Madeira/homes" target="_blank">Search</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name">Lido / S&#227;o Martinho</div>
+          <div class="he-tagline">Quieter, ocean-facing, more space for the money. Great views. The promenade is your backyard. Further from the restaurant action but bus to Old Town is 10 min.</div>
+          <div class="he-badges">
+            <span class="he-badge kitchen">Kitchen</span>
+            <span class="he-badge seaview">Ocean Views</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-price" style="font-size:14px;font-weight:800">&#8364;80-130<span style="font-size:10px;font-weight:400">/night</span></div>
+          <div class="he-links"><a class="he-link" href="https://www.airbnb.com/s/Lido--Funchal--Madeira/homes" target="_blank">Search</a></div>
+        </div>
+      </div>
+      <div class="hotel-entry">
+        <div class="he-main">
+          <div class="he-name">Heights (Monte, S&#227;o Jo&#227;o)</div>
+          <div class="he-tagline">Cheapest area. More space, better views, quieter. Need car or cable car to get down to center. Best for people who prioritize a peaceful base over walkability.</div>
+          <div class="he-badges">
+            <span class="he-badge kitchen">Kitchen</span>
+            <span class="he-badge">Best Prices</span>
+          </div>
+        </div>
+        <div class="he-stats">
+          <div class="he-price" style="font-size:14px;font-weight:800">&#8364;60-90<span style="font-size:10px;font-weight:400">/night</span></div>
+          <div class="he-links"><a class="he-link" href="https://www.airbnb.com/s/Monte--Funchal--Madeira/homes" target="_blank">Search</a></div>
         </div>
       </div>
     </div>
@@ -1151,7 +1245,7 @@
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">08:00</span><span class="tl-name">Drive to PR8 trailhead</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">~50 min drive from Areeiro down via mountain roads and east to Baia d'Abra parking. Arrive by 9:15am — parking fills by 10am.</div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 1h 15min via ER103 + VR1</div>
+        <div class="tl-drive"><span class="drive-icon">&#128663;</span> ~50 min via ER103 + VR1</div>
       </div>
       <div class="tl-item hike" id="pr8">
         <div class="tl-top"><span class="tl-time">09:30</span><span class="tl-name">PR8 — Ponta de S&#227;o Louren&#231;o</span><span class="tl-badge hike">Hike</span></div>
@@ -1548,7 +1642,6 @@
         <li>Madeira Airport has a famously short runway (notorious crosswinds). Don't panic if the landing was exciting on arrival</li>
         <li>Return rental car with same fuel level (avoid airport fuel surcharges)</li>
         <li>Blandy's 10-year Malmsey at duty-free is the best wine souvenir value</li>
-        <li>Take one last look at the island from the plane — you'll already be planning to come back</li>
       </ul>
     </div>
   </div>
