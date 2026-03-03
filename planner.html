@@ -376,6 +376,19 @@
       max-width: 1100px; margin-left: auto; margin-right: auto;
     }
 
+    /* ── Section nav ── */
+    .section-nav {
+      max-width: 1100px; margin: 0 auto; padding: 16px 16px 0;
+      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+    }
+    .section-nav a {
+      font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 8px;
+      color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+      white-space: nowrap; transition: all 0.15s;
+    }
+    .section-nav a:hover { border-color: var(--accent); color: var(--text); text-decoration: none; }
+    .section-nav a .sn-emoji { margin-right: 4px; }
+
     @media (max-width: 640px) {
       .hero h1 { font-size: 26px; }
       .day-header .dh-icon { font-size: 28px; }
@@ -390,6 +403,7 @@
       .hotel-entry { grid-template-columns: 1fr; }
       .he-stats { text-align: left; display: flex; gap: 12px; align-items: center; }
       .he-links { justify-content: flex-start; }
+      .section-nav a { font-size: 11px; padding: 6px 10px; }
     }
   </style>
 </head>
@@ -401,7 +415,7 @@
   <div class="nav-links">
     <a href="explore.html" class="nav-btn">Explorer</a>
     <a href="madeira_map.html" class="nav-btn">Map</a>
-    <a href="itinerary.html" class="nav-btn">Full Guide</a>
+    <a href="itinerary.html" class="nav-btn">Reference</a>
   </div>
 </nav>
 
@@ -415,6 +429,16 @@
     <div class="m-item"><strong>4 full days</strong> of exploring</div>
   </div>
 </section>
+
+<!-- Section navigation -->
+<div class="section-nav">
+  <a href="#primer"><span class="sn-emoji">&#127793;</span>Madeira 101</a>
+  <a href="#checklist"><span class="sn-emoji">&#9745;</span>Checklist</a>
+  <a href="#carrental"><span class="sn-emoji">&#128663;</span>Car Rental</a>
+  <a href="#hotels"><span class="sn-emoji">&#127976;</span>Hotels</a>
+  <a href="#day-0"><span class="sn-emoji">&#9992;</span>Day Plans</a>
+  <a href="#trails"><span class="sn-emoji">&#129406;</span>Trails</a>
+</div>
 
 <!-- ============================================ -->
 <!-- PRIMER: Madeira in 60 Seconds               -->
@@ -1790,7 +1814,7 @@
   <!-- ============================================ -->
   <!-- Curated Trails (trimmed to 6)                -->
   <!-- ============================================ -->
-  <div class="curated-banner">
+  <div class="curated-banner" id="trails">
     <h2>Your 6 Trail Picks</h2>
     <p class="cb-sub">These are the trails that fit your 4-day trip. Green = in your itinerary, grey = great alternatives if you want to swap.</p>
     <div class="trail-picks">
