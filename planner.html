@@ -116,6 +116,13 @@
       padding: 12px 16px; margin-bottom: 20px;
     }
     .hotel-tip strong { color: var(--text); }
+    .price-note {
+      font-size: 12px; color: var(--muted); background: rgba(251,191,36,0.06);
+      border: 1px solid rgba(251,191,36,0.12); border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 16px; line-height: 1.5;
+    }
+    .price-note strong { color: var(--amber); }
+    .price-note a { color: var(--accent2); }
     /* Quick picks */
     .quick-picks { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-bottom: 24px; }
     .qp-card {
@@ -535,6 +542,13 @@
 <section class="hotel-section" id="hotels">
   <h2>Where to Stay</h2>
   <p class="hs-sub">25 hotels across 5 neighborhoods, verified on Booking.com. March = low season — prices 20-40% below summer.</p>
+  <div class="price-note">
+    <strong>Prices are March low-season estimates — not live quotes for your exact dates.</strong> Always check
+    <a href="https://www.google.com/travel/hotels/Funchal+Madeira?dates=2026-03-10,2026-03-15" target="_blank">Google Hotels</a> or
+    <a href="https://www.booking.com/searchresults.html?ss=Funchal+Madeira&checkin=2026-03-10&checkout=2026-03-15" target="_blank">Booking.com</a> for live pricing on your dates.
+    Walking distances are from Booking.com, TripAdvisor, and guest reviews — not GPS routing.
+    Funchal is hilly: downhill walks are faster, uphill return adds 5-10 min.
+  </div>
 
   <div class="hotel-tip">
     <strong>Strategy:</strong> Stay in Funchal all 4 nights — everywhere on the island is 30-90 min drive. Optional: 1 night in Calheta (sunset) or Porto Moniz (natural pools) on Day 2 to avoid the 1h+ drive back. Funchal parking runs ~&#8364;15/day; outside Funchal it's almost always free.
@@ -545,22 +559,22 @@
     <div class="qp-card">
       <div class="qp-label best-value">Best Value</div>
       <div class="qp-name">Castanheiro Boutique</div>
-      <div class="qp-detail"><span class="qp-rating">8.7/10</span> &middot; <span class="qp-price">&#8364;99-160</span> &middot; Center. Walk to everything. Rooftop pool, spa, great breakfast. The value benchmark.</div>
+      <div class="qp-detail"><span class="qp-rating">8.7/10</span> &middot; <span class="qp-price">&#8364;99-160</span> &middot; Center. 2 min Cathedral, 9 min Mercado. Rooftop pool, spa, great breakfast. The value benchmark.</div>
     </div>
     <div class="qp-card">
       <div class="qp-label best-luxury">Highest Rated</div>
       <div class="qp-name">Quinta Jardins do Lago</div>
-      <div class="qp-detail"><span class="qp-rating">9.7/10</span> &middot; <span class="qp-price">&#8364;148-360</span> &middot; #1 on TripAdvisor. Garden paradise. Free parking + breakfast. Extraordinary at &#8364;148.</div>
+      <div class="qp-detail"><span class="qp-rating">9.7/10</span> &middot; <span class="qp-price">&#8364;148-360</span> &middot; Heights (shuttle to center). #1 on TripAdvisor. Garden paradise. Free parking + breakfast. &#8364;148 for a 5-star.</div>
     </div>
     <div class="qp-card">
       <div class="qp-label best-location">Best Location</div>
       <div class="qp-name">Three House Hotel</div>
-      <div class="qp-detail"><span class="qp-rating">9.6/10</span> &middot; <span class="qp-price">&#8364;120-200</span> &middot; Old Town. 13 apartments. Free parking + kitchen. Rooftop cocktail bar. Books out fast.</div>
+      <div class="qp-detail"><span class="qp-rating">9.6/10</span> &middot; <span class="qp-price">&#8364;120-200</span> &middot; Old Town. 2 min Mercado. 13 apartments. Free parking + kitchen. Rooftop bar. Books out fast.</div>
     </div>
     <div class="qp-card">
       <div class="qp-label best-outside">Budget Surprise</div>
       <div class="qp-name">Quintinha S&#227;o Jo&#227;o</div>
-      <div class="qp-detail"><span class="qp-rating">9.0/10</span> &middot; <span class="qp-price">&#8364;93-200</span> &middot; Heights. A 5-star from &#8364;93. Free breakfast, parking, heated pools, spa. Best deal in Madeira.</div>
+      <div class="qp-detail"><span class="qp-rating">9.0/10</span> &middot; <span class="qp-price">&#8364;93-200</span> &middot; Heights (15 min to center, shuttle). A 5-star from &#8364;93. Free breakfast, parking, heated pools, spa.</div>
     </div>
   </div>
 
@@ -578,7 +592,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Three+House+Hotel+Funchal+Madeira" target="_blank">Three House Hotel</a></div>
-          <div class="he-tagline">Highest-rated in this guide. 13 apartments with full kitchens. Rooftop pool + cocktail bar. Free parking in Old Town (almost unheard of). Books out fast — reserve early.</div>
+          <div class="he-tagline">2 min to Mercado, 5 min to painted doors. Highest-rated in this guide. 13 apartments with full kitchens. Rooftop pool + cocktail bar. Free parking in Old Town (almost unheard of). Books out fast — reserve early.</div>
           <div class="he-badges">
             <span class="he-badge pool">Pool</span>
             <span class="he-badge parking">Free Parking</span>
@@ -595,7 +609,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Barcelo+Funchal+Old+Town+Madeira" target="_blank">Barcel&#243; Funchal Old Town</a></div>
-          <div class="he-tagline">Only 5-star actually IN the Old Town. Rooftop pool with city panorama. Top-tier breakfast. No on-site parking — need public garage nearby.</div>
+          <div class="he-tagline">1 min to Cathedral, 4 min to Mercado, 3 min to Marina. Only 5-star actually IN the Old Town. Rooftop pool with city panorama. Top-tier breakfast. No on-site parking — need public garage nearby.</div>
           <div class="he-badges">
             <span class="he-badge pool">Pool</span>
             <span class="he-badge breakfast">Great Breakfast</span>
@@ -611,7 +625,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Porto+Santa+Maria+Hotel+Funchal+Madeira" target="_blank">Porto Santa Maria (Adults Only)</a></div>
-          <div class="he-tagline">Best for food lovers. All rooms have kitchenettes (grab fruit from the market next door). Seafront location. Adults-only = quiet. Furnishings dated in some rooms.</div>
+          <div class="he-tagline">ON Rua de Santa Maria (painted doors street). 7 min to Mercado. Best for food lovers. All rooms have kitchenettes (grab fruit from the market next door). Seafront location. Adults-only = quiet. Furnishings dated in some rooms.</div>
           <div class="he-badges">
             <span class="he-badge pool">Pool</span>
             <span class="he-badge kitchen">Kitchenette</span>
@@ -628,7 +642,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Madeira+Funchal" target="_blank">Hotel Madeira</a></div>
-          <div class="he-tagline">Charming 3-star that punches above its weight. Rooftop "Panorama Bar" is a highlight at this price. 52 rooms. Small but clean. Great location for walking.</div>
+          <div class="he-tagline">4 min to Cathedral, 10 min to Mercado. Charming 3-star that punches above its weight. Rooftop "Panorama Bar" is a highlight at this price. 52 rooms. Small but clean.</div>
           <div class="he-badges">
             <span class="he-badge pool">Rooftop Pool</span>
             <span class="he-badge breakfast">Breakfast Incl.</span>
@@ -643,7 +657,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Pestana+CR7+Funchal+Madeira" target="_blank">Pestana CR7</a></div>
-          <div class="he-tagline">Marketing hotel that's actually decent. Modern design, rooftop pool, good breakfast. Ignore the branding — it's a solid 4-star. Some rooms feel dated for the price.</div>
+          <div class="he-tagline">3 min to Marina, 15 min to Mercado (west side of center). Marketing hotel that's actually decent. Modern design, rooftop pool, good breakfast. Ignore the branding — it's a solid 4-star. Some rooms feel dated for the price.</div>
           <div class="he-badges">
             <span class="he-badge pool">Rooftop Pool</span>
             <span class="he-badge seaview">Sea View</span>
@@ -673,7 +687,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Castanheiro+Boutique+Hotel+Funchal+Madeira" target="_blank">Castanheiro Boutique Hotel</a></div>
-          <div class="he-tagline">THE best value in Funchal. Dead center — 2 min to shops, 5 to marina. Rooftop lap pool with views + jacuzzi. Til Spa (organic seaweed treatments). Breakfast buffet + cooked-to-order. Rooms are compact (city boutique sizing). From &#8364;99 in March.</div>
+          <div class="he-tagline">THE best value in Funchal. 2 min to Cathedral, 9 min to Mercado. Rooftop lap pool with views + jacuzzi. Til Spa (organic seaweed treatments). Breakfast buffet + cooked-to-order. Rooms are compact (city boutique sizing). From &#8364;99 in March.</div>
           <div class="he-badges">
             <span class="he-badge pool">Rooftop Pool</span>
             <span class="he-badge breakfast">Great Breakfast</span>
@@ -689,7 +703,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Se+Boutique+Hotel+Funchal+Madeira" target="_blank">S&#233; Boutique Hotel</a></div>
-          <div class="he-tagline">Steps from S&#233; Cathedral. 3 min to Mercado. Couples rate location 9.7/10. Rooftop terrace (no pool). Excellent breakfast included in many rates. An underrated gem under &#8364;100 in March.</div>
+          <div class="he-tagline">3 min to Cathedral, 10 min to Mercado. Couples rate location 9.7/10. Rooftop terrace (no pool). Excellent breakfast included in many rates. An underrated gem under &#8364;100 in March.</div>
           <div class="he-badges">
             <span class="he-badge breakfast">Breakfast Incl.</span>
             <span class="he-badge seaview">Rooftop Terrace</span>
@@ -704,7 +718,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=The+Vine+Hotel+Funchal+Madeira" target="_blank">The Vine Hotel</a></div>
-          <div class="he-tagline">Award-winning design hotel. Wine-themed. Rooftop infinity pool + bar. UVA Restaurant (French-Madeiran, genuinely good). Stylish, modern interiors. Rooms lean compact.</div>
+          <div class="he-tagline">5 min to Cathedral, 3 min to Marina. Award-winning design hotel. Wine-themed. Rooftop infinity pool + bar. UVA Restaurant (French-Madeiran, genuinely good). Stylish, modern interiors. Rooms lean compact.</div>
           <div class="he-badges">
             <span class="he-badge pool">Infinity Pool</span>
             <span class="he-badge breakfast">Breakfast</span>
@@ -719,7 +733,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Catedral+Funchal+Madeira" target="_blank">Hotel Catedral</a></div>
-          <div class="he-tagline">Honest budget hotel, unbeatable location. 3 min from cathedral. A bit dated (wallpaper could use a refresh) but rooms are clean. Parking 1km away is a pain if you have a rental car.</div>
+          <div class="he-tagline">1 min to Cathedral, 8 min to Mercado. Honest budget hotel, unbeatable location. A bit dated (wallpaper could use a refresh) but rooms are clean. Parking 1km away is a pain if you have a rental car.</div>
           <div class="he-badges">
             <span class="he-badge breakfast">Breakfast Incl.</span>
           </div>
@@ -733,7 +747,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Jaca+Hostel+Funchal+Madeira" target="_blank">Jaca Hostel</a></div>
-          <div class="he-tagline">Not a party hostel — more like a well-run guesthouse with dorm pricing. Bright rooms, comfy beds, excellent cleanliness. S&#227;o Pedro district, walk to marina. Best budget option in Funchal.</div>
+          <div class="he-tagline">5 min to Cathedral, 5 min to Marina. Not a party hostel — more like a well-run guesthouse with dorm pricing. Bright rooms, comfy beds, excellent cleanliness. Best budget option in Funchal.</div>
           <div class="he-badges">
             <span class="he-badge">Hostel</span>
           </div>
@@ -761,7 +775,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Reid's Palace (Belmond)</a></div>
-          <div class="he-tagline">THE iconic Madeira hotel. Since 1891 — Churchill painted here. Cliff-top with panoramic views. William Restaurant (Michelin-starred). Famous afternoon tea. Free parking + breakfast. Can feel stuffy (dress codes for dinner). Not walkable to Old Town. Book sea-view — it's the entire point.</div>
+          <div class="he-tagline">20-25 min walk to center, 25-30 min to Old Town (steep — free shuttle runs to town). THE iconic Madeira hotel. Since 1891 — Churchill painted here. Cliff-top with panoramic views. William Restaurant (Michelin-starred). Famous afternoon tea. Free parking + breakfast. Can feel stuffy (dress codes for dinner). Book sea-view — it's the entire point.</div>
           <div class="he-badges">
             <span class="he-badge pool">3 Pools</span>
             <span class="he-badge parking">Free Parking</span>
@@ -772,14 +786,14 @@
         </div>
         <div class="he-stats">
           <div class="he-rating">9.5</div>
-          <div class="he-price">&#8364;255-550</div>
+          <div class="he-price">&#8364;450-600+</div>
           <div class="he-links"><a class="he-link" href="https://www.google.com/maps/search/?api=1&query=Reids+Palace+Belmond+Funchal+Madeira" target="_blank">Maps</a><a class="he-link" href="https://www.booking.com/searchresults.html?ss=Reids+Palace+Belmond+Funchal" target="_blank">Book</a></div>
         </div>
       </div>
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Bay+Porto+Bay+Funchal+Madeira" target="_blank">The Cliff Bay (Porto Bay)</a></div>
-          <div class="he-tagline">The serious foodie luxury pick. Il Gallo d'Oro — Madeira's only 2-Michelin-star restaurant, on-site. Direct ocean access via saltwater pool at cliff base (Savoy doesn't have this). Free parking. More serene than Savoy — garden-focused, mature. Standard rooms feel a generation older.</div>
+          <div class="he-tagline">20-30 min walk to center (steep return — free shuttle available). The serious foodie luxury pick. Il Gallo d'Oro — Madeira's only 2-Michelin-star restaurant, on-site. Direct ocean access via saltwater pool at cliff base (Savoy doesn't have this). Free parking. More serene than Savoy — garden-focused, mature. Standard rooms feel a generation older.</div>
           <div class="he-badges">
             <span class="he-badge pool">Pool + Ocean Access</span>
             <span class="he-badge parking">Free Parking</span>
@@ -797,7 +811,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Savoy+Palace+Funchal+Madeira" target="_blank">Savoy Palace</a></div>
-          <div class="he-tagline">Flashiest hotel on the island. 352 rooms. Laurea Spa (3,000 sqm — largest in Portugal). 2 rooftop infinity pools. 5 restaurants. Dramatic tropical architecture. Watch for hidden charges (&#8364;90 sunbed charges reported). No direct sea access.</div>
+          <div class="he-tagline">15 min to center, 25 min to Old Town. 5 min to Lido Promenade. Flashiest hotel on the island. 352 rooms. Laurea Spa (3,000 sqm — largest in Portugal). 2 rooftop infinity pools. 5 restaurants. Dramatic tropical architecture. Watch for hidden charges (&#8364;90 sunbed charges reported). No direct sea access.</div>
           <div class="he-badges">
             <span class="he-badge pool">2 Infinity Pools</span>
             <span class="he-badge parking">Parking (&#8364;15-20/d)</span>
@@ -814,7 +828,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+da+Casa+Branca+Funchal+Madeira" target="_blank">Quinta da Casa Branca</a></div>
-          <div class="he-tagline">The anti-resort. 43 rooms on a historic wine estate in 28,000 sqm of subtropical gardens. Feels like a private estate that happens to be a hotel. Exceptional breakfast. Manor House suites are the splurge. Standard rooms showing age. No ocean views.</div>
+          <div class="he-tagline">25-35 min walk to Old Town — not really walkable. No shuttle. The anti-resort. 43 rooms on a historic wine estate in 28,000 sqm of subtropical gardens. Feels like a private estate that happens to be a hotel. Exceptional breakfast. Manor House suites are the splurge. Standard rooms showing age. No ocean views.</div>
           <div class="he-badges">
             <span class="he-badge pool">2 Pools</span>
             <span class="he-badge parking">Free Parking</span>
@@ -830,7 +844,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Hotel+Alto+Lido+Funchal+Madeira" target="_blank">Hotel Alto Lido</a></div>
-          <div class="he-tagline">The budget-to-mid Lido workhorse. From &#8364;67 for a 4-star with heated pools and sea views. 1,687 reviews — consistent. Breakfast is huge but mediocre quality (bad coffee). Renovated 2018.</div>
+          <div class="he-tagline">3 min to Lido Promenade, 30-40 min to Old Town (shuttle 4x/day). The budget-to-mid Lido workhorse. From &#8364;67 for a 4-star with heated pools and sea views. 1,687 reviews — consistent. Breakfast is huge but mediocre quality (bad coffee). Renovated 2018.</div>
           <div class="he-badges">
             <span class="he-badge pool">3 Heated Pools</span>
             <span class="he-badge seaview">Sea View</span>
@@ -893,7 +907,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quinta+Jardins+do+Lago+Funchal+Madeira" target="_blank">Quinta Jardins do Lago</a></div>
-          <div class="he-tagline">#1 on TripAdvisor, 9.7/10 on Booking.com. That's not a coincidence. 41-room garden paradise with heated pool. Staff service exceptional. Free parking + breakfast. Starting &#8364;148 in March for a 5-star is a steal. Some rooms have slightly dated decor. Restaurant prices climbing.</div>
+          <div class="he-tagline">20-30 min steep walk to center (free shuttle — book ahead, fills up). #1 on TripAdvisor, 9.7/10 on Booking.com. That's not a coincidence. 41-room garden paradise with heated pool. Staff service exceptional. Free parking + breakfast. Starting &#8364;148 in March for a 5-star is a steal. Some rooms have slightly dated decor. Restaurant prices climbing.</div>
           <div class="he-badges">
             <span class="he-badge pool">Heated Pool + Jacuzzi</span>
             <span class="he-badge parking">Free Parking</span>
@@ -910,7 +924,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=Quintinha+Sao+Joao+Hotel+Funchal+Madeira" target="_blank">Quintinha S&#227;o Jo&#227;o</a></div>
-          <div class="he-tagline">A 5-star at 3-star prices. From &#8364;93 in March for free breakfast, free parking, indoor/outdoor heated pools, full spa. 42 rooms, charming not flashy. Trading walkability for serenity + extraordinary value. Arguably the best deal in this entire guide.</div>
+          <div class="he-tagline">15-20 min to center (courtesy shuttle to Marina). A 5-star at 3-star prices. From &#8364;93 in March for free breakfast, free parking, indoor/outdoor heated pools, full spa. 42 rooms, charming not flashy. Trading walkability for serenity + great value. Arguably the best deal in this entire guide.</div>
           <div class="he-badges">
             <span class="he-badge pool">2 Heated Pools</span>
             <span class="he-badge parking">Free Parking</span>
@@ -926,7 +940,7 @@
       <div class="hotel-entry">
         <div class="he-main">
           <div class="he-name"><a href="https://www.google.com/maps/search/?api=1&query=ARTS+IN+Hotel+Conde+Carvalhal+Funchal+Madeira" target="_blank">ARTS IN Conde Carvalhal</a></div>
-          <div class="he-tagline">Most characterful mid-range option. Restored Madeiran mansion surrounded by botanical gardens. Panoramic views from every terrace. Free covered parking. Exceptional breakfast. ~900m from Old Town (walkable but hilly). Limited pool/spa.</div>
+          <div class="he-tagline">10-15 min downhill to Old Town, 9 min to Mercado (steep return — add 10 min uphill). Most characterful mid-range option. Restored Madeiran mansion surrounded by botanical gardens. Panoramic views from every terrace. Free covered parking. Exceptional breakfast. Limited pool/spa.</div>
           <div class="he-badges">
             <span class="he-badge parking">Free Covered Parking</span>
             <span class="he-badge breakfast">Top Breakfast</span>
@@ -1135,6 +1149,15 @@
         <li><strong>Best split:</strong> 3 nights Funchal + 1 night Calheta/Saccharum (sunset) or Porto Moniz (pools)</li>
         <li><strong>Closest "escape":</strong> Pestana Churchill Bay in C&#226;mara de Lobos — 10 min from Funchal, different vibe</li>
         <li>Do NOT split into more than 2 bases on a 5-night trip — packing/unpacking eats into short trips</li>
+      </ul>
+    </div>
+    <div class="hp-card">
+      <h4>Walkability Tiers</h4>
+      <ul>
+        <li><strong>Walk everywhere (&lt;10 min):</strong> Three House, Barcel&#243;, Porto Santa Maria, Hotel Madeira, Castanheiro, S&#233; Boutique, Hotel Catedral, Jaca Hostel</li>
+        <li><strong>Walkable with effort (10-15 min):</strong> The Vine, Pestana CR7, ARTS IN (steep return)</li>
+        <li><strong>Shuttle/taxi recommended (20+ min):</strong> Savoy, Quintinha, Reid's, Quinta Jardins, Cliff Bay</li>
+        <li><strong>Transport essential (30+ min):</strong> Quinta da Casa Branca, Alto Lido</li>
       </ul>
     </div>
   </div>
