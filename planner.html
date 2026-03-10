@@ -8,7 +8,7 @@
   <style>
     :root {
       --bg: #0a0f1a; --surface: #111827; --surface2: #1a2332; --surface3: #1f2b3d;
-      --border: rgba(255,255,255,0.08); --text: #e8eefc; --muted: rgba(232,238,252,0.55);
+      --border: rgba(255,255,255,0.08); --text: #e8eefc; --muted: rgba(232,238,252,0.65);
       --accent: #3b82f6; --accent2: #60a5fa; --green: #34d399; --amber: #fbbf24; --red: #f87171;
       --orange: #fb923c; --purple: #a78bfa;
     }
@@ -513,7 +513,8 @@
       .day-tab.is-today::after { font-size: 7px; top: -6px; right: -3px; }
       .primer-grid { grid-template-columns: 1fr; }
       .cl-columns { grid-template-columns: 1fr; }
-      .quick-picks { grid-template-columns: 1fr 1fr; }
+      .quick-picks { grid-template-columns: 1fr; }
+      .hotel-ctx { display: none !important; }
       .hotel-practical { grid-template-columns: 1fr; }
       .hotel-entry { grid-template-columns: 1fr; }
       .he-stats { text-align: left; display: flex; gap: 12px; align-items: center; }
@@ -521,6 +522,51 @@
       .section-nav a { font-size: 11px; padding: 6px 10px; }
       .now-banner { padding: 10px 16px; gap: 10px; font-size: 12px; }
       .now-banner .nb-label { font-size: 12px; }
+      .route-summary { flex-direction: column; gap: 6px; }
+      .route-summary .rs-legend { margin-left: 0; }
+    }
+
+    /* ── Route visualization ── */
+    .route-line { stroke-dasharray: 10 5; animation: routeFlow 2s linear infinite; }
+    @keyframes routeFlow { to { stroke-dashoffset: -15; } }
+    .route-arrow { background: none !important; border: none !important; box-shadow: none !important; }
+    .route-arrow div {
+      font-size: 18px; font-weight: 900; color: rgba(59,130,246,0.55);
+      text-shadow: 0 0 6px rgba(59,130,246,0.25); line-height: 1;
+    }
+
+    /* ── Route summary card below map ── */
+    .route-summary {
+      display: flex; gap: 16px; padding: 10px 16px; margin: -1px 0 20px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 0 0 14px 14px;
+      border-top: none; font-size: 12px; color: var(--muted); flex-wrap: wrap; align-items: center;
+    }
+    .route-summary .rs-item { display: flex; align-items: center; gap: 4px; }
+    .route-summary .rs-icon { font-size: 13px; }
+    .route-summary .rs-value { font-weight: 800; color: var(--text); }
+    .route-summary .rs-legend { display: flex; gap: 10px; margin-left: auto; font-size: 11px; }
+    .route-summary .rs-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; margin-right: 2px; }
+
+    /* ── Travel essentials cards ── */
+    .essentials-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px;
+    }
+    .ess-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .ess-icon { font-size: 24px; flex-shrink: 0; line-height: 1.2; }
+    .ess-card h4 { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .ess-card p, .ess-card .ess-detail { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .ess-card strong { color: var(--text); }
+    .ess-card .ess-highlight { color: var(--green); font-weight: 700; }
+
+    /* ── Day budget pill ── */
+    .day-budget {
+      display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px;
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.15);
+      border-radius: 8px; font-size: 11px; font-weight: 700; color: var(--amber);
+      margin-left: 8px;
     }
   </style>
 </head>
@@ -1495,7 +1541,7 @@
 <!-- Trip Overview Summary -->
 <section class="primer-section" id="overview" style="padding-bottom:0;">
   <h2>Trip at a Glance</h2>
-  <p class="primer-sub">7 trails, 4 days, ~55 km of hiking, ~11h of driving. Every minute planned with flex built in.</p>
+  <p class="primer-sub">6 trails, 4 days, ~54 km of hiking, ~11h of driving. Every minute planned with flex built in.</p>
   <div style="overflow-x:auto;">
   <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;">
     <thead>
@@ -1544,7 +1590,7 @@
       <tr style="border-bottom:1px solid var(--border);">
         <td style="padding:10px 12px;font-weight:700;color:var(--accent2);">Sat 14</td>
         <td style="padding:10px 12px;">Summit + Cliffs</td>
-        <td style="padding:10px 12px;"><strong>PR1.2</strong> (5.6 km) + <strong>Larano</strong> (13 km)</td>
+        <td style="padding:10px 12px;"><strong>PR1.2</strong> (5.6 km) + <strong>Larano</strong> (10 km)</td>
         <td style="padding:10px 12px;">~3h 15m</td>
         <td style="padding:10px 12px;"><span style="color:var(--amber);">&#8364;4.50</span></td>
         <td style="padding:10px 12px;">Pico Ruivo sunrise &#8594; Coastal cliffs &#8594; Monte Palace &#8594; Espetada</td>
@@ -1598,6 +1644,7 @@
         <div class="dh-sub">Land at 17:15 &middot; Pick up car &middot; Settle in &middot; First dinner</div>
       </div>
       <div class="dh-badge" style="background:rgba(96,165,250,0.15);color:var(--accent2)">Light evening</div>
+      <span class="day-budget">&#8364;20-40/pp</span>
     </div>
     <div class="weather-callout">
       <div class="wc-icon">&#9992;</div>
@@ -1653,8 +1700,9 @@
         <div class="dh-sub">Pico do Areeiro sunrise &middot; PR8 coastal hike &middot; Beach &middot; Rum distillery</div>
       </div>
       <div class="dh-badge" style="background:rgba(52,211,153,0.15);color:var(--green)">Big hike day</div>
+      <span class="day-budget">&#8364;30-50/pp</span>
     </div>
-    <div class="wx-decision">
+    <div class="wx-decision wx-three">
       <div class="wx-path wx-go">
         <div class="wx-label">&#9728; Clear Summit</div>
         <div class="wx-action"><strong>06:15</strong> drive to Areeiro &rarr; sunrise at 07:23 &rarr; <strong>07:45</strong> drive to PR8 &rarr; hike by 08:50. Best case: summit glow + empty trail.</div>
@@ -1664,9 +1712,18 @@
         <div class="wx-label">&#9729; Foggy / Cloudy</div>
         <div class="wx-action"><strong>Skip sunrise, sleep in.</strong> Drive straight to PR8 trailhead by 07:30. The coastal hike works in any weather. Check <a href="https://webcammadeira.com" target="_blank">webcams</a> at 05:45.</div>
       </div>
+      <div class="wx-or">or</div>
+      <div class="wx-path wx-rain">
+        <div class="wx-label">&#127783; Wind / Rain</div>
+        <div class="wx-action"><strong>Skip PR8 entirely</strong> — the exposed peninsula is dangerous in strong wind or rain (no shelter, cliff edges). <strong>Swap to Day 2 plan</strong> (Raba&#231;al levadas work in rain) or do a Funchal culture day: Mercado &rarr; Blandy's Wine Lodge &rarr; Monte Palace.</div>
+      </div>
     </div>
     <div class="day-map" id="map-1"></div>
     <div class="timeline">
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">05:45</span><span class="tl-name">Quick Breakfast</span><span class="tl-badge food">Breakfast</span></div>
+        <div class="tl-desc">Grab hotel breakfast if available, or pack the night before: pastries from a Funchal bakery + fruit + water. You'll be on mountain roads at 06:15 — eat before or bring car snacks. <strong>Hiking on an empty stomach is a recipe for bonking on PR8.</strong></div>
+      </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">06:15</span><span class="tl-name">Drive to Pico do Areeiro</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">45 min from Funchal (mountain road, switchbacks). Check webcams at 5:45am FIRST. If fogged in, skip and go straight to PR8 trailhead by 7:30am instead. 1818m altitude, 3-7&#176;C at dawn — warm layers essential.</div>
@@ -1727,9 +1784,17 @@
       </div>
       <div class="tl-item food">
         <div class="tl-top"><span class="tl-time">15:45</span><span class="tl-name">Poncha at A Pipa</span><span class="tl-badge poncha">Poncha</span></div>
-        <div class="tl-desc">Best poncha on the north coast. <strong>&#11088; 4.7</strong> on Google. Fresh, not bottled. <strong>Closed Mon/Tue.</strong> Seawater pool right next door if you want a dip. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Rei+da+Poncha+Madeira+Portugal" target="_blank">Rei da Poncha</a> if A Pipa is closed.</div>
+        <div class="tl-desc">Best poncha on the north coast. <strong>&#11088; 4.5</strong> on Google. Fresh, not bottled. <strong>Closed Sun/Mon.</strong> Seawater pool right next door if you want a dip. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Rei+da+Poncha+Madeira+Portugal" target="_blank">Rei da Poncha</a> if A Pipa is closed.</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=A+Pipa+Porto+da+Cruz+Madeira+Portugal" target="_blank">Google Maps</a></div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 35 min back to Funchal via VE2/VE4 tunnels</div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">19:00</span><span class="tl-name">Dinner in Funchal</span><span class="tl-badge food">Dinner</span></div>
+        <div class="tl-desc"><strong>Seafood:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Taberna+Ruel+Funchal+Madeira" target="_blank">Taberna Ruel</a> (&#11088;4.6, modern Portuguese, small plates, buzzy). <strong>Traditional:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+do+Forte+Funchal+Madeira" target="_blank">Restaurante do Forte</a> (&#11088;4.4, inside old fort, sea views, grilled scabbard). <strong>Casual:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Cervejaria+Funchal+Madeira" target="_blank">Cervejaria Funchal</a> (&#11088;4.5, beer + bolo do caco, relaxed). You've been up since 5:45am — don't overthink it, eat early and crash.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Taberna+Ruel+Funchal+Madeira" target="_blank">Taberna Ruel &#11088;4.6</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+do+Forte+Funchal+Madeira" target="_blank">Do Forte &#11088;4.4</a>
+        </div>
       </div>
     </div>
     <div class="tips-bar">
@@ -1738,7 +1803,7 @@
         <li>Check webcams at 5:45am. If Areeiro is fogged in, skip sunrise and drive straight to PR8 by 7:30am</li>
         <li>Areeiro viewpoint is FREE — no booking needed. PR1 trail is closed until late April 2026 but the summit platform is open</li>
         <li>Areeiro sunrise: wear warm layers (3-7&#176;C), bring headlamp for pre-dawn walk from car park</li>
-        <li>PR8: zero shade. Hat, sunscreen, 1.5L water minimum. You're arriving before tour buses (10am+) — big advantage</li>
+        <li>PR8: zero shade AND zero shelter. Hat, sunscreen, 1.5L water minimum. <strong>If wind >35 km/h or heavy rain, skip PR8</strong> — the exposed peninsula is dangerous. Swap to a levada day instead</li>
         <li>March is sugarcane season — the Engenhos do Norte distillery is actively pressing cane, which makes the tour much better</li>
         <li>Total driving today: ~2h 50min. Back in Funchal by ~17:00</li>
       </ul>
@@ -1756,6 +1821,7 @@
         <div class="dh-sub">Raba&#231;al levadas &middot; Ancient forest &middot; Lava pools &middot; North coast</div>
       </div>
       <div class="dh-badge" style="background:rgba(96,165,250,0.15);color:var(--accent2)">Full day out</div>
+      <span class="day-budget">&#8364;35-55/pp</span>
     </div>
     <div class="weather-callout">
       <div class="wc-icon">&#127754;</div>
@@ -1763,6 +1829,10 @@
     </div>
     <div class="day-map" id="map-2"></div>
     <div class="timeline">
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">06:30</span><span class="tl-name">Breakfast</span><span class="tl-badge food">Breakfast</span></div>
+        <div class="tl-desc">Hotel breakfast or grab pastries + coffee from <a href="https://www.google.com/maps/search/?api=1&query=Opan+Bakery+Funchal+Madeira" target="_blank">Opan Bakery</a>. You're hiking 13km today — eat well. Pack snacks and 2L water for the trail.</div>
+      </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">07:00</span><span class="tl-name">Drive to Raba&#231;al</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">60 min from Funchal via VE1 west &#8594; VE3 up to Paul da Serra plateau &#8594; ER110 to Raba&#231;al. Park at the upper lot, then walk 20 min downhill on paved road to trailhead (shuttle runs from 10am, but you're early). <strong>Arrive by 08:00</strong> — parking fills by 9am and it's a zoo by 10am.</div>
@@ -1783,6 +1853,10 @@
           <a class="tl-link" href="madeira_map.html?poi=pr6-levada-das-25-fontes" target="_blank">Show on Map</a>
         </div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 30 min drive to Fanal</div>
+      </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">13:00</span><span class="tl-name">Quick Lunch</span><span class="tl-badge food">Lunch</span></div>
+        <div class="tl-desc"><strong>Pack lunch</strong> or grab at Nature Spot Cafe near Raba&#231;al car park (sandwiches, soup, coffee). Alternatively, stop at a roadside bar on Paul da Serra plateau. There are NO restaurants between Raba&#231;al and Porto Moniz, so eat before Fanal or bring snacks.</div>
       </div>
       <div class="tl-item view">
         <div class="tl-top"><span class="tl-time">13:30</span><span class="tl-name">Fanal Forest</span><span class="tl-badge view">Ancient Forest</span></div>
@@ -1824,7 +1898,7 @@
       <ul>
         <li>HEADLAMP is mandatory for PR6 (800m dark tunnel). Phone flashlight is NOT enough</li>
         <li>Arrive Raba&#231;al parking by 08:00. Shuttle doesn't run until 10am so walk the 20-min paved road down to trailhead</li>
-        <li>Do PR6.1 (Risco) first, then PR6 (25 Fontes) — same trailhead, 4-5h combo total</li>
+        <li>Do PR6.1 (Risco) first, then PR6 (25 Fontes) — same trailhead, 5-6h combo total</li>
         <li>Fanal forest: fencing installed in 2026, stay on designated paths. Overcast/foggy days are BEST for photography</li>
         <li>Longest driving day (~3h total). Funchal &#8594; Raba&#231;al 60min, Raba&#231;al &#8594; Fanal 25min, Fanal &#8594; Porto Moniz 28min, Seixal &#8594; Funchal 45min</li>
         <li>Total driving: ~3h. Back in Funchal by ~18:00 if dining north, or ~19:00 if driving back</li>
@@ -1843,13 +1917,18 @@
         <div class="dh-sub">Caldeir&#227;o Verde tunnels &middot; Laurisilva forest &middot; Santana &middot; Wine tasting &middot; Rest up for tomorrow's summit</div>
       </div>
       <div class="dh-badge" style="background:rgba(52,211,153,0.15);color:var(--green)">Big hike day</div>
+      <span class="day-budget">&#8364;35-55/pp</span>
     </div>
     <div class="weather-callout">
       <div class="wc-icon">&#127795;</div>
-      <div><strong>Rain? Go anyway.</strong> PR9 is in dense forest and tunnels — rain makes it more dramatic, not worse. Only skip if there's a severe weather warning. The levada waterfalls are at their most powerful after rain. <strong>PR1.2 (Pico Ruivo summit) is tomorrow at sunrise</strong> — rest your legs this evening.</div>
+      <div><strong>Light rain? Go anyway.</strong> PR9 is in dense forest and tunnels — rain makes it more dramatic, not worse. <strong>But skip if:</strong> severe weather warning, heavy sustained rain (levada paths become waterfalls and slippery), or visibility under 20m. The waterfalls are most powerful after rain. <strong>If you bail:</strong> swap to Day 4's culture plan (Mercado + Monte Palace + Cabo Gir&#227;o + espetada) and move PR9 to Day 4. <strong>PR1.2 (Pico Ruivo summit) is tomorrow at sunrise</strong> — rest your legs this evening.</div>
     </div>
     <div class="day-map" id="map-3"></div>
     <div class="timeline">
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">06:30</span><span class="tl-name">Breakfast</span><span class="tl-badge food">Breakfast</span></div>
+        <div class="tl-desc">Biggest hike day (17.4 km). Eat a proper breakfast — hotel buffet or bakery. Pack trail snacks: energy bars, fruit, bolo do caco sandwich. Bring 2L water minimum. There are ZERO shops or cafes between Queimadas trailhead and Santana.</div>
+      </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">07:00</span><span class="tl-name">Drive to Queimadas</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">60 min from Funchal via VE2/VE4 tunnels north &#8594; ER101 to Santana &#8594; narrow mountain road up to Queimadas Forest Park. Parking &#8364;2/hr, &#8364;10 daily cap. Arrive early — this is the longest hike of the trip.</div>
@@ -1861,7 +1940,7 @@
         <div class="tl-stats">
           <div class="tl-stat"><strong>17.4 km</strong> round trip</div>
           <div class="tl-stat"><strong>5-7h</strong></div>
-          <div class="tl-stat"><strong>Moderate</strong></div>
+          <div class="tl-stat"><strong>Mod-Hard</strong></div>
           <div class="tl-stat">&#11088; <strong>4.6</strong> (4,214 reviews)</div>
           <div class="tl-stat"><strong>&#8364;4.50</strong></div>
         </div>
@@ -1927,9 +2006,10 @@
       <div class="dh-icon">&#127774;</div>
       <div class="dh-text">
         <h2>Saturday, March 14 — Pico Ruivo Sunrise + Coastal Cliffs + Farewell</h2>
-        <div class="dh-sub">Pico Ruivo sunrise &middot; Vereda do Larano &middot; Monte Palace &middot; Cabo Gir&#227;o &middot; Espetada farewell</div>
+        <div class="dh-sub">Pico Ruivo sunrise &middot; Monte Palace &middot; Cabo Gir&#227;o &middot; Espetada farewell &middot; <em style="color:var(--green)">Optional: Larano if legs are fresh</em></div>
       </div>
       <div class="dh-badge" style="background:rgba(52,211,153,0.15);color:var(--green)">Summit + hike + farewell</div>
+      <span class="day-budget">&#8364;55-80/pp</span>
     </div>
     <div class="wx-decision wx-three">
       <div class="wx-path wx-go">
@@ -1949,6 +2029,10 @@
     </div>
     <div class="day-map" id="map-4"></div>
     <div class="timeline">
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">05:15</span><span class="tl-name">Quick Breakfast</span><span class="tl-badge food">Breakfast</span></div>
+        <div class="tl-desc">Pre-packed the night before: pastries, fruit, water. You did 17.4 km yesterday — <strong>honestly assess your legs.</strong> If they're shot, skip Larano entirely and go straight from PR1.2 to Funchal for a relaxed culture afternoon. The espetada dinner is the main event today, not another hike.</div>
+      </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">05:45</span><span class="tl-name">Drive to Achada do Teixeira</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">50 min from Funchal via ER103 through Poiso. Mountain road, no traffic this early. Car park at 1,535m altitude. Check webcams at 05:30 — if summit is socked in, skip and drive to Porto da Cruz for Larano instead (35 min).</div>
@@ -1972,14 +2056,14 @@
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">08:30</span><span class="tl-name">Drive to Porto da Cruz</span><span class="tl-badge logistics">Drive</span></div>
         <div class="tl-desc">35 min from Achada do Teixeira via Santana and north coast. Geographically efficient — you're already in the mountains, Porto da Cruz is downhill to the northeast. This is why PR1.2 lives on Day 4: the route flows Achada do Teixeira &#8594; Porto da Cruz naturally.</div>
-        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Teleferico+Faja+Larano+Porto+da+Cruz+Madeira" target="_blank">Google Maps</a></div>
+        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Vereda+do+Larano+Porto+da+Cruz+Madeira" target="_blank">Google Maps</a></div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 35 min via Santana</div>
       </div>
-      <div class="tl-item hike">
-        <div class="tl-top"><span class="tl-time">09:15</span><span class="tl-name">Vereda do Larano — Coastal Cliff Trail</span><span class="tl-badge hike">Hike</span></div>
-        <div class="tl-desc">The most underrated hike in Madeira. Dramatic coastal cliff path carved into rock, sheer drops to the Atlantic, forested sections, almost nobody else on the trail. Out-and-back to Boca do Risco viewpoint and return. Multiple independent sources call this "hands down one of the best walks in Madeira." <strong>FREE — no booking, no reservation, no fee.</strong></div>
+      <div class="tl-item hike" style="border: 1px dashed rgba(52,211,153,0.3); border-left: 3px dashed rgba(52,211,153,0.3);">
+        <div class="tl-top"><span class="tl-time">09:15</span><span class="tl-name">Vereda do Larano — Coastal Cliff Trail</span><span class="tl-badge hike">Optional</span></div>
+        <div class="tl-desc"><strong style="color:var(--green);">OPTIONAL — only if legs are fresh after yesterday's 17.4km PR9.</strong> The most underrated hike in Madeira. Dramatic coastal cliff path carved into rock, sheer drops to the Atlantic, forested sections, almost nobody else on the trail. Out-and-back to Boca do Risco viewpoint. <strong>If you skip this:</strong> drive straight back to Funchal after PR1.2 (50 min), grab a proper brunch, and spend the afternoon at Monte Palace + Cabo Gir&#227;o at a relaxed pace. <strong>FREE — no booking, no reservation, no fee.</strong></div>
         <div class="tl-stats">
-          <div class="tl-stat"><strong>~13 km</strong> out-and-back</div>
+          <div class="tl-stat"><strong>~10 km</strong> out-and-back</div>
           <div class="tl-stat"><strong>3.5-4h</strong></div>
           <div class="tl-stat"><strong>Moderate</strong></div>
           <div class="tl-stat">&#11088; <strong>4.8</strong> (AllTrails)</div>
@@ -2050,15 +2134,15 @@
     <div class="tips-bar">
       <h3>Day 4 Tips</h3>
       <ul>
-        <li><strong>PR1.2 at sunrise is the plan.</strong> Check webcams at 05:30. Clear summit? Go. Socked in? Skip, drive straight to Porto da Cruz for Larano at 07:00 instead</li>
+        <li><strong>PR1.2 at sunrise is the plan.</strong> Check webcams at 05:30. Clear summit? Go. Socked in? Skip, drive straight to Funchal for a relaxed culture day</li>
         <li><strong>Why morning summit?</strong> Expert consensus: clouds build over Pico Ruivo through the afternoon. By 15:00, summit is often in cloud. Sunrise = statistically clearest views + you're rested (not post-PR9)</li>
-        <li><strong>Route logic:</strong> Achada do Teixeira &#8594; Porto da Cruz is only 35 min downhill — the geography flows naturally</li>
-        <li>Vereda do Larano: NOT for people with fear of heights — sections have no guardrails next to sheer drops. Best views-to-crowds ratio of any trail</li>
+        <li><strong>Larano is OPTIONAL.</strong> Yesterday was 17.4 km. If your legs are shot, skip it — drive straight back to Funchal after PR1.2 and enjoy Monte Palace + Cabo Gir&#227;o at a leisurely pace. The espetada dinner is tonight's main event, not another hike</li>
+        <li>If you DO Larano: NOT for people with fear of heights — sections have no guardrails next to sheer drops. Best views-to-crowds ratio of any trail</li>
         <li>Cable car to Monte CLOSED until Apr 5 — taxi up (~&#8364;8, 17 min) or bus #20/#21</li>
         <li>Santo Antonio: NO reservations. Saturday is busy — arrive by 6pm or expect 30-45 min wait</li>
         <li>Last dinner — go for the espetada. It's THE food experience you can't replicate outside Madeira</li>
         <li>Buy souvenirs today: Madeira wine, bolo de mel, poncha mix (duty-free also available tomorrow)</li>
-        <li>Total driving today: ~3h 15min. Back in Funchal by ~20:00 after dinner</li>
+        <li>Total driving today: ~2h 30min without Larano, ~3h 15min with it</li>
       </ul>
     </div>
   </div>
@@ -2074,6 +2158,7 @@
         <div class="dh-sub">Flight at 11:10 &middot; Quick morning routine &middot; Last coffee &middot; Duty-free wine</div>
       </div>
       <div class="dh-badge" style="background:rgba(248,113,113,0.15);color:var(--red)">Travel day</div>
+      <span class="day-budget">&#8364;15-35/pp</span>
     </div>
     <div class="day-map" id="map-5"></div>
     <div class="timeline">
@@ -2113,7 +2198,7 @@
   <!-- Curated Trails (trimmed to 6)                -->
   <!-- ============================================ -->
   <div class="curated-banner" id="trails">
-    <h2>Your 7 Trail Picks</h2>
+    <h2>Your 6 Trail Picks</h2>
     <p class="cb-sub">All trails in your itinerary ranked by wow factor. Green = confirmed, blue = weather-dependent.</p>
     <div class="trail-picks">
       <div class="trail-pick">
@@ -2160,8 +2245,182 @@
         <div class="tp-rank bonus">6</div>
         <div class="tp-info">
           <h4>Vereda do Larano</h4>
-          <div class="tp-meta">10 km &middot; 4-5h &middot; Moderate &middot; &#11088; 4.8</div>
-          <div class="tp-why">Day 4 swap option. FREE, no reservation. Most underrated hike. Carved-into-cliff path.</div>
+          <div class="tp-meta">10 km &middot; 3.5-4h &middot; Moderate &middot; &#11088; 4.8</div>
+          <div class="tp-why">Day 4 optional bonus. FREE, no reservation. Most underrated hike. Only if legs are fresh after PR9.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- Flex Planning: Day Swaps & Rain Backup       -->
+  <!-- ============================================ -->
+  <div class="curated-banner" id="flex" style="border-color:rgba(251,191,36,0.2);background:linear-gradient(135deg,rgba(251,191,36,0.06),rgba(248,113,113,0.04));">
+    <h2 style="color:var(--amber);">Flex Planning</h2>
+    <p class="cb-sub">Weather changes fast. These are your pre-planned pivots — decide the night before, not on the road.</p>
+    <div class="trail-picks" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+      <div class="trail-pick" style="border-color:rgba(248,113,113,0.2);">
+        <div class="tp-rank" style="background:var(--red);color:#000;">!</div>
+        <div class="tp-info">
+          <h4>Full Rain-Out Day</h4>
+          <div class="tp-meta" style="color:var(--text);">If it's pouring all day — don't force hikes</div>
+          <div class="tp-why" style="color:var(--muted);margin-top:6px;">
+            <strong>08:00</strong> Mercado dos Lavradores (market, fruit, flowers) &rarr;
+            <strong>10:00</strong> Blandy's Wine Lodge tour (&#8364;7.50) &rarr;
+            <strong>12:00</strong> Lunch at Taberna Ruel &rarr;
+            <strong>14:00</strong> Monte Palace Tropical Garden (covered sections) &rarr;
+            <strong>16:30</strong> Toboggan down &rarr;
+            <strong>18:00</strong> Poncha + dinner in Zona Velha.
+            Total: &#8364;30-50/pp, zero hiking, still a great day.
+          </div>
+        </div>
+      </div>
+      <div class="trail-pick" style="border-color:rgba(59,130,246,0.2);">
+        <div class="tp-rank" style="background:var(--accent);color:#fff;">&#8644;</div>
+        <div class="tp-info">
+          <h4>Day Swapping Guide</h4>
+          <div class="tp-meta" style="color:var(--text);">Days 1-3 are swappable. Day 4 is locked (farewell dinner).</div>
+          <div class="tp-why" style="color:var(--muted);margin-top:6px;">
+            <strong>Day 1 &#8596; Day 2:</strong> Freely swap. PR8 needs clear weather; levadas work in rain.<br>
+            <strong>Day 1 &#8596; Day 3:</strong> Swap works. PR9 loves rain; PR8 hates it.<br>
+            <strong>Day 2 &#8596; Day 3:</strong> Swap works but PR9 (17km) is exhausting — do it before Day 4's sunrise.<br>
+            <strong>Day 4:</strong> Don't move. Espetada dinner at Santo Antonio is Saturday-specific (queue by 6pm).
+          </div>
+        </div>
+      </div>
+      <div class="trail-pick" style="border-color:rgba(52,211,153,0.2);">
+        <div class="tp-rank" style="background:var(--green);color:#000;">&#9888;</div>
+        <div class="tp-info">
+          <h4>SIMplifica Trail Bookings</h4>
+          <div class="tp-meta" style="color:var(--text);">Mandatory since Jan 1, 2026 &middot; &#8364;4.50/trail</div>
+          <div class="tp-why" style="color:var(--muted);margin-top:6px;">
+            <strong>Book night before</strong> on <a href="https://simplifica.madeira.gov.pt" target="_blank">simplifica.madeira.gov.pt</a>. Pick a 30-min entry window from sunrise onward.<br>
+            <strong>Cancellation:</strong> Free up to 24h before. After that, you lose the fee but can rebook for another slot if available.<br>
+            <strong>No-show:</strong> You forfeit the fee. No refund.<br>
+            <strong>Screenshot QR code</strong> — no cell signal at trailheads. Rangers DO check.
+          </div>
+        </div>
+      </div>
+      <div class="trail-pick" style="border-color:rgba(251,191,36,0.2);">
+        <div class="tp-rank" style="background:var(--amber);color:#000;">&#9728;</div>
+        <div class="tp-info">
+          <h4>PR8 Wind Warning</h4>
+          <div class="tp-meta" style="color:var(--text);">The peninsula is fully exposed — check wind before going</div>
+          <div class="tp-why" style="color:var(--muted);margin-top:6px;">
+            PR8 (S&#227;o Louren&#231;o) has zero shelter, zero shade, and sheer cliff edges. In winds above 40 km/h, the trail becomes dangerous — people have been blown off their feet. Check <a href="https://www.windy.com/32.749/-16.707?32.750,-16.707,13" target="_blank">Windy.com</a> the morning of. If wind is forecast >35 km/h, swap to a sheltered levada day instead.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- Travel Essentials: Quick Reference           -->
+  <!-- ============================================ -->
+  <div class="curated-banner" id="essentials" style="border-color:rgba(96,165,250,0.2);background:linear-gradient(135deg,rgba(96,165,250,0.05),rgba(167,139,250,0.03));">
+    <h2>Travel Essentials</h2>
+    <p class="cb-sub">Quick reference for on-the-ground decisions. Screenshot this section before you fly.</p>
+    <div class="essentials-grid">
+      <div class="ess-card">
+        <div class="ess-icon">&#128176;</div>
+        <div>
+          <h4>Tipping Customs</h4>
+          <div class="ess-detail">
+            <strong>Not expected</strong> in Portugal — service charge is never included. <strong>Restaurants:</strong> round up to nearest euro, or 5-10% at upscale places if service was great. <strong>Taxis:</strong> round up. <strong>Hotel porters:</strong> &#8364;1-2. <strong>Tour guides:</strong> &#8364;5-10 if exceptional. No one will be offended if you don't tip — it's genuinely optional.
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#127467;&#127479;</div>
+        <div>
+          <h4>Portuguese Survival Kit</h4>
+          <div class="ess-detail">
+            Everyone speaks English, but locals genuinely appreciate the effort:<br>
+            <strong>Obrigado/a</strong> = Thank you (m/f) &middot;
+            <strong>Bom dia</strong> = Good morning &middot;
+            <strong>Uma poncha, por favor</strong> = One poncha please &middot;
+            <strong>A conta</strong> = The bill &middot;
+            <strong>Onde &#233;...?</strong> = Where is...? &middot;
+            <strong>Sa&#250;de!</strong> = Cheers! &middot;
+            <strong>Desculpe</strong> = Excuse me &middot;
+            <strong>Quanto custa?</strong> = How much?
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#127968;</div>
+        <div>
+          <h4>Your Hotel</h4>
+          <div class="ess-detail">
+            <strong>Paraiso Hotel</strong> &middot; Funchal &middot; 3&#9733;<br>
+            <a href="https://www.google.com/maps/search/?api=1&query=Paraiso+Hotel+Funchal+Madeira" target="_blank">Open in Google Maps</a> &middot;
+            <strong>Check-in:</strong> 14:00 &middot; <strong>Check-out:</strong> 12:00<br>
+            Central Funchal — walking distance to Zona Velha, Mercado, and S&#233; Cathedral.
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#127760;</div>
+        <div>
+          <h4>Parking Costs</h4>
+          <div class="ess-detail">
+            <span class="ess-highlight">FREE:</span> All trailheads (except Queimadas: &#8364;2/hr, &#8364;10 cap), Porto Moniz, Seixal, Santana, all viewpoints, all rural areas.<br>
+            <span class="ess-highlight">PAID:</span> Funchal garages &#8364;10-16/day. Street: free 8pm-8am + all day Sunday.<br>
+            <strong>Best garage:</strong> Almirante Reis (central, &#8364;10-12/day). Don't drive into Old Town — park and walk.
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#128247;</div>
+        <div>
+          <h4>Photo Spots by Day</h4>
+          <div class="ess-detail">
+            <strong>Day 1:</strong> Areeiro above-clouds sunrise (wide lens), PR8 red/gold cliffs from Casa do Sardinha viewpoint, Prainha black sand<br>
+            <strong>Day 2:</strong> 25 Fontes lagoon reflection, Fanal twisted trees in fog (the iconic shot), Seixal lava arch<br>
+            <strong>Day 3:</strong> PR9 tunnel exit to waterfall (light/dark contrast), Santana thatched houses<br>
+            <strong>Day 4:</strong> Pico Ruivo sunrise panorama (360&#176;), Larano cliff edge, Cabo Gir&#227;o glass floor selfie, C&#226;mara de Lobos harbour (Churchill angle)
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#127774;</div>
+        <div>
+          <h4>Sunrise &amp; Sunset Times</h4>
+          <div class="ess-detail">
+            <strong>Tue Mar 10:</strong> &#9728; 07:24 / &#127751; 18:38<br>
+            <strong>Wed Mar 11:</strong> &#9728; 07:23 / &#127751; 18:39<br>
+            <strong>Thu Mar 12:</strong> &#9728; 07:22 / &#127751; 18:40<br>
+            <strong>Fri Mar 13:</strong> &#9728; 07:20 / &#127751; 18:41<br>
+            <strong>Sat Mar 14:</strong> &#9728; 07:19 / &#127751; 18:42<br>
+            <strong>Sun Mar 15:</strong> &#9728; 07:17 / &#127751; 18:43<br>
+            Golden hour starts ~45 min before sunset. Best light for Cabo Gir&#227;o: 17:30-18:15.
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#128176;</div>
+        <div>
+          <h4>Budget Per Day (Per Person)</h4>
+          <div class="ess-detail">
+            <strong>Day 0 (Arrival):</strong> &#8364;20-40 (dinner only)<br>
+            <strong>Day 1 (East):</strong> &#8364;30-50 (trail &#8364;4.50 + lunch &#8364;15 + dinner &#8364;15)<br>
+            <strong>Day 2 (West):</strong> &#8364;35-55 (trails &#8364;9 + lunch &#8364;10 + pools &#8364;3 + dinner &#8364;15)<br>
+            <strong>Day 3 (Levadas):</strong> &#8364;35-55 (trail &#8364;4.50 + lunch &#8364;15 + wine &#8364;8 + dinner &#8364;15)<br>
+            <strong>Day 4 (Summit):</strong> &#8364;55-80 (trail &#8364;4.50 + lunch &#8364;10 + Monte &#8364;18 + sled &#8364;17 + dinner &#8364;20)<br>
+            <strong>Day 5 (Depart):</strong> &#8364;15-35 (breakfast + duty-free wine)<br>
+            <strong>Total: &#8364;190-315/pp</strong> for 6 days (excl. hotel &#8364;40-80/n, car &#8364;100-180, flights)
+          </div>
+        </div>
+      </div>
+      <div class="ess-card">
+        <div class="ess-icon">&#127917;</div>
+        <div>
+          <h4>Groceries &amp; Snacks</h4>
+          <div class="ess-detail">
+            <strong>Pingo Doce</strong> (biggest supermarket chain) — two in central Funchal. Open 8am-9pm, closed Sunday afternoon.<br>
+            <strong>Continente</strong> at Forum Madeira mall — open until 10pm, even Sundays.<br>
+            <strong>Stock up the night before</strong> each hiking day: water (1.5-2L/person), fruit, energy bars, bolo do caco sandwich. No shops at trailheads.
+          </div>
         </div>
       </div>
     </div>
@@ -2313,7 +2572,7 @@ const routes = {
       {lat:32.738,lng:-16.71,name:'Prainha Beach',icon:'swim'},
       {lat:32.722,lng:-16.765,name:'O Forno (Machico)',icon:'food'},
       {lat:32.7722,lng:-16.8289,name:'Porto da Cruz + Distillery',icon:'culture'},
-      {lat:32.817,lng:-16.834,name:'A Pipa (Poncha)',icon:'food'}
+      {lat:32.765,lng:-16.834,name:'A Pipa (Poncha)',icon:'food'}
     ]
   },
   '2': {
@@ -2323,7 +2582,7 @@ const routes = {
       {lat:32.7547,lng:-17.1338,name:'Raba\u00e7al (PR6+PR6.1)',icon:'hike'},
       {lat:32.815211,lng:-17.152339,name:'Fanal Forest',icon:'view'},
       {lat:32.8678,lng:-17.1704,name:'Porto Moniz Pools',icon:'swim'},
-      {lat:32.824,lng:-17.101,name:'Seixal Natural Pools',icon:'swim'},
+      {lat:32.815,lng:-17.101,name:'Seixal Natural Pools',icon:'swim'},
       {lat:32.816096,lng:-17.095091,name:'V\u00e9u da Noiva',icon:'view'},
       {lat:32.8049,lng:-17.0375,name:'Restaurante Lavrador',icon:'food'}
     ]
@@ -2343,7 +2602,7 @@ const routes = {
     stops: [
       {lat:32.648,lng:-16.913,name:'Funchal',icon:'logistics'},
       {lat:32.7653,lng:-16.9209,name:'Achada do Teixeira (PR1.2)',icon:'hike'},
-      {lat:32.7611,lng:-16.9409,name:'Pico Ruivo Summit (1862m)',icon:'view'},
+      {lat:32.7552,lng:-16.9387,name:'Pico Ruivo Summit (1862m)',icon:'view'},
       {lat:32.7722,lng:-16.8289,name:'Porto da Cruz (Larano)',icon:'hike'},
       {lat:32.7555,lng:-16.7729,name:'Boca do Risco',icon:'view'},
       {lat:32.648,lng:-16.913,name:'Lunch in Funchal',icon:'food'},
@@ -2368,64 +2627,177 @@ const iconColors = {
   swim: '#60a5fa', culture: '#fb923c', hotel: '#fb923c'
 };
 
+// ── Polyline decoder (Google polyline algorithm) ──
+function decodePolyline(enc) {
+  var pts = [], i = 0, lat = 0, lng = 0;
+  while (i < enc.length) {
+    var b, shift = 0, result = 0;
+    do { b = enc.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lat += (result & 1) ? ~(result >> 1) : (result >> 1);
+    shift = 0; result = 0;
+    do { b = enc.charCodeAt(i++) - 63; result |= (b & 0x1f) << shift; shift += 5; } while (b >= 0x20);
+    lng += (result & 1) ? ~(result >> 1) : (result >> 1);
+    pts.push([lat / 1e5, lng / 1e5]);
+  }
+  return pts;
+}
+
+// ── Fetch real driving route from OSRM ──
+async function fetchDrivingRoute(stops) {
+  var coords = stops.map(function(s) { return s.lng + ',' + s.lat; }).join(';');
+  try {
+    var r = await fetch('https://router.project-osrm.org/route/v1/driving/' + coords + '?overview=full&geometries=polyline');
+    var d = await r.json();
+    if (d.code === 'Ok' && d.routes && d.routes[0]) {
+      return {
+        points: decodePolyline(d.routes[0].geometry),
+        distance: Math.round(d.routes[0].distance / 1000),
+        duration: Math.round(d.routes[0].duration / 60)
+      };
+    }
+  } catch(e) { /* fallback to straight lines */ }
+  return null;
+}
+
+// ── Calculate bearing between two [lat,lng] points ──
+function getBearing(p1, p2) {
+  var R = Math.PI / 180;
+  var dL = (p2[1] - p1[1]) * R;
+  var y = Math.sin(dL) * Math.cos(p2[0] * R);
+  var x = Math.cos(p1[0] * R) * Math.sin(p2[0] * R) - Math.sin(p1[0] * R) * Math.cos(p2[0] * R) * Math.cos(dL);
+  return Math.atan2(y, x) * 180 / Math.PI;
+}
+
+// ── Add direction-of-travel arrows along decoded route ──
+function addRouteArrows(map, points) {
+  if (!points || points.length < 20) return;
+  var step = Math.max(12, Math.floor(points.length / 14));
+  for (var i = step; i < points.length - step; i += step) {
+    var next = Math.min(i + 5, points.length - 1);
+    var angle = getBearing(points[i], points[next]);
+    L.marker(points[i], {
+      icon: L.divIcon({
+        className: 'route-arrow',
+        html: '<div style="transform:rotate(' + angle + 'deg)">&#8250;</div>',
+        iconSize: [14, 14], iconAnchor: [7, 7]
+      }), interactive: false, keyboard: false
+    }).addTo(map);
+  }
+}
+
+// ── Fallback: arrows between numbered stops ──
+function addStopArrows(map, stops) {
+  for (var i = 0; i < stops.length - 1; i++) {
+    var p1 = [stops[i].lat, stops[i].lng], p2 = [stops[i+1].lat, stops[i+1].lng];
+    var mid = [(p1[0]+p2[0])/2, (p1[1]+p2[1])/2];
+    var angle = getBearing(p1, p2);
+    L.marker(mid, {
+      icon: L.divIcon({
+        className: 'route-arrow',
+        html: '<div style="transform:rotate(' + angle + 'deg)">&#8250;</div>',
+        iconSize: [14, 14], iconAnchor: [7, 7]
+      }), interactive: false, keyboard: false
+    }).addTo(map);
+  }
+}
+
+// ── Route summary card below map ──
+function showRouteSummary(el, data, count) {
+  if (el.nextElementSibling && el.nextElementSibling.classList.contains('route-summary')) return;
+  var div = document.createElement('div');
+  div.className = 'route-summary';
+  var h = Math.floor(data.duration / 60), m = data.duration % 60;
+  var t = h > 0 ? h + 'h ' + (m > 0 ? m + 'min' : '') : m + ' min';
+  div.innerHTML =
+    '<div class="rs-item"><span class="rs-icon">&#128739;</span> <span class="rs-value">' + data.distance + ' km</span> total driving</div>' +
+    '<div class="rs-item"><span class="rs-icon">&#9201;</span> <span class="rs-value">' + t.trim() + '</span> behind wheel</div>' +
+    '<div class="rs-item"><span class="rs-icon">&#128205;</span> <span class="rs-value">' + count + '</span> stops</div>' +
+    '<div class="rs-legend">' +
+      '<span><span class="rs-dot" style="background:#34d399"></span>Hike</span>' +
+      '<span><span class="rs-dot" style="background:#fbbf24"></span>Food</span>' +
+      '<span><span class="rs-dot" style="background:#a78bfa"></span>View</span>' +
+      '<span><span class="rs-dot" style="background:#60a5fa"></span>Swim</span>' +
+      '<span><span class="rs-dot" style="background:#fb923c"></span>Culture</span>' +
+      '<span><span class="rs-dot" style="background:#94a3b8"></span>Logistics</span>' +
+    '</div>';
+  el.after(div);
+}
+
 function createNumberedIcon(num, type) {
-  const color = iconColors[type] || '#3b82f6';
+  var color = iconColors[type] || '#3b82f6';
+  var size = (num === 1) ? 32 : 28;
+  var fs = (num === 1) ? 14 : 13;
+  var label = num;
   return L.divIcon({
     className: 'route-marker',
-    html: `<div style="width:28px;height:28px;border-radius:50%;background:${color};color:#000;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.8);box-shadow:0 2px 8px rgba(0,0,0,0.4);">${num}</div>`,
-    iconSize: [28, 28],
-    iconAnchor: [14, 14]
+    html: '<div style="width:' + size + 'px;height:' + size + 'px;border-radius:50%;background:' + color + ';color:#000;font-weight:900;font-size:' + fs + 'px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.9);box-shadow:0 2px 10px rgba(0,0,0,0.5);">' + label + '</div>',
+    iconSize: [size, size],
+    iconAnchor: [size/2, size/2]
   });
 }
 
-function initMapForRoute(mapId, routeKey) {
-  if (maps[mapId]) return;
-  const el = document.getElementById(mapId);
+async function initMapForRoute(mapId, routeKey) {
+  if (maps[mapId]) { maps[mapId].invalidateSize(); return; }
+  var el = document.getElementById(mapId);
   if (!el) return;
-  const route = routes[routeKey];
+  var route = routes[routeKey];
   if (!route) return;
 
-  const map = L.map(el, {zoomControl: false}).setView(route.center, route.zoom);
+  var map = L.map(el, {zoomControl: false}).setView(route.center, route.zoom);
   L.control.zoom({position:'topright'}).addTo(map);
 
-  const street = L.tileLayer(tileUrl, {attribution: tileAttr});
-  const topo = L.tileLayer(topoUrl, {attribution: topoAttr, maxZoom: 17});
+  var street = L.tileLayer(tileUrl, {attribution: tileAttr});
+  var topo = L.tileLayer(topoUrl, {attribution: topoAttr, maxZoom: 17});
   street.addTo(map);
   L.control.layers({'Street': street, 'Terrain': topo}, null, {position:'topright'}).addTo(map);
 
-  const coords = route.stops.map(s => [s.lat, s.lng]);
-  L.polyline(coords, {
-    color: '#3b82f6', weight: 3, opacity: 0.7, dashArray: '8, 8'
-  }).addTo(map);
-
-  route.stops.forEach((stop, i) => {
-    const marker = L.marker([stop.lat, stop.lng], {
+  // Add numbered stop markers immediately
+  route.stops.forEach(function(stop, i) {
+    L.marker([stop.lat, stop.lng], {
       icon: createNumberedIcon(i + 1, stop.icon)
-    }).addTo(map);
-    marker.bindPopup(`<div style="font-weight:700;font-size:13px;">${i+1}. ${stop.name}</div>`, {className:'dark-popup'});
+    }).addTo(map).bindPopup(
+      '<div style="font-weight:700;font-size:13px;">' + (i+1) + '. ' + stop.name + '</div>',
+      {className:'dark-popup'}
+    );
   });
 
-  if (coords.length > 1) {
-    map.fitBounds(L.latLngBounds(coords).pad(0.15));
-  }
+  var coords = route.stops.map(function(s) { return [s.lat, s.lng]; });
+  if (coords.length > 1) map.fitBounds(L.latLngBounds(coords).pad(0.15));
   maps[mapId] = map;
+
+  // Fetch real driving route from OSRM (renders progressively)
+  var dr = await fetchDrivingRoute(route.stops);
+  if (dr && dr.points.length > 2) {
+    // Glow/shadow layer
+    L.polyline(dr.points, {color: '#3b82f6', weight: 8, opacity: 0.08}).addTo(map);
+    // Main route with animated flow showing direction of travel
+    L.polyline(dr.points, {color: '#3b82f6', weight: 3, opacity: 0.7, className: 'route-line'}).addTo(map);
+    // Direction arrows along the actual road
+    addRouteArrows(map, dr.points);
+    // Route summary card
+    showRouteSummary(el, dr, route.stops.length);
+  } else {
+    // Fallback: dashed straight lines + arrows between stops
+    L.polyline(coords, {color: '#3b82f6', weight: 2.5, opacity: 0.45, dashArray: '8,8'}).addTo(map);
+    addStopArrows(map, route.stops);
+  }
 }
 
 function initDayMap(day) {
-  initMapForRoute('map-' + String(day), String(day));
+  initMapForRoute('map-' + day, String(day));
 }
 
 function initPlanMap(planId) {
   initMapForRoute('map-' + planId, planId);
 }
 
-// Init first day's map
-setTimeout(() => initDayMap('0'), 100);
+// Init first visible map
+setTimeout(function() { initDayMap('0'); }, 100);
 
 // Dark popup style
-const style = document.createElement('style');
-style.textContent = `.dark-popup .leaflet-popup-content-wrapper{background:#111827;color:#e8eefc;border-radius:8px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 4px 12px rgba(0,0,0,0.4);}.dark-popup .leaflet-popup-tip{background:#111827;}`;
-document.head.appendChild(style);
+var popStyle = document.createElement('style');
+popStyle.textContent = '.dark-popup .leaflet-popup-content-wrapper{background:#111827;color:#e8eefc;border-radius:8px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 4px 12px rgba(0,0,0,0.4);}.dark-popup .leaflet-popup-tip{background:#111827;}';
+document.head.appendChild(popStyle);
 </script>
 </body>
 </html>
