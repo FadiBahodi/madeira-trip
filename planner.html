@@ -25,12 +25,28 @@
       display: flex; align-items: center; padding: 0 20px; height: 52px; gap: 12px;
     }
     .topnav .brand { font-weight: 800; font-size: 15px; letter-spacing: -0.3px; flex-shrink: 0; color: var(--text); }
+    .topnav .hotel-ctx {
+      font-size: 11px; color: var(--muted); background: var(--surface); border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 10px; display: flex; align-items: center; gap: 5px;
+      white-space: nowrap;
+    }
+    .topnav .hotel-ctx strong { color: var(--amber); font-weight: 700; }
     .topnav .nav-links { display: flex; gap: 6px; margin-left: auto; }
     .topnav .nav-btn {
       font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 8px;
       color: var(--text); background: var(--surface); border: 1px solid var(--border);
     }
     .topnav .nav-btn:hover { border-color: var(--accent); text-decoration: none; }
+
+    /* ── Days-first mode: hide prep sections ── */
+    body.days-mode .hero,
+    body.days-mode .section-nav,
+    body.days-mode .section-divider,
+    body.days-mode #primer,
+    body.days-mode #checklist,
+    body.days-mode #carrental,
+    body.days-mode #hotels,
+    body.days-mode #overview { display: none !important; }
 
     /* ── Hero ── */
     .hero {
@@ -412,10 +428,11 @@
 <!-- Nav -->
 <nav class="topnav">
   <a href="index.html" class="brand">Madeira 2026</a>
+  <div class="hotel-ctx"><strong>Paraiso Hotel</strong> Funchal &middot; 3&#9733;</div>
   <div class="nav-links">
     <a href="explore.html" class="nav-btn">Explorer</a>
     <a href="madeira_map.html" class="nav-btn">Map</a>
-    <a href="itinerary.html" class="nav-btn">Reference</a>
+    <a href="itinerary.html" class="nav-btn">Guides</a>
   </div>
 </nav>
 
@@ -1446,6 +1463,7 @@
     <div class="day-tab" data-day="3"><span class="tab-emoji">&#127795;</span> Day 3: Levadas <span class="tab-date">Mar 13</span></div>
     <div class="day-tab" data-day="4"><span class="tab-emoji">&#9968;</span> Day 4: Summit + Cliffs <span class="tab-date">Mar 14</span></div>
     <div class="day-tab" data-day="5"><span class="tab-emoji">&#9992;</span> Departure <span class="tab-date">Mar 15</span></div>
+    <div class="day-tab ref-tab" data-day="ref" style="margin-left:auto;background:var(--surface2);border-color:rgba(255,255,255,0.12);"><span class="tab-emoji">&#128218;</span> Reference</div>
   </div>
 </div>
 
@@ -1479,14 +1497,16 @@
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 25 min drive to Funchal</div>
       </div>
       <div class="tl-item logistics">
-        <div class="tl-top"><span class="tl-time">18:00</span><span class="tl-name">Hotel Check-in</span><span class="tl-badge hotel">Hotel</span></div>
-        <div class="tl-desc">Check into your Funchal hotel. Drop bags, freshen up. See the <a href="#hotels">Where to Stay</a> section above for recommendations by budget.</div>
+        <div class="tl-top"><span class="tl-time">18:00</span><span class="tl-name">Paraiso Hotel Check-in</span><span class="tl-badge hotel">Hotel</span></div>
+        <div class="tl-desc">Check into <strong>Paraiso Hotel</strong>, Funchal. Drop bags, freshen up. 3-star, central location.</div>
       </div>
       <div class="tl-item food">
-        <div class="tl-top"><span class="tl-time">20:00</span><span class="tl-name">Taberna Madeira</span><span class="tl-badge food">Dinner</span></div>
-        <div class="tl-desc">Zona Velha (Old Town). Local seasonal menu. Great first-night choice. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Zarcos+Funchal+Madeira+Portugal" target="_blank">Zarcos</a> (more central, reliable) or <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gaviao+Novo+Funchal+Madeira+Portugal" target="_blank">Gavi&#227;o Novo</a> (seafood, &#11088;4.6).</div>
+        <div class="tl-top"><span class="tl-time">20:00</span><span class="tl-name">First Dinner — Zona Velha</span><span class="tl-badge food">Dinner</span></div>
+        <div class="tl-desc"><strong>Top pick:</strong> <a href="https://www.google.com/maps/search/?api=1&query=La+ao+Fundo+Funchal+Madeira+Portugal" target="_blank">La ao Fundo</a> (&#11088;4.5, fusion Portuguese-Asian, tuna tartare, intimate — BOOK ahead). <strong>Traditional:</strong> <a href="https://www.google.com/maps/search/?api=1&query=ComTradicoes+Funchal+Madeira+Portugal" target="_blank">ComTradi&#231;&#245;es</a> (&#11088;4.5, TripAdvisor top 1%, fish dishes — RESERVE). <strong>Seafood grill:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gaviao+Novo+Funchal+Madeira+Portugal" target="_blank">Gavi&#227;o Novo</a> (&#11088;4.3, grilled limpets, skip pasta). <strong>Indian break:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Basmati+Indian+Funchal+Madeira+Portugal" target="_blank">Basmati</a> (&#11088;4.7, best vegetarian). All within 5 min walk in Zona Velha.</div>
         <div class="tl-links">
-          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Taberna+Madeira+Funchal+Madeira+Portugal" target="_blank">Google Maps</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=La+ao+Fundo+Funchal+Madeira+Portugal" target="_blank">La ao Fundo &#11088;4.5</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=ComTradicoes+Funchal+Madeira+Portugal" target="_blank">ComTradi&#231;&#245;es &#11088;4.5</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Gaviao+Novo+Funchal+Madeira+Portugal" target="_blank">Gavi&#227;o Novo &#11088;4.3</a>
         </div>
       </div>
       <div class="tl-item logistics">
@@ -1564,10 +1584,13 @@
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 8 min from PR8 trailhead</div>
       </div>
       <div class="tl-item food">
-        <div class="tl-top"><span class="tl-time">13:30</span><span class="tl-name">O Forno — Machico</span><span class="tl-badge food">Lunch</span></div>
-        <div class="tl-desc">Hilltop terrace. Garlic prawns are the move. Complimentary ginja (cherry liqueur) with every meal. <strong>&#11088; 4.5</strong> on Google. <strong>Alternative:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Mercado+Velho+Machico+Madeira+Portugal" target="_blank">Mercado Velho</a> (&#11088;4.4, inside old market hall) or <a href="https://www.google.com/maps/search/?api=1&query=Baia+Beach+Club+Machico+Madeira" target="_blank">Baia Beach Club</a> (casual seafood right on the water).</div>
-        <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=O+Forno+Machico+Madeira+Portugal" target="_blank">Google Maps</a></div>
-        <div class="tl-drive"><span class="drive-icon">&#128663;</span> 12 min from Prainha</div>
+        <div class="tl-top"><span class="tl-time">13:30</span><span class="tl-name">Lunch — Cani&#231;al or Machico</span><span class="tl-badge food">Lunch</span></div>
+        <div class="tl-desc"><strong>Closest to trailhead:</strong> <a href="https://www.google.com/maps/search/?api=1&query=O+Recante+restaurante+Canical+Madeira" target="_blank">O Recante</a> in Cani&#231;al (&#11088;4.7, 5 min from PR8, modern seafood, among the cheapest on Madeira for this quality — tuna and garlic prawns). <strong>Worth the drive:</strong> <a href="https://www.google.com/maps/search/?api=1&query=O+Forno+Machico+Madeira+Portugal" target="_blank">O Forno</a> in Machico (&#11088;4.5, hilltop terrace, garlic prawns, free ginja). <strong>Budget:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Lily%27s+Machico+Madeira" target="_blank">Lily's</a> (&#11088;4.7, valley views, CLOSED Mon).</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=O+Recante+restaurante+Canical+Madeira" target="_blank">O Recante &#11088;4.7</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=O+Forno+Machico+Madeira+Portugal" target="_blank">O Forno &#11088;4.5</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Lily%27s+Machico+Madeira" target="_blank">Lily's &#11088;4.7</a>
+        </div>
       </div>
       <div class="tl-item logistics">
         <div class="tl-top"><span class="tl-time">14:45</span><span class="tl-name">Porto da Cruz + Rum Distillery</span><span class="tl-badge culture">Culture</span></div>
@@ -1723,14 +1746,23 @@
           <a class="tl-link" href="madeira_map.html?poi=pr9-levada-do-caldeirao-verde" target="_blank">Show on Map</a>
         </div>
       </div>
+      <div class="tl-item food">
+        <div class="tl-top"><span class="tl-time">14:00</span><span class="tl-name">Post-Hike Lunch — Santana</span><span class="tl-badge food">Lunch</span></div>
+        <div class="tl-desc"><strong>Best in area:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calhau+de+Sao+Jorge+Santana+Madeira" target="_blank">Calhau de S&#227;o Jorge</a> (&#11088;4.9, #1 in Santana, smoked brisket, waterfront + swimming pool — 15 min detour, book via TheFork). <strong>In town:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Cantinho+da+Serra+Santana+Madeira" target="_blank">Cantinho da Serra</a> (&#11088;4.4, wood-fired oven, espetada, bolo do caco). <strong>Splurge:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+restaurante+Santana+Madeira" target="_blank">Quinta do Fur&#227;o</a> (&#11088;4.4, cliff-top terrace, scabbard fish). Or skip lunch — you'll be back in Funchal by ~15:45.</div>
+        <div class="tl-links">
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Calhau+de+Sao+Jorge+Santana+Madeira" target="_blank">Calhau &#11088;4.9</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Cantinho+da+Serra+Santana+Madeira" target="_blank">Cantinho &#11088;4.4</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Quinta+do+Furao+restaurante+Santana+Madeira" target="_blank">Quinta do Fur&#227;o &#11088;4.4</a>
+        </div>
+      </div>
       <div class="tl-item view">
-        <div class="tl-top"><span class="tl-time">14:15</span><span class="tl-name">Santana Traditional Houses</span><span class="tl-badge culture">Culture</span></div>
-        <div class="tl-desc">Quick 15-20 min photo stop. Iconic triangular thatched-roof <strong>palheiros</strong>. Free to see from outside. Skip if exhausted.</div>
+        <div class="tl-top"><span class="tl-time">15:00</span><span class="tl-name">Santana Traditional Houses</span><span class="tl-badge culture">Culture</span></div>
+        <div class="tl-desc">Quick 15-20 min photo stop. Iconic triangular thatched-roof <strong>palheiros</strong>. Free to see from outside. Skip if exhausted or if you ate at Calhau (different direction).</div>
         <div class="tl-links"><a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Casas+Tipicas+Santana+Madeira+Portugal" target="_blank">Google Maps</a></div>
       </div>
       <div class="tl-item logistics">
-        <div class="tl-top"><span class="tl-time">14:45</span><span class="tl-name">Drive back to Funchal</span><span class="tl-badge logistics">Drive</span></div>
-        <div class="tl-desc">50 min via VE2/VE4 tunnels. PR9 is 17.4 km — your legs are done. Don't add more hiking today. Arrive ~15:35, shower, rest. <strong>PR1.2 is tomorrow morning at sunrise</strong> — you'll be fresh and the summit will be cloud-free.</div>
+        <div class="tl-top"><span class="tl-time">15:30</span><span class="tl-name">Drive back to Funchal</span><span class="tl-badge logistics">Drive</span></div>
+        <div class="tl-desc">50 min via VE2/VE4 tunnels. PR9 is 17.4 km — your legs are done. Don't add more hiking today. Arrive ~16:20, shower, rest. <strong>PR1.2 is tomorrow morning at sunrise</strong> — you'll be fresh and the summit will be cloud-free.</div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 50 min to Funchal via VE2/VE4</div>
       </div>
       <div class="tl-item food">
@@ -1870,10 +1902,11 @@
       </div>
       <div class="tl-item food">
         <div class="tl-top"><span class="tl-time">18:00</span><span class="tl-name">Farewell Espetada Dinner</span><span class="tl-badge food">Dinner</span></div>
-        <div class="tl-desc">THE Madeira dining experience. Beef on laurel wood skewers, hung vertically above the table. <strong>Restaurante Santo Antonio</strong> (&#11088;4.7, 9,085 reviews, since 1966, NO reservations — queue by 6pm on Saturdays). Or <strong>O Polar</strong> (&#11088;4.7, only serves chicken espetada and chicken on a spit — nothing else, and it's incredible). Both in Estreito de C&#226;mara de Lobos, 10 min uphill from the village.</div>
+        <div class="tl-desc">THE Madeira dining experience. Beef on laurel wood skewers, hung vertically above the table. <strong>Restaurante Santo Antonio</strong> (&#11088;4.7, 9,085 reviews, since 1966, NO reservations — queue by 6pm Saturdays). <strong>O Polar</strong> (&#11088;4.7, CASH ONLY, chicken espetada only — nothing else, legendary). <strong>Viola</strong> (&#11088;4.6, book ahead, open grill view, unbeatable prices). All in Estreito de C&#226;mara de Lobos, 10 min uphill. <strong>If you want fish instead:</strong> <a href="https://www.google.com/maps/search/?api=1&query=Vila+do+Peixe+Camara+de+Lobos+Madeira" target="_blank">Vila do Peixe</a> (&#11088;4.3, pick your own fish, bay views).</div>
         <div class="tl-links">
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Santo+Antonio+Estreito+Camara+de+Lobos+Madeira" target="_blank">Santo Antonio &#11088;4.7</a>
           <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=O+Polar+Camara+de+Lobos+Madeira+Portugal" target="_blank">O Polar &#11088;4.7</a>
+          <a class="tl-link" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Viola+Estreito+Camara+de+Lobos+Madeira" target="_blank">Viola &#11088;4.6</a>
         </div>
         <div class="tl-drive"><span class="drive-icon">&#128663;</span> 10 min uphill to Estreito, then 17 min back to Funchal</div>
       </div>
@@ -2022,17 +2055,48 @@ document.querySelectorAll('.check-item').forEach(item => {
 // ── Day tab switching ──
 const tabs = document.querySelectorAll('.day-tab');
 const sections = document.querySelectorAll('.day-section');
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    const day = tab.dataset.day;
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+
+function switchToDay(day) {
+  tabs.forEach(t => t.classList.remove('active'));
+  if (day === 'ref') {
+    // Reference mode: show all prep sections, hide day plans
+    document.body.classList.remove('days-mode');
+    document.querySelector('[data-day="ref"]').classList.add('active');
+    sections.forEach(s => s.classList.remove('active'));
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  } else {
+    // Day mode: hide prep, show selected day
+    document.body.classList.add('days-mode');
+    document.querySelector('[data-day="' + day + '"]').classList.add('active');
     sections.forEach(s => s.classList.remove('active'));
     document.getElementById('day-' + day).classList.add('active');
     initDayMap(day);
     window.scrollTo({top: document.querySelector('.day-tabs-wrap').offsetTop - 52, behavior: 'smooth'});
-  });
+  }
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => switchToDay(tab.dataset.day));
 });
+
+// ── Auto-detect today ──
+(function autoDetectDay() {
+  const tripDays = {
+    '2026-03-10': '0', '2026-03-11': '1', '2026-03-12': '2',
+    '2026-03-13': '3', '2026-03-14': '4', '2026-03-15': '5'
+  };
+  const today = new Date();
+  const key = today.getFullYear() + '-' +
+    String(today.getMonth() + 1).padStart(2, '0') + '-' +
+    String(today.getDate()).padStart(2, '0');
+  const dayNum = tripDays[key];
+  if (dayNum !== undefined) {
+    switchToDay(dayNum);
+  } else {
+    // Not during trip — default to days mode with arrival tab
+    document.body.classList.add('days-mode');
+  }
+})();
 
 // ── Plan toggle ──
 document.querySelectorAll('.plan-toggle').forEach(toggle => {

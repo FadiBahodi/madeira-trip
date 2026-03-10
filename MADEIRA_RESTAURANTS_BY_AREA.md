@@ -57,6 +57,22 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 - **Must-order:** Fish soup; octopus tavern-style; fresh regional dishes
 - **Warnings:** Mixed service reviews -- some nights excellent, some nights long waits and disorganized. The wine cellar is outstanding (large Portuguese wine selection). The building won a heritage restoration award. Located at R. de Santa Maria 119. TheFork: 9.2/10. Reserve for dinner.
 
+### Informal
+- **Google Maps:** 4.7 stars (~3,400 reviews on Restaurant Guru)
+- **Cuisine:** Modern Portuguese with East Asian fusion (ramen, yakisoba, tempura alongside Portuguese dishes)
+- **Price:** EUR EUR (dinner for two ~EUR 80)
+- **Must-order:** Octopus (consensus best dish); veal chop with mushroom risotto; fish fillet; ramen (surprisingly good)
+- **Warnings:** NO RESERVATIONS -- this is the biggest issue. Queues form before opening, especially for dinner. Arrive before 6pm to secure a table. Located at R. dos Murcas 39. Modern take on Portuguese food with Asian influences. If you can get a table, the food justifies the wait.
+- **Google Maps search:** "Restaurante Informal Funchal Madeira"
+
+### Já Fui Jaquet
+- **Google Maps:** 4.7 stars (TripAdvisor #70 in Funchal)
+- **Cuisine:** Mediterranean, Portuguese contemporary
+- **Price:** EUR EUR
+- **Must-order:** Ask for daily specials; seafood dishes
+- **Warnings:** Located at Rua de Santa Maria 5, right at the entrance to the Old Town painted-door street. A new take on a classic Funchal name. Well-reviewed, stylish interior.
+- **Google Maps search:** "Já Fui Jaquet Funchal Madeira"
+
 ### Basmati Indian & Nepali Restaurant
 - **Google Maps:** 4.7 stars
 - **Cuisine:** Indian, Nepalese, vegetarian-friendly
@@ -105,9 +121,47 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 - **Must-order:** Whatever is on the daily whiteboard -- fish or meat with potatoes and salad
 - **Warnings:** CASH ONLY. Menu written on whiteboard, changes daily. No-frills, quintessentially Madeiran. Fresh, simple, cheap. If you want the tourist-free local experience, this is it.
 
+### Snack-Bar Bela 5
+- **Google Maps:** 4.8 stars (~TripAdvisor #24 in Funchal)
+- **Cuisine:** Seafood, traditional Portuguese, snack bar
+- **Price:** EUR
+- **Must-order:** Prego no bolo do caco (steak sandwich in Madeiran bread -- the signature); grilled fish of the day; seafood rice; fish soup
+- **Warnings:** Lively, quirky, family-friendly atmosphere. Generous portions at very reasonable prices. Service is friendly even when busy. Located at Rua Bela São Tiago 5A. Great for a quick, satisfying lunch after a hike without the formality of a full restaurant.
+- **Google Maps search:** "Snack Bar Bela 5 Funchal Madeira"
+
+### Kampo by Chef Julio Pereira
+- **Google Maps:** 4.7 stars
+- **Cuisine:** Contemporary European, seasonal, tasting menu
+- **Price:** EUR EUR EUR (sharing menu EUR 98 for two / 6 dishes)
+- **Must-order:** The "To Share" 6-course menu for two (EUR 98) -- inventive, seasonal, not pretentious; individual dishes also available
+- **Warnings:** This is the UPSCALE lunch option. Chef Julio Pereira also runs AKUA (above). Inventive, contemporary, seasonal menu that changes frequently. On Rua dos Murcas. Not a post-hike-in-shorts place -- more of a "we showered and want a nice lunch" destination. Book ahead.
+- **Google Maps search:** "Kampo Chef Julio Pereira Funchal Madeira"
+
 ---
 
-## 3. MACHICO AREA (East Coast -- Post-Hike Lunch Near PR8)
+## 3A. CANIÇAL (Closest to PR8 Trailhead -- 5 min drive)
+
+*If you want to eat immediately after PR8 Sao Lourenco without driving to Machico. Caniçal is the fishing village right next to the trailhead.*
+
+### O Recante
+- **Google Maps:** 4.7 stars (~1,420 reviews on Restaurant Guru; 4.8 on TripAdvisor)
+- **Cuisine:** Modern Portuguese, ocean-inspired seafood
+- **Price:** EUR -- EUR EUR
+- **Must-order:** Garlic prawns; octopus tentacles; tuna (the restaurant's specialty -- Caniçal was the whaling/tuna capital of Madeira); escabeche limpets
+- **Warnings:** Chef Eusébio's menu changes with the catch. Prices are among the LOWEST on Madeira for this quality. Modern interior, beautifully presented dishes. 5-minute drive from PR8 trailhead. The best option if you want quality seafood without driving to Machico.
+- **Google Maps search:** "O Recante restaurante Caniçal Madeira"
+
+### Restaurante Leone
+- **Google Maps:** 4.4 stars (~440 reviews on Restaurant Guru; TheFork 8.7/10)
+- **Cuisine:** Traditional Madeiran, family-style
+- **Price:** EUR EUR
+- **Must-order:** Espetada on laurel stick (tender, smoky, garlic-seasoned -- reviewers rave about it); bacalhau; octopus
+- **Warnings:** Family-run, warm atmosphere. In Caniçal village center (in front of Santander bank). English menus available. Good portions, fair prices. Not as polished as O Recante but more traditional and homey.
+- **Google Maps search:** "Restaurante Leone Caniçal Madeira"
+
+---
+
+## 3B. MACHICO (East Coast -- 10-15 min from PR8)
 
 *After hiking Vereda da Ponta de Sao Lourenco (PR8) or exploring the east coast. Machico is 10-15 minutes drive from the PR8 trailhead.*
 
@@ -173,6 +227,14 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 - **Must-order:** Picado; fresh catch of the day; stick to the Madeiran dishes
 - **Warnings:** Right by Seixal's natural swimming pool. Popular with surfers and climbers. AVOID pizza and burgers (frozen/dry per reviews) -- order Portuguese dishes only. Owner Bruno is multilingual and very friendly. The location and vibe are excellent even if food is inconsistent.
 
+### Las Caraibas -- Seixal
+- **Google Maps:** 4.7 stars (~137 reviews; TripAdvisor 4.7)
+- **Cuisine:** Seafood, international, fusion
+- **Price:** EUR EUR
+- **Must-order:** Fresh seafood dishes; grilled meats; ask about daily specials
+- **Warnings:** Relaxed, welcoming atmosphere with scenic views. Live music some evenings. Fresh ingredients and bold flavors. Better food quality than Clube Naval next door, but less of a "scene." Good alternative if you want a proper dinner in Seixal rather than a bar snack.
+- **Google Maps search:** "Las Caraibas Seixal Madeira"
+
 ### Restaurante Polo Norte -- Porto Moniz
 - **Google Maps:** ~4.0 stars
 - **Cuisine:** Traditional Madeiran, grilled meats and fish
@@ -189,7 +251,62 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 
 ---
 
-## 5. CAMARA DE LOBOS / ESTREITO DE CAMARA DE LOBOS
+## 5. RABAÇAL / PAUL DA SERRA (Post-PR6 Hike Lunch)
+
+*After hiking PR6 (25 Fontes / Risco). This is remote plateau country -- options are very limited. Plan accordingly.*
+
+### Rabaçal Nature Spot Cafe
+- **Google Maps:** 4.6 stars (~850 reviews on Restaurant Guru)
+- **Cuisine:** Cafe, snacks, light meals
+- **Price:** EUR
+- **Must-order:** Sandwiches (classic Portuguese style); quiche; brownies; bica (espresso) or galão (latte). The dessert selection is surprisingly wide, including vegan options.
+- **Warnings:** This is the ONLY food option near the Rabaçal trailhead. It knows it, but prices remain fair for the location. Large windows with panoramic mountain views. Indoor and outdoor seating. Good for a post-hike snack/light lunch, but NOT a full restaurant meal. If you want a proper sit-down lunch, drive north to Porto Moniz/Seixal/São Vicente (30-40 min) or bring packed food.
+- **Google Maps search:** "Rabaçal Nature Spot Cafe Calheta Madeira"
+
+### Alternative: Pack a Picnic
+- There is a **picnic park** along the Levada das 25 Fontes trail with tables and water. Many hikers buy supplies in Funchal (Pingo Doce supermarket) the night before and eat at the picnic area. This is arguably the better strategy if you want a full meal, since the cafe is snack-oriented.
+
+---
+
+## 6. SANTANA / QUEIMADAS AREA (Post-PR9 Hike Lunch)
+
+*After hiking PR9 (Caldeirão Verde) or visiting the traditional houses in Santana. The Santana area has several strong options.*
+
+### Restaurante Calhau de São Jorge
+- **Google Maps:** 4.9 stars (~234 reviews; TheFork 9.7/10; TripAdvisor #1 in Santana)
+- **Cuisine:** Portuguese with contemporary twist, smoked meats and fish
+- **Price:** EUR EUR
+- **Must-order:** Slow-smoked beef brisket; grilled limpets; grilled octopus; crème brûlée de maracujá (passion fruit)
+- **Warnings:** THE best restaurant in the Santana area by ratings. Located at São Jorge bathing complex (Calhau de São Jorge) -- 15 min drive west of Santana along the coast. Has a SWIMMING POOL you can use. Waterfront setting surrounded by nature. BOOK AHEAD via TheFork. Worth the short detour from Santana.
+- **Google Maps search:** "Restaurante Calhau de São Jorge Santana Madeira"
+
+### Cantinho da Serra
+- **Google Maps:** 4.4 stars (~1,000+ reviews on Restaurant Guru)
+- **Cuisine:** Traditional Madeiran, wood-fired oven
+- **Price:** EUR EUR
+- **Must-order:** Espetada (cooked to perfection per reviews); bolo do caco with butter/garlic; polvo à Lagareiro (octopus); bacalhau assado no forno (roasted cod)
+- **Warnings:** Family restaurant in Santana town center with rustic ambiance. Wood-fired oven is the real deal. Comes with a tray of appetizers (regional starters). Portions are generous. Views of traditional Madeiran A-frame houses across the street. Reasonable prices. Reliable post-hike option right in town.
+- **Google Maps search:** "Cantinho da Serra Santana Madeira"
+
+### Quinta do Furão
+- **Google Maps:** 4.4 stars (~1,300+ reviews)
+- **Cuisine:** Madeiran-International fusion, fine dining
+- **Price:** EUR EUR EUR
+- **Must-order:** Sautéed black scabbard fillet (EUR 21); oxtail tureen with Madeiran red wine; gratinated Azeitão cheese (EUR 23.50); slow-cooked beef cheek
+- **Warnings:** Hotel restaurant BUT open to non-guests. Cliff-top location with SPECTACULAR coastline panoramas from the terrace. This is the splurge option in Santana. Prices higher than other Santana restaurants but justified by the setting and food quality. Reserve for terrace seating.
+- **Google Maps search:** "Quinta do Furão restaurante Santana Madeira"
+
+### Serra e Mar
+- **Google Maps:** ~4.5 stars (TripAdvisor 4.5)
+- **Cuisine:** Traditional Portuguese, regional
+- **Price:** EUR EUR
+- **Must-order:** Fresh fish of the day; regional meat dishes; ask for daily specials
+- **Warnings:** Described as a "hidden gem" with outstanding food and service. Less well-known than Cantinho da Serra or Quinta do Furão, which means easier to get a table. Good fallback if others are full.
+- **Google Maps search:** "Serra e Mar restaurante Santana Madeira"
+
+---
+
+## 7. CAMARA DE LOBOS / ESTREITO DE CAMARA DE LOBOS
 
 *The espetada capital of Madeira. This is where locals go for serious meat on laurel sticks. Two distinct zones: Camara de Lobos (the fishing village by the sea) and Estreito de Camara de Lobos (up in the hills among the vines).*
 
@@ -230,7 +347,7 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 
 ---
 
-## 6. CALHETA / WEST COAST
+## 8. CALHETA / WEST COAST
 
 *If overnighting on the west side or doing a day trip to Calheta's sandy beach. Fewer restaurants than Funchal, but some standouts.*
 
@@ -264,9 +381,14 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 | Best espetada, period | Santo Antonio (Estreito) | The 1966 original. Pilgrimage-level. |
 | Best value lunch in Funchal | Rustikus | EUR 6.90 daily specials, 4.9 rating |
 | Best seafood in Old Town | Gaviao Novo (fish only) or Armazem do Sal | Fresh grilled fish / refined setting |
-| Post-hike fuel near PR8 | O Grelhador or Lily's | Views + portions + fair price |
+| Post-hike fuel near PR8 (fast) | O Recante (Caniçal) | 4.7, 5 min from trailhead, cheap, great seafood |
+| Post-hike fuel near PR8 (scenic) | Lily's (Machico) | 4.7, valley views, 15 min drive |
+| Post-PR6 snack at Rabaçal | Rabaçal Nature Spot Cafe | 4.6, only option near trailhead |
+| Post-PR9 lunch (best in Santana) | Calhau de São Jorge | 4.9, #1 rated, swimming pool, book ahead |
+| Post-PR9 lunch (in town) | Cantinho da Serra | 4.4, wood-fired oven, traditional |
 | North coast dinner with a view | Restaurante Lavrador (Sao Vicente) | 4.7 rating, valley views, book ahead |
 | North coast unique experience | Quebramar (Sao Vicente) | Rotating dining room |
+| Seixal dinner with quality | Las Caraibas | 4.7, fresh seafood, live music |
 | Non-Portuguese food craving | Basmati (Funchal Old Town) | 4.7, best vegetarian options |
 | Waterfront fish, Camara de Lobos | Vila do Peixe | Pick your own fish |
 | Budget espetada, cash only | O Polar (Camara de Lobos) | 4.7, legendary, under EUR 15/person |
@@ -280,9 +402,17 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 - [TripAdvisor - Funchal Restaurants](https://www.tripadvisor.com/Restaurants-g189167-Funchal_Madeira_Madeira_Islands.html)
 - [TripAdvisor - Zona Velha Restaurants](https://www.tripadvisor.com/RestaurantsNear-g189167-d8736485-Zona_Velha-Funchal_Madeira_Madeira_Islands.html)
 - [TripAdvisor - Machico Restaurants](https://www.tripadvisor.com/Restaurants-g580260-Machico_Madeira_Madeira_Islands.html)
+- [TripAdvisor - Caniçal Restaurants](https://www.tripadvisor.com/Restaurants-g1902264-Canical_Madeira_Madeira_Islands.html)
+- [TripAdvisor - Santana Restaurants](https://www.tripadvisor.com/Restaurants-g1178716-Santana_Madeira_Madeira_Islands.html)
 - [TripAdvisor - Porto Moniz Restaurants](https://www.tripadvisor.com/Restaurants-g644297-Porto_Moniz_Madeira_Madeira_Islands.html)
+- [TripAdvisor - Seixal Restaurants](https://www.tripadvisor.com/Restaurants-g1854293-Seixal_Madeira_Madeira_Islands.html)
 - [TripAdvisor - Camara de Lobos Restaurants](https://www.tripadvisor.com/Restaurants-g1190957-Camara_De_Lobos_Madeira_Madeira_Islands.html)
 - [TripAdvisor - Calheta Restaurants](https://www.tripadvisor.com/Restaurants-g1178726-Calheta_Madeira_Madeira_Islands.html)
+- [TripAdvisor - Rabaçal Nature Spot Cafe](https://www.tripadvisor.com/Restaurant_Review-g1178726-d13478114-Reviews-Rabacal_Nature_Spot_Cafe-Calheta_Madeira_Madeira_Islands.html)
+- [TripAdvisor - Restaurante Calhau de São Jorge](https://www.tripadvisor.com/Restaurant_Review-g1178716-d24835767-Reviews-Restaurante_Calhau_de_Sao_Jorge-Santana_Madeira_Madeira_Islands.html)
+- [O Recante Official Site](https://www.orecante.pt/)
+- [Quinta do Furão Official Site](https://www.quintadofurao.com/en/Restaurant)
+- [Taberna Ruel Official Site](https://tabernaruel.com/en/)
 - [Madeira Lovers - 15 Best Restaurants in Funchal (2026)](https://madeiralovers.com/en/best-restaurants-funchal-where-eat-reviews/)
 - [Archipelago Choice - Where to Eat in Funchal](https://www.madeirachoice.com/blog/where-to-eat-in-funchal/)
 - [Archipelago Choice - Where to Eat on Madeira: The East](https://www.archipelagochoice.com/our-destinations/madeira/travel-guides/where-to-eat-on-madeira-the-east/)
@@ -294,3 +424,6 @@ Quick-reference restaurant lookup organized by where you will actually be each d
 - [Pack the Suitcases - Best Restaurants in Funchal](https://www.packthesuitcases.com/where-eat-madeira-best-restaurants-cafes/)
 - [Restaurante Santo Antonio Official Site](https://www.restaurantesantoantonio.com/)
 - [Quebramar Official Site](https://restaurantequebramar.com/)
+- [Visit Madeira - Restaurants](https://visitmadeira.com/en/what-to-do/food-and-wine-enthusiasts/restaurants/)
+- [Wanderlog - Best Restaurants in Santana](https://wanderlog.com/list/geoCategory/201966/where-to-eat-best-restaurants-in-santana)
+- [Wanderlog - Best Restaurants in Caniçal](https://wanderlog.com/list/geoCategory/201830/where-to-eat-best-restaurants-in-canical)

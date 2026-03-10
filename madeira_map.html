@@ -474,6 +474,8 @@
     panelOverlay.addEventListener('click', closePanel);
 
     // ── Filter chips ──
+    let activeFilter = 'all'; // Track which single filter is active
+
     function buildFilterChips() {
       const bar = document.getElementById('filterBar');
       const kindCounts = {};
@@ -490,15 +492,25 @@
       bar.querySelectorAll('.chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const kind = chip.dataset.kind;
-          if (kind === 'all') {
-            hiddenKinds.clear();
-            bar.querySelectorAll('.chip').forEach(c => c.classList.add('active'));
+          // Clicking the already-active filter resets to "all"
+          if (kind === activeFilter && kind !== 'all') {
+            activeFilter = 'all';
           } else {
-            const isActive = chip.classList.contains('active');
-            if (isActive) { hiddenKinds.add(kind); chip.classList.remove('active'); }
-            else { hiddenKinds.delete(kind); chip.classList.add('active'); }
-            // Update "All" chip
-            bar.querySelector('[data-kind="all"]').classList.toggle('active', hiddenKinds.size === 0);
+            activeFilter = kind;
+          }
+
+          // Update chip visuals
+          bar.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          if (activeFilter === 'all') {
+            bar.querySelector('[data-kind="all"]').classList.add('active');
+            hiddenKinds.clear();
+          } else {
+            bar.querySelector('[data-kind="' + activeFilter + '"]').classList.add('active');
+            // Hide everything except the active filter
+            hiddenKinds.clear();
+            Object.keys(KIND_CONFIG).forEach(k => {
+              if (k !== activeFilter) hiddenKinds.add(k);
+            });
           }
           refreshMarkerVisibility();
         });
